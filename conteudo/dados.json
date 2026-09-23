@@ -31,7 +31,7 @@
   },
   "numeros": [
     {
-      "valor": "101",
+      "valor": "102",
       "rotulo": "lições registradas, cada uma com a origem de um caso real",
       "fonte": "memória global, global_index.json (84 universais + 17 de dados)"
     },

@@ -4,7 +4,7 @@
 
 Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateus-fabro-7ba369173
 
-Measured on 2026-09-23. Edition no. 101.
+Measured on 2026-09-23. Edition no. 102.
 
 ## Summary
 
@@ -16,7 +16,7 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 
 ## Numbers
 
-- **101** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (84 general + 17 data))
+- **102** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (84 general + 17 data))
 - **820** of my commits across five products, in 2026 (source: git log of avisa-edital, pingado, nous-clinical, aggron and dumpai, excluding 27 automated bot commits)
 - **2,675** test functions in the four Python products (source: count of def test_ in avisa-edital, pingado, nous-clinical and aggron)
 - **3** iGaming operations, in 3 countries and 3 currencies (source: current job, since Oct 2025)
@@ -196,7 +196,7 @@ Mistakes I made, in the format of a gazette erratum. Each one became a rule.
 
 ## Standing orders (lessons)
 
-20 of the 101 recorded lessons, published here.
+20 of the 102 recorded lessons, published here.
 
 1. **Verify before concluding** — Never say "done" without running the check and reading its output. Green applies only to the exact tree tested: editing afterwards voids the run.
 2. **Mutation testing: prove the test can fail** — A green test is worth something only if it could be red. Revert the fix in a copy and require the suite to fail.

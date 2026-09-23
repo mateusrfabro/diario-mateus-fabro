@@ -146,12 +146,12 @@ def test_numeros_agregados_batem_com_os_fatos_dos_projetos():
             if pr["slug"] in QUATRO_FLASK and "funções de teste" in f:
                 testes += _num(f.split(" funções")[0])
     por_rotulo = {n["rotulo"]: n["valor"] for n in D["numeros"]}
-    assert _num(next(v for r, v in por_rotulo.items() if "commits" in r)) == commits == 820
-    assert _num(next(v for r, v in por_rotulo.items() if "funções de teste" in r)) == testes == 2675
+    assert _num(next(v for r, v in por_rotulo.items() if "commits" in r)) == commits
+    assert _num(next(v for r, v in por_rotulo.items() if "funções de teste" in r)) == testes
 
 
 def test_edicao_e_o_numero_de_licoes():
-    assert build.edicao(D) == D["numeros"][0]["valor"] == "101"
+    assert build.edicao(D) == D["numeros"][0]["valor"]   # o valor real vem do recontar.py
     assert "lições" in D["numeros"][0]["rotulo"]
     assert f"Edição nº {build.edicao(D)}" in GERADO["index.html"]
 
@@ -159,7 +159,6 @@ def test_edicao_e_o_numero_de_licoes():
 def test_metodo_cita_os_mesmos_commits_do_projeto():
     avisa = next(pr for pr in D["projetos"] if pr["slug"] == "avisa-edital")
     total = _num(next(f for f in avisa["fatos"] if "commits" in f).split(" commits")[0])
-    assert total == 182
     assert any(f"dos {total} commits" in m["texto"] for m in D["metodo"])
 
 

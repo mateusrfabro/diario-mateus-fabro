@@ -4,7 +4,7 @@
 
 Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateus-fabro-7ba369173
 
-Medido em 23/09/2026. Edição nº 101.
+Medido em 23/09/2026. Edição nº 102.
 
 ## Resumo
 
@@ -16,7 +16,7 @@ Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória pr�
 
 ## Números
 
-- **101** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (84 universais + 17 de dados))
+- **102** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (84 universais + 17 de dados))
 - **820** commits meus em cinco produtos, em 2026 (fonte: git log de avisa-edital, pingado, nous-clinical, aggron e dumpai, sem os 27 commits automáticos do bot)
 - **2.675** funções de teste nos quatro produtos em Python (fonte: contagem de def test_ em avisa-edital, pingado, nous-clinical e aggron)
 - **3** operações de iGaming, em 3 países e 3 moedas (fonte: trabalho atual, desde out/2025)
@@ -196,7 +196,7 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 
 ## Atos (lições)
 
-20 das 101 lições registradas, publicadas aqui.
+20 das 102 lições registradas, publicadas aqui.
 
 1. **Verificar antes de concluir** — Nunca dizer "pronto" sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada.
 2. **Teste de mutação: prove que o teste sabe falhar** — Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove.

@@ -103,7 +103,7 @@ def test_ver_projeto_desconhecido_lista_as_opcoes():
 def test_buscar_licoes_ignora_acento_e_caixa():
     _, dado = chamar("buscar_licoes", {"termo": "MUTACAO"})
     assert [a["titulo"] for a in dado["encontradas"]] == ["Teste de mutação: prove que o teste sabe falhar"]
-    assert dado["total_registradas"] == "101"
+    assert dado["total_registradas"] == D["numeros"][0]["valor"]
     _, tudo = chamar("buscar_licoes")
     assert len(tudo["encontradas"]) == len(D["atos"])
 
