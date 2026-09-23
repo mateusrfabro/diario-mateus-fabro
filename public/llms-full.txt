@@ -53,9 +53,8 @@ Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resulta
   - 234 commits entre 06/07 e 18/09/2026
   - 772 funções de teste
   - cliente real em produção
-  - restauração de backup provada contra Postgres de verdade
 
-O contrato prometia backup; auditar o contrato mostrou que ele não existia. O conserto só contou depois de provado num Postgres de teste igual ao de produção: apaguei 57 vendas, derrubei uma tabela, restaurei, e voltou tudo. Sete semanas depois, trocar de hospedagem invalidou o backup em silêncio — o único arquivo tinha 801 bytes.
+Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o "Seu tem R$ 29,00" (ver retificações).
 
 ### Nous Clinical
 
@@ -159,18 +158,6 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 - **Leia-se:** O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.
 - **Regra que ficou:** Teste de mutação: prove que o teste sabe falhar
 
-### RET-2026-0731 — 31/07/2026 — Torneio semanal de uma plataforma de jogos
-
-- **Onde se lê:** Ninguém atingiu o corte; baixar o corte para um terço, com urgência.
-- **Leia-se:** Com um oitavo da janela decorrida, o zero media o relógio, não a dificuldade. Com dois terços, cinco pessoas já tinham passado e o topo estava mais de quatro vezes acima do corte. Revoguei no relatório seguinte.
-- **Regra que ficou:** Limiar sobre métrica cumulativa só depois do fechamento da janela
-
-### RET-2026-0810 — 10/08/2026 — Taxa de clique de um pop-up
-
-- **Onde se lê:** Taxa de clique de 0,9%.
-- **Leia-se:** 31,6%. O denominador contava o que foi enfileirado, não o que foi exibido. O número baixo e plausível já tinha virado recomendação de negócio e foi retirado.
-- **Regra que ficou:** Fila não é entrega, e entrega não é visualização
-
 ### RET-2026-0819 — 19/08/2026 — Uma troca com o time de infraestrutura
 
 - **Onde se lê:** Seis afirmações, cada uma com a consulta que a sustentava.
@@ -189,17 +176,23 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 - **Leia-se:** Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.
 - **Regra que ficou:** Dado de referência mora com o código, não na pasta ignorada
 
-### RET-2026-0903 — 03/09/2026 — Pingado, véspera do go-live
+### RET-2026-0824-B — 24/08/2026 — Avisa Edital, busca retroativa de 90 dias
 
-- **Onde se lê:** Backup automático configurado.
-- **Leia-se:** Trocar de hospedagem invalidou o backup em silêncio: o único arquivo tinha 801 bytes. Agora há backup e restauração da produção nova, com o ciclo provado no mesmo dia.
-- **Regra que ficou:** Backup só existe se restaurar
+- **Onde se lê:** Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.
+- **Leia-se:** As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.
+- **Regra que ficou:** Progresso só persiste se a chave dele for estável no tempo
 
-### RET-2026-0910 — 10/09/2026 — Uma análise de dados
+### RET-2026-0921 — 21/09/2026 — Avisa Edital, alarme por plataforma
 
-- **Onde se lê:** Consulta só de leitura, sem risco.
-- **Leia-se:** Deixou lento um banco de produção por quase uma hora, e o dado inteiro já estava na réplica. Hoje o conector exige motivo, identifica a sessão e roda com tempo limite.
-- **Regra que ficou:** Análise nunca no banco que atende o cliente
+- **Onde se lê:** Se uma plataforma de diário cair inteira, o painel avisa pelo nome.
+- **Leia-se:** O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.
+- **Regra que ficou:** Caminho de exceção só existe se for exercitado de propósito
+
+### RET-2026-0923 — 23/09/2026 — Este site, na véspera de ir ao ar
+
+- **Onde se lê:** 847 commits nos quatro produtos.
+- **Leia-se:** 820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.
+- **Regra que ficou:** Número fora do código envelhece sozinho
 
 ## Atos (lições)
 
@@ -294,9 +287,8 @@ Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resulta
   - 234 commits entre 06/07 e 18/09/2026
   - 772 funções de teste
   - cliente real em produção
-  - restauração de backup provada contra Postgres de verdade
 
-O contrato prometia backup; auditar o contrato mostrou que ele não existia. O conserto só contou depois de provado num Postgres de teste igual ao de produção: apaguei 57 vendas, derrubei uma tabela, restaurei, e voltou tudo. Sete semanas depois, trocar de hospedagem invalidou o backup em silêncio — o único arquivo tinha 801 bytes.
+Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o "Seu tem R$ 29,00" (ver retificações).
 
 # Nous Clinical
 

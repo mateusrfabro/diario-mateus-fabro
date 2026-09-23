@@ -19,6 +19,7 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent
 DADOS = RAIZ / "conteudo" / "dados.json"
+DADOS_EN = RAIZ / "conteudo" / "dados.en.json"
 SAIDA = RAIZ / "public"
 
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto",
@@ -34,6 +35,10 @@ ROBOS_IA = ["GPTBot", "OAI-SearchBot", "ChatGPT-User", "ClaudeBot", "Claude-Sear
 
 def carregar() -> dict:
     return json.loads(DADOS.read_text(encoding="utf-8"))
+
+
+def carregar_en() -> dict:
+    return json.loads(DADOS_EN.read_text(encoding="utf-8"))
 
 
 def e(s: str) -> str:
@@ -59,53 +64,142 @@ def ordenadas(retificacoes: list[dict]) -> list[dict]:
     return sorted(retificacoes, key=lambda r: r["data"])
 
 
+# ============================================================================ textos fixos
+# Tudo que a página diz e não vem do conteúdo. Um dicionário por idioma: a versão em inglês
+# é a mesma página, não uma cópia que envelhece à parte.
+T = {
+    "pt": {
+        "prefixo": "", "locale": "pt_BR", "outro": "en", "outro_rotulo": "English",
+        "outro_href": "/en/", "maquina": "Ler como máquina", "edicao": "Edição nº {n} · uma por lição registrada",
+        "titulo_de": "Diário de", "menu": "Seções",
+        "nav": ["Projetos", "Retificações", "Lições", "Método", "Contato", "Para máquinas"],
+        "frase": "Em uma frase", "apresentacao": "Apresentação",
+        "medido": "Números medidos em {d}, contados nos repositórios — não de cabeça.",
+        "s1": "Seção I", "h_proj": "Editais — o que eu construí",
+        "l_proj": "Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.",
+        "s2": "Seção II", "h_ret": "Retificações",
+        "l_ret": ("Erros que eu cometi, no formato do diário oficial: onde se lê, leia-se. A data é a da "
+                  "retificação — quando o erro foi achado e corrigido. Nomes de empresa e de cliente ficam de fora."),
+        "s3": "Seção III", "h_atos": "Atos — as regras que ficaram",
+        "l_atos": "{a} das {n} lições registradas. Cada uma nasceu de um caso real e tem origem, motivo e forma de aplicar.",
+        "s4": "Seção IV", "h_met": "Expediente — como eu trabalho",
+        "l_met": "Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.",
+        "convocacao": "Convocação", "maq_eyebrow": "Para máquinas", "h_maq": "O mesmo diário, para agentes",
+        "l_maq": "Sem raspar HTML: o conteúdo desta página sai do mesmo arquivo em formatos que um agente lê direto.",
+        "mcp_nota": "servidor MCP, só leitura, sem login",
+        "dica": "No Claude: Configurações → Conectores → adicionar conector personalizado → cole o endereço do",
+        "rodape": "Gerado de um arquivo só (conteudo/dados.json) — página, Markdown, llms.txt, JSON Resume e MCP.",
+        "medido_em": "Medido em {d}", "para_quem": "para quem", "papel": "meu papel", "tecnologias": "Tecnologias",
+        "carimbo": "RETIFICAÇÃO", "onde": "Onde se lê", "leia": "Leia-se", "regra": "Regra que ficou:",
+        # Markdown
+        "md_medido": "Medido em {d}. Edição nº {n}.", "md_resumo": "Resumo", "md_numeros": "Números",
+        "md_fonte": "fonte", "md_proj": "Projetos", "md_ret": "Retificações",
+        "md_ret_l": "Erros que cometi, no formato de retificação de diário oficial. Cada um virou uma regra.",
+        "md_atos": "Atos (lições)", "md_atos_l": "{a} das {n} lições registradas, publicadas aqui.",
+        "md_met": "Como trabalho", "md_disp": "Disponibilidade", "md_contato": "Contato",
+        "md_faq": "Perguntas frequentes", "md_agentes": "Para agentes",
+        "md_mcp": "Servidor MCP (Streamable HTTP, sem autenticação, só leitura)",
+        "md_resume": "Currículo em JSON Resume", "md_este": "Este texto",
+        "p_para_quem": "Para quem", "p_papel": "Meu papel", "p_status": "Status", "p_stack": "Stack",
+        "p_endereco": "Endereço", "p_fatos": "Fatos",
+    },
+    "en": {
+        "prefixo": "/en", "locale": "en_US", "outro": "pt", "outro_rotulo": "Português",
+        "outro_href": "/", "maquina": "Read as a machine", "edicao": "Edition no. {n} · one per recorded lesson",
+        "titulo_de": "The Gazette of", "menu": "Sections",
+        "nav": ["Projects", "Corrections", "Lessons", "Method", "Contact", "For machines"],
+        "frase": "In one sentence", "apresentacao": "Introduction",
+        "medido": "Numbers measured on {d}, counted in the repositories — not from memory.",
+        "s1": "Section I", "h_proj": "Notices — what I built",
+        "l_proj": "My own products, from the scraper to the customer, with the real status of each — including the ones that stopped.",
+        "s2": "Section II", "h_ret": "Corrections",
+        "l_ret": ("Mistakes I made, in the format of a gazette erratum: for … read …. The date is the date of the "
+                  "correction — when the mistake was found and fixed. Company and client names are left out."),
+        "s3": "Section III", "h_atos": "Standing orders — the rules that stayed",
+        "l_atos": "{a} of the {n} recorded lessons. Each came from a real case and has an origin, a reason and a way to apply it.",
+        "s4": "Section IV", "h_met": "Masthead — how I work",
+        "l_met": "Paired with AI agents, and with a system that keeps the same mistake from happening twice.",
+        "convocacao": "Summons", "maq_eyebrow": "For machines", "h_maq": "The same gazette, for agents",
+        "l_maq": "No HTML scraping: this page's content comes from the same file in formats an agent reads directly.",
+        "mcp_nota": "MCP server, read-only, no login",
+        "dica": "In Claude: Settings → Connectors → add custom connector → paste the address of",
+        "rodape": "Generated from a single file (conteudo/dados.en.json) — page, Markdown, JSON Resume.",
+        "medido_em": "Measured on {d}", "para_quem": "for whom", "papel": "my role", "tecnologias": "Technologies",
+        "carimbo": "CORRECTION", "onde": "For", "leia": "Read", "regra": "Rule that stayed:",
+        "md_medido": "Measured on {d}. Edition no. {n}.", "md_resumo": "Summary", "md_numeros": "Numbers",
+        "md_fonte": "source", "md_proj": "Projects", "md_ret": "Corrections",
+        "md_ret_l": "Mistakes I made, in the format of a gazette erratum. Each one became a rule.",
+        "md_atos": "Standing orders (lessons)", "md_atos_l": "{a} of the {n} recorded lessons, published here.",
+        "md_met": "How I work", "md_disp": "Availability", "md_contato": "Contact",
+        "md_faq": "Frequently asked questions", "md_agentes": "For agents",
+        "md_mcp": "MCP server (Streamable HTTP, no auth, read-only; tools and content in Portuguese)",
+        "md_resume": "JSON Resume", "md_este": "This text",
+        "p_para_quem": "For whom", "p_papel": "My role", "p_status": "Status", "p_stack": "Stack",
+        "p_endereco": "Address", "p_fatos": "Facts",
+    },
+}
+
+MESES_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+            "October", "November", "December"]
+
+
+def data_extenso_t(iso: str, t: dict) -> str:
+    if t is T["en"]:
+        dd = date.fromisoformat(iso)
+        return f"{MESES_EN[dd.month - 1]} {dd.day}, {dd.year}"
+    return data_extenso(iso)
+
+
+def data_curta_t(iso: str, t: dict) -> str:
+    return iso if t is T["en"] else data_curta(iso)
+
+
 # ============================================================================ Markdown
-def markdown(d: dict) -> str:
+def markdown(d: dict, t: dict = T["pt"]) -> str:
     p, s = d["perfil"], d["site"]
+    base = s["url"] + t["prefixo"]
     L = [f"# {p['nome']} — {p['cargo']}", "",
          f"> {p['tese']}", "",
          f"{p['cidade']}, {p['estado']} · {p['email']} · {p['github']} · {p['linkedin']}", "",
-         f"Medido em {data_curta(s['medido_em'])}. Edição nº {edicao(d)}.", ""]
-    L += ["## Resumo", ""] + [f"{par}\n" for par in p["resumo"]]
-    L += ["## Números", ""]
-    L += [f"- **{n['valor']}** {n['rotulo']} (fonte: {n['fonte']})" for n in d["numeros"]]
-    L += ["", "## Projetos", ""]
+         t["md_medido"].format(d=data_curta_t(s["medido_em"], t), n=edicao(d)), ""]
+    L += [f"## {t['md_resumo']}", ""] + [f"{par}\n" for par in p["resumo"]]
+    L += [f"## {t['md_numeros']}", ""]
+    L += [f"- **{n['valor']}** {n['rotulo']} ({t['md_fonte']}: {n['fonte']})" for n in d["numeros"]]
+    L += ["", f"## {t['md_proj']}", ""]
     for pr in d["projetos"]:
-        L += [projeto_md(pr, nivel=3), ""]
-    L += ["## Retificações", "",
-          "Erros que cometi, no formato de retificação de diário oficial. Cada um virou uma regra.", ""]
+        L += [projeto_md(pr, nivel=3, t=t), ""]
+    L += [f"## {t['md_ret']}", "", t["md_ret_l"], ""]
     for r in ordenadas(d["retificacoes"]):
-        L += [f"### {r['protocolo']} — {data_curta(r['data'])} — {r['contexto']}", "",
-              f"- **Onde se lê:** {r['onde_se_le']}",
-              f"- **Leia-se:** {r['leia_se']}",
-              f"- **Regra que ficou:** {r['regra']}", ""]
-    L += ["## Atos (lições)", "",
-          f"{len(d['atos'])} das {edicao(d)} lições registradas, publicadas aqui.", ""]
+        L += [f"### {r['protocolo']} — {data_curta_t(r['data'], t)} — {r['contexto']}", "",
+              f"- **{t['onde']}:** {r['onde_se_le']}",
+              f"- **{t['leia']}:** {r['leia_se']}",
+              f"- **{t['regra'].rstrip(':')}:** {r['regra']}", ""]
+    L += [f"## {t['md_atos']}", "", t["md_atos_l"].format(a=len(d["atos"]), n=edicao(d)), ""]
     L += [f"{i}. **{a['titulo']}** — {a['texto']}" for i, a in enumerate(d["atos"], 1)]
-    L += ["", "## Como trabalho", ""]
+    L += ["", f"## {t['md_met']}", ""]
     L += [f"- **{m['titulo']}.** {m['texto']}" for m in d["metodo"]]
-    L += ["", "## Disponibilidade", "", d["disponibilidade"]["texto"], "",
-          f"Contato: {d['disponibilidade']['canal']}", ""]
-    L += ["## Perguntas frequentes", ""]
+    L += ["", f"## {t['md_disp']}", "", d["disponibilidade"]["texto"], "",
+          f"{t['md_contato']}: {d['disponibilidade']['canal']}", ""]
+    L += [f"## {t['md_faq']}", ""]
     for f in d["faq"]:
         L += [f"**{f['pergunta']}**", "", f["resposta"], ""]
-    L += ["## Para agentes", "",
-          f"- Servidor MCP (Streamable HTTP, sem autenticação, só leitura): {s['url']}/mcp",
-          f"- Currículo em JSON Resume: {s['url']}/resume.json",
-          f"- Este texto: {s['url']}/index.md", ""]
+    L += [f"## {t['md_agentes']}", "",
+          f"- {t['md_mcp']}: {s['url']}/mcp",
+          f"- {t['md_resume']}: {s['url']}/resume.json",
+          f"- {t['md_este']}: {base}/index.md", ""]
     return "\n".join(L)
 
 
-def projeto_md(pr: dict, nivel: int = 1) -> str:
+def projeto_md(pr: dict, nivel: int = 1, t: dict = T["pt"]) -> str:
     h = "#" * nivel
     L = [f"{h} {pr['nome']}", "", pr["linha"], "",
-         f"- **Para quem:** {pr['para_quem']}",
-         f"- **Meu papel:** {pr['papel']}",
-         f"- **Status:** {pr['status']}",
-         f"- **Stack:** {', '.join(pr['stack'])}"]
+         f"- **{t['p_para_quem']}:** {pr['para_quem']}",
+         f"- **{t['p_papel']}:** {pr['papel']}",
+         f"- **{t['p_status']}:** {pr['status']}",
+         f"- **{t['p_stack']}:** {', '.join(pr['stack'])}"]
     if pr.get("url"):
-        L.append(f"- **Endereço:** {pr['url']}")
-    L += ["- **Fatos:**"] + [f"  - {f}" for f in pr["fatos"]]
+        L.append(f"- **{t['p_endereco']}:** {pr['url']}")
+    L += [f"- **{t['p_fatos']}:**"] + [f"  - {f}" for f in pr["fatos"]]
     L += ["", pr["historia"]]
     return "\n".join(L)
 
@@ -116,6 +210,7 @@ def llms_txt(d: dict) -> str:
          p["tese"], "",
          "## Principal",
          f"- [Página completa em Markdown]({s['url']}/index.md): perfil, projetos, retificações, lições e contato",
+         f"- [Full page in English]({s['url']}/en/index.md): the same content, translated",
          f"- [Currículo em JSON Resume]({s['url']}/resume.json): formato estruturado",
          f"- [Servidor MCP]({s['url']}/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade",
          "", "## Projetos"]
@@ -153,6 +248,7 @@ def resume_json(d: dict) -> dict:
 
 def json_ld(d: dict) -> dict:
     p, s = d["perfil"], d["site"]
+    pagina_url = s["url"] + ("/en/" if s["idioma"] == "en" else "/")
     pessoa = {"@type": "Person", "@id": f"{s['url']}/#pessoa", "name": p["nome"],
               "jobTitle": p["cargo"], "email": f"mailto:{p['email']}",
               "url": s["url"], "sameAs": [p["github"], p["linkedin"]],
@@ -165,7 +261,7 @@ def json_ld(d: dict) -> dict:
         pessoa,
         {"@type": "WebSite", "@id": f"{s['url']}/#site", "url": s["url"], "name": s["titulo"],
          "inLanguage": s["idioma"], "author": {"@id": f"{s['url']}/#pessoa"}},
-        {"@type": "ProfilePage", "@id": f"{s['url']}/#pagina", "url": s["url"], "name": s["titulo"],
+        {"@type": "ProfilePage", "@id": f"{pagina_url}#pagina", "url": pagina_url, "name": s["titulo"],
          "dateModified": s["medido_em"], "mainEntity": {"@id": f"{s['url']}/#pessoa"},
          "isPartOf": {"@id": f"{s['url']}/#site"}},
         {"@type": "ItemList", "name": "Projetos", "itemListElement": [
@@ -181,6 +277,12 @@ def json_ld(d: dict) -> dict:
 
 # ============================================================================ HTML
 CSS = r"""
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:400 600;font-display:swap;
+  src:url(/fontes/newsreader-normal.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:400;font-display:swap;
+  src:url(/fontes/newsreader-italic.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 700;font-display:swap;
+  src:url(/fontes/jetbrains-mono-normal.woff2) format("woff2")}
 :root{
   --paper:#F6F8F9; --paper-2:#EDF1F2; --ink:#14232B; --muted:#56676F; --rule:#C6D1D5;
   --accent:#0E5A63; --accent-soft:#D6E7E9; --stamp:#9E3A2E; --stamp-soft:#F3E3E0;
@@ -424,10 +526,10 @@ def urls_seguras(d: dict) -> None:
 
 def status_vivo(pr: dict) -> bool:
     s = pr["status"].lower()
-    return s.startswith("no ar") or s.startswith("em produção")
+    return s.startswith(("no ar", "em produção", "live", "in production"))
 
 
-def html_projeto(pr: dict) -> str:
+def html_projeto(pr: dict, t: dict = T["pt"]) -> str:
     classe = "projeto trabalho" if pr["tipo"] == "trabalho" else "projeto"
     link = (f' · <a href="{e(pr["url"])}" rel="noopener">{e(pr["url"].split("//")[1])}</a>'
             if pr.get("url") else "")
@@ -441,37 +543,38 @@ def html_projeto(pr: dict) -> str:
   </div>
   <div>
     <p class="linha">{e(pr['linha'])}</p>
-    <dl><dt>para quem</dt><dd>{e(pr['para_quem'])}</dd><dt>meu papel</dt><dd>{e(pr['papel'])}{link}</dd></dl>
+    <dl><dt>{t['para_quem']}</dt><dd>{e(pr['para_quem'])}</dd><dt>{t['papel']}</dt><dd>{e(pr['papel'])}{link}</dd></dl>
     <ul class="fato-lista">{fatos}</ul>
-    <ul class="stack" aria-label="Tecnologias">{stack}</ul>
+    <ul class="stack" aria-label="{t['tecnologias']}">{stack}</ul>
     <p class="historia">{e(pr['historia'])}</p>
   </div>
 </article>"""
 
 
-def html_retificacao(r: dict) -> str:
+def html_retificacao(r: dict, t: dict = T["pt"]) -> str:
     return f"""
 <article class="ret" id="{e(r['protocolo'].lower())}">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">{e(r['protocolo'])} · <time datetime="{e(r['data'])}">{data_curta(r['data'])}</time></span></div>
+  <span class="carimbo" aria-hidden="true">{t['carimbo']}</span>
+  <div class="topo"><span class="protocolo">{e(r['protocolo'])} · <time datetime="{e(r['data'])}">{data_curta_t(r['data'], t)}</time></span></div>
   <h3 class="contexto">{e(r['contexto'])}</h3>
-  <p class="onde"><b>Onde se lê</b><span>{e(r['onde_se_le'])}</span></p>
-  <p class="leia"><b>Leia-se</b><span>{e(r['leia_se'])}</span></p>
-  <p class="regra"><i>Regra que ficou:</i> {e(r['regra'])}</p>
+  <p class="onde"><b>{t['onde']}</b><span>{e(r['onde_se_le'])}</span></p>
+  <p class="leia"><b>{t['leia']}</b><span>{e(r['leia_se'])}</span></p>
+  <p class="regra"><i>{t['regra']}</i> {e(r['regra'])}</p>
 </article>"""
 
 
-def pagina(d: dict, md: str) -> str:
+def pagina(d: dict, md: str, t: dict = T["pt"]) -> str:
     p, s = d["perfil"], d["site"]
+    base = s["url"] + t["prefixo"]
     ld = json.dumps(json_ld(d), ensure_ascii=False)
     dados_js = json.dumps({k: d[k] for k in ("perfil", "numeros", "projetos", "retificacoes",
                                                 "disponibilidade")}, ensure_ascii=False)
     ld, dados_js = json_em_script(ld), json_em_script(dados_js)
     numeros = "".join(f'<div class="numero"><b>{e(n["valor"])}</b><span>{e(n["rotulo"])}</span></div>'
                       for n in d["numeros"])
-    produtos = "".join(html_projeto(pr) for pr in d["projetos"] if pr["tipo"] == "produto")
-    trabalho = "".join(html_projeto(pr) for pr in d["projetos"] if pr["tipo"] == "trabalho")
-    rets = "".join(html_retificacao(r) for r in ordenadas(d["retificacoes"]))
+    produtos = "".join(html_projeto(pr, t) for pr in d["projetos"] if pr["tipo"] == "produto")
+    trabalho = "".join(html_projeto(pr, t) for pr in d["projetos"] if pr["tipo"] == "trabalho")
+    rets = "".join(html_retificacao(r, t) for r in ordenadas(d["retificacoes"]))
     atos = "".join(f"<li><strong>{e(a['titulo'])}</strong><span>{e(a['texto'])}</span></li>"
                    for a in d["atos"])
     metodo = "".join(f"<div><h3>{e(m['titulo'])}</h3><p>{e(m['texto'])}</p></div>" for m in d["metodo"])
@@ -479,6 +582,9 @@ def pagina(d: dict, md: str) -> str:
                   for f in d["faq"])
     resumo = "".join(f"<p>{e(par)}</p>" for par in p["resumo"])
     titulo_pag = f"{p['nome']} — {p['cargo']}"
+    nav = t["nav"]
+    ancoras = ["projetos", "retificacoes", "atos", "metodo", "convocacao", "maquinas"]
+    menu = "".join(f'<a href="#{a}">{e(r)}</a>' for a, r in zip(ancoras, nav))
     return f"""<!doctype html>
 <html lang="{e(s['idioma'])}">
 <head>
@@ -486,24 +592,30 @@ def pagina(d: dict, md: str) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(titulo_pag)}</title>
 <meta name="description" content="{e(s['descricao'])}">
-<link rel="canonical" href="{e(s['url'])}/">
-<link rel="alternate" type="text/markdown" href="/index.md" title="Versão em Markdown">
+<link rel="canonical" href="{e(base)}/">
+<link rel="alternate" hreflang="pt-BR" href="{e(s['url'])}/">
+<link rel="alternate" hreflang="en" href="{e(s['url'])}/en/">
+<link rel="alternate" hreflang="x-default" href="{e(s['url'])}/">
+<link rel="alternate" type="text/markdown" href="{t['prefixo']}/index.md" title="Markdown">
 <link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="{e(titulo_pag)}">
 <meta property="og:description" content="{e(s['descricao'])}">
-<meta property="og:url" content="{e(s['url'])}/">
-<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="{e(base)}/">
+<meta property="og:locale" content="{t['locale']}">
 <meta property="profile:first_name" content="Mateus">
 <meta property="profile:last_name" content="Fabro">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{e(titulo_pag)}">
 <meta name="twitter:description" content="{e(s['descricao'])}">
 <meta name="theme-color" content="#0E5A63">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230E5A63'/%3E%3Ctext x='16' y='23' font-family='Georgia' font-size='20' text-anchor='middle' fill='%23F6F8F9'%3EF%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:image" content="{e(s['url'])}/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{e(s['titulo'])} — {e(t['edicao'].format(n=edicao(d)).split(' · ')[0])}">
+<meta name="twitter:image" content="{e(s['url'])}/og.png">
+<link rel="preload" href="/fontes/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/estilo.css">
 <script type="application/ld+json">{ld}</script>
 </head>
@@ -511,60 +623,59 @@ def pagina(d: dict, md: str) -> str:
 <div class="folha">
 <header class="cabeca">
   <div class="linha-topo">
-    <span>{e(p['cidade'])}, {e(data_extenso(s['medido_em']))}</span>
-    <button class="botao" id="alternar" type="button" aria-pressed="false" aria-controls="maquina">Ler como máquina</button>
+    <span>{e(p['cidade'])}, {e(data_extenso_t(s['medido_em'], t))} · <a href="{t['outro_href']}" hreflang="{t['outro']}" lang="{t['outro']}">{t['outro_rotulo']}</a></span>
+    <button class="botao" id="alternar" type="button" aria-pressed="false" aria-controls="maquina">{t['maquina']}</button>
   </div>
-  <h1 class="titulo">Diário de <em>{e(p['nome'])}</em></h1>
+  <h1 class="titulo">{t['titulo_de']} <em>{e(p['nome'])}</em></h1>
   <div class="sob-titulo">
     <span><strong>{e(p['cargo'])}</strong> · {e(p['subtitulo'])}</span>
-    <span>Edição nº {e(edicao(d))} · uma por lição registrada</span>
+    <span>{e(t['edicao'].format(n=edicao(d)))}</span>
   </div>
   <p class="contato-topo"><a href="mailto:{e(p['email'])}">{e(p['email'])}</a><a href="{e(p['github'])}" rel="me noopener">GitHub</a><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a><a href="#convocacao">{e(d['disponibilidade']['status'].capitalize())}</a></p>
 </header>
-<nav aria-label="Seções">
-  <a href="#projetos">Projetos</a><a href="#retificacoes">Retificações</a><a href="#atos">Lições</a>
-  <a href="#metodo">Método</a><a href="#convocacao">Contato</a><a href="#maquinas">Para máquinas</a>
+<nav aria-label="{t['menu']}">
+  {menu}
 </nav>
 
 <main id="humano">
-<section class="abertura" aria-label="Apresentação">
+<section class="abertura" aria-label="{t['apresentacao']}">
   <div>
-    <p class="eyebrow">Em uma frase</p>
+    <p class="eyebrow">{t['frase']}</p>
     <p class="tese">{e(p['tese'])}</p>
   </div>
   <div class="resumo">{resumo}</div>
 </section>
 <div class="numeros">{numeros}</div>
-<p class="medido mono">Números medidos em {data_curta(s['medido_em'])}, contados nos repositórios — não de cabeça.</p>
+<p class="medido mono">{e(t['medido'].format(d=data_curta_t(s['medido_em'], t)))}</p>
 
 <section class="secao" id="projetos">
-  <header><p class="eyebrow">Seção I</p><h2>Editais — o que eu construí</h2>
-  <p class="lead">Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.</p></header>
+  <header><p class="eyebrow">{t['s1']}</p><h2>{t['h_proj']}</h2>
+  <p class="lead">{t['l_proj']}</p></header>
   <div class="projetos">{produtos}</div>
   {trabalho}
 </section>
 
 <section class="secao" id="retificacoes">
-  <header><p class="eyebrow">Seção II</p><h2>Retificações</h2>
-  <p class="lead">Erros que eu cometi, no formato do diário oficial: onde se lê, leia-se. A data é a da retificação — quando o erro foi achado e corrigido. Nomes de empresa e de cliente ficam de fora.</p></header>
+  <header><p class="eyebrow">{t['s2']}</p><h2>{t['h_ret']}</h2>
+  <p class="lead">{t['l_ret']}</p></header>
   <div class="retificacoes">{rets}</div>
 </section>
 
 <section class="secao" id="atos">
-  <header><p class="eyebrow">Seção III</p><h2>Atos — as regras que ficaram</h2>
-  <p class="lead">{len(d['atos'])} das {e(edicao(d))} lições registradas. Cada uma nasceu de um erro real e tem origem, motivo e forma de aplicar.</p></header>
+  <header><p class="eyebrow">{t['s3']}</p><h2>{t['h_atos']}</h2>
+  <p class="lead">{e(t['l_atos'].format(a=len(d['atos']), n=edicao(d)))}</p></header>
   <ol class="atos">{atos}</ol>
 </section>
 
 <section class="secao" id="metodo">
-  <header><p class="eyebrow">Seção IV</p><h2>Expediente — como eu trabalho</h2>
-  <p class="lead">Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.</p></header>
+  <header><p class="eyebrow">{t['s4']}</p><h2>{t['h_met']}</h2>
+  <p class="lead">{t['l_met']}</p></header>
   <div class="metodo">{metodo}</div>
 </section>
 
 <section class="secao duas">
   <div class="convocacao" id="convocacao">
-    <p class="eyebrow">Convocação</p>
+    <p class="eyebrow">{t['convocacao']}</p>
     <h2>{e(d['disponibilidade']['status'].capitalize())}</h2>
     <p>{e(d['disponibilidade']['texto'])}</p>
     <p class="email"><a href="mailto:{e(p['email'])}">{e(p['email'])}</a></p>
@@ -572,15 +683,15 @@ def pagina(d: dict, md: str) -> str:
     <div class="faq">{faq}</div>
   </div>
   <div class="maquinas" id="maquinas">
-    <p class="eyebrow">Para máquinas</p>
-    <h2>O mesmo diário, para agentes</h2>
-    <p>Sem raspar HTML: o conteúdo desta página sai do mesmo arquivo em formatos que um agente lê direto.</p>
+    <p class="eyebrow">{t['maq_eyebrow']}</p>
+    <h2>{t['h_maq']}</h2>
+    <p>{t['l_maq']}</p>
     <ul>
-      <li><code>{e(s['url'])}/mcp</code><br>servidor MCP, só leitura, sem login</li>
+      <li><code>{e(s['url'])}/mcp</code><br>{t['mcp_nota']}</li>
       <li><a href="/llms.txt"><code>/llms.txt</code></a> · <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
-      <li><a href="/index.md"><code>/index.md</code></a> · <a href="/resume.json"><code>/resume.json</code></a></li>
+      <li><a href="{t['prefixo']}/index.md"><code>{t['prefixo']}/index.md</code></a> · <a href="/resume.json"><code>/resume.json</code></a></li>
     </ul>
-    <p class="dica">No Claude: Configurações → Conectores → adicionar conector personalizado → cole o endereço do <code>/mcp</code>.</p>
+    <p class="dica">{t['dica']} <code>/mcp</code>.</p>
   </div>
 </section>
 </main>
@@ -588,8 +699,8 @@ def pagina(d: dict, md: str) -> str:
 <pre id="maquina" tabindex="-1">{e(md)}</pre>
 
 <footer class="rodape">
-  <span>Gerado de um arquivo só (conteudo/dados.json) — página, Markdown, llms.txt, JSON Resume e MCP.</span>
-  <span>Medido em {data_curta(s['medido_em'])}</span>
+  <span>{t['rodape']}</span>
+  <span>{e(t['medido_em'].format(d=data_curta_t(s['medido_em'], t)))}</span>
 </footer>
 </div>
 <script type="application/json" id="dados">{dados_js}</script>
@@ -609,7 +720,8 @@ def robots(d: dict) -> str:
 
 def sitemap(d: dict) -> str:
     s = d["site"]
-    urls = [f"{s['url']}/", f"{s['url']}/index.md", f"{s['url']}/llms.txt",
+    urls = [f"{s['url']}/", f"{s['url']}/en/", f"{s['url']}/index.md", f"{s['url']}/en/index.md",
+            f"{s['url']}/llms.txt",
             f"{s['url']}/llms-full.txt", f"{s['url']}/resume.json"]
     urls += [f"{s['url']}/projetos/{pr['slug']}.md" for pr in d["projetos"]]
     corpo = "".join(f"<url><loc>{e(u)}</loc><lastmod>{s['medido_em']}</lastmod></url>" for u in urls)
@@ -617,9 +729,35 @@ def sitemap(d: dict) -> str:
             f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{corpo}</urlset>\n')
 
 
-def gerar(d: dict) -> dict[str, str]:
+FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<rect width="32" height="32" rx="3" fill="#0E5A63"/>
+<rect x="6" y="7" width="20" height="2" fill="#F6F8F9"/><rect x="6" y="11" width="20" height="1" fill="#F6F8F9"/>
+<text x="16" y="27" font-family="Georgia,serif" font-size="15" font-style="italic" text-anchor="middle" fill="#F6F8F9">F</text>
+</svg>
+"""
+
+
+def pagina_404(d: dict) -> str:
+    return f"""<!doctype html>
+<html lang="{e(d['site']['idioma'])}">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Página não encontrada — {e(d['site']['titulo'])}</title><meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/estilo.css"></head>
+<body><div class="folha"><header class="cabeca"><h1 class="titulo">Diário de <em>{e(d['perfil']['nome'])}</em></h1></header>
+<section class="secao"><article class="ret"><span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
+<div class="topo"><span class="protocolo">ERRO 404</span></div>
+<p class="onde"><b>Onde se lê</b><span>esta página existe.</span></p>
+<p class="leia"><b>Leia-se</b><span>ela não existe — ou mudou de endereço. <a href="/">Voltar à edição de hoje</a>.</span></p>
+</article></section></div></body></html>
+"""
+
+
+def gerar(d: dict, d_en: dict | None = None) -> dict[str, str]:
+    d_en = d_en if d_en is not None else carregar_en()
     urls_seguras(d)
+    urls_seguras(d_en)
     md = markdown(d)
+    md_en = markdown(d_en, T["en"])
     arquivos = {
         "index.html": pagina(d, md),
         "index.md": md,
@@ -628,8 +766,12 @@ def gerar(d: dict) -> dict[str, str]:
         "resume.json": json.dumps(resume_json(d), ensure_ascii=False, indent=2) + "\n",
         "robots.txt": robots(d),
         "estilo.css": CSS.lstrip(),
+        "favicon.svg": FAVICON,
+        "404.html": pagina_404(d),
         "app.js": JS.lstrip(),
         "sitemap.xml": sitemap(d),
+        "en/index.html": pagina(d_en, md_en, T["en"]),
+        "en/index.md": md_en,
     }
     for pr in d["projetos"]:
         arquivos[f"projetos/{pr['slug']}.md"] = projeto_md(pr) + "\n"

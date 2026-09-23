@@ -233,7 +233,9 @@ def test_retificacoes_tem_onde_se_le_e_leia_se_e_datas_validas():
     for r in D["retificacoes"]:
         assert r["onde_se_le"] and r["leia_se"] and r["regra"]
         date.fromisoformat(r["data"])
-        assert r["protocolo"] == f"RET-{r['data'][:4]}-{r['data'][5:7]}{r['data'][8:10]}"
+        base = f"RET-{r['data'][:4]}-{r['data'][5:7]}{r['data'][8:10]}"
+        assert r["protocolo"] == base or re.fullmatch(re.escape(base) + r"-[A-Z]", r["protocolo"])
+    assert len({r["protocolo"] for r in D["retificacoes"]}) == len(D["retificacoes"])
 
 
 def test_url_sem_https_no_conteudo_derruba_o_build():
@@ -247,3 +249,58 @@ def test_url_sem_https_no_conteudo_derruba_o_build():
     d["perfil"]["linkedin"] = "http://exemplo.com"
     with pytest.raises(ValueError):
         build.gerar(d)
+
+
+def test_imagem_de_compartilhamento_existe_e_nao_envelheceu():
+    """A capa (og.png) traz edição e números desenhados: se o conteúdo mudar e a imagem não,
+    este teste pede `python scripts/gerar_og.py`."""
+    import struct
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import gerar_og
+    png = (RAIZ / "public" / "og.png").read_bytes()
+    assert png[:8] == b"\x89PNG\r\n\x1a\n" and struct.unpack(">II", png[16:24]) == (1200, 630)
+    desenhado = json.loads((RAIZ / "public" / "og.json").read_text(encoding="utf-8"))
+    assert desenhado == gerar_og.descritor(D), "og.png desatualizada: rode python scripts/gerar_og.py"
+    h = GERADO["index.html"]
+    assert f'<meta property="og:image" content="{D["site"]["url"]}/og.png">' in h
+    assert 'name="twitter:card" content="summary_large_image"' in h
+
+
+# ------------------------------------------------------------------ as duas línguas dizem o mesmo
+EN = build.carregar_en()
+
+
+def _digitos(s: str) -> list[str]:
+    """Os números de uma frase, em qualquer ordem e formato: '1.055' e '1,055' dão os mesmos;
+    '12/08' (pt) e '08/12' (en) também."""
+    return sorted(re.findall(r"\d+", s))
+
+
+def test_versao_em_ingles_tem_os_mesmos_fatos_e_numeros():
+    """A tradução é outra cópia do conteúdo — e cópia envelhece. Mudou um número em português,
+    este teste exige o mesmo número em inglês."""
+    assert EN["site"]["medido_em"] == D["site"]["medido_em"]
+    assert EN["site"]["url"] == D["site"]["url"] and EN["perfil"]["email"] == D["perfil"]["email"]
+    assert [_digitos(n["valor"]) for n in EN["numeros"]] == [_digitos(n["valor"]) for n in D["numeros"]]
+    assert [p["slug"] for p in EN["projetos"]] == [p["slug"] for p in D["projetos"]]
+    for pt, en in zip(D["projetos"], EN["projetos"]):
+        assert [_digitos(f) for f in en["fatos"]] == [_digitos(f) for f in pt["fatos"]], pt["slug"]
+        assert (en["url"], en["tipo"]) == (pt["url"], pt["tipo"])
+    assert sorted((r["protocolo"], r["data"]) for r in EN["retificacoes"]) == \
+           sorted((r["protocolo"], r["data"]) for r in D["retificacoes"])
+    en_por_prot = {r["protocolo"]: r for r in EN["retificacoes"]}
+    for r in D["retificacoes"]:
+        assert _digitos(en_por_prot[r["protocolo"]]["leia_se"]) == _digitos(r["leia_se"]), r["protocolo"]
+    assert len(EN["atos"]) == len(D["atos"]) and len(EN["metodo"]) == len(D["metodo"])
+    assert [_digitos(m["texto"]) for m in EN["metodo"]] == [_digitos(m["texto"]) for m in D["metodo"]]
+
+
+def test_pagina_em_ingles_aponta_para_si_e_para_a_portuguesa():
+    h = GERADO["en/index.html"]
+    assert '<html lang="en">' in h and f'<link rel="canonical" href="{D["site"]["url"]}/en/">' in h
+    assert 'hreflang="pt-BR"' in h and 'hreflang="en"' in GERADO["index.html"]
+    assert ">CORRECTION<" in h and ">Read<" in h and "Onde se lê" not in h
+    assert "RETIFICAÇÃO" in GERADO["index.html"] and "CORRECTION" not in GERADO["index.html"]
+    import html as _h
+    pre = re.search(r'<pre id="maquina"[^>]*>(.*?)</pre>', h, re.S).group(1)
+    assert _h.unescape(pre) == GERADO["en/index.md"]

@@ -1,0 +1,3 @@
+#!/bin/sh
+# Barreira antes de algo virar público: e-mail pessoal, nomes da lista, public/ em dia.
+exec python scripts/hooks/pre_commit.py

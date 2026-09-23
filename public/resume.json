@@ -65,8 +65,7 @@
       "highlights": [
         "234 commits entre 06/07 e 18/09/2026",
         "772 funções de teste",
-        "cliente real em produção",
-        "restauração de backup provada contra Postgres de verdade"
+        "cliente real em produção"
       ],
       "keywords": [
         "Flask",

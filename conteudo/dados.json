@@ -101,12 +101,11 @@
       "fatos": [
         "234 commits entre 06/07 e 18/09/2026",
         "772 funções de teste",
-        "cliente real em produção",
-        "restauração de backup provada contra Postgres de verdade"
+        "cliente real em produção"
       ],
       "status": "Em produção desde setembro de 2026",
       "url": "",
-      "historia": "O contrato prometia backup; auditar o contrato mostrou que ele não existia. O conserto só contou depois de provado num Postgres de teste igual ao de produção: apaguei 57 vendas, derrubei uma tabela, restaurei, e voltou tudo. Sete semanas depois, trocar de hospedagem invalidou o backup em silêncio — o único arquivo tinha 801 bytes."
+      "historia": "Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o \"Seu tem R$ 29,00\" (ver retificações)."
     },
     {
       "slug": "nous-clinical",
@@ -254,36 +253,12 @@
       "regra": "Controle com resultado forçado não é controle"
     },
     {
-      "protocolo": "RET-2026-0731",
-      "data": "2026-07-31",
-      "contexto": "Torneio semanal de uma plataforma de jogos",
-      "onde_se_le": "Ninguém atingiu o corte; baixar o corte para um terço, com urgência.",
-      "leia_se": "Com um oitavo da janela decorrida, o zero media o relógio, não a dificuldade. Com dois terços, cinco pessoas já tinham passado e o topo estava mais de quatro vezes acima do corte. Revoguei no relatório seguinte.",
-      "regra": "Limiar sobre métrica cumulativa só depois do fechamento da janela"
-    },
-    {
-      "protocolo": "RET-2026-0810",
-      "data": "2026-08-10",
-      "contexto": "Taxa de clique de um pop-up",
-      "onde_se_le": "Taxa de clique de 0,9%.",
-      "leia_se": "31,6%. O denominador contava o que foi enfileirado, não o que foi exibido. O número baixo e plausível já tinha virado recomendação de negócio e foi retirado.",
-      "regra": "Fila não é entrega, e entrega não é visualização"
-    },
-    {
       "protocolo": "RET-2026-0819",
       "data": "2026-08-19",
       "contexto": "Uma troca com o time de infraestrutura",
       "onde_se_le": "Seis afirmações, cada uma com a consulta que a sustentava.",
       "leia_se": "Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.",
       "regra": "A conclusão não pode ser mais larga que o teste"
-    },
-    {
-      "protocolo": "RET-2026-0910",
-      "data": "2026-09-10",
-      "contexto": "Uma análise de dados",
-      "onde_se_le": "Consulta só de leitura, sem risco.",
-      "leia_se": "Deixou lento um banco de produção por quase uma hora, e o dado inteiro já estava na réplica. Hoje o conector exige motivo, identifica a sessão e roda com tempo limite.",
-      "regra": "Análise nunca no banco que atende o cliente"
     },
     {
       "protocolo": "RET-2026-0716",
@@ -310,12 +285,28 @@
       "regra": "Dado de referência mora com o código, não na pasta ignorada"
     },
     {
-      "protocolo": "RET-2026-0903",
-      "data": "2026-09-03",
-      "contexto": "Pingado, véspera do go-live",
-      "onde_se_le": "Backup automático configurado.",
-      "leia_se": "Trocar de hospedagem invalidou o backup em silêncio: o único arquivo tinha 801 bytes. Agora há backup e restauração da produção nova, com o ciclo provado no mesmo dia.",
-      "regra": "Backup só existe se restaurar"
+      "protocolo": "RET-2026-0824-B",
+      "data": "2026-08-24",
+      "contexto": "Avisa Edital, busca retroativa de 90 dias",
+      "onde_se_le": "Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.",
+      "leia_se": "As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.",
+      "regra": "Progresso só persiste se a chave dele for estável no tempo"
+    },
+    {
+      "protocolo": "RET-2026-0921",
+      "data": "2026-09-21",
+      "contexto": "Avisa Edital, alarme por plataforma",
+      "onde_se_le": "Se uma plataforma de diário cair inteira, o painel avisa pelo nome.",
+      "leia_se": "O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.",
+      "regra": "Caminho de exceção só existe se for exercitado de propósito"
+    },
+    {
+      "protocolo": "RET-2026-0923",
+      "data": "2026-09-23",
+      "contexto": "Este site, na véspera de ir ao ar",
+      "onde_se_le": "847 commits nos quatro produtos.",
+      "leia_se": "820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.",
+      "regra": "Número fora do código envelhece sozinho"
     }
   ],
   "atos": [
