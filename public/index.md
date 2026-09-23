@@ -1,0 +1,265 @@
+# Mateus Fabro — Analytics Engineer
+
+> Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.
+
+Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateus-fabro-7ba369173
+
+Medido em 23/09/2026. Edição nº 101.
+
+## Resumo
+
+Trabalho com dados em iGaming desde outubro de 2025 — hoje em três operações, três países e três moedas: pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
+
+Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de editais e convocações de saúde no Paraná, um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa e um app de fotos com IA.
+
+Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.
+
+## Números
+
+- **101** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (84 universais + 17 de dados))
+- **820** commits meus em cinco produtos, em 2026 (fonte: git log de avisa-edital, pingado, nous-clinical, aggron e dumpai, sem os 27 commits automáticos do bot)
+- **2.675** funções de teste nos quatro produtos em Python (fonte: contagem de def test_ em avisa-edital, pingado, nous-clinical e aggron)
+- **3** operações de iGaming, em 3 países e 3 moedas (fonte: trabalho atual, desde out/2025)
+- **3,07 bi** registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: 234 tabelas, ~71 pipelines consumidores)
+
+## Projetos
+
+### Avisa Edital
+
+Alerta no Telegram quando sai edital ou convocação de saúde no Paraná.
+
+- **Para quem:** Médicos do Paraná que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.
+- **Meu papel:** Construí sozinho: coletores, bot, site, pagamento e monitoramento. Meu sócio, da área médica, cuida da venda.
+- **Status:** No ar desde agosto de 2026
+- **Stack:** Python, GitHub Actions, Vercel (funções Python), Upstash Redis, Telegram Bot API, Kiwify (webhook HMAC), pypdf + Tesseract (OCR)
+- **Endereço:** https://avisaedital.com.br
+- **Fatos:**
+  - 182 commits meus entre 12/08 e 21/09/2026, fora 27 automáticos do bot
+  - 1.055 funções de teste
+  - 192 municípios do PR vigiados em diários oficiais
+  - 5 bancas e 8 fontes de convocação (diários municipais, Querido Diário, Secretaria de Saúde e consórcio do SAMU)
+
+Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia "13 convocações novas", das quais 10 eram de semanas antes.
+
+### Pingado
+
+Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
+
+- **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.
+- **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião (v0.2 → v0.10).
+- **Status:** Em produção desde setembro de 2026
+- **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
+- **Fatos:**
+  - 234 commits entre 06/07 e 18/09/2026
+  - 772 funções de teste
+  - cliente real em produção
+  - restauração de backup provada contra Postgres de verdade
+
+O contrato prometia backup; auditar o contrato mostrou que ele não existia. O conserto só contou depois de provado num Postgres de teste igual ao de produção: apaguei 57 vendas, derrubei uma tabela, restaurei, e voltou tudo. Sete semanas depois, trocar de hospedagem invalidou o backup em silêncio — o único arquivo tinha 801 bytes.
+
+### Nous Clinical
+
+Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
+
+- **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
+- **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
+- **Status:** Última versão em 26/08/2026
+- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2; restauração ainda não testada)
+- **Fatos:**
+  - 190 commits entre 05/06 e 26/08/2026
+  - 457 funções de teste
+  - 111 rotas
+  - auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)
+
+Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico.
+
+### Aggron
+
+Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.
+
+- **Para quem:** Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.
+- **Meu papel:** Tech lead e desenvolvedor, com um sócio como dono do produto.
+- **Status:** MVP completo; parado desde 28/05/2026
+- **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, PDF de contrato
+- **Fatos:**
+  - 194 commits entre 14/04 e 28/05/2026
+  - 391 funções de teste
+  - 109 rotas
+  - origem da plataforma Flask que Nous e Pingado reaproveitam
+
+Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar.
+
+### DumpAI
+
+A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
+
+- **Para quem:** Quem posta carrossel e perde meia hora escolhendo foto.
+- **Meu papel:** No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.
+- **Status:** No ar; vendas perto de zero
+- **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
+- **Endereço:** https://dumpai-omega.vercel.app
+- **Fatos:**
+  - 20 commits entre 10/06 e 22/06/2026
+  - no ar desde 11/06/2026
+  - compressão da imagem no navegador antes do envio
+
+O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição.
+
+### Secretária de WhatsApp
+
+Recepcionista de WhatsApp com agenda real para profissionais autônomos.
+
+- **Para quem:** Psicólogos, advogados e outros profissionais que atendem sozinhos.
+- **Meu papel:** Arquitetura e implementação, com um squad de 5 agentes de IA.
+- **Status:** Piloto parado na autorização do Google; não completou uma conversa de ponta a ponta com cliente
+- **Stack:** n8n, Evolution API, PostgreSQL 16, Redis 7, LangChain, Google Calendar
+- **Fatos:**
+  - projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04
+  - passagem para humano com trava na conversa
+  - configuração por cliente em YAML (versão multi-cliente)
+
+Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita.
+
+### Dados em iGaming
+
+Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
+
+- **Para quem:** Squad de dados de 4 pessoas de um grupo de iGaming; lidero a frente de dados de duas operações.
+- **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
+- **Status:** Trabalho atual (nomes de empresa e cliente omitidos)
+- **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
+- **Fatos:**
+  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores
+  - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
+  - serviço diário de risco e score de crédito de jogador
+  - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
+  - consulta crítica de 240 s para 21 s, com equivalência provada por conjunto
+
+A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes ficam de fora.
+
+## Retificações
+
+Erros que cometi, no formato de retificação de diário oficial. Cada um virou uma regra.
+
+### RET-2026-0716 — 16/07/2026 — Pingado, extrato impresso do fiado
+
+- **Onde se lê:** 347 testes verdes.
+- **Leia-se:** O papel dizia "Seu tem R$ 29,00 de crédito": o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é "Seu" alguma coisa ou "Dona" alguma coisa. Só imprimir o artefato real pegou.
+- **Regra que ficou:** Gerar o artefato que o usuário recebe
+
+### RET-2026-0727 — 27/07/2026 — Conciliação financeira
+
+- **Onde se lê:** 0 créditos duplicados.
+- **Leia-se:** Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.
+- **Regra que ficou:** Controle com resultado forçado não é controle
+
+### RET-2026-0728 — 28/07/2026 — Verificador de um alerta automático
+
+- **Onde se lê:** 24 checagens verdes: correção validada.
+- **Leia-se:** O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.
+- **Regra que ficou:** Teste de mutação: prove que o teste sabe falhar
+
+### RET-2026-0731 — 31/07/2026 — Torneio semanal de uma plataforma de jogos
+
+- **Onde se lê:** Ninguém atingiu o corte; baixar o corte para um terço, com urgência.
+- **Leia-se:** Com um oitavo da janela decorrida, o zero media o relógio, não a dificuldade. Com dois terços, cinco pessoas já tinham passado e o topo estava mais de quatro vezes acima do corte. Revoguei no relatório seguinte.
+- **Regra que ficou:** Limiar sobre métrica cumulativa só depois do fechamento da janela
+
+### RET-2026-0810 — 10/08/2026 — Taxa de clique de um pop-up
+
+- **Onde se lê:** Taxa de clique de 0,9%.
+- **Leia-se:** 31,6%. O denominador contava o que foi enfileirado, não o que foi exibido. O número baixo e plausível já tinha virado recomendação de negócio e foi retirado.
+- **Regra que ficou:** Fila não é entrega, e entrega não é visualização
+
+### RET-2026-0819 — 19/08/2026 — Uma troca com o time de infraestrutura
+
+- **Onde se lê:** Seis afirmações, cada uma com a consulta que a sustentava.
+- **Leia-se:** Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.
+- **Regra que ficou:** A conclusão não pode ser mais larga que o teste
+
+### RET-2026-0821 — 21/08/2026 — Avisa Edital, bot do Telegram
+
+- **Onde se lê:** Redirect de SEO: só canonicalização de domínio.
+- **Leia-se:** O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.
+- **Regra que ficou:** Redirect de canonicalização engole webhook
+
+### RET-2026-0824 — 24/08/2026 — Avisa Edital, resposta do bot
+
+- **Onde se lê:** Ainda não vigiamos sua cidade.
+- **Leia-se:** Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.
+- **Regra que ficou:** Dado de referência mora com o código, não na pasta ignorada
+
+### RET-2026-0903 — 03/09/2026 — Pingado, véspera do go-live
+
+- **Onde se lê:** Backup automático configurado.
+- **Leia-se:** Trocar de hospedagem invalidou o backup em silêncio: o único arquivo tinha 801 bytes. Agora há backup e restauração da produção nova, com o ciclo provado no mesmo dia.
+- **Regra que ficou:** Backup só existe se restaurar
+
+### RET-2026-0910 — 10/09/2026 — Uma análise de dados
+
+- **Onde se lê:** Consulta só de leitura, sem risco.
+- **Leia-se:** Deixou lento um banco de produção por quase uma hora, e o dado inteiro já estava na réplica. Hoje o conector exige motivo, identifica a sessão e roda com tempo limite.
+- **Regra que ficou:** Análise nunca no banco que atende o cliente
+
+## Atos (lições)
+
+20 das 101 lições registradas, publicadas aqui.
+
+1. **Verificar antes de concluir** — Nunca dizer "pronto" sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada.
+2. **Teste de mutação: prove que o teste sabe falhar** — Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove.
+3. **Controle com resultado forçado não é controle** — Antes de publicar "0 ocorrências", perguntar se o número poderia ser diferente de zero.
+4. **A conclusão não pode ser mais larga que o teste** — Query certa, número certo, frase falsa. Colar o predicado ao lado da frase antes de publicar.
+5. **Ausência de dado não é afirmação** — Lista vazia por falta de cobertura vira "não há nada" e tranquiliza quem deveria agir. Separar "não há" de "não sei".
+6. **Fila não é entrega, e entrega não é visualização** — Contar a tabela de fila mede o que foi enfileirado, não o que aconteceu. Como denominador, produz um número baixo e plausível.
+7. **Vigiar o efeito, não só a causa** — Monitor de causa só pega a falha já imaginada. Um monitor de efeito é um só e indiferente à causa.
+8. **Backup só existe se restaurar** — Backup nunca restaurado não é backup; volume e réplica também não. Provar o ciclo destruindo dado de verdade e trazendo de volta.
+9. **Fallback silencioso em valor crítico** — Câmbio, configuração, versão e limite nunca atrás de try/except com valor padrão. Falhar alto é melhor que publicar número errado.
+10. **Número fora do código envelhece sozinho** — Todo número publicado sai do código na mesma rodada. Remendo de parágrafo produz duas grandezas com o mesmo nome.
+11. **"Novo para nós" não é "aconteceu agora"** — Ampliar cobertura faz o histórico entrar como novidade. Notificar pela data do evento e marcar os antigos.
+12. **Gerar o artefato do usuário** — Suíte verde não prova a tela nem o papel. Renderizar o cupom, o PDF ou o e-mail que a pessoa recebe.
+13. **Dado de referência mora com o código** — Lista canônica numa pasta ignorada pelo git só existe na máquina de quem desenvolve; CI e produção degradam calados.
+14. **Análise nunca no banco que atende o cliente** — Consulta de leitura também derruba produção. O padrão é réplica ou banco analítico, com sessão identificada e tempo limite.
+15. **Não inocentar com sinal que não discrimina** — Para afirmar "não é fraude" ou "não é regressão", rodar o detector que acharia a coisa. Sinal que o culpado também exibiria não absolve.
+16. **O guard de PII é o vetor de vazamento** — A lista que prova "sem dado pessoal na entrega" é ela própria dado pessoal. Derivar o alvo em tempo de execução, não versionar.
+17. **Identidade de ambiente por configuração, não por dado** — "Isto é produção?" se responde lendo a configuração do deploy, não pela presença de uma linha que pode ter sido apagada.
+18. **Escape não atravessa o shell** — \b e \n escritos por heredoc chegam ao arquivo como caractere de controle. O terminal esconde, a regex nunca casa.
+19. **Subagente julga contra uma fotografia** — Agente sem acesso ao vivo acerta o raciocínio e erra o fato. Em infraestrutura que muda toda semana, a fotografia envelhece em dias.
+20. **Não depender só da IA** — Palpitar antes de pedir o número. A IA acelera; o julgamento continua sendo meu.
+
+## Como trabalho
+
+- **Memória em camadas.** Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.
+- **Um gate fecha a promoção.** Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.
+- **Mutação como hábito.** 53 dos 182 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
+- **Agentes com papel, não com autonomia.** 15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
+- **Onde paramos.** Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.
+
+## Disponibilidade
+
+Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados e analytics engineering. O jeito mais rápido é o e-mail.
+
+Contato: mateusrfabro@hotmail.com
+
+## Perguntas frequentes
+
+**Quem é Mateus Fabro?**
+
+Analytics engineer em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron e DumpAI.
+
+**Com o que ele trabalha?**
+
+Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.
+
+**O que são as retificações deste site?**
+
+Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável.
+
+**Ele está disponível?**
+
+Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.
+
+## Para agentes
+
+- Servidor MCP (Streamable HTTP, sem autenticação, só leitura): https://mateusfabro.vercel.app/mcp
+- Currículo em JSON Resume: https://mateusfabro.vercel.app/resume.json
+- Este texto: https://mateusfabro.vercel.app/index.md

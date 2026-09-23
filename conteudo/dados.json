@@ -1,0 +1,448 @@
+{
+  "site": {
+    "url": "https://mateusfabro.vercel.app",
+    "idioma": "pt-BR",
+    "medido_em": "2026-09-23",
+    "titulo": "Diário de Mateus Fabro",
+    "descricao": "Mateus Fabro, analytics engineer em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável."
+  },
+  "perfil": {
+    "nome": "Mateus Fabro",
+    "cargo": "Analytics Engineer",
+    "subtitulo": "Sistemas de dados e produtos, do coletor ao cliente",
+    "cidade": "Londrina",
+    "estado": "PR",
+    "pais": "Brasil",
+    "email": "mateusrfabro@hotmail.com",
+    "github": "https://github.com/mateusrfabro",
+    "linkedin": "https://www.linkedin.com/in/mateus-fabro-7ba369173",
+    "tese": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.",
+    "resumo": [
+      "Trabalho com dados em iGaming desde outubro de 2025 — hoje em três operações, três países e três moedas: pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
+      "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de editais e convocações de saúde no Paraná, um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa e um app de fotos com IA.",
+      "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."
+    ],
+    "formacao": "Administração de Empresas — Universidade Anhembi Morumbi (em curso)",
+    "idiomas": [
+      "Português (nativo)",
+      "Inglês (intermediário, leitura técnica fluente)",
+      "Espanhol (básico)"
+    ]
+  },
+  "numeros": [
+    {
+      "valor": "101",
+      "rotulo": "lições registradas, cada uma com a origem de um caso real",
+      "fonte": "memória global, global_index.json (84 universais + 17 de dados)"
+    },
+    {
+      "valor": "820",
+      "rotulo": "commits meus em cinco produtos, em 2026",
+      "fonte": "git log de avisa-edital, pingado, nous-clinical, aggron e dumpai, sem os 27 commits automáticos do bot"
+    },
+    {
+      "valor": "2.675",
+      "rotulo": "funções de teste nos quatro produtos em Python",
+      "fonte": "contagem de def test_ em avisa-edital, pingado, nous-clinical e aggron"
+    },
+    {
+      "valor": "3",
+      "rotulo": "operações de iGaming, em 3 países e 3 moedas",
+      "fonte": "trabalho atual, desde out/2025"
+    },
+    {
+      "valor": "3,07 bi",
+      "rotulo": "registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo",
+      "fonte": "234 tabelas, ~71 pipelines consumidores"
+    }
+  ],
+  "projetos": [
+    {
+      "slug": "avisa-edital",
+      "nome": "Avisa Edital",
+      "tipo": "produto",
+      "linha": "Alerta no Telegram quando sai edital ou convocação de saúde no Paraná.",
+      "para_quem": "Médicos do Paraná que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.",
+      "papel": "Construí sozinho: coletores, bot, site, pagamento e monitoramento. Meu sócio, da área médica, cuida da venda.",
+      "stack": [
+        "Python",
+        "GitHub Actions",
+        "Vercel (funções Python)",
+        "Upstash Redis",
+        "Telegram Bot API",
+        "Kiwify (webhook HMAC)",
+        "pypdf + Tesseract (OCR)"
+      ],
+      "fatos": [
+        "182 commits meus entre 12/08 e 21/09/2026, fora 27 automáticos do bot",
+        "1.055 funções de teste",
+        "192 municípios do PR vigiados em diários oficiais",
+        "5 bancas e 8 fontes de convocação (diários municipais, Querido Diário, Secretaria de Saúde e consórcio do SAMU)"
+      ],
+      "status": "No ar desde agosto de 2026",
+      "url": "https://avisaedital.com.br",
+      "historia": "Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia \"13 convocações novas\", das quais 10 eram de semanas antes."
+    },
+    {
+      "slug": "pingado",
+      "nome": "Pingado",
+      "tipo": "produto",
+      "linha": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.",
+      "para_quem": "Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.",
+      "papel": "Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião (v0.2 → v0.10).",
+      "stack": [
+        "Flask",
+        "SQLAlchemy + Alembic",
+        "PostgreSQL (Neon)",
+        "Redis",
+        "Docker",
+        "Render"
+      ],
+      "fatos": [
+        "234 commits entre 06/07 e 18/09/2026",
+        "772 funções de teste",
+        "cliente real em produção",
+        "restauração de backup provada contra Postgres de verdade"
+      ],
+      "status": "Em produção desde setembro de 2026",
+      "url": "",
+      "historia": "O contrato prometia backup; auditar o contrato mostrou que ele não existia. O conserto só contou depois de provado num Postgres de teste igual ao de produção: apaguei 57 vendas, derrubei uma tabela, restaurei, e voltou tudo. Sete semanas depois, trocar de hospedagem invalidou o backup em silêncio — o único arquivo tinha 801 bytes."
+    },
+    {
+      "slug": "nous-clinical",
+      "nome": "Nous Clinical",
+      "tipo": "produto",
+      "linha": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.",
+      "para_quem": "Clínicas de saúde, com separação total de dados entre clínicas.",
+      "papel": "Liderei o desenvolvimento de ponta a ponta.",
+      "stack": [
+        "Flask",
+        "PostgreSQL (Neon)",
+        "Redis",
+        "gunicorn + nginx",
+        "Docker",
+        "2FA/TOTP",
+        "NFS-e",
+        "Anthropic API (chatbot)",
+        "backup cifrado (age → R2; restauração ainda não testada)"
+      ],
+      "fatos": [
+        "190 commits entre 05/06 e 26/08/2026",
+        "457 funções de teste",
+        "111 rotas",
+        "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)"
+      ],
+      "status": "Última versão em 26/08/2026",
+      "url": "",
+      "historia": "Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico."
+    },
+    {
+      "slug": "aggron",
+      "nome": "Aggron",
+      "tipo": "produto",
+      "linha": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.",
+      "para_quem": "Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.",
+      "papel": "Tech lead e desenvolvedor, com um sócio como dono do produto.",
+      "stack": [
+        "Flask",
+        "PostgreSQL",
+        "Telegram Bot API",
+        "Docker",
+        "PDF de contrato"
+      ],
+      "fatos": [
+        "194 commits entre 14/04 e 28/05/2026",
+        "391 funções de teste",
+        "109 rotas",
+        "origem da plataforma Flask que Nous e Pingado reaproveitam"
+      ],
+      "status": "MVP completo; parado desde 28/05/2026",
+      "url": "",
+      "historia": "Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar."
+    },
+    {
+      "slug": "dumpai",
+      "nome": "DumpAI",
+      "tipo": "produto",
+      "linha": "A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.",
+      "para_quem": "Quem posta carrossel e perde meia hora escolhendo foto.",
+      "papel": "No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.",
+      "stack": [
+        "Next.js 16",
+        "React 19",
+        "Tailwind v4",
+        "Claude (multimodal)",
+        "Kiwify",
+        "Upstash (rate limit)",
+        "Vercel"
+      ],
+      "fatos": [
+        "20 commits entre 10/06 e 22/06/2026",
+        "no ar desde 11/06/2026",
+        "compressão da imagem no navegador antes do envio"
+      ],
+      "status": "No ar; vendas perto de zero",
+      "url": "https://dumpai-omega.vercel.app",
+      "historia": "O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição."
+    },
+    {
+      "slug": "atendimento-whatsapp",
+      "nome": "Secretária de WhatsApp",
+      "tipo": "produto",
+      "linha": "Recepcionista de WhatsApp com agenda real para profissionais autônomos.",
+      "para_quem": "Psicólogos, advogados e outros profissionais que atendem sozinhos.",
+      "papel": "Arquitetura e implementação, com um squad de 5 agentes de IA.",
+      "stack": [
+        "n8n",
+        "Evolution API",
+        "PostgreSQL 16",
+        "Redis 7",
+        "LangChain",
+        "Google Calendar"
+      ],
+      "fatos": [
+        "projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04",
+        "passagem para humano com trava na conversa",
+        "configuração por cliente em YAML (versão multi-cliente)"
+      ],
+      "status": "Piloto parado na autorização do Google; não completou uma conversa de ponta a ponta com cliente",
+      "url": "",
+      "historia": "Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita."
+    },
+    {
+      "slug": "igaming-dados",
+      "nome": "Dados em iGaming",
+      "tipo": "trabalho",
+      "linha": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.",
+      "para_quem": "Squad de dados de 4 pessoas de um grupo de iGaming; lidero a frente de dados de duas operações.",
+      "papel": "Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.",
+      "stack": [
+        "Python",
+        "SQL (PostgreSQL e motores distribuídos)",
+        "AWS",
+        "NestJS + Next.js",
+        "systemd",
+        "Slack / Telegram / WhatsApp"
+      ],
+      "fatos": [
+        "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores",
+        "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago",
+        "serviço diário de risco e score de crédito de jogador",
+        "linter multi-tenant que falha fechado: lista de exceções de 43 para 3",
+        "consulta crítica de 240 s para 21 s, com equivalência provada por conjunto"
+      ],
+      "status": "Trabalho atual (nomes de empresa e cliente omitidos)",
+      "url": "",
+      "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes ficam de fora."
+    }
+  ],
+  "retificacoes": [
+    {
+      "protocolo": "RET-2026-0728",
+      "data": "2026-07-28",
+      "contexto": "Verificador de um alerta automático",
+      "onde_se_le": "24 checagens verdes: correção validada.",
+      "leia_se": "O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.",
+      "regra": "Teste de mutação: prove que o teste sabe falhar"
+    },
+    {
+      "protocolo": "RET-2026-0727",
+      "data": "2026-07-27",
+      "contexto": "Conciliação financeira",
+      "onde_se_le": "0 créditos duplicados.",
+      "leia_se": "Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.",
+      "regra": "Controle com resultado forçado não é controle"
+    },
+    {
+      "protocolo": "RET-2026-0731",
+      "data": "2026-07-31",
+      "contexto": "Torneio semanal de uma plataforma de jogos",
+      "onde_se_le": "Ninguém atingiu o corte; baixar o corte para um terço, com urgência.",
+      "leia_se": "Com um oitavo da janela decorrida, o zero media o relógio, não a dificuldade. Com dois terços, cinco pessoas já tinham passado e o topo estava mais de quatro vezes acima do corte. Revoguei no relatório seguinte.",
+      "regra": "Limiar sobre métrica cumulativa só depois do fechamento da janela"
+    },
+    {
+      "protocolo": "RET-2026-0810",
+      "data": "2026-08-10",
+      "contexto": "Taxa de clique de um pop-up",
+      "onde_se_le": "Taxa de clique de 0,9%.",
+      "leia_se": "31,6%. O denominador contava o que foi enfileirado, não o que foi exibido. O número baixo e plausível já tinha virado recomendação de negócio e foi retirado.",
+      "regra": "Fila não é entrega, e entrega não é visualização"
+    },
+    {
+      "protocolo": "RET-2026-0819",
+      "data": "2026-08-19",
+      "contexto": "Uma troca com o time de infraestrutura",
+      "onde_se_le": "Seis afirmações, cada uma com a consulta que a sustentava.",
+      "leia_se": "Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.",
+      "regra": "A conclusão não pode ser mais larga que o teste"
+    },
+    {
+      "protocolo": "RET-2026-0910",
+      "data": "2026-09-10",
+      "contexto": "Uma análise de dados",
+      "onde_se_le": "Consulta só de leitura, sem risco.",
+      "leia_se": "Deixou lento um banco de produção por quase uma hora, e o dado inteiro já estava na réplica. Hoje o conector exige motivo, identifica a sessão e roda com tempo limite.",
+      "regra": "Análise nunca no banco que atende o cliente"
+    },
+    {
+      "protocolo": "RET-2026-0716",
+      "data": "2026-07-16",
+      "contexto": "Pingado, extrato impresso do fiado",
+      "onde_se_le": "347 testes verdes.",
+      "leia_se": "O papel dizia \"Seu tem R$ 29,00 de crédito\": o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é \"Seu\" alguma coisa ou \"Dona\" alguma coisa. Só imprimir o artefato real pegou.",
+      "regra": "Gerar o artefato que o usuário recebe"
+    },
+    {
+      "protocolo": "RET-2026-0821",
+      "data": "2026-08-21",
+      "contexto": "Avisa Edital, bot do Telegram",
+      "onde_se_le": "Redirect de SEO: só canonicalização de domínio.",
+      "leia_se": "O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.",
+      "regra": "Redirect de canonicalização engole webhook"
+    },
+    {
+      "protocolo": "RET-2026-0824",
+      "data": "2026-08-24",
+      "contexto": "Avisa Edital, resposta do bot",
+      "onde_se_le": "Ainda não vigiamos sua cidade.",
+      "leia_se": "Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.",
+      "regra": "Dado de referência mora com o código, não na pasta ignorada"
+    },
+    {
+      "protocolo": "RET-2026-0903",
+      "data": "2026-09-03",
+      "contexto": "Pingado, véspera do go-live",
+      "onde_se_le": "Backup automático configurado.",
+      "leia_se": "Trocar de hospedagem invalidou o backup em silêncio: o único arquivo tinha 801 bytes. Agora há backup e restauração da produção nova, com o ciclo provado no mesmo dia.",
+      "regra": "Backup só existe se restaurar"
+    }
+  ],
+  "atos": [
+    {
+      "titulo": "Verificar antes de concluir",
+      "texto": "Nunca dizer \"pronto\" sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada."
+    },
+    {
+      "titulo": "Teste de mutação: prove que o teste sabe falhar",
+      "texto": "Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove."
+    },
+    {
+      "titulo": "Controle com resultado forçado não é controle",
+      "texto": "Antes de publicar \"0 ocorrências\", perguntar se o número poderia ser diferente de zero."
+    },
+    {
+      "titulo": "A conclusão não pode ser mais larga que o teste",
+      "texto": "Query certa, número certo, frase falsa. Colar o predicado ao lado da frase antes de publicar."
+    },
+    {
+      "titulo": "Ausência de dado não é afirmação",
+      "texto": "Lista vazia por falta de cobertura vira \"não há nada\" e tranquiliza quem deveria agir. Separar \"não há\" de \"não sei\"."
+    },
+    {
+      "titulo": "Fila não é entrega, e entrega não é visualização",
+      "texto": "Contar a tabela de fila mede o que foi enfileirado, não o que aconteceu. Como denominador, produz um número baixo e plausível."
+    },
+    {
+      "titulo": "Vigiar o efeito, não só a causa",
+      "texto": "Monitor de causa só pega a falha já imaginada. Um monitor de efeito é um só e indiferente à causa."
+    },
+    {
+      "titulo": "Backup só existe se restaurar",
+      "texto": "Backup nunca restaurado não é backup; volume e réplica também não. Provar o ciclo destruindo dado de verdade e trazendo de volta."
+    },
+    {
+      "titulo": "Fallback silencioso em valor crítico",
+      "texto": "Câmbio, configuração, versão e limite nunca atrás de try/except com valor padrão. Falhar alto é melhor que publicar número errado."
+    },
+    {
+      "titulo": "Número fora do código envelhece sozinho",
+      "texto": "Todo número publicado sai do código na mesma rodada. Remendo de parágrafo produz duas grandezas com o mesmo nome."
+    },
+    {
+      "titulo": "\"Novo para nós\" não é \"aconteceu agora\"",
+      "texto": "Ampliar cobertura faz o histórico entrar como novidade. Notificar pela data do evento e marcar os antigos."
+    },
+    {
+      "titulo": "Gerar o artefato do usuário",
+      "texto": "Suíte verde não prova a tela nem o papel. Renderizar o cupom, o PDF ou o e-mail que a pessoa recebe."
+    },
+    {
+      "titulo": "Dado de referência mora com o código",
+      "texto": "Lista canônica numa pasta ignorada pelo git só existe na máquina de quem desenvolve; CI e produção degradam calados."
+    },
+    {
+      "titulo": "Análise nunca no banco que atende o cliente",
+      "texto": "Consulta de leitura também derruba produção. O padrão é réplica ou banco analítico, com sessão identificada e tempo limite."
+    },
+    {
+      "titulo": "Não inocentar com sinal que não discrimina",
+      "texto": "Para afirmar \"não é fraude\" ou \"não é regressão\", rodar o detector que acharia a coisa. Sinal que o culpado também exibiria não absolve."
+    },
+    {
+      "titulo": "O guard de PII é o vetor de vazamento",
+      "texto": "A lista que prova \"sem dado pessoal na entrega\" é ela própria dado pessoal. Derivar o alvo em tempo de execução, não versionar."
+    },
+    {
+      "titulo": "Identidade de ambiente por configuração, não por dado",
+      "texto": "\"Isto é produção?\" se responde lendo a configuração do deploy, não pela presença de uma linha que pode ter sido apagada."
+    },
+    {
+      "titulo": "Escape não atravessa o shell",
+      "texto": "\\b e \\n escritos por heredoc chegam ao arquivo como caractere de controle. O terminal esconde, a regex nunca casa."
+    },
+    {
+      "titulo": "Subagente julga contra uma fotografia",
+      "texto": "Agente sem acesso ao vivo acerta o raciocínio e erra o fato. Em infraestrutura que muda toda semana, a fotografia envelhece em dias."
+    },
+    {
+      "titulo": "Não depender só da IA",
+      "texto": "Palpitar antes de pedir o número. A IA acelera; o julgamento continua sendo meu."
+    }
+  ],
+  "metodo": [
+    {
+      "titulo": "Memória em camadas",
+      "texto": "Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar."
+    },
+    {
+      "titulo": "Um gate fecha a promoção",
+      "texto": "Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho."
+    },
+    {
+      "titulo": "Mutação como hábito",
+      "texto": "53 dos 182 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer."
+    },
+    {
+      "titulo": "Agentes com papel, não com autonomia",
+      "texto": "15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança."
+    },
+    {
+      "titulo": "Onde paramos",
+      "texto": "Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data."
+    }
+  ],
+  "disponibilidade": {
+    "status": "aberto a projetos e vagas",
+    "texto": "Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados e analytics engineering. O jeito mais rápido é o e-mail.",
+    "canal": "mateusrfabro@hotmail.com"
+  },
+  "faq": [
+    {
+      "pergunta": "Quem é Mateus Fabro?",
+      "resposta": "Analytics engineer em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron e DumpAI."
+    },
+    {
+      "pergunta": "Com o que ele trabalha?",
+      "resposta": "Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador."
+    },
+    {
+      "pergunta": "O que são as retificações deste site?",
+      "resposta": "Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável."
+    },
+    {
+      "pergunta": "Ele está disponível?",
+      "resposta": "Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com."
+    }
+  ]
+}
