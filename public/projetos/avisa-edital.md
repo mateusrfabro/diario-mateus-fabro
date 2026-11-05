@@ -8,7 +8,7 @@ Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos
 - **Stack:** Python, GitHub Actions, Vercel (funções Python), Upstash Redis, Telegram Bot API, Kiwify (webhook HMAC), pypdf + Tesseract (OCR)
 - **Endereço:** https://avisaedital.com.br
 - **Fatos:**
-  - 689 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot
+  - 716 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot
   - 3.372 funções de teste
   - PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions
   - assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot

@@ -4,7 +4,9 @@ Sem isto os números começam a envelhecer no dia seguinte à publicação. Roda
 Mateus, porque é lá que moram os repositórios e a memória global.
 
 O que reconta, por projeto (REPOS: slug → lista de repositórios, caminhos absolutos):
-  • commits MEUS (autor "Mateus" ou "mateusrfabro", nunca "bot"), primeira e última data;
+  • commits MEUS (autor "Mateus Fabro" ou "mateusrfabro"; bot = a palavra "bot" no autor), primeira
+    e última data. Todas as branches (`git log --all`), commit contado uma vez (dedup por hash,
+    então dois clones do mesmo projeto não somam o mesmo commit duas vezes);
   • funções de teste (`def test_`) em tests/**/*.py;
   • lições registradas (global_index.json);
   • no Avisa Edital, quantos commits meus registram teste de mutação.
@@ -44,7 +46,8 @@ REPOS: dict[str, list[Path]] = {
     "igaming-dados": [SUPER_NOVA / "play4tune", SUPER_NOVA / "MultiBet", CASA / "Repos" / "play4tune-analytics"],
 }
 INDICE_LICOES = CASA / ".claude" / "memory-global" / "global_index.json"
-AUTOR = re.compile(r"mateus", re.I)
+AUTOR = re.compile(r"mateus fabro|mateusrfabro", re.I)
+BOT = re.compile(r"\bbot\b|\[bot\]$", re.I)
 
 
 def carregar() -> dict:
@@ -52,12 +55,19 @@ def carregar() -> dict:
 
 
 def git(repo: Path, *args: str) -> str:
-    return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True,
-                          encoding="utf-8", check=True).stdout
+    try:
+        return subprocess.run(["git", "-C", str(repo), *args], capture_output=True, text=True,
+                              encoding="utf-8", errors="replace", check=True).stdout
+    except subprocess.CalledProcessError as e:
+        raise SystemExit(f"{repo.name}: git falhou em {repo}: {(e.stderr or '').strip()}") from e
+
+
+def e_bot(autor: str) -> bool:
+    return BOT.search(autor) is not None
 
 
 def meu(autor: str) -> bool:
-    return "bot" not in autor.lower() and AUTOR.search(autor) is not None
+    return not e_bot(autor) and AUTOR.search(autor) is not None
 
 
 def funcoes_de_teste(repo: Path) -> int:
@@ -69,11 +79,16 @@ def funcoes_de_teste(repo: Path) -> int:
 
 
 def contar(slug: str) -> dict:
-    datas, bots = [], 0
+    datas, bots, vistos = [], 0, set()
     for repo in REPOS[slug]:
-        for linha in git(repo, "log", "--format=%an\t%ad", "--date=short").splitlines():
-            autor, data = linha.split("\t")
-            if "bot" in autor.lower():
+        if not (repo / ".git").exists():
+            raise SystemExit(f"{slug}: repositório ausente em {repo}")
+        for linha in git(repo, "log", "--all", "--format=%H%x09%an%x09%ad", "--date=short").splitlines():
+            h, autor, data = linha.split("\t")
+            if h in vistos:
+                continue
+            vistos.add(h)
+            if e_bot(autor):
                 bots += 1
             elif meu(autor):
                 datas.append(data)
@@ -87,7 +102,7 @@ def contar(slug: str) -> dict:
 def contar_mutacao(slug: str) -> int:
     total = 0
     for repo in REPOS[slug]:
-        blocos = git(repo, "log", "--format=%an%x00%B%x01").split("\x01")
+        blocos = git(repo, "log", "--all", "--format=%an%x00%B%x01").split("\x01")
         total += sum(1 for b in blocos if "\x00" in b and meu(b.split("\x00")[0])
                      and re.search(r"muta[cç]", b.split("\x00")[1], re.I))
     return total
@@ -130,15 +145,17 @@ def _e_fato_testes(f: str) -> bool:
     return re.match(r"\d[\d.,]* (funções de teste|test functions)$", f) is not None
 
 
-def aplicar(d: dict, d_en: dict) -> dict:
+def aplicar(d: dict, d_en: dict, contagens: dict, licoes: int, mut: int) -> dict:
     """Grava as contagens nos dois JSONs (em memória) e devolve o resumo impresso."""
     por_slug = {p["slug"]: p for p in d["projetos"]}
     por_slug_en = {p["slug"]: p for p in d_en["projetos"]}
-    contagens = {slug: contar(slug) for slug in REPOS}
+    produtos_do_total = set(produtos_com_repo(d))  # só estes entram no total de testes; igaming-dados não tem fato de teste
     for slug, c in contagens.items():
         for proj, fato_c, fato_t in ((por_slug[slug], fato_commits, f"{br(c['testes'])} funções de teste"),
                                      (por_slug_en[slug], fato_commits_en, f"{en(c['testes'])} test functions")):
             fatos = proj["fatos"]
+            if not any(_e_fato_commits(f) for f in fatos) or (c["testes"] and slug in produtos_do_total and not any(_e_fato_testes(f) for f in fatos)):
+                raise SystemExit(f"{slug}: nenhum fato de commits/testes para substituir")
             fatos[:] = [fato_c(c) if _e_fato_commits(f) else f for f in fatos]
             if c["testes"]:
                 fatos[:] = [fato_t if _e_fato_testes(f) else f for f in fatos]
@@ -148,25 +165,31 @@ def aplicar(d: dict, d_en: dict) -> dict:
     com_py = [s for s in produtos if contagens[s]["testes"]]
     total_c = sum(contagens[s]["humanos"] for s in produtos)
     total_t = sum(contagens[s]["testes"] for s in com_py)
-    licoes = len(json.loads(INDICE_LICOES.read_text(encoding="utf-8"))["lessons"])
-    avisa, mut = contagens["avisa-edital"], contar_mutacao("avisa-edital")
+    avisa = contagens["avisa-edital"]
 
     d["numeros"][0]["valor"] = d_en["numeros"][0]["valor"] = str(licoes)
     d["numeros"][1].update(valor=br(total_c), rotulo=f"commits meus em {len(produtos)} produtos próprios, em 2026")
     d_en["numeros"][1].update(valor=en(total_c), rotulo=f"of my commits across {len(produtos)} own products, in 2026")
     d["numeros"][2].update(valor=br(total_t), rotulo=f"funções de teste nos {len(com_py)} produtos em Python")
     d_en["numeros"][2].update(valor=en(total_t), rotulo=f"test functions in the {len(com_py)} Python products")
-    for m in d["metodo"]:
-        m["texto"] = re.sub(r"\d+ dos \d+ commits meus", f"{mut} dos {avisa['humanos']} commits meus", m["texto"])
-    for m in d_en["metodo"]:
-        m["texto"] = re.sub(r"\d+ of my \d+ commits", f"{mut} of my {avisa['humanos']} commits", m["texto"])
+    for lista, rx, novo_txt in (
+            (d["metodo"], r"\d[\d.]* dos \d[\d.]* commits meus", f"{br(mut)} dos {br(avisa['humanos'])} commits meus"),
+            (d_en["metodo"], r"\d[\d,]* of my \d[\d,]* commits", f"{en(mut)} of my {en(avisa['humanos'])} commits")):
+        n = 0
+        for m in lista:
+            m["texto"], k = re.subn(rx, novo_txt, m["texto"])
+            n += k
+        if n < 1:
+            raise SystemExit("metodo: nenhuma frase de mutação para substituir")
     return {"licoes": licoes, "commits": total_c, "testes": total_t, "mutacao": mut, "avisa": avisa["humanos"]}
 
 
 def main() -> int:
     d, d_en = carregar(), json.loads(DADOS_EN.read_text(encoding="utf-8"))
     antes, antes_en = json.dumps(d, ensure_ascii=False), json.dumps(d_en, ensure_ascii=False)
-    r = aplicar(d, d_en)
+    contagens = {s: contar(s) for s in REPOS}
+    licoes = len(json.loads(INDICE_LICOES.read_text(encoding="utf-8"))["lessons"])
+    r = aplicar(d, d_en, contagens, licoes, contar_mutacao("avisa-edital"))
     print(f"lições {r['licoes']} · commits {r['commits']} · testes {r['testes']} · mutação no Avisa {r['mutacao']}/{r['avisa']}")
     if json.dumps(d, ensure_ascii=False) == antes and json.dumps(d_en, ensure_ascii=False) == antes_en:
         print("nada mudou")

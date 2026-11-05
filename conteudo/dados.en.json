@@ -81,7 +81,7 @@
       "fonte": "global memory, global_index.json (84 general + 17 data)"
     },
     {
-      "valor": "1,693",
+      "valor": "1,722",
       "rotulo": "of my commits across 8 own products, in 2026",
       "fonte": "git log of the product repositories, my commits only, excluding automated bot commits"
     },
@@ -119,7 +119,7 @@
         "pypdf + Tesseract (OCR)"
       ],
       "fatos": [
-        "689 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits",
+        "716 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits",
         "3,372 test functions",
         "PR and SP: municipal and state official gazettes, exam boards and job-call sources, collected on a VM with systemd and complemented by GitHub Actions",
         "Kiwify subscription with a 7-day free trial, no card, from the bot itself"
@@ -144,7 +144,7 @@
         "Render"
       ],
       "fatos": [
-        "482 of my commits between 07/06 and 11/05/2026",
+        "484 of my commits between 07/06 and 11/05/2026",
         "2,133 test functions",
         "real customer with two stores in production"
       ],
@@ -171,7 +171,7 @@
         "encrypted backup (age → R2; restore not yet tested)"
       ],
       "fatos": [
-        "194 of my commits between 06/05 and 10/06/2026",
+        "194 of my commits between 06/05 and 10/06/2026, plus 7 automated bot commits",
         "461 test functions",
         "111 routes",
         "internal security audit (agents, bandit and pip-audit) with no critical or high finding (07/02/2026)"
@@ -195,7 +195,7 @@
         "contract PDF"
       ],
       "fatos": [
-        "194 of my commits between 04/14 and 05/28/2026",
+        "194 of my commits between 04/14 and 05/28/2026, plus 7 automated bot commits",
         "391 test functions",
         "109 routes",
         "origin of the Flask platform that Nous and Pingado reuse"
@@ -317,7 +317,7 @@
         "Slack / Telegram / WhatsApp"
       ],
       "fatos": [
-        "963 of my commits between 04/24 and 10/23/2026",
+        "1408 of my commits between 03/12 and 11/04/2026",
         "data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of ~71 consumer pipelines",
         "media cost (Meta, Google Ads, TikTok) in a multi-tenant attribution tracker, replacing a paid vendor",
         "daily risk service and a player credit score",
@@ -496,7 +496,7 @@
     },
     {
       "titulo": "Mutation as a habit",
-      "texto": "66 of my 689 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts."
+      "texto": "66 of my 716 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts."
     },
     {
       "titulo": "Agents with a role, not autonomy",

@@ -17,7 +17,7 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 ## Numbers
 
 - **125** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (84 general + 17 data))
-- **1,693** of my commits across 8 own products, in 2026 (source: git log of the product repositories, my commits only, excluding automated bot commits)
+- **1,722** of my commits across 8 own products, in 2026 (source: git log of the product repositories, my commits only, excluding automated bot commits)
 - **6,357** test functions in the 4 Python products (source: count of def test_ under tests/ in the products with a pytest suite)
 - **3** iGaming operations, in 3 countries and 3 currencies (source: Super Nova Gaming, Oct 2025 – Nov 2026)
 - **3.07 bn** records in the new data lake, which I inventoried while leading the consumer-layer migration (source: 234 tables, ~71 consumer pipelines)
@@ -34,7 +34,7 @@ Telegram alert when a public exam, job call or appointment for physicians is pub
 - **Stack:** Python, GitHub Actions, Vercel (Python functions), Upstash Redis, Telegram Bot API, Kiwify (HMAC webhook), pypdf + Tesseract (OCR)
 - **Address:** https://avisaedital.com.br
 - **Facts:**
-  - 689 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits
+  - 716 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits
   - 3,372 test functions
   - PR and SP: municipal and state official gazettes, exam boards and job-call sources, collected on a VM with systemd and complemented by GitHub Actions
   - Kiwify subscription with a 7-day free trial, no card, from the bot itself
@@ -50,7 +50,7 @@ Café management: a counter screen in a few taps, tabs, store credit, stock and 
 - **Status:** In production since September 2026, evolving with the customer
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Facts:**
-  - 482 of my commits between 07/06 and 11/05/2026
+  - 484 of my commits between 07/06 and 11/05/2026
   - 2,133 test functions
   - real customer with two stores in production
 
@@ -65,7 +65,7 @@ Clinic management: scheduling, medical records, exams, finance and patient follo
 - **Status:** Last version on 10/06/2026
 - **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e (service invoices), Anthropic API (chatbot), encrypted backup (age → R2; restore not yet tested)
 - **Facts:**
-  - 194 of my commits between 06/05 and 10/06/2026
+  - 194 of my commits between 06/05 and 10/06/2026, plus 7 automated bot commits
   - 461 test functions
   - 111 routes
   - internal security audit (agents, bandit and pip-audit) with no critical or high finding (07/02/2026)
@@ -81,7 +81,7 @@ Group buying for burger restaurants: orders pooled into rounds and suppliers bid
 - **Status:** Complete MVP; paused since 05/28/2026
 - **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, contract PDF
 - **Facts:**
-  - 194 of my commits between 04/14 and 05/28/2026
+  - 194 of my commits between 04/14 and 05/28/2026, plus 7 automated bot commits
   - 391 test functions
   - 109 routes
   - origin of the Flask platform that Nous and Pingado reuse
@@ -160,7 +160,7 @@ Pipelines, data lake migration, anti-fraud, media attribution and dashboards for
 - **Status:** Ended in Nov 2026 (operation shut down)
 - **Stack:** Python, SQL (PostgreSQL and distributed engines), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Facts:**
-  - 963 of my commits between 04/24 and 10/23/2026
+  - 1408 of my commits between 03/12 and 11/04/2026
   - data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of ~71 consumer pipelines
   - media cost (Meta, Google Ads, TikTok) in a multi-tenant attribution tracker, replacing a paid vendor
   - daily risk service and a player credit score
@@ -256,7 +256,7 @@ Mistakes I made, in the format of a gazette erratum. Each one became a rule.
 
 - **Layered memory.** Every project has a memory index of its live pitfalls. What applies to another project moves up to a global memory: a lesson with an origin, a reason and a way to apply it.
 - **A gate closes the promotion.** Promoting a lesson means writing it to disk, to the human index and to the machine index. That step failed twice without a symptom; today a script checks all three and has a mode that proves it can go red.
-- **Mutation as a habit.** 66 of my 689 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts.
+- **Mutation as a habit.** 66 of my 716 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts.
 - **Agents with a role, not autonomy.** 15 specialized agents (quality, security, testing, UX, content review, growth) work in parallel. What the reviewers find is reproduced before it becomes a change.
 - **Where we left off.** Every project has a resume file the next session reads first: state, the business owner's decisions and open items, with dates.
 

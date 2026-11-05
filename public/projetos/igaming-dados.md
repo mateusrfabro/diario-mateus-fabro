@@ -7,7 +7,7 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
 - **Status:** Encerrado em nov/2026 (fim da operação)
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
-  - 963 commits meus entre 24/04 e 23/10/2026
+  - 1408 commits meus entre 12/03 e 04/11/2026
   - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores
   - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
   - serviço diário de risco e score de crédito de jogador

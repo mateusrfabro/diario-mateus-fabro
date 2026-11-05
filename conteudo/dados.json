@@ -81,7 +81,7 @@
       "fonte": "memória global, global_index.json (84 universais + 17 de dados)"
     },
     {
-      "valor": "1.693",
+      "valor": "1.722",
       "rotulo": "commits meus em 8 produtos próprios, em 2026",
       "fonte": "git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot"
     },
@@ -119,7 +119,7 @@
         "pypdf + Tesseract (OCR)"
       ],
       "fatos": [
-        "689 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
+        "716 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
         "3.372 funções de teste",
         "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions",
         "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"
@@ -144,7 +144,7 @@
         "Render"
       ],
       "fatos": [
-        "482 commits meus entre 06/07 e 05/11/2026",
+        "484 commits meus entre 06/07 e 05/11/2026",
         "2.133 funções de teste",
         "cliente real com duas lojas em produção"
       ],
@@ -171,7 +171,7 @@
         "backup cifrado (age → R2; restauração ainda não testada)"
       ],
       "fatos": [
-        "194 commits meus entre 05/06 e 06/10/2026",
+        "194 commits meus entre 05/06 e 06/10/2026, fora 7 automáticos do bot",
         "461 funções de teste",
         "111 rotas",
         "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)"
@@ -195,7 +195,7 @@
         "PDF de contrato"
       ],
       "fatos": [
-        "194 commits meus entre 14/04 e 28/05/2026",
+        "194 commits meus entre 14/04 e 28/05/2026, fora 7 automáticos do bot",
         "391 funções de teste",
         "109 rotas",
         "origem da plataforma Flask que Nous e Pingado reaproveitam"
@@ -317,7 +317,7 @@
         "Slack / Telegram / WhatsApp"
       ],
       "fatos": [
-        "963 commits meus entre 24/04 e 23/10/2026",
+        "1408 commits meus entre 12/03 e 04/11/2026",
         "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores",
         "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago",
         "serviço diário de risco e score de crédito de jogador",
@@ -496,7 +496,7 @@
     },
     {
       "titulo": "Mutação como hábito",
-      "texto": "66 dos 689 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer."
+      "texto": "66 dos 716 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer."
     },
     {
       "titulo": "Agentes com papel, não com autonomia",

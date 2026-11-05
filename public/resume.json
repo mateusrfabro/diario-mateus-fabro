@@ -30,7 +30,7 @@
       "startDate": "2025-10",
       "summary": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.",
       "highlights": [
-        "963 commits meus entre 24/04 e 23/10/2026",
+        "1408 commits meus entre 12/03 e 04/11/2026",
         "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores",
         "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago",
         "serviço diário de risco e score de crédito de jogador",
@@ -44,7 +44,7 @@
       "name": "Avisa Edital",
       "description": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.",
       "highlights": [
-        "689 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
+        "716 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
         "3.372 funções de teste",
         "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions",
         "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"
@@ -64,7 +64,7 @@
       "name": "Pingado",
       "description": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.",
       "highlights": [
-        "482 commits meus entre 06/07 e 05/11/2026",
+        "484 commits meus entre 06/07 e 05/11/2026",
         "2.133 funções de teste",
         "cliente real com duas lojas em produção"
       ],
@@ -81,7 +81,7 @@
       "name": "Nous Clinical",
       "description": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.",
       "highlights": [
-        "194 commits meus entre 05/06 e 06/10/2026",
+        "194 commits meus entre 05/06 e 06/10/2026, fora 7 automáticos do bot",
         "461 funções de teste",
         "111 rotas",
         "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)"
@@ -102,7 +102,7 @@
       "name": "Aggron",
       "description": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.",
       "highlights": [
-        "194 commits meus entre 14/04 e 28/05/2026",
+        "194 commits meus entre 14/04 e 28/05/2026, fora 7 automáticos do bot",
         "391 funções de teste",
         "109 rotas",
         "origem da plataforma Flask que Nous e Pingado reaproveitam"
