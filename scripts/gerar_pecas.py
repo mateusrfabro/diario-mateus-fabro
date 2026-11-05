@@ -66,10 +66,11 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
         blocos = cv["experiencia"][x["id"]][lang]
         corpo = ("".join(f"<h4>{e(b['bloco'])}</h4>{_bullets(b['itens'])}" for b in blocos)
                  if blocos and "bloco" in blocos[0] else _bullets(blocos))
+        resumo_exp = f"<p>{e(x['resumo'])}</p>" if blocos and "bloco" in blocos[0] else ""  # flat: o bullet ja diz o mesmo
         nota = f" · {e(x['nota'])}" if x.get("nota") else ""
         exp.append(f'<div class="exp"><div class="topo"><h3>{e(x["empresa"])}</h3>'
                    f'<span class="quando">{e(periodo(x, lang))} · {e(x["local"])}{nota}</span></div>'
-                   f'<p class="cargo-exp">{e(x["cargo"])}</p><p>{e(x["resumo"])}</p>{corpo}</div>')
+                   f'<p class="cargo-exp">{e(x["cargo"])}</p>{resumo_exp}{corpo}</div>')
     produtos = []
     for pr in d["projetos"]:
         if pr["tipo"] != "produto":
@@ -77,8 +78,7 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
         link = f' · <a href="{e(pr["url"])}">{e(pr["url"].split("//")[1])}</a>' if pr.get("url") else ""
         fatos = "; ".join(pr["fatos"][:1])
         produtos.append(f'<p class="produto"><b>{e(pr["nome"])}</b> — {e(pr["linha"])} '
-                        f'<span class="status">({e(pr["status"]).lower()})</span>{link}<br>'
-                        f'{e(fatos)}. {e(", ".join(pr["stack"]))}.</p>')
+                        f'<span class="status">({e(pr["status"])})</span>{link}</p>')
     stack = "".join(f"<tr><td>{e(c['categoria'])}</td><td>{e(c['itens'])}</td></tr>" for c in cv["stack"][lang])
     formacao = "".join(f"<p><b>{e(f['curso'])}</b> — {e(f['instituicao'])} · {e(f['inicio'])}–{e(f['fim'])} ({e(f['status'])})</p>"
                        for f in p["formacao"])

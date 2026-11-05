@@ -47,6 +47,10 @@
             {
               "texto": "Entreguei do zero o módulo de administração e autenticação (sessões opacas com hash de token, guards, audit log) e toda a camada de custo de mídia — Meta Graph API multi-BM, Google Ads e TikTok, 6 cron jobs — substituindo um fornecedor pago.",
               "fonte": "tracker (C:/Users/mateu/tk-tracker): 6 @Cron em application/src/modules/analytics-module/infrastructure/scheduler (ads-spend-scheduler.ts, meta-token-refresh.scheduler.ts); currículo anterior Curriculo_Mateus_Fabro_v4_conteudo_PT.md"
+            },
+            {
+              "texto": "Dashboards e serviços web em produção: Flask (Central de Bônus, CRM), Dash/Plotly com Docker, FastAPI e uma malha de alertas operacionais em WhatsApp (Evolution API self-hosted), Slack e Telegram com dead-man's switches de frescor.",
+              "fonte": ""
             }
           ]
         },
@@ -113,6 +117,10 @@
             {
               "texto": "Delivered from scratch the admin/auth module (opaque sessions with hashed tokens, guards, audit log) and the whole media-cost layer — Meta Graph API multi-BM, Google Ads and TikTok, 6 cron jobs — replacing a paid vendor.",
               "fonte": "tracker (C:/Users/mateu/tk-tracker): 6 @Cron em application/src/modules/analytics-module/infrastructure/scheduler (ads-spend-scheduler.ts, meta-token-refresh.scheduler.ts); currículo anterior Curriculo_Mateus_Fabro_v4_conteudo_PT.md"
+            },
+            {
+              "texto": "Dashboards and web services in production: Flask (bonus center, CRM), Dash/Plotly with Docker, FastAPI, and an operational alert mesh on WhatsApp (self-hosted Evolution API), Slack and Telegram with freshness dead-man's switches.",
+              "fonte": ""
             }
           ]
         },
