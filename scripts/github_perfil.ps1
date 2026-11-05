@@ -28,8 +28,10 @@ if (-not $SoMostrar) {
 }
 
 Passo "2. Repositório de perfil mateusrfabro/mateusrfabro"
-$existe = $true
-try { gh repo view mateusrfabro/mateusrfabro --json name | Out-Null } catch { $existe = $false }
+$ErrorActionPreference = "Continue"   # no 5.1, 2>$null + Stop transforma o stderr do gh em exceção
+gh repo view mateusrfabro/mateusrfabro --json name 2>$null | Out-Null
+$existe = ($LASTEXITCODE -eq 0)
+$ErrorActionPreference = "Stop"
 if (-not $SoMostrar) {
   if (-not $existe) { gh repo create mateusrfabro/mateusrfabro --public --description "Perfil" | Out-Null }
   if (-not (Test-Path $perfilRepo)) { git clone https://github.com/mateusrfabro/mateusrfabro.git $perfilRepo | Out-Null }

@@ -3,14 +3,12 @@
     "pt": [
       "Engenheiro de dados e analytics: projeto, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
       "De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas e liderei a frente de dados de duas delas, até o encerramento da operação.",
-      "Fora do expediente, construí e opero produtos próprios com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.",
-      "Uso agentes de IA (Claude Code) como multiplicador, com memória em camadas e gates de qualidade próprios; cada erro corrigido vira regra escrita e, quando dá, um teste."
+      "Fora do expediente, construí e opero produtos próprios com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
     ],
     "en": [
       "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
       "From Oct 2025 to Nov 2026, in a four-person data squad, I served three iGaming operations in three countries and three currencies and led the data front for two of them, until the operation shut down.",
-      "Outside work, I built and run my own products with real customers in production, covered by tests and with an honest status — including the ones that stopped.",
-      "I use AI agents (Claude Code) as a multiplier, with layered memory and my own quality gates; every fixed mistake becomes a written rule and, when possible, a test."
+      "Outside work, I built and run my own products with real customers in production, covered by tests and with an honest status — including the ones that stopped."
     ]
   },
   "experiencia": {
@@ -75,7 +73,7 @@
           "bloco": "IA aplicada",
           "itens": [
             {
-              "texto": "Squad de 25 agentes Claude Code com papel definido (10 do squad de dados iGaming + 15 gerais: segurança, testes, UX, revisão de conteúdo, growth) e 28 skills próprias (22 globais + 6 do projeto), com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.",
+              "texto": "Squad de 25 agentes Claude Code com papel definido (10 do squad de dados + 15 gerais) e 28 skills próprias, com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.",
               "fonte": "contagem em .claude/agents e .claude/skills (projeto play4tune e ~/.claude), 05/11/2026"
             },
             {
@@ -149,7 +147,7 @@
           "bloco": "Applied AI",
           "itens": [
             {
-              "texto": "Squad of 25 Claude Code agents with defined roles (10 from the iGaming data squad + 15 general: security, testing, UX, content review, growth) and 28 custom skills (22 global + 6 project-level), with a mandatory gate extraction → best practices → audit → delivery and hooks that block destructive git and commits without tests.",
+              "texto": "Squad of 25 Claude Code agents with defined roles (10 from the data squad + 15 general) and 28 custom skills, with a mandatory gate extraction → best practices → audit → delivery and hooks that block destructive git and commits without tests.",
               "fonte": "contagem em .claude/agents e .claude/skills (projeto play4tune e ~/.claude), 05/11/2026"
             },
             {

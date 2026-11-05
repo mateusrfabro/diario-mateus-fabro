@@ -14,7 +14,6 @@
 - Engenheiro de dados e analytics: projeto, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.
 - De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas e liderei a frente de dados de duas delas, até o encerramento da operação.
 - Fora do expediente, construí e opero produtos próprios com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.
-- Uso agentes de IA (Claude Code) como multiplicador, com memória em camadas e gates de qualidade próprios; cada erro corrigido vira regra escrita e, quando dá, um teste.
 
 ## Projetos
 
@@ -35,7 +34,7 @@ Trabalho anterior: Super Nova Gaming / MultiBet (Grupo PGX), out/2025 – nov/20
 
 ## Engenharia de agentes
 
-- Squad de 25 agentes Claude Code com papel definido (10 do squad de dados iGaming + 15 gerais: segurança, testes, UX, revisão de conteúdo, growth) e 28 skills próprias (22 globais + 6 do projeto), com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.
+- Squad de 25 agentes Claude Code com papel definido (10 do squad de dados + 15 gerais) e 28 skills próprias, com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.
 - Memória em três camadas (projeto → global → export): 125 lições registradas, cada uma com origem, motivo e forma de aplicar, e um script que prova que o índice não esqueceu nenhuma.
 - API da Anthropic em produção em dois produtos (IA multimodal no DumpAI; chatbot clínico no Nous Clinical), agente LangChain/n8n na secretária de WhatsApp e laboratório local (Ollama + PyTorch numa RTX 4060) para saber o que roda sem API.
 
