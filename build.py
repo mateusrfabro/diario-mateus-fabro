@@ -102,7 +102,7 @@ T = {
         "md_resume": "Currículo em JSON Resume", "md_este": "Este texto",
         "p_para_quem": "Para quem", "p_papel": "Meu papel", "p_status": "Status", "p_stack": "Stack",
         "p_endereco": "Endereço", "p_fatos": "Fatos",
-        "cv": "Currículo (PDF)", "md_cv": "Currículo em PDF", "cv_arquivo": "mateus-fabro-pt.pdf",
+        "cv": "Currículo (PDF)", "md_cv": "Currículo em PDF", "cv_arquivo": "mateus-fabro-pt.pdf", "assunto": "Vaga%20-%20via%20site",
     },
     "en": {
         "prefixo": "/en", "locale": "en_US", "outro": "pt", "outro_rotulo": "Português",
@@ -137,7 +137,7 @@ T = {
         "md_resume": "JSON Resume", "md_este": "This text",
         "p_para_quem": "For whom", "p_papel": "My role", "p_status": "Status", "p_stack": "Stack",
         "p_endereco": "Address", "p_fatos": "Facts",
-        "cv": "Résumé (PDF)", "md_cv": "Résumé as PDF", "cv_arquivo": "mateus-fabro-en.pdf",
+        "cv": "Résumé (PDF)", "md_cv": "Résumé as PDF", "cv_arquivo": "mateus-fabro-en.pdf", "assunto": "Role%20-%20via%20site",
     },
 }
 
@@ -338,6 +338,8 @@ a:hover{text-decoration-thickness:2px}
   border-top:1px solid var(--ink);padding:8px 0 10px;font-size:.78rem;letter-spacing:.08em;
   text-transform:uppercase}
 .sob-titulo strong{font-weight:600}
+.sob-titulo span:first-child{text-transform:none;letter-spacing:0;font-size:.9rem}
+.sob-titulo strong{text-transform:uppercase;letter-spacing:.08em}
 nav{display:flex;gap:0 18px;flex-wrap:wrap;padding:4px 0;border-bottom:1px solid var(--rule);font-size:.8rem}
 nav a{text-decoration:none;color:var(--ink)}
 nav a:hover{color:var(--accent)}
@@ -399,6 +401,9 @@ nav a:hover{color:var(--accent)}
   font-family:"JetBrains Mono","Cascadia Code",Consolas,monospace;font-size:.78rem}
 .contato-topo a,nav a,.redes a,.maquinas li a,.convocacao .email a{display:inline-flex;align-items:center;min-height:44px}
 .contato-topo a:first-child{font-weight:600}
+.contato-topo a[href$=".pdf"]{border:1px solid var(--accent);color:var(--accent);padding:0 10px;border-radius:2px}
+.contato-topo a[href="#convocacao"]{color:var(--accent);font-weight:600}
+@media(max-width:719px){.linha-topo .botao{padding:4px 8px;font-size:.66rem}}
 .botao{min-height:44px}
 .faq summary{padding:10px 0;min-height:44px}
 .redes{font-size:.8rem}
@@ -419,16 +424,16 @@ nav a:hover{color:var(--accent)}
 .protocolo{font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
 .ret .contexto{font-size:.95rem;font-style:italic;color:var(--muted);margin:0 0 12px}
 .ret .topo{padding-right:128px}
-@media (max-width:420px){
-  .ret{padding-top:48px}
-  .ret .topo{padding-right:0}
-  .onde,.leia{grid-template-columns:1fr;gap:2px}
-}
 .carimbo{position:absolute;top:12px;right:14px;font-family:"JetBrains Mono","Cascadia Code",monospace;
   font-size:.7rem;letter-spacing:.2em;font-weight:700;color:var(--stamp);border:2px solid var(--stamp);
   padding:3px 7px 2px;transform:rotate(6deg);border-radius:3px;
   mask-image:radial-gradient(circle at 30% 40%,#000 60%,rgba(0,0,0,.8) 100%)}
 .onde,.leia{margin:0 0 10px;display:grid;grid-template-columns:5.6rem 1fr;gap:10px;align-items:baseline}
+@media (max-width:600px){
+  .ret{padding-top:48px}
+  .ret .topo{padding-right:0}
+  .onde,.leia{grid-template-columns:1fr;gap:2px}
+}
 .onde b,.leia b{font-family:"JetBrains Mono","Cascadia Code",monospace;font-size:.75rem;letter-spacing:.12em;
   text-transform:uppercase;font-weight:600}
 .onde span{text-decoration:line-through;text-decoration-color:var(--stamp);text-decoration-thickness:1.5px;color:var(--muted)}
@@ -536,7 +541,7 @@ def urls_seguras(d: dict) -> None:
 
 def status_vivo(pr: dict) -> bool:
     s = pr["status"].lower()
-    return s.startswith(("no ar", "em produção", "live", "in production"))
+    return any(x in s for x in ("no ar", "em produção", "live", "in production"))
 
 
 def html_projeto(pr: dict, t: dict = T["pt"]) -> str:
@@ -641,7 +646,7 @@ def pagina(d: dict, md: str, t: dict = T["pt"]) -> str:
     <span><strong>{e(p['cargo'])}</strong> · {e(p['subtitulo'])}</span>
     <span>{e(t['edicao'].format(n=edicao(d)))}</span>
   </div>
-  <p class="contato-topo"><a href="mailto:{e(p['email'])}">{e(p['email'])}</a><a href="{e(p['github'])}" rel="me noopener">GitHub</a><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a><a href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a><a href="#convocacao">{e(d['disponibilidade']['status'].capitalize())}</a></p>
+  <p class="contato-topo"><a href="mailto:{e(p['email'])}?subject={t['assunto']}">{e(p['email'])}</a><a href="{e(p['github'])}" rel="me noopener">GitHub</a><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a><a href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a><a href="#convocacao">{e(d['disponibilidade']['status'].capitalize())}</a></p>
 </header>
 <nav aria-label="{t['menu']}">
   {menu}
@@ -688,8 +693,8 @@ def pagina(d: dict, md: str, t: dict = T["pt"]) -> str:
     <p class="eyebrow">{t['convocacao']}</p>
     <h2>{e(d['disponibilidade']['status'].capitalize())}</h2>
     <p>{e(d['disponibilidade']['texto'])}</p>
-    <p class="email"><a href="mailto:{e(p['email'])}">{e(p['email'])}</a></p>
-    <p class="redes mono"><a href="{e(p['github'])}" rel="me noopener">GitHub</a> · <a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a> · {e(p['cidade'])}, {e(p['estado'])}</p>
+    <p class="email"><a href="mailto:{e(p['email'])}?subject={t['assunto']}">{e(p['email'])}</a></p>
+    <p class="redes mono"><a href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a> · <a href="{e(p['github'])}" rel="me noopener">GitHub</a> · <a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a> · {e(p['cidade'])}, {e(p['estado'])}</p>
     <div class="faq">{faq}</div>
   </div>
   <div class="maquinas" id="maquinas">
