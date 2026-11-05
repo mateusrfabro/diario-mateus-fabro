@@ -190,6 +190,72 @@ def _check(nome: str, texto: str) -> str:
     return texto
 
 
+MESES_EXT = {"pt": ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro",
+                    "outubro", "novembro", "dezembro"],
+             "en": ["January", "February", "March", "April", "May", "June", "July", "August", "September",
+                    "October", "November", "December"]}
+
+
+def mes_extenso(iso: str, lang: str) -> str:
+    y, m = iso.split("-")
+    return f"{MESES_EXT[lang][int(m) - 1]} de {y}" if lang == "pt" else f"{MESES_EXT[lang][int(m) - 1]} {y}"
+
+
+def _sobre_e_post(d: dict, lang: str) -> tuple[str, str]:
+    """Sobre e post: estrutura fixa (prosa) + todo número/fato vem dos dados, nada digitado."""
+    pt = lang == "pt"
+    p, x0, n, site = d["perfil"], d["experiencia"][0], d["numeros"], d["site"]["url"]
+    proj = {pr["slug"]: pr for pr in d["projetos"]}
+    produtos = [pr for pr in d["projetos"] if pr["tipo"] == "produto"]
+    no_ar = sum(1 for pr in produtos if build.status_vivo(pr))      # derivado do status, não digitado
+    fatos = [f[0].upper() + f[1:] for f in proj["igaming-dados"]["fatos"]
+             if not re.match(r"\d[\d.,]* (commits|of my commits)", f)]
+    fora = (f"Fora do expediente, {len(produtos)} produtos próprios construídos de ponta a ponta, {no_ar} no ar: "
+            f"{n[1]['valor']} {n[1]['rotulo']} e {n[2]['valor']} {n[2]['rotulo']}." if pt else
+            f"Outside work, {len(produtos)} products of my own built end to end, {no_ar} live: "
+            f"{n[1]['valor']} {n[1]['rotulo']} and {n[2]['valor']} {n[2]['rotulo']}.")
+    fim, ini = mes_extenso(x0["fim"], lang), mes_extenso(x0["inicio"], lang)
+    st = proj["dumpai"]["status"]
+    st = st[0].lower() + st[1:]
+    sobre = "\n\n".join([
+        f"{p['cargo']}. {p['subtitulo']}",
+        "Na prática: ingestão, modelagem, antifraude, atribuição de mídia, API e painel saem da mesma mão." if pt else
+        "In practice: ingestion, modeling, anti-fraud, media attribution, the API and the dashboard come from the same hands.",
+        (f"O que provei em produção — {x0['empresa']}, {periodo(x0, lang)}:" if pt else
+         f"What I proved in production — {x0['empresa']}, {periodo(x0, lang)}:") + "\n" + x0["resumo"]
+        + "\n" + "\n".join(f"• {f}" for f in fatos),
+        fora + (f" Um tem {proj['pingado']['fatos'][2]}; outro: {st} — e o site diz isso." if pt else
+                f" One has a {proj['pingado']['fatos'][2]}; another: {st} — and the site says so."),
+        (f"Trabalho em par com agentes de IA (Claude Code), com memória em camadas e gates próprios: "
+         f"{n[0]['valor']} {n[0]['rotulo']}. Quando erro, publico a retificação." if pt else
+         f"I work in pair with AI agents (Claude Code), with layered memory and my own quality gates: "
+         f"{n[0]['valor']} {n[0]['rotulo']}. When I get it wrong, I publish the correction."),
+        d["disponibilidade"]["texto"] + (f" A operação em que eu estava encerrou em {fim}." if pt else
+                                          f" The operation I was part of shut down in {fim}."),
+        ("Site, números medidos e retificações: " if pt else "Site, measured numbers and corrections: ") + site + "\n"
+        + ("Currículo: " if pt else "Résumé: ") + f"{site}/curriculo/mateus-fabro-{lang}.pdf\n"
+        + ("Contato: " if pt else "Contact: ") + p["email"]])
+
+    def post_com(k: int) -> str:
+        return "\n\n".join([
+            (f"A operação em que trabalhei desde {ini} encerrou em {fim}. Saio com o que construí lá e começo a busca: "
+             f"vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto." if pt else
+             f"The operation I had worked at since {ini} shut down in {fim}. I leave with what I built there and start "
+             f"the search: a data engineering, analytics engineering or product development role — contractor or full-time, remote."),
+            ("O que levo:\n" if pt else "What I bring:\n") + "\n".join(f"• {f}" for f in fatos[:k]) + f"\n• {fora}",
+            ("Se você souber de uma vaga, ou de um time que precise de alguém que constrói o pipeline e o produto em volta "
+             "dele, uma indicação ajuda muito. Converso também sobre projeto fechado." if pt else
+             "If you know of an opening, or a team that needs someone who builds the pipeline and the product around it, "
+             "a referral helps a lot. Also open to fixed-scope projects."),
+            (f"Site e currículo: {site}\nE-mail: {p['email']}" if pt else f"Site and résumé: {site}\nE-mail: {p['email']}"),
+            "#EngenhariaDeDados #AnalyticsEngineering #OpenToWork" if pt else "#DataEngineering #AnalyticsEngineering #OpenToWork"])
+
+    post = post_com(3)
+    if len(post) > LIMITES["post"]:
+        post = post_com(2)                                 # estourou: vão só 2 fatos
+    return sobre, post
+
+
 def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
     p, x0 = d["perfil"], d["experiencia"][0]
     pt = lang == "pt"
@@ -197,12 +263,7 @@ def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
               f"produtos próprios com cliente real | em busca de vaga (PJ/CLT, remoto)" if pt else
               f"{p['cargo']} | Python · SQL · TypeScript | pipelines, anti-fraud and attribution in iGaming · "
               f"own products with real customers | open to work (contractor/employee, remote)")
-    sobre = "\n\n".join(cv["resumo"][lang] + [
-        ("Produtos próprios no ar: " if pt else "Own products live: ") + ", ".join(
-            pr["nome"] for pr in d["projetos"] if pr["tipo"] == "produto" and build.status_vivo(pr)) + ".",
-        (f"Site com projetos, números medidos e as retificações dos meus erros: {d['site']['url']}\n"
-         f"Currículo: {d['site']['url']}/curriculo/mateus-fabro-{lang}.pdf\n"
-         f"Contato: {p['email']}")])
+    sobre, post = _sobre_e_post(d, lang)
     secoes = {"titulo": titulo, "sobre": sobre}
     for x in d["experiencia"]:
         blocos = cv["experiencia"][x["id"]][lang]
@@ -211,27 +272,14 @@ def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
             itens = [b["itens"][0] for b in blocos] if x["id"] == "super-nova" else [i for b in blocos for i in b["itens"]]
         else:
             itens = blocos
-        corpo = x["resumo"] + "\n\n" + "\n".join(f"• {i['texto']}" for i in itens)
+        lista = "\n".join(f"• {i['texto']}" for i in itens)
+        corpo = x["resumo"] + "\n\n" + lista if x["id"] == "super-nova" else lista   # flat: o resumo duplicaria os bullets
         secoes[f"experiencia:{x['id']}"] = corpo
     fora_do_kit = {"atendimento-whatsapp", "credito-nda"}          # piloto parado; sob NDA — ficam 6 (limite do LinkedIn)
     for pr in d["projetos"]:
         if pr["tipo"] == "produto" and pr["slug"] not in fora_do_kit:
             secoes[f"projeto:{pr['slug']}"] = f"{pr['linha']}\n{pr['status']}.\n" + "\n".join(f"• {f}" for f in pr["fatos"][:3])
-    produtos = [pr for pr in d["projetos"] if pr["tipo"] == "produto"]
-    no_ar = sum(1 for pr in produtos if build.status_vivo(pr))      # derivado do status, não digitado
-    secoes["post"] = (
-        f"A operação em que trabalhei desde outubro de 2025 encerrou em novembro. Estou em busca de vaga de "
-        f"engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto.\n\n"
-        f"O que eu levo: {len(produtos)} produtos próprios construídos de ponta a ponta ({no_ar} no ar hoje), "
-        f"migração de data lake, antifraude e atribuição de mídia em três operações de iGaming, e um site onde "
-        f"publico os meus erros com a regra que ficou de cada um.\n\n"
-        f"Site e currículo: {d['site']['url']}\nSe souber de uma vaga ou quiser conversar: {p['email']}" if pt else
-        f"The operation I worked at since October 2025 shut down in November. I'm looking for a data engineering, "
-        f"analytics engineering or product development role — contractor or employee, remote.\n\n"
-        f"What I bring: {len(produtos)} own products built end to end ({no_ar} live today), a data lake migration, "
-        f"anti-fraud and media attribution across three iGaming operations, and a site where I publish my mistakes "
-        f"with the rule each one left.\n\n"
-        f"Site and résumé: {d['site']['url']}\nIf you know of a role or want to talk: {p['email']}")
+    secoes["post"] = post
     return {k: _check(k, v) for k, v in secoes.items()}
 
 
