@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -641,6 +642,15 @@ def provas_pilares(d: dict, cv: dict, t: dict) -> list[list[str]]:
             [d["metodo"][3]["texto"], ia]]
 
 
+FATO_COMMITS = re.compile(r"^\d[\d.,]* (commits|of my commits)")
+
+
+def sem_commits(fatos: list[str]) -> list[str]:
+    """Fatos sem o de contagem de commits: na página ele já está na faixa de números. Continua no
+    JSON (o recontar e os números dependem dele) e no index.md / llms-full.txt / resume.json."""
+    return [f for f in fatos if not FATO_COMMITS.match(f)]
+
+
 def marcas(itens: list[str]) -> str:
     return '<ul class="marcas">' + "".join(f"<li>{e(i)}</li>" for i in itens) + "</ul>"
 
@@ -654,7 +664,7 @@ def ponto(vivo: bool) -> str:
 
 
 def html_projeto(pr: dict, t: dict = T["pt"], destaque: bool = False) -> str:
-    fatos = pr["fatos"][:3] if destaque else pr["fatos"][:1]
+    fatos = [inicial(f) for f in sem_commits(pr["fatos"])[:3 if destaque else 1]]
     link = (f'<p class="ir"><a href="{e(pr["url"])}" rel="noopener">{e(pr["url"].split("//")[1])} ↗</a></p>'
             if pr.get("url") else "")
     return f"""
@@ -770,7 +780,7 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
     exps = []
     for x in d["experiencia"]:
         nota = f" · {e(x['nota'])}" if x.get("nota") else ""
-        extra = (marcas([inicial(f) for f in trabalho["fatos"]]) + chips(trabalho["stack"], t["tecnologias"])
+        extra = (marcas([inicial(f) for f in sem_commits(trabalho["fatos"])]) + chips(trabalho["stack"], t["tecnologias"])
                  if x["id"] == "super-nova" else "")
         exps.append(f"""<li class="linha-item">
   <p class="quando">{e(periodo(x, t))}<br>{e(x['local'])}{nota}</p>

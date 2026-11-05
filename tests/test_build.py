@@ -439,8 +439,10 @@ def test_experiencia_tem_o_empregador_e_os_fatos_do_trabalho_atual():
     for x in v["experiencia"]:
         assert build.e(x["empresa"]) in exp and build.e(x["cargo"]) in exp
     trabalho = next(pr for pr in v["projetos"] if pr["tipo"] == "trabalho")
+    commits = [f for f in trabalho["fatos"] if build.FATO_COMMITS.match(f)]
+    assert len(commits) == 1                                  # o fato existe nos dados...
     for f in trabalho["fatos"]:
-        assert build.e(build.inicial(f)) in exp
+        assert (build.e(build.inicial(f)) in exp) == (f not in commits)   # ...mas não na página
     form = _secao(GERADO["index.html"], "formacao")
     for f in v["perfil"]["formacao"]:
         assert build.e(f["instituicao"]) in form and f["inicio"] in form
@@ -459,6 +461,17 @@ def test_cards_com_todos_os_produtos_avisa_edital_primeiro_e_bolinha_de_status(n
             assert f"<li>{build.e(s_)}</li>" in proj
         if pr.get("url"):
             assert f'href="{pr["url"]}"' in proj
+        card = proj.split(f'id="{pr["slug"]}"', 1)[1].split("</article>", 1)[0]
+        for f in pr["fatos"]:
+            if build.FATO_COMMITS.match(f):
+                assert build.e(f) not in card, pr["slug"]   # o de commits já está na faixa de números
+        assert build.e(build.inicial(build.sem_commits(pr["fatos"])[0])) in card
+    avisa = next(pr for pr in produtos if pr["slug"] == "avisa-edital")
+    card = proj.split('id="avisa-edital"', 1)[1].split("</article>", 1)[0]
+    assert build.e(build.inicial(avisa["fatos"][2])) in card and build.e(avisa["fatos"][0]) not in card
+    assert build.FATO_COMMITS.match(avisa["fatos"][0])
+    md = GERADO["index.md" if dd is D else "en/index.md"]
+    assert all(f in md for f in avisa["fatos"])               # o Markdown segue com todos os fatos
 
 
 def test_stack_vem_do_curriculo_json():
