@@ -208,7 +208,7 @@ do repositório**, porque o relatório cita nomes de pasta e de achado que não 
   de `curriculo.json` com `fonte` preenchida (exceção: versão de tecnologia em `stack`). `recontar.py` roda antes de
   publicar e a diferença aparece no commit.
 - **Status honesto**: cada projeto diz se está no ar, em produção com cliente, parado (desde quando) ou piloto.
-  "Vendas perto de zero" (DumpAI) e "piloto parado" (Secretária) **continuam** — é a marca do site.
+  "Faturamento baixo" (DumpAI) e "piloto parado" (Secretária) **continuam** — é a marca do site.
 - **Idioma**: PT é a fonte; EN é tradução com os mesmos números (teste de paridade). Inglês do currículo revisado pelo
   agente `revisor-conteudo` com a instrução "inglês de currículo, direto, sem adjetivo".
 

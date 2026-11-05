@@ -775,13 +775,13 @@ def test_curriculo_json_bullet_com_numero_tem_fonte():
   "resumo": {
     "pt": [
       "Engenheiro de dados e analytics: projeto, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
-      "De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas e membro do squad de quatro pessoas.",
+      "De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas num squad de dados de quatro pessoas.",
       "Fora do expediente, construí e opero produtos próprios com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.",
       "Uso agentes de IA (Claude Code) como multiplicador, com memória em camadas e gates de qualidade próprios; cada erro corrigido vira regra escrita e, quando dá, um teste."
     ],
     "en": [
       "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
-      "From Oct 2025 to Nov 2026, in a four-person data squad, I served three iGaming operations in three countries and three currencies and led the data front for two of them, until the operation shut down.",
+      "From Oct 2025 to Nov 2026, in a four-person data squad, I served three iGaming operations in three countries and three currencies in a four-person data squad, until the operation shut down.",
       "Outside work, I built and run my own products with real customers in production, covered by tests and with an honest status — including the ones that stopped.",
       "I use AI agents (Claude Code) as a multiplier, with layered memory and my own quality gates; every fixed mistake becomes a written rule and, when possible, a test."
     ]

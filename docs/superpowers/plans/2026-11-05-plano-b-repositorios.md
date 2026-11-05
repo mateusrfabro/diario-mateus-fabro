@@ -184,7 +184,7 @@ Para cada repo dos 6 que abrem, os steps são sempre: (1) branch, (2) working tr
 ### Task 5: `appfotos` (dumpai)
 
 - [ ] **Step 1:** `git checkout master` (criar de `origin/master` se não existir local) → `git merge --no-ff migracao-2026-09-28 -m "merge: estado da migracao de notebook"`.
-- [ ] **Step 2:** README: seção "Estado (05/11/2026)": no ar em https://dumpai-omega.vercel.app; vendas perto de zero; sem desenvolvimento desde 22/06/2026.
+- [ ] **Step 2:** README: seção "Estado (05/11/2026)": no ar em https://dumpai-omega.vercel.app; faturamento baixo; sem desenvolvimento desde 22/06/2026.
 - [ ] **Step 3:** `.gitignore`: garantir `.env*` e `!.env.local.example`; conferir que `.env.local.example` lista as mesmas chaves de `.env.local` (comparar só os nomes: `cut -d= -f1`), sem valores.
 - [ ] **Step 4:** `LICENSE` MIT. Commit `"docs: estado em 05/11/2026, licenca MIT"`. `gh repo edit mateusrfabro/dumpai --default-branch master`. Push `master`; apagar `migracao-2026-09-28` local e remoto depois do merge.
 

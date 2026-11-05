@@ -20,7 +20,7 @@
 | Projeto | O que é | Status | Código |
 |---|---|---|---|
 | **Avisa Edital** | Alertas de convocação, nomeação e edital de concurso para médicos no Paraná e em São Paulo, no WhatsApp ou no Telegram, filtrados por especialidade e região. | No ar desde agosto de 2026; operação diária desde outubro | `avisa-edital` (privado) |
-| **Pingado** | Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês. | Em produção desde setembro de 2026; cliente com mensalidade contratada | `cafesaas` (privado) |
+| **Pingado** | Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês. | Em produção desde setembro de 2026; mensalidade acordada com a cliente | `cafesaas` (privado) |
 | **Nous Clinical** | Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes. | Última versão do produto em 06/10/2026; depois só manutenção do repositório | [nous-clinical](https://github.com/mateusrfabro/nous-clinical) |
 | **Aggron** | Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote. | MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório) | [poolcompras](https://github.com/mateusrfabro/poolcompras) |
 | **DumpAI** | A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram. | No ar; faturamento baixo | [dumpai](https://github.com/mateusrfabro/dumpai) |
