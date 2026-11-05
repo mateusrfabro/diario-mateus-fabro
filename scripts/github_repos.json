@@ -1,0 +1,237 @@
+[
+  {
+    "nome": "diario-mateus-fabro",
+    "abre": true,
+    "mostrar": true,
+    "descricao": "Portfólio em formato de diário oficial, para pessoas e agentes de IA: site, JSON Resume, llms.txt e servidor MCP de um JSON só",
+    "topics": [
+      "portfolio",
+      "python",
+      "vercel",
+      "mcp",
+      "llms-txt"
+    ]
+  },
+  {
+    "nome": "nous-clinical",
+    "abre": true,
+    "mostrar": true,
+    "descricao": "Nous Clinical — SaaS de gestão de clínicas: agenda, prontuário, financeiro, NFS-e, 2FA, chatbot. Flask + PostgreSQL",
+    "topics": [
+      "flask",
+      "saas",
+      "healthcare",
+      "postgresql",
+      "python"
+    ]
+  },
+  {
+    "nome": "poolcompras",
+    "abre": true,
+    "mostrar": true,
+    "descricao": "Aggron — compra cooperativa para hamburguerias: rodadas, cotação de fornecedores, bot Telegram. Flask. MVP parado desde mai/2026",
+    "topics": [
+      "flask",
+      "marketplace",
+      "telegram-bot",
+      "python"
+    ]
+  },
+  {
+    "nome": "dumpai",
+    "abre": true,
+    "mostrar": true,
+    "descricao": "DumpAI — IA multimodal escolhe as 10 melhores fotos para um photo dump. Next.js 16 + Claude + Kiwify",
+    "topics": [
+      "nextjs",
+      "anthropic",
+      "typescript",
+      "vercel"
+    ]
+  },
+  {
+    "nome": "secretaria-ia",
+    "abre": false,
+    "mostrar": true,
+    "descricao": "Secretária virtual de WhatsApp com agenda real (n8n + Evolution API + LangChain). Piloto parado Privado (nome de cliente piloto no histórico)",
+    "topics": [
+      "n8n",
+      "whatsapp",
+      "langchain",
+      "automation"
+    ]
+  },
+  {
+    "nome": "lab-ia",
+    "abre": true,
+    "mostrar": true,
+    "descricao": "Laboratório local de IA: Ollama + PyTorch numa RTX 4060 — agente com ferramentas, QLoRA, ML tabular",
+    "topics": [
+      "ollama",
+      "pytorch",
+      "qlora",
+      "llm"
+    ]
+  },
+  {
+    "nome": "avisa-edital",
+    "abre": false,
+    "mostrar": true,
+    "descricao": "Avisa Edital — alertas de concurso, convocação e nomeação para médicos (PR/SP) no Telegram. Python, Vercel, Upstash. Privado (negócio com sócio)",
+    "topics": [
+      "python",
+      "telegram-bot",
+      "vercel",
+      "scraping"
+    ]
+  },
+  {
+    "nome": "cafesaas",
+    "abre": false,
+    "mostrar": true,
+    "descricao": "Pingado — gestão de cafeteria: balcão, comanda, fiado, estoque, NFC-e. Flask + PostgreSQL. Cliente em produção. Privado",
+    "topics": [
+      "flask",
+      "pos",
+      "saas",
+      "python"
+    ]
+  },
+  {
+    "nome": "credito-saas",
+    "abre": false,
+    "mostrar": true,
+    "descricao": "SaaS multi-tenant de gestão de crédito (sob NDA). Next.js 16, Supabase/RLS, PWA",
+    "topics": [
+      "nextjs",
+      "supabase",
+      "pwa",
+      "typescript"
+    ]
+  },
+  {
+    "nome": "guiadocredito",
+    "abre": false,
+    "mostrar": true,
+    "descricao": "Portal de crédito, cartões e score com indicadores do Banco Central atualizados por workflow. Astro 7",
+    "topics": [
+      "astro",
+      "typescript",
+      "content"
+    ]
+  },
+  {
+    "nome": "radardoinvestidor",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Portal de renda fixa e indicadores oficiais (BCB, Tesouro, IBGE). Astro 7",
+    "topics": [
+      "astro",
+      "typescript",
+      "content"
+    ]
+  },
+  {
+    "nome": "central-do-trabalhador",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Portal de direitos trabalhistas, FGTS, INSS e seguro-desemprego com tabelas de 2026. Astro 7",
+    "topics": [
+      "astro",
+      "typescript",
+      "content"
+    ]
+  },
+  {
+    "nome": "usmoneybrasil",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Portal sobre câmbio, remessas e contas globais para brasileiros. Astro 7",
+    "topics": [
+      "astro",
+      "typescript",
+      "content"
+    ]
+  },
+  {
+    "nome": "mydollarpilot",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "U.S. personal finance portal with official data (FRED, BLS). Astro 7",
+    "topics": [
+      "astro",
+      "typescript",
+      "content"
+    ]
+  },
+  {
+    "nome": "avisa-pedidos",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Backlog do Avisa Edital: pedidos, problemas e ideias do sócio",
+    "topics": []
+  },
+  {
+    "nome": "flashmed",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Flashcards médicos — especificação inicial (out/2026)",
+    "topics": []
+  },
+  {
+    "nome": "play4tune",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — analytics multi-tenant. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "play4tune-analytics",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — relatórios RTP/GGR. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "pcr-p4t",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — score de crédito de jogador. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "alerta-ftd",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — alertas de FTD. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "canonical-assessment",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — tabelas canônicas. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "startbet-analytics",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — matriz de receita. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "Scripts-usados---Mateus-Fabro",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Super Nova Gaming (out/2025 – nov/2026) — extrações e queries. Confidencial",
+    "topics": []
+  },
+  {
+    "nome": "radar-demo",
+    "abre": false,
+    "mostrar": false,
+    "descricao": "Demo de radar de editais (ago/2026). Privado",
+    "topics": []
+  }
+]

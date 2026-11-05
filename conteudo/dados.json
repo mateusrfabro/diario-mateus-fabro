@@ -2,14 +2,14 @@
   "site": {
     "url": "https://mateusfabro.vercel.app",
     "idioma": "pt-BR",
-    "medido_em": "2026-09-23",
+    "medido_em": "2026-11-05",
     "titulo": "Diário de Mateus Fabro",
-    "descricao": "Mateus Fabro, analytics engineer em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável."
+    "descricao": "Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável."
   },
   "perfil": {
     "nome": "Mateus Fabro",
-    "cargo": "Analytics Engineer",
-    "subtitulo": "Sistemas de dados e produtos, do coletor ao cliente",
+    "cargo": "Engenheiro de Dados & Analytics",
+    "subtitulo": "Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript · agentes de IA",
     "cidade": "Londrina",
     "estado": "PR",
     "pais": "Brasil",
@@ -18,42 +18,87 @@
     "linkedin": "https://www.linkedin.com/in/mateus-fabro-7ba369173",
     "tese": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.",
     "resumo": [
-      "Trabalho com dados em iGaming desde outubro de 2025 — hoje em três operações, três países e três moedas: pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
-      "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de editais e convocações de saúde no Paraná, um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa e um app de fotos com IA.",
+      "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
+      "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.",
       "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."
     ],
-    "formacao": "Administração de Empresas — Universidade Anhembi Morumbi (em curso)",
+    "formacao": [
+      {
+        "curso": "Administração",
+        "instituicao": "Universidade Anhembi Morumbi",
+        "inicio": "2022",
+        "fim": "2025",
+        "status": "concluído"
+      },
+      {
+        "curso": "Ciências Contábeis",
+        "instituicao": "Universidade Estadual de Londrina (UEL)",
+        "inicio": "2018",
+        "fim": "2021",
+        "status": "incompleto"
+      }
+    ],
     "idiomas": [
       "Português (nativo)",
       "Inglês (intermediário, leitura técnica fluente)",
       "Espanhol (básico)"
     ]
   },
+  "experiencia": [
+    {
+      "id": "super-nova",
+      "empresa": "Super Nova Gaming / MultiBet (Grupo PGX)",
+      "cargo": "Analista de Dados — frente de dados de 2 operações",
+      "inicio": "2025-10",
+      "fim": "2026-11",
+      "local": "remoto",
+      "resumo": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026."
+    },
+    {
+      "id": "costa-oeste",
+      "empresa": "Costa Oeste / Terceirize",
+      "cargo": "Analista Administrativo",
+      "inicio": "2025-07",
+      "fim": "2025-09",
+      "local": "Londrina, PR",
+      "resumo": "KPIs operacionais e dashboards em Power BI; rotinas de governança de dados administrativos."
+    },
+    {
+      "id": "adama",
+      "empresa": "ADAMA",
+      "cargo": "Assistente de Crédito e Cobrança",
+      "inicio": "2020-10",
+      "fim": "2024-09",
+      "local": "Londrina, PR",
+      "nota": "estágio em 2019–2020",
+      "resumo": "Contas a receber e operações de FIDC; análise de crédito PJ/PF com garantias (CPR, alienação fiduciária, caução); dashboards Power BI para os times Brasil e Global; atuação no Portal de Crédito."
+    }
+  ],
   "numeros": [
     {
-      "valor": "102",
+      "valor": "125",
       "rotulo": "lições registradas, cada uma com a origem de um caso real",
-      "fonte": "memória global, global_index.json (84 universais + 17 de dados)"
+      "fonte": "memória global, global_index.json (107 universais + 18 de dados)"
     },
     {
-      "valor": "820",
-      "rotulo": "commits meus em cinco produtos, em 2026",
-      "fonte": "git log de avisa-edital, pingado, nous-clinical, aggron e dumpai, sem os 27 commits automáticos do bot"
+      "valor": "1.734",
+      "rotulo": "commits meus em 2026, em 8 produtos próprios",
+      "fonte": "git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot"
     },
     {
-      "valor": "2.675",
-      "rotulo": "funções de teste nos quatro produtos em Python",
-      "fonte": "contagem de def test_ em avisa-edital, pingado, nous-clinical e aggron"
+      "valor": "6.357",
+      "rotulo": "funções de teste nos 4 produtos em Python",
+      "fonte": "contagem de def test_ em tests/ dos produtos com suíte pytest"
     },
     {
       "valor": "3",
       "rotulo": "operações de iGaming, em 3 países e 3 moedas",
-      "fonte": "trabalho atual, desde out/2025"
+      "fonte": "Super Nova Gaming, out/2025 – nov/2026"
     },
     {
       "valor": "3,07 bi",
-      "rotulo": "registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo",
-      "fonte": "234 tabelas, ~71 pipelines consumidores"
+      "rotulo": "de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo",
+      "fonte": "inventário do catálogo Iceberg de 23/07/2026: 234 tabelas"
     }
   ],
   "projetos": [
@@ -61,9 +106,9 @@
       "slug": "avisa-edital",
       "nome": "Avisa Edital",
       "tipo": "produto",
-      "linha": "Alerta no Telegram quando sai edital ou convocação de saúde no Paraná.",
-      "para_quem": "Médicos do Paraná que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.",
-      "papel": "Construí sozinho: coletores, bot, site, pagamento e monitoramento. Meu sócio, da área médica, cuida da venda.",
+      "linha": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.",
+      "para_quem": "Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.",
+      "papel": "Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.",
       "stack": [
         "Python",
         "GitHub Actions",
@@ -74,12 +119,12 @@
         "pypdf + Tesseract (OCR)"
       ],
       "fatos": [
-        "182 commits meus entre 12/08 e 21/09/2026, fora 27 automáticos do bot",
-        "1.055 funções de teste",
-        "192 municípios do PR vigiados em diários oficiais",
-        "5 bancas e 8 fontes de convocação (diários municipais, Querido Diário, Secretaria de Saúde e consórcio do SAMU)"
+        "717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
+        "3.372 funções de teste",
+        "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions",
+        "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"
       ],
-      "status": "No ar desde agosto de 2026",
+      "status": "No ar desde agosto de 2026; operação diária desde outubro",
       "url": "https://avisaedital.com.br",
       "historia": "Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia \"13 convocações novas\", das quais 10 eram de semanas antes."
     },
@@ -89,7 +134,7 @@
       "tipo": "produto",
       "linha": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.",
       "para_quem": "Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.",
-      "papel": "Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião (v0.2 → v0.10).",
+      "papel": "Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.",
       "stack": [
         "Flask",
         "SQLAlchemy + Alembic",
@@ -99,11 +144,11 @@
         "Render"
       ],
       "fatos": [
-        "234 commits entre 06/07 e 18/09/2026",
-        "772 funções de teste",
-        "cliente real em produção"
+        "486 commits meus entre 06/07 e 05/11/2026",
+        "2.133 funções de teste",
+        "cliente real com duas lojas em produção"
       ],
-      "status": "Em produção desde setembro de 2026",
+      "status": "Em produção desde setembro de 2026, evoluindo com a cliente",
       "url": "",
       "historia": "Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o \"Seu tem R$ 29,00\" (ver retificações)."
     },
@@ -123,15 +168,16 @@
         "2FA/TOTP",
         "NFS-e",
         "Anthropic API (chatbot)",
-        "backup cifrado (age → R2; restauração ainda não testada)"
+        "backup cifrado (age → R2)"
       ],
       "fatos": [
-        "190 commits entre 05/06 e 26/08/2026",
-        "457 funções de teste",
+        "197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot",
+        "461 funções de teste",
         "111 rotas",
-        "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)"
+        "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)",
+        "restauração do backup ainda não testada"
       ],
-      "status": "Última versão em 26/08/2026",
+      "status": "Última versão do produto em 06/10/2026; depois só manutenção do repositório",
       "url": "",
       "historia": "Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico."
     },
@@ -150,12 +196,12 @@
         "PDF de contrato"
       ],
       "fatos": [
-        "194 commits entre 14/04 e 28/05/2026",
+        "196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot",
         "391 funções de teste",
         "109 rotas",
         "origem da plataforma Flask que Nous e Pingado reaproveitam"
       ],
-      "status": "MVP completo; parado desde 28/05/2026",
+      "status": "MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)",
       "url": "",
       "historia": "Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar."
     },
@@ -176,7 +222,7 @@
         "Vercel"
       ],
       "fatos": [
-        "20 commits entre 10/06 e 22/06/2026",
+        "23 commits meus entre 10/06 e 05/11/2026",
         "no ar desde 11/06/2026",
         "compressão da imagem no navegador antes do envio"
       ],
@@ -200,21 +246,71 @@
         "Google Calendar"
       ],
       "fatos": [
+        "9 commits meus entre 16/09 e 05/11/2026",
         "projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04",
         "passagem para humano com trava na conversa",
-        "configuração por cliente em YAML (versão multi-cliente)"
+        "configuração por cliente em YAML (versão multi-cliente)",
+        "não completou uma conversa de ponta a ponta com cliente"
       ],
-      "status": "Piloto parado na autorização do Google; não completou uma conversa de ponta a ponta com cliente",
+      "status": "Piloto parado (autorização do Google)",
       "url": "",
       "historia": "Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita."
     },
     {
+      "slug": "credito-nda",
+      "nome": "SaaS de crédito (sob NDA)",
+      "tipo": "produto",
+      "linha": "Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.",
+      "para_quem": "Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.",
+      "papel": "Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.",
+      "stack": [
+        "Next.js 16 + TypeScript",
+        "PWA com branding por tenant",
+        "PostgreSQL (Supabase) com RLS por tenant",
+        "GitHub Actions",
+        "Docker (e2e em contêiner)",
+        "Vercel"
+      ],
+      "fatos": [
+        "66 commits meus entre 13/10 e 05/11/2026",
+        "backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento",
+        "fluxo de cadastro público com validações e aprovação em um clique"
+      ],
+      "status": "Piloto no ar desde outubro de 2026",
+      "url": "",
+      "historia": "Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto."
+    },
+    {
+      "slug": "portais-conteudo",
+      "nome": "Portais de conteúdo com dados oficiais",
+      "tipo": "produto",
+      "linha": "Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.",
+      "para_quem": "Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).",
+      "papel": "Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.",
+      "stack": [
+        "Astro 7",
+        "TypeScript",
+        "GitHub Actions",
+        "APIs oficiais",
+        "Vercel"
+      ],
+      "fatos": [
+        "40 commits meus entre 20/10 e 03/11/2026",
+        "33 a 45 guias por portal, cada um com fonte primária",
+        "indicadores recalculados por workflow, não digitados",
+        "fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP"
+      ],
+      "status": "No ar desde outubro de 2026; monetização em avaliação",
+      "url": "https://guiadocredito.com.br",
+      "historia": "A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado."
+    },
+    {
       "slug": "igaming-dados",
-      "nome": "Dados em iGaming",
+      "nome": "Super Nova Gaming / MultiBet (Grupo PGX)",
       "tipo": "trabalho",
       "linha": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.",
-      "para_quem": "Squad de dados de 4 pessoas de um grupo de iGaming; lidero a frente de dados de duas operações.",
-      "papel": "Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.",
+      "para_quem": "Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.",
+      "papel": "Analista de dados de out/2025 a nov/2026, com trabalho de engenharia de ponta a ponta.",
       "stack": [
         "Python",
         "SQL (PostgreSQL e motores distribuídos)",
@@ -224,15 +320,16 @@
         "Slack / Telegram / WhatsApp"
       ],
       "fatos": [
-        "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores",
+        "1.408 commits meus entre 12/03 e 04/11/2026",
+        "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores",
         "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago",
         "serviço diário de risco e score de crédito de jogador",
         "linter multi-tenant que falha fechado: lista de exceções de 43 para 3",
         "consulta crítica de 240 s para 21 s, com equivalência provada por conjunto"
       ],
-      "status": "Trabalho atual (nomes de empresa e cliente omitidos)",
+      "status": "Encerrado em nov/2026 (fim da operação)",
       "url": "",
-      "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes ficam de fora."
+      "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora."
     }
   ],
   "retificacoes": [
@@ -402,7 +499,7 @@
     },
     {
       "titulo": "Mutação como hábito",
-      "texto": "53 dos 182 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer."
+      "texto": "66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer."
     },
     {
       "titulo": "Agentes com papel, não com autonomia",
@@ -414,14 +511,14 @@
     }
   ],
   "disponibilidade": {
-    "status": "aberto a projetos e vagas",
-    "texto": "Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados e analytics engineering. O jeito mais rápido é o e-mail.",
+    "status": "em busca de vaga",
+    "texto": "Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto de escopo fechado. O jeito mais rápido é o e-mail.",
     "canal": "mateusrfabro@hotmail.com"
   },
   "faq": [
     {
       "pergunta": "Quem é Mateus Fabro?",
-      "resposta": "Analytics engineer em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron e DumpAI."
+      "resposta": "Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."
     },
     {
       "pergunta": "Com o que ele trabalha?",
@@ -433,7 +530,7 @@
     },
     {
       "pergunta": "Ele está disponível?",
-      "resposta": "Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com."
+      "resposta": "Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotmail.com."
     }
   ]
 }

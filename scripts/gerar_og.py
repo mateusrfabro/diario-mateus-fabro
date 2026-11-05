@@ -26,10 +26,12 @@ PROTOCOLO_DA_CAPA = "RET-2026-0923"   # a retificação do próprio site
 def descritor(d: dict) -> dict:
     """O que a imagem mostra — comparado pelo teste com o conteúdo atual."""
     r = next(x for x in d["retificacoes"] if x["protocolo"] == PROTOCOLO_DA_CAPA)
-    commits = next(n["valor"] for n in d["numeros"] if "commits" in n["rotulo"])
+    # O "leia-se" da capa vem da PRÓPRIA retificação, não do número atual de commits: a
+    # retificação de 23/09 falava de 820; o número vivo (que o recontar atualiza) é outro fato.
+    leia_curto = r["leia_se"].split(".")[0] + "."
     return {"edicao": build.edicao(d), "nome": d["perfil"]["nome"], "cargo": d["perfil"]["cargo"],
             "protocolo": r["protocolo"], "onde_se_le": r["onde_se_le"],
-            "leia_curto": f"{commits} — somei os commits do robô.", "regra": r["regra"]}
+            "leia_curto": leia_curto, "regra": r["regra"]}
 
 
 def html_capa(desc: dict) -> str:

@@ -1,43 +1,43 @@
-# Mateus Fabro — Analytics Engineer
+# Mateus Fabro — Engenheiro de Dados & Analytics
 
 > Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.
 
 Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateus-fabro-7ba369173
 
-Medido em 23/09/2026. Edição nº 102.
+Medido em 05/11/2026. Edição nº 125.
 
 ## Resumo
 
-Trabalho com dados em iGaming desde outubro de 2025 — hoje em três operações, três países e três moedas: pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
+Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
 
-Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de editais e convocações de saúde no Paraná, um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa e um app de fotos com IA.
+Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.
 
 Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.
 
 ## Números
 
-- **102** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (84 universais + 17 de dados))
-- **820** commits meus em cinco produtos, em 2026 (fonte: git log de avisa-edital, pingado, nous-clinical, aggron e dumpai, sem os 27 commits automáticos do bot)
-- **2.675** funções de teste nos quatro produtos em Python (fonte: contagem de def test_ em avisa-edital, pingado, nous-clinical e aggron)
-- **3** operações de iGaming, em 3 países e 3 moedas (fonte: trabalho atual, desde out/2025)
-- **3,07 bi** registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: 234 tabelas, ~71 pipelines consumidores)
+- **125** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (107 universais + 18 de dados))
+- **1.734** commits meus em 2026, em 8 produtos próprios (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
+- **6.357** funções de teste nos 4 produtos em Python (fonte: contagem de def test_ em tests/ dos produtos com suíte pytest)
+- **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, out/2025 – nov/2026)
+- **3,07 bi** de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
 
 ## Projetos
 
 ### Avisa Edital
 
-Alerta no Telegram quando sai edital ou convocação de saúde no Paraná.
+Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.
 
-- **Para quem:** Médicos do Paraná que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.
-- **Meu papel:** Construí sozinho: coletores, bot, site, pagamento e monitoramento. Meu sócio, da área médica, cuida da venda.
-- **Status:** No ar desde agosto de 2026
+- **Para quem:** Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.
+- **Meu papel:** Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.
+- **Status:** No ar desde agosto de 2026; operação diária desde outubro
 - **Stack:** Python, GitHub Actions, Vercel (funções Python), Upstash Redis, Telegram Bot API, Kiwify (webhook HMAC), pypdf + Tesseract (OCR)
 - **Endereço:** https://avisaedital.com.br
 - **Fatos:**
-  - 182 commits meus entre 12/08 e 21/09/2026, fora 27 automáticos do bot
-  - 1.055 funções de teste
-  - 192 municípios do PR vigiados em diários oficiais
-  - 5 bancas e 8 fontes de convocação (diários municipais, Querido Diário, Secretaria de Saúde e consórcio do SAMU)
+  - 717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot
+  - 3.372 funções de teste
+  - PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions
+  - assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot
 
 Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia "13 convocações novas", das quais 10 eram de semanas antes.
 
@@ -46,13 +46,13 @@ Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acerv
 Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
 
 - **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.
-- **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião (v0.2 → v0.10).
-- **Status:** Em produção desde setembro de 2026
+- **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.
+- **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Fatos:**
-  - 234 commits entre 06/07 e 18/09/2026
-  - 772 funções de teste
-  - cliente real em produção
+  - 486 commits meus entre 06/07 e 05/11/2026
+  - 2.133 funções de teste
+  - cliente real com duas lojas em produção
 
 Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o "Seu tem R$ 29,00" (ver retificações).
 
@@ -62,13 +62,14 @@ Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacie
 
 - **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
 - **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
-- **Status:** Última versão em 26/08/2026
-- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2; restauração ainda não testada)
+- **Status:** Última versão do produto em 06/10/2026; depois só manutenção do repositório
+- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2)
 - **Fatos:**
-  - 190 commits entre 05/06 e 26/08/2026
-  - 457 funções de teste
+  - 197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot
+  - 461 funções de teste
   - 111 rotas
   - auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)
+  - restauração do backup ainda não testada
 
 Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico.
 
@@ -78,10 +79,10 @@ Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores
 
 - **Para quem:** Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.
 - **Meu papel:** Tech lead e desenvolvedor, com um sócio como dono do produto.
-- **Status:** MVP completo; parado desde 28/05/2026
+- **Status:** MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)
 - **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, PDF de contrato
 - **Fatos:**
-  - 194 commits entre 14/04 e 28/05/2026
+  - 196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot
   - 391 funções de teste
   - 109 rotas
   - origem da plataforma Flask que Nous e Pingado reaproveitam
@@ -98,7 +99,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Endereço:** https://dumpai-omega.vercel.app
 - **Fatos:**
-  - 20 commits entre 10/06 e 22/06/2026
+  - 23 commits meus entre 10/06 e 05/11/2026
   - no ar desde 11/06/2026
   - compressão da imagem no navegador antes do envio
 
@@ -110,31 +111,66 @@ Recepcionista de WhatsApp com agenda real para profissionais autônomos.
 
 - **Para quem:** Psicólogos, advogados e outros profissionais que atendem sozinhos.
 - **Meu papel:** Arquitetura e implementação, com um squad de 5 agentes de IA.
-- **Status:** Piloto parado na autorização do Google; não completou uma conversa de ponta a ponta com cliente
+- **Status:** Piloto parado (autorização do Google)
 - **Stack:** n8n, Evolution API, PostgreSQL 16, Redis 7, LangChain, Google Calendar
 - **Fatos:**
+  - 9 commits meus entre 16/09 e 05/11/2026
   - projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04
   - passagem para humano com trava na conversa
   - configuração por cliente em YAML (versão multi-cliente)
+  - não completou uma conversa de ponta a ponta com cliente
 
 Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita.
 
-### Dados em iGaming
+### SaaS de crédito (sob NDA)
+
+Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.
+
+- **Para quem:** Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.
+- **Meu papel:** Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.
+- **Status:** Piloto no ar desde outubro de 2026
+- **Stack:** Next.js 16 + TypeScript, PWA com branding por tenant, PostgreSQL (Supabase) com RLS por tenant, GitHub Actions, Docker (e2e em contêiner), Vercel
+- **Fatos:**
+  - 66 commits meus entre 13/10 e 05/11/2026
+  - backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento
+  - fluxo de cadastro público com validações e aprovação em um clique
+
+Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto.
+
+### Portais de conteúdo com dados oficiais
+
+Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.
+
+- **Para quem:** Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).
+- **Meu papel:** Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.
+- **Status:** No ar desde outubro de 2026; monetização em avaliação
+- **Stack:** Astro 7, TypeScript, GitHub Actions, APIs oficiais, Vercel
+- **Endereço:** https://guiadocredito.com.br
+- **Fatos:**
+  - 40 commits meus entre 20/10 e 03/11/2026
+  - 33 a 45 guias por portal, cada um com fonte primária
+  - indicadores recalculados por workflow, não digitados
+  - fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP
+
+A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado.
+
+### Super Nova Gaming / MultiBet (Grupo PGX)
 
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
-- **Para quem:** Squad de dados de 4 pessoas de um grupo de iGaming; lidero a frente de dados de duas operações.
-- **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
-- **Status:** Trabalho atual (nomes de empresa e cliente omitidos)
+- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
+- **Meu papel:** Analista de dados de out/2025 a nov/2026, com trabalho de engenharia de ponta a ponta.
+- **Status:** Encerrado em nov/2026 (fim da operação)
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
-  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores
+  - 1.408 commits meus entre 12/03 e 04/11/2026
+  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores
   - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
   - serviço diário de risco e score de crédito de jogador
   - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
   - consulta crítica de 240 s para 21 s, com equivalência provada por conjunto
 
-A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes ficam de fora.
+A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.
 
 ## Retificações
 
@@ -196,7 +232,7 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 
 ## Atos (lições)
 
-20 das 102 lições registradas, publicadas aqui.
+20 das 125 lições registradas, publicadas aqui.
 
 1. **Verificar antes de concluir** — Nunca dizer "pronto" sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada.
 2. **Teste de mutação: prove que o teste sabe falhar** — Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove.
@@ -223,13 +259,13 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 
 - **Memória em camadas.** Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.
 - **Um gate fecha a promoção.** Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.
-- **Mutação como hábito.** 53 dos 182 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
+- **Mutação como hábito.** 66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
 - **Agentes com papel, não com autonomia.** 15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
 - **Onde paramos.** Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.
 
 ## Disponibilidade
 
-Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados e analytics engineering. O jeito mais rápido é o e-mail.
+Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto de escopo fechado. O jeito mais rápido é o e-mail.
 
 Contato: mateusrfabro@hotmail.com
 
@@ -237,7 +273,7 @@ Contato: mateusrfabro@hotmail.com
 
 **Quem é Mateus Fabro?**
 
-Analytics engineer em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron e DumpAI.
+Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
 
 **Com o que ele trabalha?**
 
@@ -249,10 +285,11 @@ Erros que ele cometeu, com data e número, no formato de retificação de diári
 
 **Ele está disponível?**
 
-Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.
+Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotmail.com.
 
 ## Para agentes
 
 - Servidor MCP (Streamable HTTP, sem autenticação, só leitura): https://mateusfabro.vercel.app/mcp
 - Currículo em JSON Resume: https://mateusfabro.vercel.app/resume.json
+- Currículo em PDF: https://mateusfabro.vercel.app/curriculo/mateus-fabro-pt.pdf
 - Este texto: https://mateusfabro.vercel.app/index.md
