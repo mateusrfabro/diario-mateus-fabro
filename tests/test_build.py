@@ -151,7 +151,15 @@ def test_numeros_agregados_batem_com_os_fatos_dos_projetos():
 def test_edicao_e_o_numero_de_licoes():
     assert build.edicao(D) == D["numeros"][0]["valor"]   # o valor real vem do recontar.py
     assert "lições" in D["numeros"][0]["rotulo"]
-    assert f"Edição nº {build.edicao(D)}" in GERADO["index.html"]
+
+
+def test_home_nao_fala_mais_a_lingua_do_diario():
+    """A home fala com gestor e recrutador: o vocabulário de diário oficial saiu (spec de 05/11/2026)."""
+    for nome in ("index.html", "en/index.html", "licoes/index.html", "en/licoes/index.html", "404.html"):
+        h = GERADO[nome]
+        for velho in ("Diário de", "Edição nº", "RETIFICAÇÃO", "Ler como máquina", "Gazette", "Edition no.",
+                      ">CORRECTION<", "Read as a machine", 'id="maquina"', "Convocação", "Editais"):
+            assert velho not in h, f"{nome}: {velho}"
 
 
 def test_metodo_cita_os_mesmos_commits_do_projeto():
@@ -204,11 +212,13 @@ def test_resume_json_tem_o_basico_do_schema():
     assert {p["name"] for p in r["projects"]} == {pr["nome"] for pr in D["projetos"] if pr["tipo"] == "produto"}
 
 
-def test_versao_maquina_e_o_mesmo_markdown():
-    """O botão "Ler como máquina" mostra exatamente o /index.md — não uma cópia que envelhece."""
-    import html
-    pre = re.search(r'<pre id="maquina"[^>]*>(.*?)</pre>', GERADO["index.html"], re.S).group(1)
-    assert html.unescape(pre) == GERADO["index.md"]
+def test_rodape_aponta_para_as_versoes_de_maquina():
+    """Sem botão "Ler como máquina": o rodapé linka os formatos que um agente lê direto."""
+    for nome, md in (("index.html", "/index.md"), ("en/index.html", "/en/index.md"), ("licoes/index.html", "/index.md")):
+        rodape = GERADO[nome].split('<footer class="rodape">')[1]
+        for alvo in (md, "/resume.json", "/llms.txt", "/mcp"):
+            assert f'href="{alvo}"' in rodape, (nome, alvo)
+    assert GERADO["index.md"].startswith(f"# {D['perfil']['nome']}")
 
 
 def test_json_embutido_nao_fecha_a_tag_script():
@@ -249,8 +259,8 @@ def test_url_sem_https_no_conteudo_derruba_o_build():
 
 
 def test_imagem_de_compartilhamento_existe_e_nao_envelheceu():
-    """A capa (og.png) traz edição e números desenhados: se o conteúdo mudar e a imagem não,
-    este teste pede `python scripts/gerar_og.py`."""
+    """A capa (og.png) traz nome, cargo, frase e endereço desenhados: se o conteúdo mudar e a imagem
+    não, este teste pede `python scripts/gerar_og.py`."""
     import struct
     sys.path.insert(0, str(RAIZ / "scripts"))
     import gerar_og
@@ -258,6 +268,8 @@ def test_imagem_de_compartilhamento_existe_e_nao_envelheceu():
     assert png[:8] == b"\x89PNG\r\n\x1a\n" and struct.unpack(">II", png[16:24]) == (1200, 630)
     desenhado = json.loads((RAIZ / "public" / "og.json").read_text(encoding="utf-8"))
     assert desenhado == gerar_og.descritor(D), "og.png desatualizada: rode python scripts/gerar_og.py"
+    assert set(desenhado) == {"nome", "cargo", "frase", "site"}
+    assert desenhado["frase"] == D["perfil"]["frase_hero"] and desenhado["site"] in D["site"]["url"]
     h = GERADO["index.html"]
     assert f'<meta property="og:image" content="{D["site"]["url"]}/og.png">' in h
     assert 'name="twitter:card" content="summary_large_image"' in h
@@ -296,11 +308,12 @@ def test_pagina_em_ingles_aponta_para_si_e_para_a_portuguesa():
     h = GERADO["en/index.html"]
     assert '<html lang="en">' in h and f'<link rel="canonical" href="{D["site"]["url"]}/en/">' in h
     assert 'hreflang="pt-BR"' in h and 'hreflang="en"' in GERADO["index.html"]
-    assert ">CORRECTION<" in h and ">Read<" in h and "Onde se lê" not in h
-    assert "RETIFICAÇÃO" in GERADO["index.html"] and "CORRECTION" not in GERADO["index.html"]
-    import html as _h
-    pre = re.search(r'<pre id="maquina"[^>]*>(.*?)</pre>', h, re.S).group(1)
-    assert _h.unescape(pre) == GERADO["en/index.md"]
+    assert '<a class="idioma" href="/"' in h and '<a class="idioma" href="/en/"' in GERADO["index.html"]
+    le = GERADO["en/licoes/index.html"]
+    assert f'<link rel="canonical" href="{D["site"]["url"]}/en/licoes/">' in le
+    assert "<dt>Read</dt>" in le and "Onde se lê" not in le
+    assert "<dt>Leia-se</dt>" in GERADO["licoes/index.html"] and "<dt>Read</dt>" not in GERADO["licoes/index.html"]
+    assert '<a class="idioma" href="/licoes/"' in le and '<a class="idioma" href="/en/licoes/"' in GERADO["licoes/index.html"]
 
 
 # ------------------------------------------------------------------ empregador, datas e formação
@@ -332,7 +345,7 @@ def test_resume_json_tem_trabalho_datado_e_formacao_com_anos():
 def test_site_nomeia_o_empregador_e_nao_diz_mais_nome_omitido():
     h = GERADO["index.html"]
     assert "nome omitido" not in h and "name omitted" not in GERADO["en/index.html"]
-    assert build.e(D["perfil"]["cargo"]) in h and build.e(D["perfil"]["subtitulo"]) in h   # `&` sai como &amp;
+    assert build.e(D["perfil"]["cargo"]) in h and build.e(D["perfil"]["frase_hero"]) in h   # `&` sai como &amp;
     assert "Super Nova" in h
     if D["site"]["modo"] == "discreto":
         assert "nov/2026" not in h.lower() and "encerr" not in h.lower()
@@ -365,3 +378,133 @@ def test_curriculo_json_bullet_com_numero_tem_fonte():
                     assert item.get("fonte", "").strip(), f"[{lang}] sem fonte: {item['texto'][:60]}"
         assert len(cv["resumo"][lang]) <= 4
         assert {c["categoria"] for c in cv["stack"][lang]}
+
+
+# ------------------------------------------------------------------ a home nova (spec 05/11/2026)
+def _secao(h: str, ident: str) -> str:
+    """Trecho do HTML da seção `id=ident` até a próxima seção."""
+    return h.split(f'id="{ident}"', 1)[1].split("<section", 1)[0]
+
+
+@pytest.mark.parametrize("nome,dd", [("index.html", D), ("en/index.html", EN)])
+def test_home_tem_h1_unico_com_o_nome(nome, dd):
+    h = GERADO[nome]
+    assert h.count("<h1") == 1
+    assert re.search(r"<h1>([^<]*)</h1>", h).group(1) == dd["perfil"]["nome"]
+
+
+@pytest.mark.parametrize("nome,t", [("index.html", build.T["pt"]), ("en/index.html", build.T["en"])])
+def test_dois_ctas_no_hero_e_no_contato(nome, t):
+    """Currículo (PDF) e e-mail com assunto aparecem na abertura E no contato."""
+    h = GERADO[nome]
+    hero = h.split('class="hero"', 1)[1].split("</section>", 1)[0]
+    contato = _secao(h, "contato")
+    pdf = f'href="/curriculo/{t["cv_arquivo"]}"'
+    mailto = f'href="mailto:{D["perfil"]["email"]}?subject={t["assunto"]}"'
+    for trecho in (hero, contato):
+        assert pdf in trecho and mailto in trecho
+        assert f">{t['cv']}<" in trecho and f">{t['email_btn']}<" in trecho
+    assert 'href="#projetos"' in hero and t["ver_proj"] in hero
+
+
+def test_cinco_numeros_com_data_de_medicao():
+    h = GERADO["index.html"]
+    v = build.vista(D)
+    assert len(v["numeros"]) == 5 and h.count('<div class="numero">') == 5
+    for n in v["numeros"]:
+        assert f"<b>{build.e(n['valor'])}</b>" in h and build.e(n["fonte"]) in h
+    assert build.data_curta(D["site"]["medido_em"]) in h.split('class="prova"', 1)[1].split("</aside>", 1)[0]
+
+
+def test_tres_pilares_sem_digito_e_com_provas_lidas_dos_dados():
+    cv = build.carregar_cv()
+    for dd, nome, t in ((D, "index.html", build.T["pt"]), (EN, "en/index.html", build.T["en"])):
+        v = build.vista(dd)
+        assert len(v["pilares"]) == 3
+        for p in v["pilares"]:
+            assert p["titulo"] and p["texto"] and not re.search(r"\d", p["titulo"] + p["texto"]), p["titulo"]
+        h = GERADO[nome]
+        assert h.count('<article class="pilar">') == 3
+        provas = build.provas_pilares(v, cv, t)
+        assert [len(x) for x in provas] == [2, 2, 2]
+        for pv in provas:
+            for x in pv:
+                assert build.e(x) in h
+    assert [p["titulo"] for p in D["pilares"]] == ["Dados", "Produto", "Agentes de IA"]
+
+
+def test_experiencia_tem_o_empregador_e_os_fatos_do_trabalho_atual():
+    exp = _secao(GERADO["index.html"], "experiencia")
+    v = build.vista(D)
+    for x in v["experiencia"]:
+        assert build.e(x["empresa"]) in exp and build.e(x["cargo"]) in exp
+    trabalho = next(pr for pr in v["projetos"] if pr["tipo"] == "trabalho")
+    for f in trabalho["fatos"]:
+        assert build.e(build.inicial(f)) in exp
+    form = _secao(GERADO["index.html"], "formacao")
+    for f in v["perfil"]["formacao"]:
+        assert build.e(f["instituicao"]) in form and f["inicio"] in form
+
+
+@pytest.mark.parametrize("nome,dd", [("index.html", D), ("en/index.html", EN)])
+def test_cards_com_todos_os_produtos_avisa_edital_primeiro_e_bolinha_de_status(nome, dd):
+    proj = _secao(GERADO[nome], "projetos")
+    cards = re.findall(r'<article class="card[^"]*" id="([a-z0-9-]+)"', proj)
+    produtos = [pr for pr in dd["projetos"] if pr["tipo"] == "produto"]
+    assert sorted(cards) == sorted(pr["slug"] for pr in produtos) and cards[0] == "avisa-edital"
+    assert "igaming-dados" not in cards                       # o trabalho mora na experiência
+    assert proj.count('class="dot vivo"') == sum(build.status_vivo(pr) for pr in produtos)
+    for pr in produtos:
+        for s_ in pr["stack"]:
+            assert f"<li>{build.e(s_)}</li>" in proj
+        if pr.get("url"):
+            assert f'href="{pr["url"]}"' in proj
+
+
+def test_stack_vem_do_curriculo_json():
+    cv = build.carregar_cv()
+    st = _secao(GERADO["index.html"], "stack")
+    for c in cv["stack"]["pt"]:
+        assert f"<dt>{build.e(c['categoria'])}</dt>" in st
+        for item in c["itens"].split(" · "):
+            assert f"<li>{build.e(item)}</li>" in st
+
+
+@pytest.mark.parametrize("nome,t,pref", [("index.html", build.T["pt"], ""), ("en/index.html", build.T["en"], "/en")])
+def test_como_trabalho_tem_o_metodo_e_o_link_para_as_licoes(nome, t, pref):
+    dd = D if pref == "" else EN
+    met = _secao(GERADO[nome], "metodo")
+    for m in dd["metodo"]:
+        assert build.e(m["titulo"]) in met
+    assert f'href="{pref}/licoes/"' in met
+    assert build.e(t["link_licoes"].format(n=len(dd["atos"]))) in met
+
+
+@pytest.mark.parametrize("nome,dd", [("licoes/index.html", D), ("en/licoes/index.html", EN)])
+def test_pagina_de_licoes_tem_todas_as_retificacoes_e_atos(nome, dd):
+    h = GERADO[nome]
+    assert h.count("<h1") == 1
+    assert sorted(re.findall(r'<article class="ret" id="(ret-[0-9a-z-]+)"', h)) == \
+        sorted(r["protocolo"].lower() for r in dd["retificacoes"])
+    for r in dd["retificacoes"]:
+        for campo in ("onde_se_le", "leia_se", "regra", "contexto"):
+            assert build.e(r[campo]) in h, (r["protocolo"], campo)
+    for a in dd["atos"]:
+        assert build.e(a["titulo"]) in h
+    assert h.count("<script") == 0                           # página só de leitura
+    pref = "" if dd is D else "/en"
+    assert f'<link rel="canonical" href="{D["site"]["url"]}{pref}/licoes/">' in h
+
+
+def test_sitemap_e_llms_conhecem_as_licoes():
+    for u in ("/licoes/", "/en/licoes/"):
+        assert f"<loc>{D['site']['url']}{u}</loc>" in GERADO["sitemap.xml"]
+    assert f"({D['site']['url']}/licoes/)" in GERADO["llms.txt"]
+
+
+def test_app_js_nao_depende_de_elemento_que_saiu_da_pagina():
+    """O botão de alternar saiu; um getElementById dele derrubaria o WebMCP antes de registrar."""
+    js = GERADO["app.js"]
+    for id_ in re.findall(r"getElementById\('([a-z]+)'\)", js):
+        assert f'id="{id_}"' in GERADO["index.html"], id_
+    assert "registerTool" in js

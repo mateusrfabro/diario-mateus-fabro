@@ -4,7 +4,7 @@
 
 Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateusrfabro
 
-Measured on 2026-11-05. Edition no. 125.
+Measured on 2026-11-05.
 
 ## Summary
 
@@ -172,9 +172,9 @@ Pipelines, data lake migration, anti-fraud, media attribution and dashboards for
 
 Most of this gazette's corrections were born here. The numbers are real; client names are left out.
 
-## Corrections
+## Lessons from real cases: corrected mistakes
 
-Mistakes I made, in the format of a gazette erratum. Each one became a rule.
+Mistakes I made, in the format “for … read …”. Each one became a rule.
 
 ### RET-2026-0716 — 2026-07-16 — Pingado, printed store-credit statement
 
@@ -230,7 +230,7 @@ Mistakes I made, in the format of a gazette erratum. Each one became a rule.
 - **Read:** 820 of my commits across five products. The four added up to 827 — the 847 included a fifth — and 27 came from the publishing bot. The test that sums the projects caught the first mistake; the fact-check caught the second.
 - **Rule that stayed:** A number outside the code ages on its own
 
-## Standing orders (lessons)
+## Rules that stayed
 
 20 of the 125 recorded lessons, published here.
 
@@ -260,7 +260,7 @@ Mistakes I made, in the format of a gazette erratum. Each one became a rule.
 - **Layered memory.** Every project has a memory index of its live pitfalls. What applies to another project moves up to a global memory: a lesson with an origin, a reason and a way to apply it.
 - **A gate closes the promotion.** Promoting a lesson means writing it to disk, to the human index and to the machine index. That step failed twice without a symptom; today a script checks all three and has a mode that proves it can go red.
 - **Mutation as a habit.** 66 of my 717 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts.
-- **Agents with a role, not autonomy.** 15 specialized agents (quality, security, testing, UX, content review, growth) work in parallel. What the reviewers find is reproduced before it becomes a change.
+- **Agents with a role, not autonomy.** 25 specialized agents (10 from the data squad and 15 general: quality, security, testing, UX, content review, growth) work in parallel. What the reviewers find is reproduced before it becomes a change.
 - **Where we left off.** Every project has a resume file the next session reads first: state, the business owner's decisions and open items, with dates.
 
 ## Availability
@@ -279,9 +279,9 @@ A data and analytics engineer in Londrina, Brazil. He works with data for three 
 
 Python, SQL and TypeScript: pipelines, data lake migration, anti-fraud, media attribution, Telegram bots and SaaS in Flask and Next.js, with AI agents (Claude Code) as a multiplier.
 
-**What are the corrections on this site?**
+**What are the lessons on this site?**
 
-Mistakes he made, with dates and numbers, in the format of a gazette erratum: for … read …. Each became a checkable lesson.
+Mistakes he made in real cases, with dates, in the format “for … read …”, and the rule that stayed from each one.
 
 **Is he available?**
 

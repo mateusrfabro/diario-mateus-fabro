@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mateus Fabro — Engenheiro de Dados &amp; Analytics</title>
-<meta name="description" content="Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.">
+<meta name="description" content="Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): pipelines, antifraude, atribuição de mídia e produtos próprios em Python, SQL e TypeScript.">
 <link rel="canonical" href="https://mateusfabro.vercel.app/">
 <link rel="alternate" hreflang="pt-BR" href="https://mateusfabro.vercel.app/">
 <link rel="alternate" hreflang="en" href="https://mateusfabro.vercel.app/en/">
@@ -13,595 +13,178 @@
 <link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Mateus Fabro — Engenheiro de Dados &amp; Analytics">
-<meta property="og:description" content="Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.">
+<meta property="og:description" content="Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): pipelines, antifraude, atribuição de mídia e produtos próprios em Python, SQL e TypeScript.">
 <meta property="og:url" content="https://mateusfabro.vercel.app/">
 <meta property="og:locale" content="pt_BR">
 <meta property="profile:first_name" content="Mateus">
 <meta property="profile:last_name" content="Fabro">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Mateus Fabro — Engenheiro de Dados &amp; Analytics">
-<meta name="twitter:description" content="Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.">
+<meta name="twitter:description" content="Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): pipelines, antifraude, atribuição de mídia e produtos próprios em Python, SQL e TypeScript.">
 <meta name="theme-color" content="#0E5A63">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:image" content="https://mateusfabro.vercel.app/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Diário de Mateus Fabro — Edição nº 125">
+<meta property="og:image:alt" content="Mateus Fabro — Engenheiro de Dados &amp; Analytics">
 <meta name="twitter:image" content="https://mateusfabro.vercel.app/og.png">
-<link rel="preload" href="/fontes/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/estilo.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://mateusfabro.vercel.app/#pessoa", "name": "Mateus Fabro", "jobTitle": "Engenheiro de Dados \u0026 Analytics", "email": "mailto:mateusrfabro@hotmail.com", "url": "https://mateusfabro.vercel.app", "sameAs": ["https://github.com/mateusrfabro", "https://www.linkedin.com/in/mateusrfabro"], "address": {"@type": "PostalAddress", "addressLocality": "Londrina", "addressRegion": "PR", "addressCountry": "BR"}, "knowsAbout": ["Engenharia de dados", "Analytics engineering", "Python", "SQL", "PostgreSQL", "AWS", "TypeScript", "Antifraude", "Agentes de IA", "Next.js", "Flask"], "description": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra."}, {"@type": "WebSite", "@id": "https://mateusfabro.vercel.app/#site", "url": "https://mateusfabro.vercel.app", "name": "Diário de Mateus Fabro", "inLanguage": "pt-BR", "author": {"@id": "https://mateusfabro.vercel.app/#pessoa"}}, {"@type": "ProfilePage", "@id": "https://mateusfabro.vercel.app/#pagina", "url": "https://mateusfabro.vercel.app/", "name": "Diário de Mateus Fabro", "dateModified": "2026-11-05", "mainEntity": {"@id": "https://mateusfabro.vercel.app/#pessoa"}, "isPartOf": {"@id": "https://mateusfabro.vercel.app/#site"}}, {"@type": "ItemList", "name": "Projetos", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "CreativeWork", "name": "Avisa Edital", "description": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.", "url": "https://avisaedital.com.br"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "CreativeWork", "name": "Pingado", "description": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês."}}, {"@type": "ListItem", "position": 3, "item": {"@type": "CreativeWork", "name": "Nous Clinical", "description": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes."}}, {"@type": "ListItem", "position": 4, "item": {"@type": "CreativeWork", "name": "Aggron", "description": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote."}}, {"@type": "ListItem", "position": 5, "item": {"@type": "CreativeWork", "name": "DumpAI", "description": "A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.", "url": "https://dumpai-omega.vercel.app"}}, {"@type": "ListItem", "position": 6, "item": {"@type": "CreativeWork", "name": "Secretária de WhatsApp", "description": "Recepcionista de WhatsApp com agenda real para profissionais autônomos."}}, {"@type": "ListItem", "position": 7, "item": {"@type": "CreativeWork", "name": "SaaS de crédito (sob NDA)", "description": "Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA."}}, {"@type": "ListItem", "position": 8, "item": {"@type": "CreativeWork", "name": "Portais de conteúdo com dados oficiais", "description": "Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.", "url": "https://guiadocredito.com.br"}}, {"@type": "ListItem", "position": 9, "item": {"@type": "CreativeWork", "name": "Super Nova Gaming / MultiBet (Grupo PGX)", "description": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países."}}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quem é Mateus Fabro?", "acceptedAnswer": {"@type": "Answer", "text": "Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."}}, {"@type": "Question", "name": "Com o que ele trabalha?", "acceptedAnswer": {"@type": "Answer", "text": "Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador."}}, {"@type": "Question", "name": "O que são as retificações deste site?", "acceptedAnswer": {"@type": "Answer", "text": "Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável."}}, {"@type": "Question", "name": "Ele está disponível?", "acceptedAnswer": {"@type": "Answer", "text": "Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com."}}]}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://mateusfabro.vercel.app/#pessoa", "name": "Mateus Fabro", "jobTitle": "Engenheiro de Dados \u0026 Analytics", "email": "mailto:mateusrfabro@hotmail.com", "url": "https://mateusfabro.vercel.app", "sameAs": ["https://github.com/mateusrfabro", "https://www.linkedin.com/in/mateusrfabro"], "address": {"@type": "PostalAddress", "addressLocality": "Londrina", "addressRegion": "PR", "addressCountry": "BR"}, "knowsAbout": ["Engenharia de dados", "Analytics engineering", "Python", "SQL", "PostgreSQL", "AWS", "TypeScript", "Antifraude", "Agentes de IA", "Next.js", "Flask"], "description": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra."}, {"@type": "WebSite", "@id": "https://mateusfabro.vercel.app/#site", "url": "https://mateusfabro.vercel.app", "name": "Mateus Fabro — Engenheiro de Dados \u0026 Analytics", "inLanguage": "pt-BR", "author": {"@id": "https://mateusfabro.vercel.app/#pessoa"}}, {"@type": "ProfilePage", "@id": "https://mateusfabro.vercel.app/#pagina", "url": "https://mateusfabro.vercel.app/", "name": "Mateus Fabro — Engenheiro de Dados \u0026 Analytics", "dateModified": "2026-11-05", "mainEntity": {"@id": "https://mateusfabro.vercel.app/#pessoa"}, "isPartOf": {"@id": "https://mateusfabro.vercel.app/#site"}}, {"@type": "ItemList", "name": "Projetos", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "CreativeWork", "name": "Avisa Edital", "description": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.", "url": "https://avisaedital.com.br"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "CreativeWork", "name": "Pingado", "description": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês."}}, {"@type": "ListItem", "position": 3, "item": {"@type": "CreativeWork", "name": "Nous Clinical", "description": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes."}}, {"@type": "ListItem", "position": 4, "item": {"@type": "CreativeWork", "name": "Aggron", "description": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote."}}, {"@type": "ListItem", "position": 5, "item": {"@type": "CreativeWork", "name": "DumpAI", "description": "A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.", "url": "https://dumpai-omega.vercel.app"}}, {"@type": "ListItem", "position": 6, "item": {"@type": "CreativeWork", "name": "Secretária de WhatsApp", "description": "Recepcionista de WhatsApp com agenda real para profissionais autônomos."}}, {"@type": "ListItem", "position": 7, "item": {"@type": "CreativeWork", "name": "SaaS de crédito (sob NDA)", "description": "Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA."}}, {"@type": "ListItem", "position": 8, "item": {"@type": "CreativeWork", "name": "Portais de conteúdo com dados oficiais", "description": "Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.", "url": "https://guiadocredito.com.br"}}, {"@type": "ListItem", "position": 9, "item": {"@type": "CreativeWork", "name": "Super Nova Gaming / MultiBet (Grupo PGX)", "description": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países."}}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Quem é Mateus Fabro?", "acceptedAnswer": {"@type": "Answer", "text": "Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."}}, {"@type": "Question", "name": "Com o que ele trabalha?", "acceptedAnswer": {"@type": "Answer", "text": "Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador."}}, {"@type": "Question", "name": "O que são as lições deste site?", "acceptedAnswer": {"@type": "Answer", "text": "Erros que ele cometeu em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um."}}, {"@type": "Question", "name": "Ele está disponível?", "acceptedAnswer": {"@type": "Answer", "text": "Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com."}}]}]}</script>
 </head>
 <body>
-<div class="folha">
-<header class="cabeca">
-  <div class="linha-topo">
-    <span>Londrina, 5 de novembro de 2026 · <a href="/en/" hreflang="en" lang="en">English</a></span>
-    <button class="botao" id="alternar" type="button" aria-pressed="false" aria-controls="maquina">Ler como máquina</button>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="wrap topo-in">
+  <a class="marca" href="/">Mateus Fabro</a>
+  <nav aria-label="Seções"><a href="#experiencia">Experiência</a><a href="#projetos">Projetos</a><a href="#stack">Stack</a><a href="/licoes/">Lições</a><a href="#contato">Contato</a></nav>
+  <a class="idioma" href="/en/" hreflang="en" lang="en">English</a>
+</div></header>
+<main id="conteudo">
+<section class="hero"><div class="wrap hero-grid">
+  <div class="hero-texto">
+    <p class="disp"><span class="dot vivo" aria-hidden="true"></span>Aberto a projetos e vagas</p>
+    <h1>Mateus Fabro</h1>
+    <p class="cargo">Engenheiro de Dados &amp; Analytics</p>
+    <p class="frase">Construo o pipeline e o produto em volta dele: do banco de produção ao aviso, painel ou SaaS que o time usa — Python · SQL · TypeScript · agentes de IA.</p>
+    <div class="ctas"><a class="btn btn-pri" href="/curriculo/mateus-fabro-pt.pdf">Currículo (PDF)</a><a class="btn btn-sec" href="mailto:mateusrfabro@hotmail.com?subject=Vaga%20-%20via%20site">Falar por e-mail</a><a class="btn-ter" href="#projetos">Ver projetos ↓</a></div>
+    <ul class="meta"><li>Londrina, PR</li><li>remoto</li><li><a href="https://github.com/mateusrfabro" rel="me noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/mateusrfabro" rel="me noopener">LinkedIn</a></li></ul>
   </div>
-  <h1 class="titulo">Diário de <em>Mateus Fabro</em></h1>
-  <div class="sob-titulo">
-    <span><strong>Engenheiro de Dados &amp; Analytics</strong> · Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript · agentes de IA</span>
-    <span>Edição nº 125 · uma por lição registrada</span>
-  </div>
-  <p class="contato-topo"><a href="mailto:mateusrfabro@hotmail.com?subject=Vaga%20-%20via%20site">mateusrfabro@hotmail.com</a><a href="https://github.com/mateusrfabro" rel="me noopener">GitHub</a><a href="https://www.linkedin.com/in/mateusrfabro" rel="me noopener">LinkedIn</a><a href="/curriculo/mateus-fabro-pt.pdf">Currículo (PDF)</a><a href="#convocacao">Aberto a projetos e vagas</a></p>
-</header>
-<nav aria-label="Seções">
-  <a href="#projetos">Projetos</a><a href="#retificacoes">Retificações</a><a href="#atos">Lições</a><a href="#metodo">Método</a><a href="#convocacao">Contato</a><a href="#maquinas">Para máquinas</a>
-</nav>
+  <aside class="prova" id="numeros" aria-labelledby="h-numeros">
+    <h2 id="h-numeros">Em números</h2>
+    <div class="numeros"><div class="numero"><b>125</b><span>lições registradas, cada uma com a origem de um caso real</span></div><div class="numero"><b>1.734</b><span>commits meus em 2026, em 8 produtos próprios</span></div><div class="numero"><b>6.357</b><span>funções de teste nos 4 produtos em Python</span></div><div class="numero"><b>3</b><span>operações de iGaming, em 3 países e 3 moedas</span></div><div class="numero"><b>3,07 bi</b><span>de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo</span></div></div>
+    <p class="medido">Números medidos em 05/11/2026, contados nos repositórios — não de cabeça.</p>
+    <details class="fontes"><summary>Como cada número foi contado</summary><ul><li><b>125</b>: memória global, global_index.json (107 universais + 18 de dados)</li><li><b>1.734</b>: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot</li><li><b>6.357</b>: contagem de def test_ em tests/ dos produtos com suíte pytest</li><li><b>3</b>: Super Nova Gaming, desde out/2025</li><li><b>3,07 bi</b>: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas</li></ul></details>
+  </aside>
+</div></section>
 
-<main id="humano">
-<section class="abertura" aria-label="Apresentação">
-  <div>
-    <p class="eyebrow">Em uma frase</p>
-    <p class="tese">Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.</p>
-  </div>
-  <div class="resumo"><p>Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.</p><p>Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.</p><p>Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.</p></div>
-</section>
-<div class="numeros"><div class="numero"><b>125</b><span>lições registradas, cada uma com a origem de um caso real</span></div><div class="numero"><b>1.734</b><span>commits meus em 2026, em 8 produtos próprios</span></div><div class="numero"><b>6.357</b><span>funções de teste nos 4 produtos em Python</span></div><div class="numero"><b>3</b><span>operações de iGaming, em 3 países e 3 moedas</span></div><div class="numero"><b>3,07 bi</b><span>de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo</span></div></div>
-<p class="medido mono">Números medidos em 05/11/2026, contados nos repositórios — não de cabeça.</p>
+<section class="secao" id="entrega"><div class="wrap">
+  <header class="secao-cab"><h2>O que eu entrego</h2></header>
+  <div class="pilares"><article class="pilar"><h3>Dados</h3><p>Pipelines, migração de data lake, antifraude e atribuição de mídia para operações em vários países e moedas. Fail-closed por padrão: fonte fora do ar vira estado conhecido, nunca zero falso.</p><ul class="marcas"><li>Linter multi-tenant que falha fechado: lista de exceções de 43 para 3</li><li>Consulta crítica de 240 s para 21 s, com equivalência provada por conjunto</li></ul></article><article class="pilar"><h3>Produto</h3><p>O dado só vale quando vira algo que alguém usa: bot, SaaS, painel ou papel impresso. Construo e opero produtos próprios com cliente real, cobertos por testes e com status honesto, inclusive os que pararam.</p><ul class="marcas"><li>Pingado: cliente real com duas lojas em produção</li><li>Avisa Edital: no ar desde agosto de 2026; operação diária desde outubro</li></ul></article><article class="pilar"><h3>Agentes de IA</h3><p>Agentes com papel definido, não com autonomia: o que o revisor acha é reproduzido antes de virar mudança. Cada erro corrigido vira lição com origem e forma de aplicar, e um script prova que o índice não esqueceu nenhuma.</p><ul class="marcas"><li>25 agentes especializados (10 do squad de dados e 15 gerais: qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.</li><li>API da Anthropic em produção em dois produtos (IA multimodal no DumpAI; chatbot clínico no Nous Clinical)</li></ul></article></div>
+</div></section>
 
-<section class="secao" id="projetos">
-  <header><p class="eyebrow">Seção I</p><h2>Editais — o que eu construí</h2>
-  <p class="lead">Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.</p></header>
-  <div class="projetos">
-<article class="projeto" id="avisa-edital">
-  <div>
-    <h3>Avisa Edital</h3>
-    <div class="status vivo">No ar desde agosto de 2026; operação diária desde outubro</div>
-  </div>
-  <div>
-    <p class="linha">Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.</p>
-    <dl><dt>para quem</dt><dd>Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.</dd><dt>meu papel</dt><dd>Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda. · <a href="https://avisaedital.com.br" rel="noopener">avisaedital.com.br</a></dd></dl>
-    <ul class="fato-lista"><li>717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot</li><li>3.372 funções de teste</li><li>PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions</li><li>assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Python</li><li>GitHub Actions</li><li>Vercel (funções Python)</li><li>Upstash Redis</li><li>Telegram Bot API</li><li>Kiwify (webhook HMAC)</li><li>pypdf + Tesseract (OCR)</li></ul>
-    <p class="historia">Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia &quot;13 convocações novas&quot;, das quais 10 eram de semanas antes.</p>
-  </div>
+<section class="secao" id="experiencia"><div class="wrap">
+  <header class="secao-cab"><h2>Experiência</h2><p class="lead">Dados em produção para três operações de iGaming, e antes disso crédito, cobrança e indicadores.</p></header>
+  <ol class="linhas"><li class="linha-item">
+  <p class="quando">out/2025 – atual<br>remoto</p>
+  <div><h3>Super Nova Gaming / MultiBet (Grupo PGX)</h3><p class="funcao">Analista de Dados — frente de dados de 2 operações</p><p class="resumo">Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Lidero a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis.</p><ul class="marcas"><li>1.408 commits meus entre 12/03 e 04/11/2026</li><li>Migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores</li><li>Custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago</li><li>Serviço diário de risco e score de crédito de jogador</li><li>Linter multi-tenant que falha fechado: lista de exceções de 43 para 3</li><li>Consulta crítica de 240 s para 21 s, com equivalência provada por conjunto</li></ul><ul class="chips" aria-label="Tecnologias"><li>Python</li><li>SQL (PostgreSQL e motores distribuídos)</li><li>AWS</li><li>NestJS + Next.js</li><li>systemd</li><li>Slack / Telegram / WhatsApp</li></ul></div>
+</li><li class="linha-item">
+  <p class="quando">jul/2025 – set/2025<br>Londrina, PR</p>
+  <div><h3>Costa Oeste / Terceirize</h3><p class="funcao">Analista Administrativo</p><p class="resumo">KPIs operacionais e dashboards em Power BI; rotinas de governança de dados administrativos.</p></div>
+</li><li class="linha-item">
+  <p class="quando">out/2020 – set/2024<br>Londrina, PR · estágio em 2019–2020</p>
+  <div><h3>ADAMA</h3><p class="funcao">Assistente de Crédito e Cobrança</p><p class="resumo">Contas a receber e operações de FIDC; análise de crédito PJ/PF com garantias (CPR, alienação fiduciária, caução); dashboards Power BI para os times Brasil e Global; atuação no Portal de Crédito.</p></div>
+</li></ol>
+</div></section>
+
+<section class="secao" id="formacao"><div class="wrap">
+  <header class="secao-cab"><h2>Formação</h2></header>
+  <ul class="linhas"><li class="linha-item">
+  <p class="quando">2022 – 2025</p>
+  <div><h3>Administração</h3><p class="funcao">Universidade Anhembi Morumbi</p><p class="resumo">Concluído</p></div>
+</li><li class="linha-item">
+  <p class="quando">2018 – 2021</p>
+  <div><h3>Ciências Contábeis</h3><p class="funcao">Universidade Estadual de Londrina (UEL)</p><p class="resumo">Incompleto</p></div>
+</li><li class="linha-item"><p class="quando">Idiomas</p><div><p class="idiomas">Português (nativo) · Inglês (intermediário, leitura técnica fluente) · Espanhol (básico)</p></div></li></ul>
+</div></section>
+
+<section class="secao" id="projetos"><div class="wrap">
+  <header class="secao-cab"><h2>Projetos</h2><p class="lead">Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.</p></header>
+  <div class="cards">
+<article class="card destaque" id="avisa-edital">
+  <p class="status"><span class="dot vivo" aria-hidden="true"></span>No ar desde agosto de 2026; operação diária desde outubro</p>
+  <h3>Avisa Edital</h3>
+  <p class="linha">Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.</p>
+  <ul class="marcas"><li>717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot</li><li>3.372 funções de teste</li><li>PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Python</li><li>GitHub Actions</li><li>Vercel (funções Python)</li><li>Upstash Redis</li><li>Telegram Bot API</li><li>Kiwify (webhook HMAC)</li><li>pypdf + Tesseract (OCR)</li></ul>
+  <p class="ir"><a href="https://avisaedital.com.br" rel="noopener">avisaedital.com.br ↗</a></p>
 </article>
-<article class="projeto" id="pingado">
-  <div>
-    <h3>Pingado</h3>
-    <div class="status vivo">Em produção desde setembro de 2026, evoluindo com a cliente</div>
-  </div>
-  <div>
-    <p class="linha">Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.</p>
-    <dl><dt>para quem</dt><dd>Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.</dd><dt>meu papel</dt><dd>Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.</dd></dl>
-    <ul class="fato-lista"><li>486 commits meus entre 06/07 e 05/11/2026</li><li>2.133 funções de teste</li><li>cliente real com duas lojas em produção</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Flask</li><li>SQLAlchemy + Alembic</li><li>PostgreSQL (Neon)</li><li>Redis</li><li>Docker</li><li>Render</li></ul>
-    <p class="historia">Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o &quot;Seu tem R$ 29,00&quot; (ver retificações).</p>
-  </div>
-</article>
-<article class="projeto" id="nous-clinical">
-  <div>
-    <h3>Nous Clinical</h3>
-    <div class="status">Última versão do produto em 06/10/2026; depois só manutenção do repositório</div>
-  </div>
-  <div>
-    <p class="linha">Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.</p>
-    <dl><dt>para quem</dt><dd>Clínicas de saúde, com separação total de dados entre clínicas.</dd><dt>meu papel</dt><dd>Liderei o desenvolvimento de ponta a ponta.</dd></dl>
-    <ul class="fato-lista"><li>197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot</li><li>461 funções de teste</li><li>111 rotas</li><li>auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)</li><li>restauração do backup ainda não testada</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Flask</li><li>PostgreSQL (Neon)</li><li>Redis</li><li>gunicorn + nginx</li><li>Docker</li><li>2FA/TOTP</li><li>NFS-e</li><li>Anthropic API (chatbot)</li><li>backup cifrado (age → R2)</li></ul>
-    <p class="historia">Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico.</p>
-  </div>
-</article>
-<article class="projeto" id="aggron">
-  <div>
-    <h3>Aggron</h3>
-    <div class="status">MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)</div>
-  </div>
-  <div>
-    <p class="linha">Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.</p>
-    <dl><dt>para quem</dt><dd>Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.</dd><dt>meu papel</dt><dd>Tech lead e desenvolvedor, com um sócio como dono do produto.</dd></dl>
-    <ul class="fato-lista"><li>196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot</li><li>391 funções de teste</li><li>109 rotas</li><li>origem da plataforma Flask que Nous e Pingado reaproveitam</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Flask</li><li>PostgreSQL</li><li>Telegram Bot API</li><li>Docker</li><li>PDF de contrato</li></ul>
-    <p class="historia">Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar.</p>
-  </div>
-</article>
-<article class="projeto" id="dumpai">
-  <div>
-    <h3>DumpAI</h3>
-    <div class="status vivo">No ar; vendas perto de zero</div>
-  </div>
-  <div>
-    <p class="linha">A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.</p>
-    <dl><dt>para quem</dt><dd>Quem posta carrossel e perde meia hora escolhendo foto.</dd><dt>meu papel</dt><dd>No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias. · <a href="https://dumpai-omega.vercel.app" rel="noopener">dumpai-omega.vercel.app</a></dd></dl>
-    <ul class="fato-lista"><li>23 commits meus entre 10/06 e 05/11/2026</li><li>no ar desde 11/06/2026</li><li>compressão da imagem no navegador antes do envio</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Next.js 16</li><li>React 19</li><li>Tailwind v4</li><li>Claude (multimodal)</li><li>Kiwify</li><li>Upstash (rate limit)</li><li>Vercel</li></ul>
-    <p class="historia">O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição.</p>
-  </div>
-</article>
-<article class="projeto" id="atendimento-whatsapp">
-  <div>
-    <h3>Secretária de WhatsApp</h3>
-    <div class="status">Piloto parado (autorização do Google)</div>
-  </div>
-  <div>
-    <p class="linha">Recepcionista de WhatsApp com agenda real para profissionais autônomos.</p>
-    <dl><dt>para quem</dt><dd>Psicólogos, advogados e outros profissionais que atendem sozinhos.</dd><dt>meu papel</dt><dd>Arquitetura e implementação, com um squad de 5 agentes de IA.</dd></dl>
-    <ul class="fato-lista"><li>9 commits meus entre 16/09 e 05/11/2026</li><li>projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04</li><li>passagem para humano com trava na conversa</li><li>configuração por cliente em YAML (versão multi-cliente)</li><li>não completou uma conversa de ponta a ponta com cliente</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>n8n</li><li>Evolution API</li><li>PostgreSQL 16</li><li>Redis 7</li><li>LangChain</li><li>Google Calendar</li></ul>
-    <p class="historia">Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita.</p>
-  </div>
-</article>
-<article class="projeto" id="credito-nda">
-  <div>
-    <h3>SaaS de crédito (sob NDA)</h3>
-    <div class="status vivo">Piloto no ar desde outubro de 2026</div>
-  </div>
-  <div>
-    <p class="linha">Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.</p>
-    <dl><dt>para quem</dt><dd>Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.</dd><dt>meu papel</dt><dd>Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.</dd></dl>
-    <ul class="fato-lista"><li>66 commits meus entre 13/10 e 05/11/2026</li><li>backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento</li><li>fluxo de cadastro público com validações e aprovação em um clique</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Next.js 16 + TypeScript</li><li>PWA com branding por tenant</li><li>PostgreSQL (Supabase) com RLS por tenant</li><li>GitHub Actions</li><li>Docker (e2e em contêiner)</li><li>Vercel</li></ul>
-    <p class="historia">Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto.</p>
-  </div>
-</article>
-<article class="projeto" id="portais-conteudo">
-  <div>
-    <h3>Portais de conteúdo com dados oficiais</h3>
-    <div class="status vivo">No ar desde outubro de 2026; monetização em avaliação</div>
-  </div>
-  <div>
-    <p class="linha">Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.</p>
-    <dl><dt>para quem</dt><dd>Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).</dd><dt>meu papel</dt><dd>Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio. · <a href="https://guiadocredito.com.br" rel="noopener">guiadocredito.com.br</a></dd></dl>
-    <ul class="fato-lista"><li>40 commits meus entre 20/10 e 03/11/2026</li><li>33 a 45 guias por portal, cada um com fonte primária</li><li>indicadores recalculados por workflow, não digitados</li><li>fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Astro 7</li><li>TypeScript</li><li>GitHub Actions</li><li>APIs oficiais</li><li>Vercel</li></ul>
-    <p class="historia">A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado.</p>
-  </div>
-</article></div>
+<article class="card" id="pingado">
+  <p class="status"><span class="dot vivo" aria-hidden="true"></span>Em produção desde setembro de 2026, evoluindo com a cliente</p>
+  <h3>Pingado</h3>
+  <p class="linha">Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.</p>
+  <ul class="marcas"><li>486 commits meus entre 06/07 e 05/11/2026</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Flask</li><li>SQLAlchemy + Alembic</li><li>PostgreSQL (Neon)</li><li>Redis</li><li>Docker</li><li>Render</li></ul>
   
-<article class="projeto trabalho" id="igaming-dados">
-  <div>
-    <h3>Super Nova Gaming / MultiBet (Grupo PGX)</h3>
-    <div class="status">Trabalho atual</div>
-  </div>
-  <div>
-    <p class="linha">Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.</p>
-    <dl><dt>para quem</dt><dd>Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.</dd><dt>meu papel</dt><dd>Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.</dd></dl>
-    <ul class="fato-lista"><li>1.408 commits meus entre 12/03 e 04/11/2026</li><li>migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores</li><li>custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago</li><li>serviço diário de risco e score de crédito de jogador</li><li>linter multi-tenant que falha fechado: lista de exceções de 43 para 3</li><li>consulta crítica de 240 s para 21 s, com equivalência provada por conjunto</li></ul>
-    <ul class="stack" aria-label="Tecnologias"><li>Python</li><li>SQL (PostgreSQL e motores distribuídos)</li><li>AWS</li><li>NestJS + Next.js</li><li>systemd</li><li>Slack / Telegram / WhatsApp</li></ul>
-    <p class="historia">A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.</p>
-  </div>
 </article>
-</section>
-
-<section class="secao" id="retificacoes">
-  <header><p class="eyebrow">Seção II</p><h2>Retificações</h2>
-  <p class="lead">Erros que eu cometi, no formato do diário oficial: onde se lê, leia-se. A data é a da retificação — quando o erro foi achado e corrigido. Nomes de cliente ficam de fora.</p></header>
-  <div class="retificacoes">
-<article class="ret" id="ret-2026-0716">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0716 · <time datetime="2026-07-16">16/07/2026</time></span></div>
-  <h3 class="contexto">Pingado, extrato impresso do fiado</h3>
-  <p class="onde"><b>Onde se lê</b><span>347 testes verdes.</span></p>
-  <p class="leia"><b>Leia-se</b><span>O papel dizia &quot;Seu tem R$ 29,00 de crédito&quot;: o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é &quot;Seu&quot; alguma coisa ou &quot;Dona&quot; alguma coisa. Só imprimir o artefato real pegou.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Gerar o artefato que o usuário recebe</p>
+<article class="card" id="nous-clinical">
+  <p class="status"><span class="dot" aria-hidden="true"></span>Última versão do produto em 06/10/2026; depois só manutenção do repositório</p>
+  <h3>Nous Clinical</h3>
+  <p class="linha">Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.</p>
+  <ul class="marcas"><li>197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Flask</li><li>PostgreSQL (Neon)</li><li>Redis</li><li>gunicorn + nginx</li><li>Docker</li><li>2FA/TOTP</li><li>NFS-e</li><li>Anthropic API (chatbot)</li><li>backup cifrado (age → R2)</li></ul>
+  
 </article>
-<article class="ret" id="ret-2026-0727">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0727 · <time datetime="2026-07-27">27/07/2026</time></span></div>
-  <h3 class="contexto">Conciliação financeira</h3>
-  <p class="onde"><b>Onde se lê</b><span>0 créditos duplicados.</span></p>
-  <p class="leia"><b>Leia-se</b><span>Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Controle com resultado forçado não é controle</p>
+<article class="card" id="aggron">
+  <p class="status"><span class="dot" aria-hidden="true"></span>MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)</p>
+  <h3>Aggron</h3>
+  <p class="linha">Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.</p>
+  <ul class="marcas"><li>196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Flask</li><li>PostgreSQL</li><li>Telegram Bot API</li><li>Docker</li><li>PDF de contrato</li></ul>
+  
 </article>
-<article class="ret" id="ret-2026-0728">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0728 · <time datetime="2026-07-28">28/07/2026</time></span></div>
-  <h3 class="contexto">Verificador de um alerta automático</h3>
-  <p class="onde"><b>Onde se lê</b><span>24 checagens verdes: correção validada.</span></p>
-  <p class="leia"><b>Leia-se</b><span>O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Teste de mutação: prove que o teste sabe falhar</p>
+<article class="card" id="dumpai">
+  <p class="status"><span class="dot vivo" aria-hidden="true"></span>No ar; vendas perto de zero</p>
+  <h3>DumpAI</h3>
+  <p class="linha">A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.</p>
+  <ul class="marcas"><li>23 commits meus entre 10/06 e 05/11/2026</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Next.js 16</li><li>React 19</li><li>Tailwind v4</li><li>Claude (multimodal)</li><li>Kiwify</li><li>Upstash (rate limit)</li><li>Vercel</li></ul>
+  <p class="ir"><a href="https://dumpai-omega.vercel.app" rel="noopener">dumpai-omega.vercel.app ↗</a></p>
 </article>
-<article class="ret" id="ret-2026-0819">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0819 · <time datetime="2026-08-19">19/08/2026</time></span></div>
-  <h3 class="contexto">Uma troca com o time de infraestrutura</h3>
-  <p class="onde"><b>Onde se lê</b><span>Seis afirmações, cada uma com a consulta que a sustentava.</span></p>
-  <p class="leia"><b>Leia-se</b><span>Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> A conclusão não pode ser mais larga que o teste</p>
+<article class="card" id="atendimento-whatsapp">
+  <p class="status"><span class="dot" aria-hidden="true"></span>Piloto parado (autorização do Google)</p>
+  <h3>Secretária de WhatsApp</h3>
+  <p class="linha">Recepcionista de WhatsApp com agenda real para profissionais autônomos.</p>
+  <ul class="marcas"><li>9 commits meus entre 16/09 e 05/11/2026</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>n8n</li><li>Evolution API</li><li>PostgreSQL 16</li><li>Redis 7</li><li>LangChain</li><li>Google Calendar</li></ul>
+  
 </article>
-<article class="ret" id="ret-2026-0821">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0821 · <time datetime="2026-08-21">21/08/2026</time></span></div>
-  <h3 class="contexto">Avisa Edital, bot do Telegram</h3>
-  <p class="onde"><b>Onde se lê</b><span>Redirect de SEO: só canonicalização de domínio.</span></p>
-  <p class="leia"><b>Leia-se</b><span>O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Redirect de canonicalização engole webhook</p>
+<article class="card" id="credito-nda">
+  <p class="status"><span class="dot vivo" aria-hidden="true"></span>Piloto no ar desde outubro de 2026</p>
+  <h3>SaaS de crédito (sob NDA)</h3>
+  <p class="linha">Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.</p>
+  <ul class="marcas"><li>66 commits meus entre 13/10 e 05/11/2026</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Next.js 16 + TypeScript</li><li>PWA com branding por tenant</li><li>PostgreSQL (Supabase) com RLS por tenant</li><li>GitHub Actions</li><li>Docker (e2e em contêiner)</li><li>Vercel</li></ul>
+  
 </article>
-<article class="ret" id="ret-2026-0824">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0824 · <time datetime="2026-08-24">24/08/2026</time></span></div>
-  <h3 class="contexto">Avisa Edital, resposta do bot</h3>
-  <p class="onde"><b>Onde se lê</b><span>Ainda não vigiamos sua cidade.</span></p>
-  <p class="leia"><b>Leia-se</b><span>Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Dado de referência mora com o código, não na pasta ignorada</p>
-</article>
-<article class="ret" id="ret-2026-0824-b">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0824-B · <time datetime="2026-08-24">24/08/2026</time></span></div>
-  <h3 class="contexto">Avisa Edital, busca retroativa de 90 dias</h3>
-  <p class="onde"><b>Onde se lê</b><span>Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.</span></p>
-  <p class="leia"><b>Leia-se</b><span>As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Progresso só persiste se a chave dele for estável no tempo</p>
-</article>
-<article class="ret" id="ret-2026-0921">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0921 · <time datetime="2026-09-21">21/09/2026</time></span></div>
-  <h3 class="contexto">Avisa Edital, alarme por plataforma</h3>
-  <p class="onde"><b>Onde se lê</b><span>Se uma plataforma de diário cair inteira, o painel avisa pelo nome.</span></p>
-  <p class="leia"><b>Leia-se</b><span>O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Caminho de exceção só existe se for exercitado de propósito</p>
-</article>
-<article class="ret" id="ret-2026-0923">
-  <span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-  <div class="topo"><span class="protocolo">RET-2026-0923 · <time datetime="2026-09-23">23/09/2026</time></span></div>
-  <h3 class="contexto">Este site, na véspera de ir ao ar</h3>
-  <p class="onde"><b>Onde se lê</b><span>847 commits nos quatro produtos.</span></p>
-  <p class="leia"><b>Leia-se</b><span>820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.</span></p>
-  <p class="regra"><i>Regra que ficou:</i> Número fora do código envelhece sozinho</p>
+<article class="card" id="portais-conteudo">
+  <p class="status"><span class="dot vivo" aria-hidden="true"></span>No ar desde outubro de 2026; monetização em avaliação</p>
+  <h3>Portais de conteúdo com dados oficiais</h3>
+  <p class="linha">Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.</p>
+  <ul class="marcas"><li>40 commits meus entre 20/10 e 03/11/2026</li></ul>
+  <ul class="chips" aria-label="Tecnologias"><li>Astro 7</li><li>TypeScript</li><li>GitHub Actions</li><li>APIs oficiais</li><li>Vercel</li></ul>
+  <p class="ir"><a href="https://guiadocredito.com.br" rel="noopener">guiadocredito.com.br ↗</a></p>
 </article></div>
-</section>
+</div></section>
 
-<section class="secao" id="atos">
-  <header><p class="eyebrow">Seção III</p><h2>Atos — as regras que ficaram</h2>
-  <p class="lead">20 das 125 lições registradas. Cada uma nasceu de um caso real e tem origem, motivo e forma de aplicar.</p></header>
-  <ol class="atos"><li><strong>Verificar antes de concluir</strong><span>Nunca dizer &quot;pronto&quot; sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada.</span></li><li><strong>Teste de mutação: prove que o teste sabe falhar</strong><span>Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove.</span></li><li><strong>Controle com resultado forçado não é controle</strong><span>Antes de publicar &quot;0 ocorrências&quot;, perguntar se o número poderia ser diferente de zero.</span></li><li><strong>A conclusão não pode ser mais larga que o teste</strong><span>Query certa, número certo, frase falsa. Colar o predicado ao lado da frase antes de publicar.</span></li><li><strong>Ausência de dado não é afirmação</strong><span>Lista vazia por falta de cobertura vira &quot;não há nada&quot; e tranquiliza quem deveria agir. Separar &quot;não há&quot; de &quot;não sei&quot;.</span></li><li><strong>Fila não é entrega, e entrega não é visualização</strong><span>Contar a tabela de fila mede o que foi enfileirado, não o que aconteceu. Como denominador, produz um número baixo e plausível.</span></li><li><strong>Vigiar o efeito, não só a causa</strong><span>Monitor de causa só pega a falha já imaginada. Um monitor de efeito é um só e indiferente à causa.</span></li><li><strong>Backup só existe se restaurar</strong><span>Backup nunca restaurado não é backup; volume e réplica também não. Provar o ciclo destruindo dado de verdade e trazendo de volta.</span></li><li><strong>Fallback silencioso em valor crítico</strong><span>Câmbio, configuração, versão e limite nunca atrás de try/except com valor padrão. Falhar alto é melhor que publicar número errado.</span></li><li><strong>Número fora do código envelhece sozinho</strong><span>Todo número publicado sai do código na mesma rodada. Remendo de parágrafo produz duas grandezas com o mesmo nome.</span></li><li><strong>&quot;Novo para nós&quot; não é &quot;aconteceu agora&quot;</strong><span>Ampliar cobertura faz o histórico entrar como novidade. Notificar pela data do evento e marcar os antigos.</span></li><li><strong>Gerar o artefato do usuário</strong><span>Suíte verde não prova a tela nem o papel. Renderizar o cupom, o PDF ou o e-mail que a pessoa recebe.</span></li><li><strong>Dado de referência mora com o código</strong><span>Lista canônica numa pasta ignorada pelo git só existe na máquina de quem desenvolve; CI e produção degradam calados.</span></li><li><strong>Análise nunca no banco que atende o cliente</strong><span>Consulta de leitura também derruba produção. O padrão é réplica ou banco analítico, com sessão identificada e tempo limite.</span></li><li><strong>Não inocentar com sinal que não discrimina</strong><span>Para afirmar &quot;não é fraude&quot; ou &quot;não é regressão&quot;, rodar o detector que acharia a coisa. Sinal que o culpado também exibiria não absolve.</span></li><li><strong>O guard de PII é o vetor de vazamento</strong><span>A lista que prova &quot;sem dado pessoal na entrega&quot; é ela própria dado pessoal. Derivar o alvo em tempo de execução, não versionar.</span></li><li><strong>Identidade de ambiente por configuração, não por dado</strong><span>&quot;Isto é produção?&quot; se responde lendo a configuração do deploy, não pela presença de uma linha que pode ter sido apagada.</span></li><li><strong>Escape não atravessa o shell</strong><span>\b e \n escritos por heredoc chegam ao arquivo como caractere de controle. O terminal esconde, a regex nunca casa.</span></li><li><strong>Subagente julga contra uma fotografia</strong><span>Agente sem acesso ao vivo acerta o raciocínio e erra o fato. Em infraestrutura que muda toda semana, a fotografia envelhece em dias.</span></li><li><strong>Não depender só da IA</strong><span>Palpitar antes de pedir o número. A IA acelera; o julgamento continua sendo meu.</span></li></ol>
-</section>
+<section class="secao" id="stack"><div class="wrap">
+  <header class="secao-cab"><h2>Stack</h2><p class="lead">O que uso no dia a dia, agrupado pelo tipo de trabalho.</p></header>
+  <dl class="stack"><div><dt>Linguagens</dt><dd><ul class="chips" aria-label="Linguagens"><li>Python (pandas, SQLAlchemy, boto3, psycopg2, pytest)</li><li>TypeScript (NestJS, Next.js, React, Prisma, Jest)</li><li>SQL avançado (PostgreSQL 15, Trino/Athena)</li><li>Bash</li><li>PowerShell</li></ul></dd></div><div><dt>Dados e cloud</dt><dd><ul class="chips" aria-label="Dados e cloud"><li>AWS (Athena, S3 Tables/Iceberg, EC2, RDS, SSM, IAM)</li><li>PostgreSQL (particionamento, FDW, matviews)</li><li>MongoDB Atlas</li><li>Redis</li><li>Supabase</li><li>Prefect 3</li><li>systemd</li></ul></dd></div><div><dt>Backend e web</dt><dd><ul class="chips" aria-label="Backend e web"><li>Flask</li><li>FastAPI</li><li>NestJS 11</li><li>Next.js 15/16 + React 19</li><li>Astro 7</li><li>Tailwind</li><li>Docker/Compose</li><li>nginx/Caddy</li><li>Vercel</li><li>Render</li></ul></dd></div><div><dt>Integrações</dt><dd><ul class="chips" aria-label="Integrações"><li>Meta Marketing/Graph API</li><li>Google Ads</li><li>TikTok Ads</li><li>Smartico CRM</li><li>WhatsApp (Cloud API + Evolution)</li><li>Telegram</li><li>Slack</li><li>Google Calendar</li><li>Kiwify</li><li>Focus NFe</li><li>APIs do Banco Central e FRED</li></ul></dd></div><div><dt>IA aplicada</dt><dd><ul class="chips" aria-label="IA aplicada"><li>Claude Code (squads de agentes, skills, hooks, memória em camadas)</li><li>Anthropic API (multimodal, em produção)</li><li>LangChain/n8n</li><li>Ollama + PyTorch (QLoRA)</li></ul></dd></div><div><dt>Segurança e práticas</dt><dd><ul class="chips" aria-label="Segurança e práticas"><li>Argon2</li><li>2FA/TOTP</li><li>CSP</li><li>CSRF</li><li>rate-limit</li><li>RLS por tenant</li><li>sessões opacas</li><li>audit logs</li><li>LGPD/PII</li><li>git-first + smoke test</li><li>testes como gate de deploy</li><li>fail-closed por padrão</li><li>backup restaurado em CI</li></ul></dd></div></dl>
+</div></section>
 
-<section class="secao" id="metodo">
-  <header><p class="eyebrow">Seção IV</p><h2>Expediente — como eu trabalho</h2>
-  <p class="lead">Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.</p></header>
-  <div class="metodo"><div><h3>Memória em camadas</h3><p>Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.</p></div><div><h3>Um gate fecha a promoção</h3><p>Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.</p></div><div><h3>Mutação como hábito</h3><p>66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.</p></div><div><h3>Agentes com papel, não com autonomia</h3><p>15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.</p></div><div><h3>Onde paramos</h3><p>Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.</p></div></div>
-</section>
+<section class="secao" id="metodo"><div class="wrap">
+  <header class="secao-cab"><h2>Como trabalho</h2><p class="lead">Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.</p></header>
+  <div class="metodo"><div><h3>Memória em camadas</h3><p>Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.</p></div><div><h3>Um gate fecha a promoção</h3><p>Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.</p></div><div><h3>Mutação como hábito</h3><p>66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.</p></div><div><h3>Agentes com papel, não com autonomia</h3><p>25 agentes especializados (10 do squad de dados e 15 gerais: qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.</p></div><div><h3>Onde paramos</h3><p>Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.</p></div></div>
+  <p class="para-licoes"><a class="btn btn-sec" href="/licoes/">20 lições de casos reais →</a></p>
+</div></section>
 
-<section class="secao duas">
-  <div class="convocacao" id="convocacao">
-    <p class="eyebrow">Convocação</p>
-    <h2>Aberto a projetos e vagas</h2>
-    <p>Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.</p>
-    <p class="email"><a href="mailto:mateusrfabro@hotmail.com?subject=Vaga%20-%20via%20site">mateusrfabro@hotmail.com</a></p>
-    <p class="redes mono"><a href="/curriculo/mateus-fabro-pt.pdf">Currículo (PDF)</a> · <a href="https://github.com/mateusrfabro" rel="me noopener">GitHub</a> · <a href="https://www.linkedin.com/in/mateusrfabro" rel="me noopener">LinkedIn</a> · Londrina, PR</p>
-    <div class="faq"><details><summary>Quem é Mateus Fabro?</summary><p>Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.</p></details><details><summary>Com o que ele trabalha?</summary><p>Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.</p></details><details><summary>O que são as retificações deste site?</summary><p>Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável.</p></details><details><summary>Ele está disponível?</summary><p>Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.</p></details></div>
+<section class="secao contato" id="contato"><div class="wrap contato-grid">
+  <div>
+    <header class="secao-cab"><h2>Contato</h2></header>
+    <p class="disp"><span class="dot vivo" aria-hidden="true"></span>Aberto a projetos e vagas</p>
+    <p class="texto">Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.</p>
+    <p><a class="email-grande" href="mailto:mateusrfabro@hotmail.com?subject=Vaga%20-%20via%20site">mateusrfabro@hotmail.com</a></p>
+    <div class="ctas"><a class="btn btn-pri" href="/curriculo/mateus-fabro-pt.pdf">Currículo (PDF)</a><a class="btn btn-sec" href="mailto:mateusrfabro@hotmail.com?subject=Vaga%20-%20via%20site">Falar por e-mail</a></div>
+    <ul class="meta"><li>Londrina, PR</li><li><a href="https://github.com/mateusrfabro" rel="me noopener">GitHub</a></li><li><a href="https://www.linkedin.com/in/mateusrfabro" rel="me noopener">LinkedIn</a></li></ul>
   </div>
-  <div class="maquinas" id="maquinas">
-    <p class="eyebrow">Para máquinas</p>
-    <h2>O mesmo diário, para agentes</h2>
-    <p>Sem raspar HTML: o conteúdo desta página sai do mesmo arquivo em formatos que um agente lê direto.</p>
-    <ul>
-      <li><code>https://mateusfabro.vercel.app/mcp</code><br>servidor MCP, só leitura, sem login</li>
-      <li><a href="/llms.txt"><code>/llms.txt</code></a> · <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
-      <li><a href="/index.md"><code>/index.md</code></a></li>
-      <li><a href="/curriculo/mateus-fabro-pt.pdf"><code>/curriculo/mateus-fabro-pt.pdf</code></a> · <a href="/resume.json"><code>/resume.json</code></a></li>
-    </ul>
-    <p class="dica">No Claude: Configurações → Conectores → adicionar conector personalizado → cole o endereço do <code>/mcp</code>.</p>
-  </div>
-</section>
+  <div class="faq"><h3>Perguntas frequentes</h3><details><summary>Quem é Mateus Fabro?</summary><p>Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.</p></details><details><summary>Com o que ele trabalha?</summary><p>Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.</p></details><details><summary>O que são as lições deste site?</summary><p>Erros que ele cometeu em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um.</p></details><details><summary>Ele está disponível?</summary><p>Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.</p></details></div>
+</div></section>
 </main>
 
-<pre id="maquina" tabindex="-1"># Mateus Fabro — Engenheiro de Dados &amp; Analytics
-
-&gt; Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.
-
-Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateusrfabro
-
-Medido em 05/11/2026. Edição nº 125.
-
-## Resumo
-
-Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
-
-Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.
-
-Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.
-
-## Números
-
-- **125** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (107 universais + 18 de dados))
-- **1.734** commits meus em 2026, em 8 produtos próprios (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
-- **6.357** funções de teste nos 4 produtos em Python (fonte: contagem de def test_ em tests/ dos produtos com suíte pytest)
-- **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, desde out/2025)
-- **3,07 bi** de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
-
-## Projetos
-
-### Avisa Edital
-
-Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.
-
-- **Para quem:** Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.
-- **Meu papel:** Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.
-- **Status:** No ar desde agosto de 2026; operação diária desde outubro
-- **Stack:** Python, GitHub Actions, Vercel (funções Python), Upstash Redis, Telegram Bot API, Kiwify (webhook HMAC), pypdf + Tesseract (OCR)
-- **Endereço:** https://avisaedital.com.br
-- **Fatos:**
-  - 717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot
-  - 3.372 funções de teste
-  - PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions
-  - assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot
-
-Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia &quot;13 convocações novas&quot;, das quais 10 eram de semanas antes.
-
-### Pingado
-
-Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
-
-- **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.
-- **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.
-- **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
-- **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
-- **Fatos:**
-  - 486 commits meus entre 06/07 e 05/11/2026
-  - 2.133 funções de teste
-  - cliente real com duas lojas em produção
-
-Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o &quot;Seu tem R$ 29,00&quot; (ver retificações).
-
-### Nous Clinical
-
-Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
-
-- **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
-- **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
-- **Status:** Última versão do produto em 06/10/2026; depois só manutenção do repositório
-- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2)
-- **Fatos:**
-  - 197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot
-  - 461 funções de teste
-  - 111 rotas
-  - auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)
-  - restauração do backup ainda não testada
-
-Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico.
-
-### Aggron
-
-Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.
-
-- **Para quem:** Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.
-- **Meu papel:** Tech lead e desenvolvedor, com um sócio como dono do produto.
-- **Status:** MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)
-- **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, PDF de contrato
-- **Fatos:**
-  - 196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot
-  - 391 funções de teste
-  - 109 rotas
-  - origem da plataforma Flask que Nous e Pingado reaproveitam
-
-Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar.
-
-### DumpAI
-
-A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
-
-- **Para quem:** Quem posta carrossel e perde meia hora escolhendo foto.
-- **Meu papel:** No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.
-- **Status:** No ar; vendas perto de zero
-- **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
-- **Endereço:** https://dumpai-omega.vercel.app
-- **Fatos:**
-  - 23 commits meus entre 10/06 e 05/11/2026
-  - no ar desde 11/06/2026
-  - compressão da imagem no navegador antes do envio
-
-O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição.
-
-### Secretária de WhatsApp
-
-Recepcionista de WhatsApp com agenda real para profissionais autônomos.
-
-- **Para quem:** Psicólogos, advogados e outros profissionais que atendem sozinhos.
-- **Meu papel:** Arquitetura e implementação, com um squad de 5 agentes de IA.
-- **Status:** Piloto parado (autorização do Google)
-- **Stack:** n8n, Evolution API, PostgreSQL 16, Redis 7, LangChain, Google Calendar
-- **Fatos:**
-  - 9 commits meus entre 16/09 e 05/11/2026
-  - projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04
-  - passagem para humano com trava na conversa
-  - configuração por cliente em YAML (versão multi-cliente)
-  - não completou uma conversa de ponta a ponta com cliente
-
-Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita.
-
-### SaaS de crédito (sob NDA)
-
-Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.
-
-- **Para quem:** Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.
-- **Meu papel:** Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.
-- **Status:** Piloto no ar desde outubro de 2026
-- **Stack:** Next.js 16 + TypeScript, PWA com branding por tenant, PostgreSQL (Supabase) com RLS por tenant, GitHub Actions, Docker (e2e em contêiner), Vercel
-- **Fatos:**
-  - 66 commits meus entre 13/10 e 05/11/2026
-  - backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento
-  - fluxo de cadastro público com validações e aprovação em um clique
-
-Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto.
-
-### Portais de conteúdo com dados oficiais
-
-Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.
-
-- **Para quem:** Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).
-- **Meu papel:** Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.
-- **Status:** No ar desde outubro de 2026; monetização em avaliação
-- **Stack:** Astro 7, TypeScript, GitHub Actions, APIs oficiais, Vercel
-- **Endereço:** https://guiadocredito.com.br
-- **Fatos:**
-  - 40 commits meus entre 20/10 e 03/11/2026
-  - 33 a 45 guias por portal, cada um com fonte primária
-  - indicadores recalculados por workflow, não digitados
-  - fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP
-
-A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado.
-
-### Super Nova Gaming / MultiBet (Grupo PGX)
-
-Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
-
-- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
-- **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
-- **Status:** Trabalho atual
-- **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
-- **Fatos:**
-  - 1.408 commits meus entre 12/03 e 04/11/2026
-  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores
-  - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
-  - serviço diário de risco e score de crédito de jogador
-  - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
-  - consulta crítica de 240 s para 21 s, com equivalência provada por conjunto
-
-A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.
-
-## Retificações
-
-Erros que cometi, no formato de retificação de diário oficial. Cada um virou uma regra.
-
-### RET-2026-0716 — 16/07/2026 — Pingado, extrato impresso do fiado
-
-- **Onde se lê:** 347 testes verdes.
-- **Leia-se:** O papel dizia &quot;Seu tem R$ 29,00 de crédito&quot;: o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é &quot;Seu&quot; alguma coisa ou &quot;Dona&quot; alguma coisa. Só imprimir o artefato real pegou.
-- **Regra que ficou:** Gerar o artefato que o usuário recebe
-
-### RET-2026-0727 — 27/07/2026 — Conciliação financeira
-
-- **Onde se lê:** 0 créditos duplicados.
-- **Leia-se:** Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.
-- **Regra que ficou:** Controle com resultado forçado não é controle
-
-### RET-2026-0728 — 28/07/2026 — Verificador de um alerta automático
-
-- **Onde se lê:** 24 checagens verdes: correção validada.
-- **Leia-se:** O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.
-- **Regra que ficou:** Teste de mutação: prove que o teste sabe falhar
-
-### RET-2026-0819 — 19/08/2026 — Uma troca com o time de infraestrutura
-
-- **Onde se lê:** Seis afirmações, cada uma com a consulta que a sustentava.
-- **Leia-se:** Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.
-- **Regra que ficou:** A conclusão não pode ser mais larga que o teste
-
-### RET-2026-0821 — 21/08/2026 — Avisa Edital, bot do Telegram
-
-- **Onde se lê:** Redirect de SEO: só canonicalização de domínio.
-- **Leia-se:** O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.
-- **Regra que ficou:** Redirect de canonicalização engole webhook
-
-### RET-2026-0824 — 24/08/2026 — Avisa Edital, resposta do bot
-
-- **Onde se lê:** Ainda não vigiamos sua cidade.
-- **Leia-se:** Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.
-- **Regra que ficou:** Dado de referência mora com o código, não na pasta ignorada
-
-### RET-2026-0824-B — 24/08/2026 — Avisa Edital, busca retroativa de 90 dias
-
-- **Onde se lê:** Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.
-- **Leia-se:** As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.
-- **Regra que ficou:** Progresso só persiste se a chave dele for estável no tempo
-
-### RET-2026-0921 — 21/09/2026 — Avisa Edital, alarme por plataforma
-
-- **Onde se lê:** Se uma plataforma de diário cair inteira, o painel avisa pelo nome.
-- **Leia-se:** O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.
-- **Regra que ficou:** Caminho de exceção só existe se for exercitado de propósito
-
-### RET-2026-0923 — 23/09/2026 — Este site, na véspera de ir ao ar
-
-- **Onde se lê:** 847 commits nos quatro produtos.
-- **Leia-se:** 820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.
-- **Regra que ficou:** Número fora do código envelhece sozinho
-
-## Atos (lições)
-
-20 das 125 lições registradas, publicadas aqui.
-
-1. **Verificar antes de concluir** — Nunca dizer &quot;pronto&quot; sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada.
-2. **Teste de mutação: prove que o teste sabe falhar** — Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove.
-3. **Controle com resultado forçado não é controle** — Antes de publicar &quot;0 ocorrências&quot;, perguntar se o número poderia ser diferente de zero.
-4. **A conclusão não pode ser mais larga que o teste** — Query certa, número certo, frase falsa. Colar o predicado ao lado da frase antes de publicar.
-5. **Ausência de dado não é afirmação** — Lista vazia por falta de cobertura vira &quot;não há nada&quot; e tranquiliza quem deveria agir. Separar &quot;não há&quot; de &quot;não sei&quot;.
-6. **Fila não é entrega, e entrega não é visualização** — Contar a tabela de fila mede o que foi enfileirado, não o que aconteceu. Como denominador, produz um número baixo e plausível.
-7. **Vigiar o efeito, não só a causa** — Monitor de causa só pega a falha já imaginada. Um monitor de efeito é um só e indiferente à causa.
-8. **Backup só existe se restaurar** — Backup nunca restaurado não é backup; volume e réplica também não. Provar o ciclo destruindo dado de verdade e trazendo de volta.
-9. **Fallback silencioso em valor crítico** — Câmbio, configuração, versão e limite nunca atrás de try/except com valor padrão. Falhar alto é melhor que publicar número errado.
-10. **Número fora do código envelhece sozinho** — Todo número publicado sai do código na mesma rodada. Remendo de parágrafo produz duas grandezas com o mesmo nome.
-11. **&quot;Novo para nós&quot; não é &quot;aconteceu agora&quot;** — Ampliar cobertura faz o histórico entrar como novidade. Notificar pela data do evento e marcar os antigos.
-12. **Gerar o artefato do usuário** — Suíte verde não prova a tela nem o papel. Renderizar o cupom, o PDF ou o e-mail que a pessoa recebe.
-13. **Dado de referência mora com o código** — Lista canônica numa pasta ignorada pelo git só existe na máquina de quem desenvolve; CI e produção degradam calados.
-14. **Análise nunca no banco que atende o cliente** — Consulta de leitura também derruba produção. O padrão é réplica ou banco analítico, com sessão identificada e tempo limite.
-15. **Não inocentar com sinal que não discrimina** — Para afirmar &quot;não é fraude&quot; ou &quot;não é regressão&quot;, rodar o detector que acharia a coisa. Sinal que o culpado também exibiria não absolve.
-16. **O guard de PII é o vetor de vazamento** — A lista que prova &quot;sem dado pessoal na entrega&quot; é ela própria dado pessoal. Derivar o alvo em tempo de execução, não versionar.
-17. **Identidade de ambiente por configuração, não por dado** — &quot;Isto é produção?&quot; se responde lendo a configuração do deploy, não pela presença de uma linha que pode ter sido apagada.
-18. **Escape não atravessa o shell** — \b e \n escritos por heredoc chegam ao arquivo como caractere de controle. O terminal esconde, a regex nunca casa.
-19. **Subagente julga contra uma fotografia** — Agente sem acesso ao vivo acerta o raciocínio e erra o fato. Em infraestrutura que muda toda semana, a fotografia envelhece em dias.
-20. **Não depender só da IA** — Palpitar antes de pedir o número. A IA acelera; o julgamento continua sendo meu.
-
-## Como trabalho
-
-- **Memória em camadas.** Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.
-- **Um gate fecha a promoção.** Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.
-- **Mutação como hábito.** 66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
-- **Agentes com papel, não com autonomia.** 15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
-- **Onde paramos.** Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.
-
-## Disponibilidade
-
-Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.
-
-Contato: mateusrfabro@hotmail.com
-
-## Perguntas frequentes
-
-**Quem é Mateus Fabro?**
-
-Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
-
-**Com o que ele trabalha?**
-
-Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.
-
-**O que são as retificações deste site?**
-
-Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável.
-
-**Ele está disponível?**
-
-Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.
-
-## Para agentes
-
-- Servidor MCP (Streamable HTTP, sem autenticação, só leitura): https://mateusfabro.vercel.app/mcp
-- Currículo em JSON Resume: https://mateusfabro.vercel.app/resume.json
-- Currículo em PDF: https://mateusfabro.vercel.app/curriculo/mateus-fabro-pt.pdf
-- Este texto: https://mateusfabro.vercel.app/index.md
-</pre>
-
-<footer class="rodape">
-  <span>Gerado de um arquivo só (conteudo/dados.json) — página, Markdown, llms.txt, JSON Resume e MCP.</span>
-  <span>Medido em 05/11/2026</span>
-</footer>
-</div>
-<script type="application/json" id="dados">{"perfil": {"nome": "Mateus Fabro", "cargo": "Engenheiro de Dados \u0026 Analytics", "subtitulo": "Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript · agentes de IA", "cidade": "Londrina", "estado": "PR", "pais": "Brasil", "email": "mateusrfabro@hotmail.com", "github": "https://github.com/mateusrfabro", "linkedin": "https://www.linkedin.com/in/mateusrfabro", "tese": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.", "resumo": ["Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.", "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.", "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."], "formacao": [{"curso": "Administração", "instituicao": "Universidade Anhembi Morumbi", "inicio": "2022", "fim": "2025", "status": "concluído"}, {"curso": "Ciências Contábeis", "instituicao": "Universidade Estadual de Londrina (UEL)", "inicio": "2018", "fim": "2021", "status": "incompleto"}], "idiomas": ["Português (nativo)", "Inglês (intermediário, leitura técnica fluente)", "Espanhol (básico)"]}, "numeros": [{"valor": "125", "rotulo": "lições registradas, cada uma com a origem de um caso real", "fonte": "memória global, global_index.json (107 universais + 18 de dados)"}, {"valor": "1.734", "rotulo": "commits meus em 2026, em 8 produtos próprios", "fonte": "git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot"}, {"valor": "6.357", "rotulo": "funções de teste nos 4 produtos em Python", "fonte": "contagem de def test_ em tests/ dos produtos com suíte pytest"}, {"valor": "3", "rotulo": "operações de iGaming, em 3 países e 3 moedas", "fonte": "Super Nova Gaming, desde out/2025"}, {"valor": "3,07 bi", "rotulo": "de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo", "fonte": "inventário do catálogo Iceberg de 23/07/2026: 234 tabelas"}], "projetos": [{"slug": "avisa-edital", "nome": "Avisa Edital", "tipo": "produto", "linha": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.", "para_quem": "Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.", "papel": "Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.", "stack": ["Python", "GitHub Actions", "Vercel (funções Python)", "Upstash Redis", "Telegram Bot API", "Kiwify (webhook HMAC)", "pypdf + Tesseract (OCR)"], "fatos": ["717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot", "3.372 funções de teste", "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions", "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"], "status": "No ar desde agosto de 2026; operação diária desde outubro", "url": "https://avisaedital.com.br", "historia": "Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia \"13 convocações novas\", das quais 10 eram de semanas antes."}, {"slug": "pingado", "nome": "Pingado", "tipo": "produto", "linha": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.", "para_quem": "Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.", "papel": "Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.", "stack": ["Flask", "SQLAlchemy + Alembic", "PostgreSQL (Neon)", "Redis", "Docker", "Render"], "fatos": ["486 commits meus entre 06/07 e 05/11/2026", "2.133 funções de teste", "cliente real com duas lojas em produção"], "status": "Em produção desde setembro de 2026, evoluindo com a cliente", "url": "", "historia": "Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o \"Seu tem R$ 29,00\" (ver retificações)."}, {"slug": "nous-clinical", "nome": "Nous Clinical", "tipo": "produto", "linha": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.", "para_quem": "Clínicas de saúde, com separação total de dados entre clínicas.", "papel": "Liderei o desenvolvimento de ponta a ponta.", "stack": ["Flask", "PostgreSQL (Neon)", "Redis", "gunicorn + nginx", "Docker", "2FA/TOTP", "NFS-e", "Anthropic API (chatbot)", "backup cifrado (age → R2)"], "fatos": ["197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot", "461 funções de teste", "111 rotas", "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)", "restauração do backup ainda não testada"], "status": "Última versão do produto em 06/10/2026; depois só manutenção do repositório", "url": "", "historia": "Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico."}, {"slug": "aggron", "nome": "Aggron", "tipo": "produto", "linha": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.", "para_quem": "Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.", "papel": "Tech lead e desenvolvedor, com um sócio como dono do produto.", "stack": ["Flask", "PostgreSQL", "Telegram Bot API", "Docker", "PDF de contrato"], "fatos": ["196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot", "391 funções de teste", "109 rotas", "origem da plataforma Flask que Nous e Pingado reaproveitam"], "status": "MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)", "url": "", "historia": "Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar."}, {"slug": "dumpai", "nome": "DumpAI", "tipo": "produto", "linha": "A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.", "para_quem": "Quem posta carrossel e perde meia hora escolhendo foto.", "papel": "No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.", "stack": ["Next.js 16", "React 19", "Tailwind v4", "Claude (multimodal)", "Kiwify", "Upstash (rate limit)", "Vercel"], "fatos": ["23 commits meus entre 10/06 e 05/11/2026", "no ar desde 11/06/2026", "compressão da imagem no navegador antes do envio"], "status": "No ar; vendas perto de zero", "url": "https://dumpai-omega.vercel.app", "historia": "O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição."}, {"slug": "atendimento-whatsapp", "nome": "Secretária de WhatsApp", "tipo": "produto", "linha": "Recepcionista de WhatsApp com agenda real para profissionais autônomos.", "para_quem": "Psicólogos, advogados e outros profissionais que atendem sozinhos.", "papel": "Arquitetura e implementação, com um squad de 5 agentes de IA.", "stack": ["n8n", "Evolution API", "PostgreSQL 16", "Redis 7", "LangChain", "Google Calendar"], "fatos": ["9 commits meus entre 16/09 e 05/11/2026", "projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04", "passagem para humano com trava na conversa", "configuração por cliente em YAML (versão multi-cliente)", "não completou uma conversa de ponta a ponta com cliente"], "status": "Piloto parado (autorização do Google)", "url": "", "historia": "Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita."}, {"slug": "credito-nda", "nome": "SaaS de crédito (sob NDA)", "tipo": "produto", "linha": "Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.", "para_quem": "Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.", "papel": "Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.", "stack": ["Next.js 16 + TypeScript", "PWA com branding por tenant", "PostgreSQL (Supabase) com RLS por tenant", "GitHub Actions", "Docker (e2e em contêiner)", "Vercel"], "fatos": ["66 commits meus entre 13/10 e 05/11/2026", "backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento", "fluxo de cadastro público com validações e aprovação em um clique"], "status": "Piloto no ar desde outubro de 2026", "url": "", "historia": "Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto."}, {"slug": "portais-conteudo", "nome": "Portais de conteúdo com dados oficiais", "tipo": "produto", "linha": "Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.", "para_quem": "Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).", "papel": "Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.", "stack": ["Astro 7", "TypeScript", "GitHub Actions", "APIs oficiais", "Vercel"], "fatos": ["40 commits meus entre 20/10 e 03/11/2026", "33 a 45 guias por portal, cada um com fonte primária", "indicadores recalculados por workflow, não digitados", "fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP"], "status": "No ar desde outubro de 2026; monetização em avaliação", "url": "https://guiadocredito.com.br", "historia": "A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado."}, {"slug": "igaming-dados", "nome": "Super Nova Gaming / MultiBet (Grupo PGX)", "tipo": "trabalho", "linha": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.", "para_quem": "Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.", "papel": "Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.", "stack": ["Python", "SQL (PostgreSQL e motores distribuídos)", "AWS", "NestJS + Next.js", "systemd", "Slack / Telegram / WhatsApp"], "fatos": ["1.408 commits meus entre 12/03 e 04/11/2026", "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores", "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago", "serviço diário de risco e score de crédito de jogador", "linter multi-tenant que falha fechado: lista de exceções de 43 para 3", "consulta crítica de 240 s para 21 s, com equivalência provada por conjunto"], "status": "Trabalho atual", "url": "", "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora."}], "retificacoes": [{"protocolo": "RET-2026-0728", "data": "2026-07-28", "contexto": "Verificador de um alerta automático", "onde_se_le": "24 checagens verdes: correção validada.", "leia_se": "O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.", "regra": "Teste de mutação: prove que o teste sabe falhar"}, {"protocolo": "RET-2026-0727", "data": "2026-07-27", "contexto": "Conciliação financeira", "onde_se_le": "0 créditos duplicados.", "leia_se": "Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.", "regra": "Controle com resultado forçado não é controle"}, {"protocolo": "RET-2026-0819", "data": "2026-08-19", "contexto": "Uma troca com o time de infraestrutura", "onde_se_le": "Seis afirmações, cada uma com a consulta que a sustentava.", "leia_se": "Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.", "regra": "A conclusão não pode ser mais larga que o teste"}, {"protocolo": "RET-2026-0716", "data": "2026-07-16", "contexto": "Pingado, extrato impresso do fiado", "onde_se_le": "347 testes verdes.", "leia_se": "O papel dizia \"Seu tem R$ 29,00 de crédito\": o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é \"Seu\" alguma coisa ou \"Dona\" alguma coisa. Só imprimir o artefato real pegou.", "regra": "Gerar o artefato que o usuário recebe"}, {"protocolo": "RET-2026-0821", "data": "2026-08-21", "contexto": "Avisa Edital, bot do Telegram", "onde_se_le": "Redirect de SEO: só canonicalização de domínio.", "leia_se": "O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.", "regra": "Redirect de canonicalização engole webhook"}, {"protocolo": "RET-2026-0824", "data": "2026-08-24", "contexto": "Avisa Edital, resposta do bot", "onde_se_le": "Ainda não vigiamos sua cidade.", "leia_se": "Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.", "regra": "Dado de referência mora com o código, não na pasta ignorada"}, {"protocolo": "RET-2026-0824-B", "data": "2026-08-24", "contexto": "Avisa Edital, busca retroativa de 90 dias", "onde_se_le": "Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.", "leia_se": "As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.", "regra": "Progresso só persiste se a chave dele for estável no tempo"}, {"protocolo": "RET-2026-0921", "data": "2026-09-21", "contexto": "Avisa Edital, alarme por plataforma", "onde_se_le": "Se uma plataforma de diário cair inteira, o painel avisa pelo nome.", "leia_se": "O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.", "regra": "Caminho de exceção só existe se for exercitado de propósito"}, {"protocolo": "RET-2026-0923", "data": "2026-09-23", "contexto": "Este site, na véspera de ir ao ar", "onde_se_le": "847 commits nos quatro produtos.", "leia_se": "820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.", "regra": "Número fora do código envelhece sozinho"}], "disponibilidade": {"status": "aberto a projetos e vagas", "texto": "Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.", "canal": "mateusrfabro@hotmail.com"}}</script>
+<footer class="rodape"><div class="wrap rodape-in">
+  <p class="maq"><b>Para máquinas:</b><a href="/index.md">/index.md</a><a href="/resume.json">/resume.json</a><a href="/llms.txt">/llms.txt</a><a href="/mcp">/mcp</a></p>
+  <p>Medido em 05/11/2026</p>
+  <p>Gerado de um arquivo só (conteudo/dados.json): página, Markdown, llms.txt, JSON Resume e MCP.</p>
+</div></footer>
+<script type="application/json" id="dados">{"perfil": {"nome": "Mateus Fabro", "cargo": "Engenheiro de Dados \u0026 Analytics", "subtitulo": "Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript · agentes de IA", "cidade": "Londrina", "estado": "PR", "pais": "Brasil", "email": "mateusrfabro@hotmail.com", "github": "https://github.com/mateusrfabro", "linkedin": "https://www.linkedin.com/in/mateusrfabro", "tese": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.", "frase_hero": "Construo o pipeline e o produto em volta dele: do banco de produção ao aviso, painel ou SaaS que o time usa — Python · SQL · TypeScript · agentes de IA.", "resumo": ["Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.", "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.", "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."], "formacao": [{"curso": "Administração", "instituicao": "Universidade Anhembi Morumbi", "inicio": "2022", "fim": "2025", "status": "concluído"}, {"curso": "Ciências Contábeis", "instituicao": "Universidade Estadual de Londrina (UEL)", "inicio": "2018", "fim": "2021", "status": "incompleto"}], "idiomas": ["Português (nativo)", "Inglês (intermediário, leitura técnica fluente)", "Espanhol (básico)"]}, "numeros": [{"valor": "125", "rotulo": "lições registradas, cada uma com a origem de um caso real", "fonte": "memória global, global_index.json (107 universais + 18 de dados)"}, {"valor": "1.734", "rotulo": "commits meus em 2026, em 8 produtos próprios", "fonte": "git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot"}, {"valor": "6.357", "rotulo": "funções de teste nos 4 produtos em Python", "fonte": "contagem de def test_ em tests/ dos produtos com suíte pytest"}, {"valor": "3", "rotulo": "operações de iGaming, em 3 países e 3 moedas", "fonte": "Super Nova Gaming, desde out/2025"}, {"valor": "3,07 bi", "rotulo": "de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo", "fonte": "inventário do catálogo Iceberg de 23/07/2026: 234 tabelas"}], "projetos": [{"slug": "avisa-edital", "nome": "Avisa Edital", "tipo": "produto", "linha": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.", "para_quem": "Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.", "papel": "Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.", "stack": ["Python", "GitHub Actions", "Vercel (funções Python)", "Upstash Redis", "Telegram Bot API", "Kiwify (webhook HMAC)", "pypdf + Tesseract (OCR)"], "fatos": ["717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot", "3.372 funções de teste", "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions", "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"], "status": "No ar desde agosto de 2026; operação diária desde outubro", "url": "https://avisaedital.com.br", "historia": "Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acervo como se fosse novidade; o alerta passa a notificar pela data do fato, marca os antigos em silêncio e só avisa o que saiu depois — senão o assinante receberia \"13 convocações novas\", das quais 10 eram de semanas antes."}, {"slug": "pingado", "nome": "Pingado", "tipo": "produto", "linha": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.", "para_quem": "Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.", "papel": "Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.", "stack": ["Flask", "SQLAlchemy + Alembic", "PostgreSQL (Neon)", "Redis", "Docker", "Render"], "fatos": ["486 commits meus entre 06/07 e 05/11/2026", "2.133 funções de teste", "cliente real com duas lojas em produção"], "status": "Em produção desde setembro de 2026, evoluindo com a cliente", "url": "", "historia": "Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o \"Seu tem R$ 29,00\" (ver retificações)."}, {"slug": "nous-clinical", "nome": "Nous Clinical", "tipo": "produto", "linha": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.", "para_quem": "Clínicas de saúde, com separação total de dados entre clínicas.", "papel": "Liderei o desenvolvimento de ponta a ponta.", "stack": ["Flask", "PostgreSQL (Neon)", "Redis", "gunicorn + nginx", "Docker", "2FA/TOTP", "NFS-e", "Anthropic API (chatbot)", "backup cifrado (age → R2)"], "fatos": ["197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot", "461 funções de teste", "111 rotas", "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)", "restauração do backup ainda não testada"], "status": "Última versão do produto em 06/10/2026; depois só manutenção do repositório", "url": "", "historia": "Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico."}, {"slug": "aggron", "nome": "Aggron", "tipo": "produto", "linha": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.", "para_quem": "Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.", "papel": "Tech lead e desenvolvedor, com um sócio como dono do produto.", "stack": ["Flask", "PostgreSQL", "Telegram Bot API", "Docker", "PDF de contrato"], "fatos": ["196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot", "391 funções de teste", "109 rotas", "origem da plataforma Flask que Nous e Pingado reaproveitam"], "status": "MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)", "url": "", "historia": "Corrigi um vazamento entre clientes: a página da rodada mostrava a um restaurante os totais da rodada, e dali dava para deduzir por subtração o pedido de outro. As migrations viraram idempotentes depois de uma instalação limpa quebrar."}, {"slug": "dumpai", "nome": "DumpAI", "tipo": "produto", "linha": "A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.", "para_quem": "Quem posta carrossel e perde meia hora escolhendo foto.", "papel": "No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.", "stack": ["Next.js 16", "React 19", "Tailwind v4", "Claude (multimodal)", "Kiwify", "Upstash (rate limit)", "Vercel"], "fatos": ["23 commits meus entre 10/06 e 05/11/2026", "no ar desde 11/06/2026", "compressão da imagem no navegador antes do envio"], "status": "No ar; vendas perto de zero", "url": "https://dumpai-omega.vercel.app", "historia": "O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição."}, {"slug": "atendimento-whatsapp", "nome": "Secretária de WhatsApp", "tipo": "produto", "linha": "Recepcionista de WhatsApp com agenda real para profissionais autônomos.", "para_quem": "Psicólogos, advogados e outros profissionais que atendem sozinhos.", "papel": "Arquitetura e implementação, com um squad de 5 agentes de IA.", "stack": ["n8n", "Evolution API", "PostgreSQL 16", "Redis 7", "LangChain", "Google Calendar"], "fatos": ["9 commits meus entre 16/09 e 05/11/2026", "projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04", "passagem para humano com trava na conversa", "configuração por cliente em YAML (versão multi-cliente)", "não completou uma conversa de ponta a ponta com cliente"], "status": "Piloto parado (autorização do Google)", "url": "", "historia": "Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita."}, {"slug": "credito-nda", "nome": "SaaS de crédito (sob NDA)", "tipo": "produto", "linha": "Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.", "para_quem": "Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.", "papel": "Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.", "stack": ["Next.js 16 + TypeScript", "PWA com branding por tenant", "PostgreSQL (Supabase) com RLS por tenant", "GitHub Actions", "Docker (e2e em contêiner)", "Vercel"], "fatos": ["66 commits meus entre 13/10 e 05/11/2026", "backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento", "fluxo de cadastro público com validações e aprovação em um clique"], "status": "Piloto no ar desde outubro de 2026", "url": "", "historia": "Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto."}, {"slug": "portais-conteudo", "nome": "Portais de conteúdo com dados oficiais", "tipo": "produto", "linha": "Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.", "para_quem": "Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).", "papel": "Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.", "stack": ["Astro 7", "TypeScript", "GitHub Actions", "APIs oficiais", "Vercel"], "fatos": ["40 commits meus entre 20/10 e 03/11/2026", "33 a 45 guias por portal, cada um com fonte primária", "indicadores recalculados por workflow, não digitados", "fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP"], "status": "No ar desde outubro de 2026; monetização em avaliação", "url": "https://guiadocredito.com.br", "historia": "A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado."}, {"slug": "igaming-dados", "nome": "Super Nova Gaming / MultiBet (Grupo PGX)", "tipo": "trabalho", "linha": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.", "para_quem": "Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.", "papel": "Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.", "stack": ["Python", "SQL (PostgreSQL e motores distribuídos)", "AWS", "NestJS + Next.js", "systemd", "Slack / Telegram / WhatsApp"], "fatos": ["1.408 commits meus entre 12/03 e 04/11/2026", "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores", "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago", "serviço diário de risco e score de crédito de jogador", "linter multi-tenant que falha fechado: lista de exceções de 43 para 3", "consulta crítica de 240 s para 21 s, com equivalência provada por conjunto"], "status": "Trabalho atual", "url": "", "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora."}], "retificacoes": [{"protocolo": "RET-2026-0728", "data": "2026-07-28", "contexto": "Verificador de um alerta automático", "onde_se_le": "24 checagens verdes: correção validada.", "leia_se": "O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.", "regra": "Teste de mutação: prove que o teste sabe falhar"}, {"protocolo": "RET-2026-0727", "data": "2026-07-27", "contexto": "Conciliação financeira", "onde_se_le": "0 créditos duplicados.", "leia_se": "Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.", "regra": "Controle com resultado forçado não é controle"}, {"protocolo": "RET-2026-0819", "data": "2026-08-19", "contexto": "Uma troca com o time de infraestrutura", "onde_se_le": "Seis afirmações, cada uma com a consulta que a sustentava.", "leia_se": "Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.", "regra": "A conclusão não pode ser mais larga que o teste"}, {"protocolo": "RET-2026-0716", "data": "2026-07-16", "contexto": "Pingado, extrato impresso do fiado", "onde_se_le": "347 testes verdes.", "leia_se": "O papel dizia \"Seu tem R$ 29,00 de crédito\": o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é \"Seu\" alguma coisa ou \"Dona\" alguma coisa. Só imprimir o artefato real pegou.", "regra": "Gerar o artefato que o usuário recebe"}, {"protocolo": "RET-2026-0821", "data": "2026-08-21", "contexto": "Avisa Edital, bot do Telegram", "onde_se_le": "Redirect de SEO: só canonicalização de domínio.", "leia_se": "O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.", "regra": "Redirect de canonicalização engole webhook"}, {"protocolo": "RET-2026-0824", "data": "2026-08-24", "contexto": "Avisa Edital, resposta do bot", "onde_se_le": "Ainda não vigiamos sua cidade.", "leia_se": "Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.", "regra": "Dado de referência mora com o código, não na pasta ignorada"}, {"protocolo": "RET-2026-0824-B", "data": "2026-08-24", "contexto": "Avisa Edital, busca retroativa de 90 dias", "onde_se_le": "Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.", "leia_se": "As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.", "regra": "Progresso só persiste se a chave dele for estável no tempo"}, {"protocolo": "RET-2026-0921", "data": "2026-09-21", "contexto": "Avisa Edital, alarme por plataforma", "onde_se_le": "Se uma plataforma de diário cair inteira, o painel avisa pelo nome.", "leia_se": "O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.", "regra": "Caminho de exceção só existe se for exercitado de propósito"}, {"protocolo": "RET-2026-0923", "data": "2026-09-23", "contexto": "Este site, na véspera de ir ao ar", "onde_se_le": "847 commits nos quatro produtos.", "leia_se": "820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.", "regra": "Número fora do código envelhece sozinho"}], "disponibilidade": {"status": "aberto a projetos e vagas", "texto": "Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.", "canal": "mateusrfabro@hotmail.com"}}</script>
 <script src="/app.js" defer></script>
 </body>
 </html>

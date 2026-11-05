@@ -1,11 +1,10 @@
 # Diário de Mateus Fabro
 
-Portfólio pessoal em formato de diário oficial, escrito para dois leitores: pessoas e agentes de IA.
+Site profissional, escrito para dois leitores: pessoas (gestor e recrutador de vaga de dados) e agentes de IA.
 
-- **Editais**: os projetos, com o status real de cada um, inclusive os que pararam.
-- **Retificações**: erros que cometi, com data e número. Cada um vem no formato "onde se lê / leia-se".
-- **Atos**: as regras que nasceram desses erros.
-- **Para máquinas**: o mesmo conteúdo em Markdown, `llms.txt`, JSON Resume e um servidor MCP.
+- **Home**: abertura, números medidos, o que eu entrego, experiência, projetos (com o status real de cada um, inclusive os que pararam), stack, como trabalho e contato.
+- **`/licoes/`**: erros que cometi em casos reais, com data, no formato "onde se lê / leia-se", e as regras que ficaram.
+- **Para máquinas**: o mesmo conteúdo em Markdown, `llms.txt`, JSON Resume e um servidor MCP, linkados no rodapé.
 
 ## Uma fonte, seis formas
 
@@ -13,8 +12,8 @@ Todo o conteúdo mora em `conteudo/dados.json`. O `build.py` lê esse arquivo e 
 
 | Arquivo | Para quem |
 |---|---|
-| `index.html` | pessoas (com JSON-LD para buscadores) |
-| `index.md` | agentes; também é o que aparece no botão "Ler como máquina" |
+| `index.html`, `licoes/index.html` | pessoas (com JSON-LD para buscadores) |
+| `index.md` | agentes (linkado no rodapé da página) |
 | `llms.txt`, `llms-full.txt` | agentes que seguem llmstxt.org |
 | `resume.json` | JSON Resume |
 | `projetos/*.md` | um arquivo por projeto |

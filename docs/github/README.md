@@ -4,7 +4,7 @@
 
 🟢 **Aberto a projetos e vagas** — Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.
 
-- Site (projetos, números medidos e retificações): https://mateusfabro.vercel.app
+- Site (projetos, números medidos e lições de casos reais): https://mateusfabro.vercel.app
 - Currículo: [PT](https://mateusfabro.vercel.app/curriculo/mateus-fabro-pt.pdf) · [EN](https://mateusfabro.vercel.app/curriculo/mateus-fabro-en.pdf)
 - LinkedIn: https://www.linkedin.com/in/mateusrfabro
 - E-mail: mateusrfabro@hotmail.com
@@ -43,7 +43,7 @@ Trabalho atual: Super Nova Gaming / MultiBet (Grupo PGX), desde out/2025 — rep
 - **Memória em camadas.** Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.
 - **Um gate fecha a promoção.** Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.
 - **Mutação como hábito.** 66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
-- **Agentes com papel, não com autonomia.** 15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
+- **Agentes com papel, não com autonomia.** 25 agentes especializados (10 do squad de dados e 15 gerais: qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
 - **Onde paramos.** Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.
 
 _README gerado de `conteudo/dados.json` em 2026-11-05 pelo repositório [diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro)._

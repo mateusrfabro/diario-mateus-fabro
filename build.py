@@ -21,6 +21,7 @@ RAIZ = Path(__file__).resolve().parent
 DADOS = RAIZ / "conteudo" / "dados.json"
 DADOS_EN = RAIZ / "conteudo" / "dados.en.json"
 SAIDA = RAIZ / "public"
+CURRICULO = RAIZ / "conteudo" / "curriculo.json"
 
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto",
          "setembro", "outubro", "novembro", "dezembro"]
@@ -82,7 +83,7 @@ def data_curta(iso: str) -> str:
 
 
 def edicao(d: dict) -> str:
-    """O número da edição é o número de lições registradas — o diário cresce quando eu erro."""
+    """Número de lições registradas (o 1º de `numeros`, recontado pelo recontar.py)."""
     return d["numeros"][0]["valor"]
 
 
@@ -96,74 +97,80 @@ def ordenadas(retificacoes: list[dict]) -> list[dict]:
 T = {
     "pt": {
         "prefixo": "", "locale": "pt_BR", "outro": "en", "outro_rotulo": "English",
-        "outro_href": "/en/", "maquina": "Ler como máquina", "edicao": "Edição nº {n} · uma por lição registrada",
-        "titulo_de": "Diário de", "menu": "Seções",
-        "nav": ["Projetos", "Retificações", "Lições", "Método", "Contato", "Para máquinas"],
-        "frase": "Em uma frase", "apresentacao": "Apresentação",
+        "outro_href": "/en/", "menu": "Seções", "inicio": "Início",
+        "nav": ["Experiência", "Projetos", "Stack", "Lições", "Contato"],
+        "h_numeros": "Em números", "h_pilares": "O que eu entrego", "h_exp": "Experiência",
+        "h_form": "Formação", "h_proj": "Projetos", "h_stack": "Stack", "h_met": "Como trabalho",
+        "h_contato": "Contato", "h_licoes": "Lições", "sub_licoes": "Erros que viraram regra",
         "medido": "Números medidos em {d}, contados nos repositórios — não de cabeça.",
-        "s1": "Seção I", "h_proj": "Editais — o que eu construí",
+        "como_medido": "Como cada número foi contado",
+        "l_exp": "Dados em produção para três operações de iGaming, e antes disso crédito, cobrança e indicadores.",
         "l_proj": "Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.",
-        "s2": "Seção II", "h_ret": "Retificações",
-        "l_ret": ("Erros que eu cometi, no formato do diário oficial: onde se lê, leia-se. A data é a da "
-                  "retificação — quando o erro foi achado e corrigido. Nomes de cliente ficam de fora."),
-        "s3": "Seção III", "h_atos": "Atos — as regras que ficaram",
-        "l_atos": "{a} das {n} lições registradas. Cada uma nasceu de um caso real e tem origem, motivo e forma de aplicar.",
-        "s4": "Seção IV", "h_met": "Expediente — como eu trabalho",
+        "l_stack": "O que uso no dia a dia, agrupado pelo tipo de trabalho.",
         "l_met": "Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.",
-        "convocacao": "Convocação", "maq_eyebrow": "Para máquinas", "h_maq": "O mesmo diário, para agentes",
-        "l_maq": "Sem raspar HTML: o conteúdo desta página sai do mesmo arquivo em formatos que um agente lê direto.",
-        "mcp_nota": "servidor MCP, só leitura, sem login",
-        "dica": "No Claude: Configurações → Conectores → adicionar conector personalizado → cole o endereço do",
-        "rodape": "Gerado de um arquivo só (conteudo/dados.json) — página, Markdown, llms.txt, JSON Resume e MCP.",
-        "medido_em": "Medido em {d}", "para_quem": "para quem", "papel": "meu papel", "tecnologias": "Tecnologias",
-        "carimbo": "RETIFICAÇÃO", "onde": "Onde se lê", "leia": "Leia-se", "regra": "Regra que ficou:",
+        "link_licoes": "{n} lições de casos reais →",
+        "idiomas": "Idiomas", "atual": "atual", "tecnologias": "Tecnologias",
+        "remoto": "remoto", "faq": "Perguntas frequentes",
+        "maquinas": "Para máquinas",
+        "rodape": "Gerado de um arquivo só (conteudo/dados.json): página, Markdown, llms.txt, JSON Resume e MCP.",
+        "medido_em": "Medido em {d}",
+        "l_licoes": ("Erros que eu cometi em casos reais, com a data em que cada um foi achado e corrigido, "
+                     "e as regras que ficaram. Nomes de cliente ficam de fora."),
+        "h_ret": "Erros corrigidos", "h_atos": "Regras que ficaram",
+        "l_atos": "{a} das {n} lições registradas. Cada uma nasceu de um caso real e tem origem, motivo e forma de aplicar.",
+        "onde": "Onde se lê", "leia": "Leia-se", "regra": "Regra que ficou:",
+        "voltar": "← Voltar ao início",
         # Markdown
-        "md_medido": "Medido em {d}. Edição nº {n}.", "md_resumo": "Resumo", "md_numeros": "Números",
-        "md_fonte": "fonte", "md_proj": "Projetos", "md_ret": "Retificações",
-        "md_ret_l": "Erros que cometi, no formato de retificação de diário oficial. Cada um virou uma regra.",
-        "md_atos": "Atos (lições)", "md_atos_l": "{a} das {n} lições registradas, publicadas aqui.",
+        "md_medido": "Medido em {d}.", "md_resumo": "Resumo", "md_numeros": "Números",
+        "md_fonte": "fonte", "md_proj": "Projetos", "md_ret": "Lições de casos reais: erros corrigidos",
+        "md_ret_l": "Erros que cometi, no formato onde se lê / leia-se. Cada um virou uma regra.",
+        "md_atos": "Regras que ficaram", "md_atos_l": "{a} das {n} lições registradas, publicadas aqui.",
         "md_met": "Como trabalho", "md_disp": "Disponibilidade", "md_contato": "Contato",
         "md_faq": "Perguntas frequentes", "md_agentes": "Para agentes",
         "md_mcp": "Servidor MCP (Streamable HTTP, sem autenticação, só leitura)",
         "md_resume": "Currículo em JSON Resume", "md_este": "Este texto",
         "p_para_quem": "Para quem", "p_papel": "Meu papel", "p_status": "Status", "p_stack": "Stack",
         "p_endereco": "Endereço", "p_fatos": "Fatos",
-        "cv": "Currículo (PDF)", "md_cv": "Currículo em PDF", "cv_arquivo": "mateus-fabro-pt.pdf", "assunto": "Vaga%20-%20via%20site",
+        "cv": "Currículo (PDF)", "email_btn": "Falar por e-mail", "ver_proj": "Ver projetos", "md_cv": "Currículo em PDF",
+        "cv_arquivo": "mateus-fabro-pt.pdf", "assunto": "Vaga%20-%20via%20site",
     },
     "en": {
         "prefixo": "/en", "locale": "en_US", "outro": "pt", "outro_rotulo": "Português",
-        "outro_href": "/", "maquina": "Read as a machine", "edicao": "Edition no. {n} · one per recorded lesson",
-        "titulo_de": "The Gazette of", "menu": "Sections",
-        "nav": ["Projects", "Corrections", "Lessons", "Method", "Contact", "For machines"],
-        "frase": "In one sentence", "apresentacao": "Introduction",
+        "outro_href": "/", "menu": "Sections", "inicio": "Home",
+        "nav": ["Experience", "Projects", "Stack", "Lessons", "Contact"],
+        "h_numeros": "In numbers", "h_pilares": "What I deliver", "h_exp": "Experience",
+        "h_form": "Education", "h_proj": "Projects", "h_stack": "Stack", "h_met": "How I work",
+        "h_contato": "Contact", "h_licoes": "Lessons", "sub_licoes": "Mistakes that became rules",
         "medido": "Numbers measured on {d}, counted in the repositories — not from memory.",
-        "s1": "Section I", "h_proj": "Notices — what I built",
+        "como_medido": "How each number was counted",
+        "l_exp": "Production data for three iGaming operations, and before that credit, collections and KPIs.",
         "l_proj": "My own products, from the scraper to the customer, with the real status of each — including the ones that stopped.",
-        "s2": "Section II", "h_ret": "Corrections",
-        "l_ret": ("Mistakes I made, in the format of a gazette erratum: for … read …. The date is the date of the "
-                  "correction — when the mistake was found and fixed. Client names are left out."),
-        "s3": "Section III", "h_atos": "Standing orders — the rules that stayed",
-        "l_atos": "{a} of the {n} recorded lessons. Each came from a real case and has an origin, a reason and a way to apply it.",
-        "s4": "Section IV", "h_met": "Masthead — how I work",
+        "l_stack": "What I use day to day, grouped by kind of work.",
         "l_met": "Paired with AI agents, and with a system that keeps the same mistake from happening twice.",
-        "convocacao": "Summons", "maq_eyebrow": "For machines", "h_maq": "The same gazette, for agents",
-        "l_maq": "No HTML scraping: this page's content comes from the same file in formats an agent reads directly.",
-        "mcp_nota": "MCP server, read-only, no login",
-        "dica": "In Claude: Settings → Connectors → add custom connector → paste the address of",
-        "rodape": "Generated from a single file (conteudo/dados.en.json) — page, Markdown, JSON Resume.",
-        "medido_em": "Measured on {d}", "para_quem": "for whom", "papel": "my role", "tecnologias": "Technologies",
-        "carimbo": "CORRECTION", "onde": "For", "leia": "Read", "regra": "Rule that stayed:",
-        "md_medido": "Measured on {d}. Edition no. {n}.", "md_resumo": "Summary", "md_numeros": "Numbers",
-        "md_fonte": "source", "md_proj": "Projects", "md_ret": "Corrections",
-        "md_ret_l": "Mistakes I made, in the format of a gazette erratum. Each one became a rule.",
-        "md_atos": "Standing orders (lessons)", "md_atos_l": "{a} of the {n} recorded lessons, published here.",
+        "link_licoes": "{n} lessons from real cases →",
+        "idiomas": "Languages", "atual": "present", "tecnologias": "Technologies",
+        "remoto": "remote", "faq": "Frequently asked questions",
+        "maquinas": "For machines",
+        "rodape": "Generated from a single file (conteudo/dados.en.json): page, Markdown, JSON Resume.",
+        "medido_em": "Measured on {d}",
+        "l_licoes": ("Mistakes I made in real cases, with the date each one was found and fixed, "
+                     "and the rules that stayed. Client names are left out."),
+        "h_ret": "Corrected mistakes", "h_atos": "Rules that stayed",
+        "l_atos": "{a} of the {n} recorded lessons. Each came from a real case and has an origin, a reason and a way to apply it.",
+        "onde": "For", "leia": "Read", "regra": "Rule that stayed:",
+        "voltar": "← Back to home",
+        "md_medido": "Measured on {d}.", "md_resumo": "Summary", "md_numeros": "Numbers",
+        "md_fonte": "source", "md_proj": "Projects", "md_ret": "Lessons from real cases: corrected mistakes",
+        "md_ret_l": "Mistakes I made, in the format “for … read …”. Each one became a rule.",
+        "md_atos": "Rules that stayed", "md_atos_l": "{a} of the {n} recorded lessons, published here.",
         "md_met": "How I work", "md_disp": "Availability", "md_contato": "Contact",
         "md_faq": "Frequently asked questions", "md_agentes": "For agents",
         "md_mcp": "MCP server (Streamable HTTP, no auth, read-only; tools and content in Portuguese)",
         "md_resume": "JSON Resume", "md_este": "This text",
         "p_para_quem": "For whom", "p_papel": "My role", "p_status": "Status", "p_stack": "Stack",
         "p_endereco": "Address", "p_fatos": "Facts",
-        "cv": "Résumé (PDF)", "md_cv": "Résumé as PDF", "cv_arquivo": "mateus-fabro-en.pdf", "assunto": "Role%20-%20via%20site",
+        "cv": "Résumé (PDF)", "email_btn": "Email me", "ver_proj": "See projects", "md_cv": "Résumé as PDF",
+        "cv_arquivo": "mateus-fabro-en.pdf", "assunto": "Role%20-%20via%20site",
     },
 }
 
@@ -240,6 +247,7 @@ def llms_txt(d: dict) -> str:
          "## Principal",
          f"- [Página completa em Markdown]({s['url']}/index.md): perfil, projetos, retificações, lições e contato",
          f"- [Full page in English]({s['url']}/en/index.md): the same content, translated",
+         f"- [Lições de casos reais]({s['url']}/licoes/): erros corrigidos (onde se lê / leia-se) e as regras que ficaram",
          f"- [Currículo em JSON Resume]({s['url']}/resume.json): formato estruturado",
          f"- [Currículo em PDF]({s['url']}/curriculo/{T['pt']['cv_arquivo']}): para imprimir (English: {s['url']}/curriculo/{T['en']['cv_arquivo']})",
          f"- [Servidor MCP]({s['url']}/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade",
@@ -314,223 +322,243 @@ def json_ld(d: dict) -> dict:
 
 
 # ============================================================================ HTML
+# Pele: clara, corporativa, uma cor de destaque (o teal #0E5A63), fonte do sistema (a CSP só aceita
+# estilo e fonte de 'self'; fonte do sistema não pesa nada e não pisca). O motivo visual é um só:
+# o quadradinho teal — na marca, nos marcadores das provas e no traço sobre cada título.
 CSS = r"""
-@font-face{font-family:"Newsreader";font-style:normal;font-weight:400 600;font-display:swap;
-  src:url(/fontes/newsreader-normal.woff2) format("woff2")}
-@font-face{font-family:"Newsreader";font-style:italic;font-weight:400;font-display:swap;
-  src:url(/fontes/newsreader-italic.woff2) format("woff2")}
-@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400 700;font-display:swap;
-  src:url(/fontes/jetbrains-mono-normal.woff2) format("woff2")}
 :root{
-  --paper:#F6F8F9; --paper-2:#EDF1F2; --ink:#14232B; --muted:#56676F; --rule:#C6D1D5;
-  --accent:#0E5A63; --accent-soft:#D6E7E9; --stamp:#9E3A2E; --stamp-soft:#F3E3E0;
-  --shadow:0 1px 0 rgba(20,35,43,.06), 0 12px 30px -18px rgba(20,35,43,.35);
+  --bg:#FFFFFF; --bg-2:#F3F6F7; --card:#FFFFFF; --ink:#0F1D22; --ink-2:#33464D; --muted:#5A6B72;
+  --line:#E1E8EB; --line-2:#C8D3D7; --accent:#0E5A63; --accent-ink:#FFFFFF; --accent-hover:#0A464D;
+  --accent-soft:#E6F0F1; --sombra:0 14px 34px -22px rgba(15,29,34,.45);
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  --mono:ui-monospace,"SFMono-Regular","Cascadia Mono","Segoe UI Mono",Menlo,Consolas,monospace;
+  --r:12px; color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --paper:#0F171C; --paper-2:#16222A; --ink:#E4EAED; --muted:#93A4AB; --rule:#2A3942;
-    --accent:#5CBAC6; --accent-soft:#17343A; --stamp:#E3806F; --stamp-soft:#35211E;
-    --shadow:0 1px 0 rgba(0,0,0,.4), 0 14px 30px -18px rgba(0,0,0,.8);
+    --bg:#0C1316; --bg-2:#111B1F; --card:#101A1E; --ink:#E6EDEF; --ink-2:#C1CDD1; --muted:#8D9EA4;
+    --line:#1E2B30; --line-2:#2B3B41; --accent:#5DB6C1; --accent-ink:#05262A; --accent-hover:#82CAD3;
+    --accent-soft:#11292C; --sombra:0 14px 34px -22px rgba(0,0,0,.9); color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --paper:#0F171C; --paper-2:#16222A; --ink:#E4EAED; --muted:#93A4AB; --rule:#2A3942;
-  --accent:#5CBAC6; --accent-soft:#17343A; --stamp:#E3806F; --stamp-soft:#35211E;
-  --shadow:0 1px 0 rgba(0,0,0,.4), 0 14px 30px -18px rgba(0,0,0,.8);
+  --bg:#0C1316; --bg-2:#111B1F; --card:#101A1E; --ink:#E6EDEF; --ink-2:#C1CDD1; --muted:#8D9EA4;
+  --line:#1E2B30; --line-2:#2B3B41; --accent:#5DB6C1; --accent-ink:#05262A; --accent-hover:#82CAD3;
+  --accent-soft:#11292C; --sombra:0 14px 34px -22px rgba(0,0,0,.9); color-scheme:dark;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--paper);color:var(--ink);
-  font-family:"Newsreader",Georgia,"Times New Roman",serif;font-size:1.125rem;line-height:1.6;
-  font-optical-sizing:auto;-webkit-font-smoothing:antialiased}
-body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.5;z-index:0;
-  background-image:radial-gradient(color-mix(in srgb,var(--ink) 7%,transparent) .6px,transparent .7px);
-  background-size:3px 3px}
-.mono,.eyebrow,.protocolo,nav a,.botao,.fato-lista,.stack li,.rodape{
-  font-family:"JetBrains Mono","Cascadia Code",Consolas,monospace}
-a{color:var(--accent);text-underline-offset:.18em;text-decoration-thickness:1px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
-.folha{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:0 16px 64px}
-@media (min-width:720px){.folha{padding:0 40px 96px}}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:1rem;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-wrap:break-word}
+h1,h2,h3{color:var(--ink);text-wrap:balance}
+p{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.2em}
+a:hover{color:var(--accent-hover)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.wrap{padding:0 32px}}
+.mono{font-family:var(--mono)}
+.pular{position:absolute;left:-9999px}
+.pular:focus{left:16px;top:12px;z-index:20;background:var(--card);padding:10px 14px;border-radius:8px}
 
-/* ---------- cabeçalho */
-.cabeca{padding:28px 0 0;border-bottom:3px double var(--ink)}
-.linha-topo{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center;
-  font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.titulo{font-weight:600;font-size:clamp(2.6rem,9vw,5.6rem);line-height:.95;letter-spacing:-.02em;
-  margin:18px 0 6px;text-wrap:balance}
-.titulo em{font-style:italic;font-weight:400;color:var(--accent)}
-.sob-titulo{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:space-between;
-  border-top:1px solid var(--ink);padding:8px 0 10px;font-size:.78rem;letter-spacing:.08em;
-  text-transform:uppercase}
-.sob-titulo strong{font-weight:600}
-.sob-titulo span:first-child{text-transform:none;letter-spacing:0;font-size:.9rem}
-.sob-titulo strong{text-transform:uppercase;letter-spacing:.08em}
-nav{display:flex;gap:0 18px;flex-wrap:wrap;padding:4px 0;border-bottom:1px solid var(--rule);font-size:.8rem}
-nav a{text-decoration:none;color:var(--ink)}
-nav a:hover{color:var(--accent)}
-.botao{appearance:none;border:1px solid var(--ink);background:transparent;color:var(--ink);
-  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 12px;cursor:pointer;
-  border-radius:2px;transition:background .2s,color .2s}
-.botao:hover,.botao[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+/* ---------- barra do topo */
+.topo{position:sticky;top:0;z-index:10;border-top:3px solid var(--accent);border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--bg) 90%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(10px);
+  backdrop-filter:saturate(1.4) blur(10px)}
+.topo-in{display:flex;align-items:center;gap:12px;min-height:60px}
+.marca{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-weight:700;letter-spacing:-.01em;
+  color:var(--ink);text-decoration:none;margin-right:auto}
+.marca::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--accent)}
+.marca:hover{color:var(--ink)}
+.topo nav{display:none;gap:2px}
+.topo nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 12px;border-radius:8px;
+  color:var(--ink-2);text-decoration:none;font-size:.9375rem}
+.topo nav a:hover{color:var(--accent);background:var(--accent-soft)}
+@media (min-width:880px){.topo nav{display:flex}}
+.idioma{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--line-2);
+  border-radius:999px;color:var(--ink-2);text-decoration:none;font-size:.875rem;font-weight:500}
+.idioma:hover{border-color:var(--accent);color:var(--accent)}
 
 /* ---------- abertura */
-.abertura{display:grid;gap:28px;padding:44px 0 36px;border-bottom:1px solid var(--rule)}
-@media (min-width:900px){.abertura{grid-template-columns:1.35fr 1fr;gap:56px}}
-.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
-.tese{font-size:clamp(1.55rem,3.6vw,2.35rem);line-height:1.22;font-weight:400;margin:0;text-wrap:balance}
-.tese::first-letter{float:left;font-size:3.4em;line-height:.82;padding:.06em .08em 0 0;font-weight:600;color:var(--accent)}
-.resumo p{margin:0 0 14px;max-width:62ch;color:var(--ink)}
-.resumo p:first-child{margin-top:4px}
-.numeros{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0;
-  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin:0 0 8px}
-.numero{padding:18px 16px 16px;border-right:1px solid var(--rule)}
-.numero:first-child{padding-left:0}
-.numero:last-child{border-right:0}
-@media (max-width:719px){
-  .numeros{grid-template-columns:1fr 1fr}
-  .numero{padding:16px 12px;border-right:0;border-bottom:1px solid var(--rule)}
-  .numero:nth-child(odd){padding-left:0;border-right:1px solid var(--rule)}
-  .numero:last-child{grid-column:1/-1;border-right:0;border-bottom:0}
-  .numero b{font-size:2rem}
-}
-.numero b{display:block;font-size:2.4rem;line-height:1;font-weight:500;font-variant-numeric:tabular-nums lining-nums;letter-spacing:-.02em}
-.numero span{display:block;font-size:.9rem;line-height:1.35;color:var(--muted);margin-top:6px}
-.medido{font-size:.72rem;color:var(--muted);letter-spacing:.06em;margin:8px 0 0}
+.hero{padding:44px 0 56px}
+@media (min-width:1024px){.hero{padding:88px 0 88px}}
+.hero-grid{display:grid;gap:40px}
+@media (min-width:1024px){.hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:64px;align-items:start}}
+.disp{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 12px;margin-bottom:22px;border-radius:999px;
+  background:var(--accent-soft);color:var(--accent);font-size:.875rem;font-weight:600}
+.hero h1{font-size:clamp(2.5rem,8.4vw,4.25rem);line-height:1.02;letter-spacing:-.035em;font-weight:750;margin:0}
+.cargo{margin-top:12px;font-size:clamp(1.125rem,2.6vw,1.5rem);line-height:1.3;font-weight:600;letter-spacing:-.01em;color:var(--accent)}
+.frase{margin-top:20px;max-width:38em;font-size:clamp(1.0625rem,2vw,1.25rem);line-height:1.55;color:var(--ink-2)}
+.ctas{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;
+  border:1px solid transparent;border-radius:10px;font-size:1rem;font-weight:600;text-decoration:none;
+  transition:background .15s,border-color .15s,color .15s}
+.btn-pri{background:var(--accent);color:var(--accent-ink)}
+.btn-pri:hover{background:var(--accent-hover);color:var(--accent-ink)}
+.btn-sec{background:var(--card);border-color:var(--line-2);color:var(--ink)}
+.btn-sec:hover{border-color:var(--accent);color:var(--accent)}
+.btn-ter{display:inline-flex;align-items:center;min-height:48px;padding:0 8px;font-weight:600;text-decoration:none}
+@media (max-width:479px){.ctas .btn{flex:1 1 100%}}
+.meta{list-style:none;display:flex;flex-wrap:wrap;margin:24px 0 0;padding:0;color:var(--muted);font-size:.9375rem}
+.meta li{display:inline-flex;align-items:center;min-height:44px}
+.meta li+li::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--line-2);margin:0 12px}
+.meta a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink-2)}
+.meta a:hover{color:var(--accent)}
+
+/* ---------- números */
+.prova{border:1px solid var(--line);border-radius:var(--r);background:var(--card);padding:22px 20px 16px;box-shadow:var(--sombra)}
+.prova h2{margin:0;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.numeros{display:grid;grid-template-columns:1fr 1fr;margin-top:12px}
+.numero{padding:16px 16px 16px 0;border-top:1px solid var(--line)}
+.numero:nth-child(even){padding:16px 0 16px 16px;border-left:1px solid var(--line)}
+.numero:last-child:nth-child(odd){grid-column:1/-1;padding-right:0}
+.numero b{display:block;font-size:clamp(1.75rem,4.4vw,2.25rem);line-height:1.05;font-weight:750;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums;color:var(--ink)}
+.numero span{display:block;margin-top:6px;font-size:.8125rem;line-height:1.45;color:var(--muted)}
+.medido{margin-top:6px;padding-top:12px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--muted)}
+.fontes summary{display:flex;align-items:center;min-height:44px;cursor:pointer;font-size:.8125rem;font-weight:600;color:var(--accent)}
+.fontes ul{margin:0 0 6px;padding-left:18px;font-size:.8125rem;line-height:1.5;color:var(--muted);display:grid;gap:6px}
 
 /* ---------- seções */
-.secao{padding:56px 0 8px}
-.secao>header{display:grid;gap:4px;margin-bottom:26px}
-.secao h2{font-size:clamp(1.9rem,4.6vw,2.8rem);line-height:1.05;margin:0;font-weight:600;letter-spacing:-.015em;text-wrap:balance}
-.secao .lead{color:var(--muted);max-width:62ch;margin:6px 0 0}
+.secao{padding:64px 0;border-top:1px solid var(--line)}
+@media (min-width:1024px){.secao{padding:88px 0}}
+.secao-cab{max-width:46rem;margin-bottom:32px}
+.secao-cab h2{margin:0;font-size:clamp(1.5rem,3.4vw,2rem);line-height:1.15;letter-spacing:-.02em;font-weight:750}
+.secao-cab h2::before{content:"";display:block;width:28px;height:3px;border-radius:2px;background:var(--accent);margin-bottom:16px}
+.lead{margin-top:10px;font-size:1.0625rem;color:var(--muted)}
+.marcas{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.marcas li{position:relative;padding-left:18px}
+.marcas li::before{content:"";position:absolute;left:0;top:.6em;width:7px;height:7px;border-radius:2px;background:var(--accent)}
+.chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0}
+.chips li{padding:5px 11px;border:1px solid var(--line-2);border-radius:999px;background:var(--card);
+  font-size:.8125rem;line-height:1.3;color:var(--ink-2)}
+
+/* pilares */
+.pilares{display:grid;gap:16px}
+@media (min-width:880px){.pilares{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}}
+.pilar{display:flex;flex-direction:column;padding:24px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.pilar h3{margin:0 0 10px;font-size:1.1875rem;font-weight:750;letter-spacing:-.01em}
+.pilar>p{margin-bottom:20px;color:var(--ink-2)}
+.pilar .marcas{padding-top:16px;border-top:1px solid var(--line);font-size:.875rem;color:var(--muted)}
+
+/* experiência e formação */
+.linhas{list-style:none;margin:0;padding:0}
+.linha-item{display:grid;gap:4px 32px;padding:28px 0;border-top:1px solid var(--line)}
+.linha-item:first-child{border-top:0;padding-top:0}
+@media (min-width:880px){.linha-item{grid-template-columns:11rem minmax(0,1fr)}}
+.quando{padding-top:3px;font-family:var(--mono);font-size:.8125rem;color:var(--muted)}
+.linha-item h3{margin:0;font-size:1.1875rem;font-weight:750;letter-spacing:-.01em}
+.funcao{margin-top:2px;font-weight:600;color:var(--accent)}
+.linha-item .resumo{margin-top:10px;max-width:46rem;color:var(--ink-2)}
+.linha-item .marcas{margin-top:16px;max-width:46rem;font-size:.9375rem;color:var(--ink-2)}
+.idiomas{margin-top:8px;color:var(--ink-2)}
 
 /* projetos */
-.projetos{display:grid;gap:0;border-top:1px solid var(--ink)}
-.projeto{display:grid;gap:10px 40px;padding:26px 0;border-bottom:1px solid var(--rule)}
-@media (min-width:860px){.projeto{grid-template-columns:260px 1fr}}
-.projeto h3{font-size:1.65rem;line-height:1.1;margin:0 0 6px;font-weight:600}
-.projeto .status{font-family:"JetBrains Mono","Cascadia Code",monospace;font-size:.72rem;letter-spacing:.06em;
-  color:var(--muted);text-transform:uppercase}
-.projeto .status.vivo{color:var(--accent)}
-.projeto .status.vivo::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;
-  background:var(--accent);margin-right:7px;vertical-align:1px;box-shadow:0 0 0 3px var(--accent-soft)}
-.projeto .linha{font-size:1.25rem;line-height:1.35;margin:0 0 10px}
-.projeto dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 14px;margin:0 0 12px;font-size:1rem}
-.projeto dt{color:var(--muted);font-style:italic}
-.projeto dd{margin:0}
-.fato-lista{list-style:none;padding:0;margin:0 0 12px;font-size:.8rem;line-height:1.5;display:grid;gap:4px}
-.fato-lista li::before{content:"§ ";color:var(--accent)}
-.stack{list-style:none;padding:0;margin:0 0 12px;display:flex;flex-wrap:wrap;gap:6px}
-.stack li{font-size:.75rem;border:1px solid var(--rule);padding:3px 7px;border-radius:2px;color:var(--muted)}
-.historia{margin:0;padding-left:14px;border-left:2px solid var(--accent);font-style:italic;max-width:64ch}
-.contato-topo{margin:0;padding:2px 0 6px;display:flex;flex-wrap:wrap;gap:0 18px;
-  font-family:"JetBrains Mono","Cascadia Code",Consolas,monospace;font-size:.78rem}
-.contato-topo a,nav a,.redes a,.maquinas li a,.convocacao .email a{display:inline-flex;align-items:center;min-height:44px}
-.contato-topo a:first-child{font-weight:600}
-.contato-topo a[href$=".pdf"]{border:1px solid var(--accent);color:var(--accent);padding:0 10px;border-radius:2px}
-.contato-topo a[href="#convocacao"]{color:var(--accent);font-weight:600}
-@media(max-width:719px){.linha-topo .botao{padding:4px 8px;font-size:.66rem}}
-.botao{min-height:44px}
-.faq summary{padding:10px 0;min-height:44px}
-.redes{font-size:.8rem}
-.dica{margin-top:14px}
-.maquinas p.eyebrow{color:var(--accent)}
-.ret h3.contexto{font-weight:400;font-size:.95rem;line-height:1.4;font-style:italic;color:var(--muted);margin:0 0 12px}
-.projeto.trabalho{background:var(--paper-2);padding:26px 18px;margin-top:18px;border:1px solid var(--rule)}
+.cards{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.card{display:flex;flex-direction:column;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);
+  transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover{border-color:var(--line-2);box-shadow:var(--sombra);transform:translateY(-2px)}
+@media (min-width:1024px){.card.destaque{grid-column:span 2}}
+.card.destaque{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.status{display:flex;align-items:flex-start;gap:9px;margin-bottom:12px;font-size:.8125rem;line-height:1.4;color:var(--muted)}
+.dot{flex:none;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted)}
+.status .dot{margin-top:.4em}
+.dot.vivo{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+.disp .dot.vivo{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
+.card h3{margin:0 0 6px;font-size:1.1875rem;font-weight:750;letter-spacing:-.01em}
+.card .linha{color:var(--ink-2)}
+.card .marcas{margin-top:14px;font-size:.875rem;color:var(--muted)}
+.card .ir{margin-top:auto;padding-top:14px}
+.card .ir a{display:inline-flex;align-items:center;min-height:44px;font-weight:600;text-decoration:none}
+.card .ir a:hover{text-decoration:underline}
 
-/* retificações: a peça principal */
-.retificacoes{display:grid;gap:22px}
-@media (min-width:860px){.retificacoes{grid-template-columns:1fr 1fr}}
-.ret{position:relative;background:var(--paper);border:1px solid var(--ink);padding:22px 20px 18px;
-  box-shadow:var(--shadow);transform:rotate(var(--giro,0deg));transition:transform .3s ease}
-.ret:nth-child(3n+1){--giro:-.35deg}.ret:nth-child(3n+2){--giro:.3deg}
-.ret:hover{transform:rotate(0) translateY(-2px)}
-.ret .topo{display:flex;justify-content:space-between;gap:12px;align-items:baseline;
-  border-bottom:1px solid var(--rule);padding-bottom:8px;margin-bottom:12px}
-.protocolo{font-size:.75rem;letter-spacing:.1em;color:var(--muted)}
-.ret .contexto{font-size:.95rem;font-style:italic;color:var(--muted);margin:0 0 12px}
-.ret .topo{padding-right:128px}
-.carimbo{position:absolute;top:12px;right:14px;font-family:"JetBrains Mono","Cascadia Code",monospace;
-  font-size:.7rem;letter-spacing:.2em;font-weight:700;color:var(--stamp);border:2px solid var(--stamp);
-  padding:3px 7px 2px;transform:rotate(6deg);border-radius:3px;
-  mask-image:radial-gradient(circle at 30% 40%,#000 60%,rgba(0,0,0,.8) 100%)}
-.onde,.leia{margin:0 0 10px;display:grid;grid-template-columns:5.6rem 1fr;gap:10px;align-items:baseline}
-@media (max-width:600px){
-  .ret{padding-top:48px}
-  .ret .topo{padding-right:0}
-  .onde,.leia{grid-template-columns:1fr;gap:2px}
+/* stack */
+.stack{margin:0}
+.stack>div{display:grid;gap:10px 32px;padding:20px 0;border-top:1px solid var(--line)}
+.stack>div:first-child{border-top:0;padding-top:0}
+@media (min-width:880px){.stack>div{grid-template-columns:11rem minmax(0,1fr)}}
+.stack dt{padding-top:4px;font-weight:700;font-size:.9375rem}
+.stack dd{margin:0}
+.stack .chips{margin:0}
+
+/* como trabalho */
+.metodo{display:grid;gap:0 40px}
+@media (min-width:880px){.metodo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.metodo div{padding:20px 0;border-top:1px solid var(--line)}
+.metodo h3{margin:0 0 6px;font-size:1.0625rem;font-weight:700}
+.metodo p{color:var(--ink-2)}
+.para-licoes{margin-top:28px}
+
+/* contato */
+.contato{background:var(--bg-2)}
+.contato-grid{display:grid;gap:40px}
+@media (min-width:1024px){.contato-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px}}
+.contato .texto{max-width:36rem;color:var(--ink-2)}
+.email-grande{display:inline-flex;align-items:center;min-height:48px;margin-top:18px;font-size:clamp(1.2rem,4.6vw,1.75rem);
+  font-weight:750;letter-spacing:-.02em;word-break:break-word}
+.contato .ctas{margin-top:20px}
+.faq h3{margin:0 0 8px;font-size:.8125rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.faq details{border-top:1px solid var(--line-2)}
+.faq details:last-child{border-bottom:1px solid var(--line-2)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:52px;padding:8px 0;
+  cursor:pointer;list-style:none;font-weight:600}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;font-size:1.25rem;font-weight:400;color:var(--accent)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{padding-bottom:16px;color:var(--ink-2)}
+
+/* rodapé */
+.rodape{padding:28px 0 44px;border-top:1px solid var(--line);font-size:.875rem;color:var(--muted)}
+.rodape-in{display:grid;gap:10px}
+@media (min-width:880px){.rodape-in{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px}}
+.maq{display:flex;flex-wrap:wrap;align-items:center;gap:0 4px}
+.maq b{font-weight:600;color:var(--ink-2);margin-right:6px}
+.maq a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;font-family:var(--mono);font-size:.8125rem}
+
+/* página de lições */
+.pag-cab{padding:36px 0 48px}
+@media (min-width:1024px){.pag-cab{padding:64px 0 64px}}
+.voltar{display:inline-flex;align-items:center;min-height:44px;margin-bottom:12px;font-weight:600;text-decoration:none}
+.pag-cab h1{margin:0;font-size:clamp(2.25rem,7vw,3.5rem);line-height:1.05;letter-spacing:-.035em;font-weight:750}
+.pag-cab .frase{max-width:42em}
+.rets{display:grid;gap:16px}
+@media (min-width:960px){.rets{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ret{display:flex;flex-direction:column;padding:22px;border:1px solid var(--line);border-radius:var(--r);background:var(--card)}
+.proto{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.ret h3{margin:6px 0 14px;font-size:1.0625rem;font-weight:700;line-height:1.4}
+.ret dl{display:grid;gap:12px;margin:0}
+.ret dt{font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.ret dd{margin:2px 0 0;color:var(--ink-2)}
+.ret .onde dd{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 60%,transparent)}
+.ret .leia dt{color:var(--accent)}
+.regra{margin-top:auto;padding-top:16px}
+.regra p{padding:12px 14px;border-radius:8px;background:var(--accent-soft);font-size:.9375rem}
+.regra b{color:var(--accent);font-weight:700}
+.atos{list-style:none;display:grid;gap:0 40px;margin:0;padding:0}
+@media (min-width:880px){.atos{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.atos li{padding:18px 0;border-top:1px solid var(--line)}
+.atos strong{display:block;margin-bottom:4px}
+.atos span{color:var(--ink-2);font-size:.9375rem}
+
+/* 404 */
+.erro{min-height:72vh;display:grid;align-content:center;gap:14px;padding:48px 0}
+.erro h1{margin:0;font-size:clamp(2rem,6vw,3rem);letter-spacing:-.03em}
+.erro p{color:var(--ink-2)}
+
+/* entrada: uma vez, curta, e só para quem não pediu menos movimento */
+@media (prefers-reduced-motion: no-preference){
+  @keyframes sobe{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .hero-texto>*,.prova{animation:sobe .4s cubic-bezier(.2,.7,.2,1) both}
+  .hero-texto>*:nth-child(2){animation-delay:.03s}.hero-texto>*:nth-child(3){animation-delay:.06s}
+  .hero-texto>*:nth-child(4){animation-delay:.09s}.hero-texto>*:nth-child(5){animation-delay:.12s}
+  .hero-texto>*:nth-child(6),.prova{animation-delay:.15s}
 }
-.onde b,.leia b{font-family:"JetBrains Mono","Cascadia Code",monospace;font-size:.75rem;letter-spacing:.12em;
-  text-transform:uppercase;font-weight:600}
-.onde span{text-decoration:line-through;text-decoration-color:var(--stamp);text-decoration-thickness:1.5px;color:var(--muted)}
-.leia b{color:var(--accent)}
-.regra{margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--rule);font-size:.95rem}
-.regra i{color:var(--muted)}
-
-/* atos */
-.atos{columns:1;column-gap:48px;padding:0;margin:0;list-style:none;counter-reset:ato}
-@media (min-width:860px){.atos{columns:2}}
-.atos li{break-inside:avoid;padding:14px 0 16px;border-top:1px solid var(--rule);counter-increment:ato}
-.atos li::before{content:"Ato " counter(ato,decimal-leading-zero);display:block;
-  font-family:"JetBrains Mono","Cascadia Code",monospace;font-size:.66rem;letter-spacing:.14em;color:var(--accent);
-  text-transform:uppercase;margin-bottom:4px}
-.atos strong{display:block;font-size:1.18rem;line-height:1.25;font-weight:600;margin-bottom:4px}
-.atos span{color:var(--muted);font-size:1rem}
-
-/* método */
-.metodo{display:grid;gap:0;border-top:1px solid var(--ink)}
-@media (min-width:860px){.metodo{grid-template-columns:repeat(5,1fr)}}
-.metodo div{padding:16px 16px 18px 0;border-bottom:1px solid var(--rule)}
-@media (min-width:860px){.metodo div{border-bottom:0;border-right:1px solid var(--rule);padding-left:16px}.metodo div:first-child{padding-left:0}.metodo div:last-child{border-right:0}}
-.metodo h3{font-size:1.1rem;margin:0 0 6px;font-weight:600}
-.metodo p{margin:0;font-size:.98rem;color:var(--muted)}
-
-/* convocação e máquinas */
-.duas{display:grid;gap:24px}
-@media (min-width:860px){.duas{grid-template-columns:1fr 1fr}}
-.convocacao{border:2px solid var(--accent);padding:26px 22px;position:relative}
-.convocacao h2{color:var(--accent)}
-.convocacao .email{font-size:clamp(1.2rem,3vw,1.6rem);word-break:break-word}
-.maquinas{border:1px solid var(--rule);padding:26px 22px;background:var(--paper-2)}
-.maquinas ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-.maquinas code{font-family:"JetBrains Mono","Cascadia Code",monospace;font-size:.8rem;
-  background:var(--paper);border:1px solid var(--rule);padding:2px 6px;border-radius:2px;word-break:break-all}
-.maquinas p{margin:0 0 14px;color:var(--muted)}
-.faq{margin-top:10px}
-.faq details{border-top:1px solid var(--rule);padding:12px 0}
-.faq summary{cursor:pointer;font-weight:600}
-.faq p{margin:8px 0 0;color:var(--muted)}
-.rodape{margin-top:64px;padding-top:14px;border-top:3px double var(--ink);font-size:.72rem;
-  letter-spacing:.04em;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
-
-/* versão para máquinas */
-#maquina{display:none;white-space:pre-wrap;word-break:break-word;margin:28px 0 0;padding:22px 18px;
-  font-family:"JetBrains Mono","Cascadia Code",monospace;font-size:.82rem;line-height:1.65;
-  background:var(--paper-2);border:1px solid var(--rule);color:var(--ink)}
-body.modo-maquina #humano{display:none}
-body.modo-maquina #maquina{display:block}
-
-/* entrada da página: a edição "sai da prensa" uma vez */
-@keyframes prensa{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.cabeca,.abertura>*{animation:prensa .7s cubic-bezier(.2,.7,.2,1) both}
-.abertura>*:nth-child(2){animation-delay:.12s}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important}}
+@media print{.topo{position:static}.btn,.idioma{border:1px solid #999}}
 """
 
 JS = r"""
 (function(){
-  var botao=document.getElementById('alternar');
-  var menu=document.querySelector('nav');
-  function aplicar(maquina){
-    document.body.classList.toggle('modo-maquina',maquina);
-    botao.setAttribute('aria-pressed',String(maquina));
-    menu.hidden=maquina;
-    if(maquina)document.getElementById('maquina').focus();
-  }
-  botao.addEventListener('click',function(){aplicar(!document.body.classList.contains('modo-maquina'))});
-  if(location.hash==='#maquina')aplicar(true);
-
   // WebMCP: expõe ao agente do navegador as mesmas ferramentas do servidor /mcp.
   // Sem suporte no navegador, nada acontece. Tudo só leitura.
   var mc=document.modelContext||navigator.modelContext;
@@ -572,183 +600,297 @@ def status_vivo(pr: dict) -> bool:
     return any(x in s for x in ("no ar", "em produção", "live", "in production"))
 
 
-def html_projeto(pr: dict, t: dict = T["pt"]) -> str:
-    classe = "projeto trabalho" if pr["tipo"] == "trabalho" else "projeto"
-    link = (f' · <a href="{e(pr["url"])}" rel="noopener">{e(pr["url"].split("//")[1])}</a>'
+def lingua(t: dict) -> str:
+    return "en" if t is T["en"] else "pt"
+
+
+def carregar_cv() -> dict:
+    return json.loads(CURRICULO.read_text(encoding="utf-8"))
+
+
+MESES_CURTOS = {"pt": ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"],
+                "en": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]}
+
+
+def mes_ano(iso: str, t: dict) -> str:
+    y, m = iso.split("-")
+    mes = MESES_CURTOS[lingua(t)][int(m) - 1]
+    return f"{mes}/{y}" if t is T["pt"] else f"{mes} {y}"
+
+
+def periodo(x: dict, t: dict) -> str:
+    """Sem `fim` = emprego atual (é o que a vista discreta produz)."""
+    return f"{mes_ano(x['inicio'], t)} – {mes_ano(x['fim'], t) if x.get('fim') else t['atual']}"
+
+
+def inicial(s: str) -> str:
+    return s[:1].upper() + s[1:]
+
+
+def provas_pilares(d: dict, cv: dict, t: dict) -> list[list[str]]:
+    """Duas provas por pilar, LIDAS dos dados (nunca digitadas aqui): mudou o fato, muda o pilar.
+    Ordem = a de `pilares`: Dados, Produto, Agentes de IA."""
+    pr = {p["slug"]: p for p in d["projetos"]}
+    ig = pr["igaming-dados"]["fatos"]
+    bloco_ia = next(b for b in cv["experiencia"]["super-nova"][lingua(t)] if b["bloco"].startswith(("IA", "Applied")))
+    ia = bloco_ia["itens"][2]["texto"]
+    ia = ia[: ia.index(")") + 1]
+    return [[inicial(ig[4]), inicial(ig[5])],
+            [f"{pr['pingado']['nome']}: {pr['pingado']['fatos'][2]}",
+             f"{pr['avisa-edital']['nome']}: {pr['avisa-edital']['status'][:1].lower()}{pr['avisa-edital']['status'][1:]}"],
+            [d["metodo"][3]["texto"], ia]]
+
+
+def marcas(itens: list[str]) -> str:
+    return '<ul class="marcas">' + "".join(f"<li>{e(i)}</li>" for i in itens) + "</ul>"
+
+
+def chips(itens: list[str], rotulo: str) -> str:
+    return f'<ul class="chips" aria-label="{e(rotulo)}">' + "".join(f"<li>{e(i)}</li>" for i in itens) + "</ul>"
+
+
+def ponto(vivo: bool) -> str:
+    return f'<span class="dot{" vivo" if vivo else ""}" aria-hidden="true"></span>'
+
+
+def html_projeto(pr: dict, t: dict = T["pt"], destaque: bool = False) -> str:
+    fatos = pr["fatos"][:3] if destaque else pr["fatos"][:1]
+    link = (f'<p class="ir"><a href="{e(pr["url"])}" rel="noopener">{e(pr["url"].split("//")[1])} ↗</a></p>'
             if pr.get("url") else "")
-    stack = "".join(f"<li>{e(s)}</li>" for s in pr["stack"])
-    fatos = "".join(f"<li>{e(f)}</li>" for f in pr["fatos"])
     return f"""
-<article class="{classe}" id="{e(pr['slug'])}">
-  <div>
-    <h3>{e(pr['nome'])}</h3>
-    <div class="status{' vivo' if status_vivo(pr) else ''}">{e(pr['status'])}</div>
-  </div>
-  <div>
-    <p class="linha">{e(pr['linha'])}</p>
-    <dl><dt>{t['para_quem']}</dt><dd>{e(pr['para_quem'])}</dd><dt>{t['papel']}</dt><dd>{e(pr['papel'])}{link}</dd></dl>
-    <ul class="fato-lista">{fatos}</ul>
-    <ul class="stack" aria-label="{t['tecnologias']}">{stack}</ul>
-    <p class="historia">{e(pr['historia'])}</p>
-  </div>
+<article class="card{' destaque' if destaque else ''}" id="{e(pr['slug'])}">
+  <p class="status">{ponto(status_vivo(pr))}{e(pr['status'])}</p>
+  <h3>{e(pr['nome'])}</h3>
+  <p class="linha">{e(pr['linha'])}</p>
+  {marcas(fatos)}
+  {chips(pr['stack'], t['tecnologias'])}
+  {link}
 </article>"""
 
 
 def html_retificacao(r: dict, t: dict = T["pt"]) -> str:
     return f"""
 <article class="ret" id="{e(r['protocolo'].lower())}">
-  <span class="carimbo" aria-hidden="true">{t['carimbo']}</span>
-  <div class="topo"><span class="protocolo">{e(r['protocolo'])} · <time datetime="{e(r['data'])}">{data_curta_t(r['data'], t)}</time></span></div>
-  <h3 class="contexto">{e(r['contexto'])}</h3>
-  <p class="onde"><b>{t['onde']}</b><span>{e(r['onde_se_le'])}</span></p>
-  <p class="leia"><b>{t['leia']}</b><span>{e(r['leia_se'])}</span></p>
-  <p class="regra"><i>{t['regra']}</i> {e(r['regra'])}</p>
+  <p class="proto">{e(r['protocolo'])} · <time datetime="{e(r['data'])}">{data_curta_t(r['data'], t)}</time></p>
+  <h3>{e(r['contexto'])}</h3>
+  <dl>
+    <div class="onde"><dt>{t['onde']}</dt><dd>{e(r['onde_se_le'])}</dd></div>
+    <div class="leia"><dt>{t['leia']}</dt><dd>{e(r['leia_se'])}</dd></div>
+  </dl>
+  <div class="regra"><p><b>{t['regra']}</b> {e(r['regra'])}</p></div>
 </article>"""
 
 
-def pagina(d: dict, md: str, t: dict = T["pt"]) -> str:
-    p, s = d["perfil"], d["site"]
-    base = s["url"] + t["prefixo"]
-    ld = json.dumps(json_ld(d), ensure_ascii=False)
-    dados_js = json.dumps({k: d[k] for k in ("perfil", "numeros", "projetos", "retificacoes",
-                                                "disponibilidade")}, ensure_ascii=False)
-    ld, dados_js = json_em_script(ld), json_em_script(dados_js)
-    numeros = "".join(f'<div class="numero"><b>{e(n["valor"])}</b><span>{e(n["rotulo"])}</span></div>'
-                      for n in d["numeros"])
-    produtos = "".join(html_projeto(pr, t) for pr in d["projetos"] if pr["tipo"] == "produto")
-    trabalho = "".join(html_projeto(pr, t) for pr in d["projetos"] if pr["tipo"] == "trabalho")
-    rets = "".join(html_retificacao(r, t) for r in ordenadas(d["retificacoes"]))
-    atos = "".join(f"<li><strong>{e(a['titulo'])}</strong><span>{e(a['texto'])}</span></li>"
-                   for a in d["atos"])
-    metodo = "".join(f"<div><h3>{e(m['titulo'])}</h3><p>{e(m['texto'])}</p></div>" for m in d["metodo"])
-    faq = "".join(f"<details><summary>{e(f['pergunta'])}</summary><p>{e(f['resposta'])}</p></details>"
-                  for f in d["faq"])
-    resumo = "".join(f"<p>{e(par)}</p>" for par in p["resumo"])
-    titulo_pag = f"{p['nome']} — {p['cargo']}"
-    nav = t["nav"]
-    ancoras = ["projetos", "retificacoes", "atos", "metodo", "convocacao", "maquinas"]
-    menu = "".join(f'<a href="#{a}">{e(r)}</a>' for a, r in zip(ancoras, nav))
+def cabeca(d: dict, t: dict, caminho: str, titulo: str, descricao: str, extra: str = "") -> str:
+    """<head> comum. `caminho` é o da página sem o prefixo de idioma: "/" ou "/licoes/"."""
+    s = d["site"]
+    url = s["url"] + t["prefixo"] + caminho
     return f"""<!doctype html>
 <html lang="{e(s['idioma'])}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(titulo_pag)}</title>
-<meta name="description" content="{e(s['descricao'])}">
-<link rel="canonical" href="{e(base)}/">
-<link rel="alternate" hreflang="pt-BR" href="{e(s['url'])}/">
-<link rel="alternate" hreflang="en" href="{e(s['url'])}/en/">
-<link rel="alternate" hreflang="x-default" href="{e(s['url'])}/">
+<title>{e(titulo)}</title>
+<meta name="description" content="{e(descricao)}">
+<link rel="canonical" href="{e(url)}">
+<link rel="alternate" hreflang="pt-BR" href="{e(s['url'])}{caminho}">
+<link rel="alternate" hreflang="en" href="{e(s['url'])}/en{caminho}">
+<link rel="alternate" hreflang="x-default" href="{e(s['url'])}{caminho}">
 <link rel="alternate" type="text/markdown" href="{t['prefixo']}/index.md" title="Markdown">
 <link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
-<meta property="og:type" content="profile">
-<meta property="og:title" content="{e(titulo_pag)}">
-<meta property="og:description" content="{e(s['descricao'])}">
-<meta property="og:url" content="{e(base)}/">
+<meta property="og:type" content="{'profile' if caminho == '/' else 'website'}">
+<meta property="og:title" content="{e(titulo)}">
+<meta property="og:description" content="{e(descricao)}">
+<meta property="og:url" content="{e(url)}">
 <meta property="og:locale" content="{t['locale']}">
 <meta property="profile:first_name" content="Mateus">
 <meta property="profile:last_name" content="Fabro">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{e(titulo_pag)}">
-<meta name="twitter:description" content="{e(s['descricao'])}">
+<meta name="twitter:title" content="{e(titulo)}">
+<meta name="twitter:description" content="{e(descricao)}">
 <meta name="theme-color" content="#0E5A63">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta property="og:image" content="{e(s['url'])}/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="{e(s['titulo'])} — {e(t['edicao'].format(n=edicao(d)).split(' · ')[0])}">
+<meta property="og:image:alt" content="{e(d['perfil']['nome'])} — {e(d['perfil']['cargo'])}">
 <meta name="twitter:image" content="{e(s['url'])}/og.png">
-<link rel="preload" href="/fontes/newsreader-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/estilo.css">
-<script type="application/ld+json">{ld}</script>
+<link rel="stylesheet" href="/estilo.css">{extra}
 </head>
 <body>
-<div class="folha">
-<header class="cabeca">
-  <div class="linha-topo">
-    <span>{e(p['cidade'])}, {e(data_extenso_t(s['medido_em'], t))} · <a href="{t['outro_href']}" hreflang="{t['outro']}" lang="{t['outro']}">{t['outro_rotulo']}</a></span>
-    <button class="botao" id="alternar" type="button" aria-pressed="false" aria-controls="maquina">{t['maquina']}</button>
+<a class="pular" href="#conteudo">{'Skip to content' if t is T['en'] else 'Pular para o conteúdo'}</a>"""
+
+
+def barra(d: dict, t: dict, caminho: str) -> str:
+    """Barra do topo. Na home as âncoras são locais; nas outras páginas apontam para a home."""
+    home = f"{t['prefixo']}/"
+    pre = "" if caminho == "/" else home
+    alvos = [f"{pre}#experiencia", f"{pre}#projetos", f"{pre}#stack", f"{t['prefixo']}/licoes/", f"{pre}#contato"]
+    menu = "".join(f'<a href="{a}">{e(r)}</a>' for a, r in zip(alvos, t["nav"]))
+    outro = t["outro_href"] + ("" if caminho == "/" else caminho.lstrip("/"))
+    return f"""
+<header class="topo"><div class="wrap topo-in">
+  <a class="marca" href="{home}">{e(d['perfil']['nome'])}</a>
+  <nav aria-label="{t['menu']}">{menu}</nav>
+  <a class="idioma" href="{outro}" hreflang="{t['outro']}" lang="{t['outro']}">{t['outro_rotulo']}</a>
+</div></header>"""
+
+
+def rodape(d: dict, t: dict) -> str:
+    s = d["site"]
+    return f"""
+<footer class="rodape"><div class="wrap rodape-in">
+  <p class="maq"><b>{t['maquinas']}:</b><a href="{t['prefixo']}/index.md">{t['prefixo']}/index.md</a><a href="/resume.json">/resume.json</a><a href="/llms.txt">/llms.txt</a><a href="/mcp">/mcp</a></p>
+  <p>{e(t['medido_em'].format(d=data_curta_t(s['medido_em'], t)))}</p>
+  <p>{t['rodape']}</p>
+</div></footer>"""
+
+
+def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
+    """Home: abertura → números → pilares → experiência e formação → projetos → stack → como trabalho
+    → contato. `md` fica na assinatura por compatibilidade: o Markdown mora em /index.md, linkado no rodapé."""
+    p, s = d["perfil"], d["site"]
+    cv = carregar_cv()
+    lang = lingua(t)
+    ld = json_em_script(json.dumps(json_ld(d), ensure_ascii=False))
+    dados_js = json_em_script(json.dumps({k: d[k] for k in ("perfil", "numeros", "projetos", "retificacoes",
+                                                            "disponibilidade")}, ensure_ascii=False))
+    mailto = f"mailto:{e(p['email'])}?subject={t['assunto']}"
+    cv_href = f"/curriculo/{t['cv_arquivo']}"
+    disp = d["disponibilidade"]
+
+    numeros = "".join(f'<div class="numero"><b>{e(n["valor"])}</b><span>{e(n["rotulo"])}</span></div>'
+                      for n in d["numeros"])
+    fontes = "".join(f"<li><b>{e(n['valor'])}</b>: {e(n['fonte'])}</li>" for n in d["numeros"])
+
+    pilares = "".join(f'<article class="pilar"><h3>{e(pl["titulo"])}</h3><p>{e(pl["texto"])}</p>{marcas(pv)}</article>'
+                      for pl, pv in zip(d["pilares"], provas_pilares(d, cv, t)))
+
+    trabalho = next(pr for pr in d["projetos"] if pr["tipo"] == "trabalho")
+    exps = []
+    for x in d["experiencia"]:
+        nota = f" · {e(x['nota'])}" if x.get("nota") else ""
+        extra = (marcas([inicial(f) for f in trabalho["fatos"]]) + chips(trabalho["stack"], t["tecnologias"])
+                 if x["id"] == "super-nova" else "")
+        exps.append(f"""<li class="linha-item">
+  <p class="quando">{e(periodo(x, t))}<br>{e(x['local'])}{nota}</p>
+  <div><h3>{e(x['empresa'])}</h3><p class="funcao">{e(x['cargo'])}</p><p class="resumo">{e(x['resumo'])}</p>{extra}</div>
+</li>""")
+    formacao = "".join(f"""<li class="linha-item">
+  <p class="quando">{e(f['inicio'])} – {e(f['fim'])}</p>
+  <div><h3>{e(f['curso'])}</h3><p class="funcao">{e(f['instituicao'])}</p><p class="resumo">{e(inicial(f['status']))}</p></div>
+</li>""" for f in p["formacao"])
+    formacao += f"""<li class="linha-item"><p class="quando">{t['idiomas']}</p><div><p class="idiomas">{e(' · '.join(p['idiomas']))}</p></div></li>"""
+
+    produtos = sorted((pr for pr in d["projetos"] if pr["tipo"] == "produto"),
+                      key=lambda pr: pr["slug"] != "avisa-edital")          # o carro-chefe primeiro
+    cards = "".join(html_projeto(pr, t, destaque=(pr["slug"] == "avisa-edital")) for pr in produtos)
+
+    stack = "".join(f'<div><dt>{e(c["categoria"])}</dt><dd>{chips(c["itens"].split(" · "), c["categoria"])}</dd></div>'
+                    for c in cv["stack"][lang])
+    metodo = "".join(f"<div><h3>{e(m['titulo'])}</h3><p>{e(m['texto'])}</p></div>" for m in d["metodo"])
+    faq = "".join(f"<details><summary>{e(f['pergunta'])}</summary><p>{e(f['resposta'])}</p></details>"
+                  for f in d["faq"])
+    ctas = (f'<a class="btn btn-pri" href="{cv_href}">{t["cv"]}</a>'
+            f'<a class="btn btn-sec" href="{mailto}">{t["email_btn"]}</a>')
+
+    return cabeca(d, t, "/", s["titulo"], s["descricao"],
+                  extra=f'\n<script type="application/ld+json">{ld}</script>') + barra(d, t, "/") + f"""
+<main id="conteudo">
+<section class="hero"><div class="wrap hero-grid">
+  <div class="hero-texto">
+    <p class="disp">{ponto(True)}{e(inicial(disp['status']))}</p>
+    <h1>{e(p['nome'])}</h1>
+    <p class="cargo">{e(p['cargo'])}</p>
+    <p class="frase">{e(p['frase_hero'])}</p>
+    <div class="ctas">{ctas}<a class="btn-ter" href="#projetos">{t['ver_proj']} ↓</a></div>
+    <ul class="meta"><li>{e(p['cidade'])}, {e(p['estado'])}</li><li>{t['remoto']}</li><li><a href="{e(p['github'])}" rel="me noopener">GitHub</a></li><li><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a></li></ul>
   </div>
-  <h1 class="titulo">{t['titulo_de']} <em>{e(p['nome'])}</em></h1>
-  <div class="sob-titulo">
-    <span><strong>{e(p['cargo'])}</strong> · {e(p['subtitulo'])}</span>
-    <span>{e(t['edicao'].format(n=edicao(d)))}</span>
-  </div>
-  <p class="contato-topo"><a href="mailto:{e(p['email'])}?subject={t['assunto']}">{e(p['email'])}</a><a href="{e(p['github'])}" rel="me noopener">GitHub</a><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a><a href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a><a href="#convocacao">{e(d['disponibilidade']['status'].capitalize())}</a></p>
-</header>
-<nav aria-label="{t['menu']}">
-  {menu}
-</nav>
+  <aside class="prova" id="numeros" aria-labelledby="h-numeros">
+    <h2 id="h-numeros">{t['h_numeros']}</h2>
+    <div class="numeros">{numeros}</div>
+    <p class="medido">{e(t['medido'].format(d=data_curta_t(s['medido_em'], t)))}</p>
+    <details class="fontes"><summary>{t['como_medido']}</summary><ul>{fontes}</ul></details>
+  </aside>
+</div></section>
 
-<main id="humano">
-<section class="abertura" aria-label="{t['apresentacao']}">
-  <div>
-    <p class="eyebrow">{t['frase']}</p>
-    <p class="tese">{e(p['tese'])}</p>
-  </div>
-  <div class="resumo">{resumo}</div>
-</section>
-<div class="numeros">{numeros}</div>
-<p class="medido mono">{e(t['medido'].format(d=data_curta_t(s['medido_em'], t)))}</p>
+<section class="secao" id="entrega"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_pilares']}</h2></header>
+  <div class="pilares">{pilares}</div>
+</div></section>
 
-<section class="secao" id="projetos">
-  <header><p class="eyebrow">{t['s1']}</p><h2>{t['h_proj']}</h2>
-  <p class="lead">{t['l_proj']}</p></header>
-  <div class="projetos">{produtos}</div>
-  {trabalho}
-</section>
+<section class="secao" id="experiencia"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_exp']}</h2><p class="lead">{t['l_exp']}</p></header>
+  <ol class="linhas">{''.join(exps)}</ol>
+</div></section>
 
-<section class="secao" id="retificacoes">
-  <header><p class="eyebrow">{t['s2']}</p><h2>{t['h_ret']}</h2>
-  <p class="lead">{t['l_ret']}</p></header>
-  <div class="retificacoes">{rets}</div>
-</section>
+<section class="secao" id="formacao"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_form']}</h2></header>
+  <ul class="linhas">{formacao}</ul>
+</div></section>
 
-<section class="secao" id="atos">
-  <header><p class="eyebrow">{t['s3']}</p><h2>{t['h_atos']}</h2>
-  <p class="lead">{e(t['l_atos'].format(a=len(d['atos']), n=edicao(d)))}</p></header>
-  <ol class="atos">{atos}</ol>
-</section>
+<section class="secao" id="projetos"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_proj']}</h2><p class="lead">{t['l_proj']}</p></header>
+  <div class="cards">{cards}</div>
+</div></section>
 
-<section class="secao" id="metodo">
-  <header><p class="eyebrow">{t['s4']}</p><h2>{t['h_met']}</h2>
-  <p class="lead">{t['l_met']}</p></header>
+<section class="secao" id="stack"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_stack']}</h2><p class="lead">{t['l_stack']}</p></header>
+  <dl class="stack">{stack}</dl>
+</div></section>
+
+<section class="secao" id="metodo"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_met']}</h2><p class="lead">{t['l_met']}</p></header>
   <div class="metodo">{metodo}</div>
-</section>
+  <p class="para-licoes"><a class="btn btn-sec" href="{t['prefixo']}/licoes/">{e(t['link_licoes'].format(n=len(d['atos'])))}</a></p>
+</div></section>
 
-<section class="secao duas">
-  <div class="convocacao" id="convocacao">
-    <p class="eyebrow">{t['convocacao']}</p>
-    <h2>{e(d['disponibilidade']['status'].capitalize())}</h2>
-    <p>{e(d['disponibilidade']['texto'])}</p>
-    <p class="email"><a href="mailto:{e(p['email'])}?subject={t['assunto']}">{e(p['email'])}</a></p>
-    <p class="redes mono"><a href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a> · <a href="{e(p['github'])}" rel="me noopener">GitHub</a> · <a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a> · {e(p['cidade'])}, {e(p['estado'])}</p>
-    <div class="faq">{faq}</div>
+<section class="secao contato" id="contato"><div class="wrap contato-grid">
+  <div>
+    <header class="secao-cab"><h2>{t['h_contato']}</h2></header>
+    <p class="disp">{ponto(True)}{e(inicial(disp['status']))}</p>
+    <p class="texto">{e(disp['texto'])}</p>
+    <p><a class="email-grande" href="{mailto}">{e(p['email'])}</a></p>
+    <div class="ctas">{ctas}</div>
+    <ul class="meta"><li>{e(p['cidade'])}, {e(p['estado'])}</li><li><a href="{e(p['github'])}" rel="me noopener">GitHub</a></li><li><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a></li></ul>
   </div>
-  <div class="maquinas" id="maquinas">
-    <p class="eyebrow">{t['maq_eyebrow']}</p>
-    <h2>{t['h_maq']}</h2>
-    <p>{t['l_maq']}</p>
-    <ul>
-      <li><code>{e(s['url'])}/mcp</code><br>{t['mcp_nota']}</li>
-      <li><a href="/llms.txt"><code>/llms.txt</code></a> · <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
-      <li><a href="{t['prefixo']}/index.md"><code>{t['prefixo']}/index.md</code></a></li>
-      <li><a href="/curriculo/{t['cv_arquivo']}"><code>/curriculo/{t['cv_arquivo']}</code></a> · <a href="/resume.json"><code>/resume.json</code></a></li>
-    </ul>
-    <p class="dica">{t['dica']} <code>/mcp</code>.</p>
-  </div>
-</section>
+  <div class="faq"><h3>{t['faq']}</h3>{faq}</div>
+</div></section>
 </main>
-
-<pre id="maquina" tabindex="-1">{e(md)}</pre>
-
-<footer class="rodape">
-  <span>{t['rodape']}</span>
-  <span>{e(t['medido_em'].format(d=data_curta_t(s['medido_em'], t)))}</span>
-</footer>
-</div>
+""" + rodape(d, t) + f"""
 <script type="application/json" id="dados">{dados_js}</script>
 <script src="/app.js" defer></script>
+</body>
+</html>
+"""
+
+
+def pagina_licoes(d: dict, t: dict = T["pt"]) -> str:
+    """/licoes/: as retificações (onde se lê / leia-se / regra) e os atos, fora da home."""
+    p = d["perfil"]
+    rets = "".join(html_retificacao(r, t) for r in ordenadas(d["retificacoes"]))
+    atos = "".join(f"<li><strong>{e(a['titulo'])}</strong><span>{e(a['texto'])}</span></li>" for a in d["atos"])
+    titulo = f"{t['h_licoes']} — {p['nome']}"
+    return cabeca(d, t, "/licoes/", titulo, t["l_licoes"]) + barra(d, t, "/licoes/") + f"""
+<main id="conteudo">
+<section class="pag-cab"><div class="wrap">
+  <a class="voltar" href="{t['prefixo']}/">{t['voltar']}</a>
+  <h1>{t['h_licoes']}</h1>
+  <p class="cargo">{t['sub_licoes']}</p>
+  <p class="frase">{t['l_licoes']}</p>
+</div></section>
+
+<section class="secao" id="erros"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_ret']}</h2></header>
+  <div class="rets">{rets}</div>
+</div></section>
+
+<section class="secao" id="regras"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_atos']}</h2><p class="lead">{e(t['l_atos'].format(a=len(d['atos']), n=edicao(d)))}</p></header>
+  <ol class="atos">{atos}</ol>
+</div></section>
+</main>
+""" + rodape(d, t) + """
 </body>
 </html>
 """
@@ -764,8 +906,8 @@ def robots(d: dict) -> str:
 
 def sitemap(d: dict) -> str:
     s = d["site"]
-    urls = [f"{s['url']}/", f"{s['url']}/en/", f"{s['url']}/index.md", f"{s['url']}/en/index.md",
-            f"{s['url']}/llms.txt",
+    urls = [f"{s['url']}/", f"{s['url']}/en/", f"{s['url']}/licoes/", f"{s['url']}/en/licoes/",
+            f"{s['url']}/index.md", f"{s['url']}/en/index.md", f"{s['url']}/llms.txt",
             f"{s['url']}/llms-full.txt", f"{s['url']}/resume.json"]
     urls += [f"{s['url']}/projetos/{pr['slug']}.md" for pr in d["projetos"]]
     corpo = "".join(f"<url><loc>{e(u)}</loc><lastmod>{s['medido_em']}</lastmod></url>" for u in urls)
@@ -774,9 +916,8 @@ def sitemap(d: dict) -> str:
 
 
 FAVICON = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-<rect width="32" height="32" rx="3" fill="#0E5A63"/>
-<rect x="6" y="7" width="20" height="2" fill="#F6F8F9"/><rect x="6" y="11" width="20" height="1" fill="#F6F8F9"/>
-<text x="16" y="27" font-family="Georgia,serif" font-size="15" font-style="italic" text-anchor="middle" fill="#F6F8F9">F</text>
+<rect width="32" height="32" rx="7" fill="#0E5A63"/>
+<text x="16" y="21.5" font-family="system-ui,-apple-system,Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="-.5" text-anchor="middle" fill="#FFFFFF">MF</text>
 </svg>
 """
 
@@ -785,14 +926,17 @@ def pagina_404(d: dict) -> str:
     return f"""<!doctype html>
 <html lang="{e(d['site']['idioma'])}">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Página não encontrada — {e(d['site']['titulo'])}</title><meta name="robots" content="noindex">
+<title>Página não encontrada — {e(d['perfil']['nome'])}</title><meta name="robots" content="noindex">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/estilo.css"></head>
-<body><div class="folha"><header class="cabeca"><h1 class="titulo">Diário de <em>{e(d['perfil']['nome'])}</em></h1></header>
-<section class="secao"><article class="ret"><span class="carimbo" aria-hidden="true">RETIFICAÇÃO</span>
-<div class="topo"><span class="protocolo">ERRO 404</span></div>
-<p class="onde"><b>Onde se lê</b><span>esta página existe.</span></p>
-<p class="leia"><b>Leia-se</b><span>ela não existe — ou mudou de endereço. <a href="/">Voltar à edição de hoje</a>.</span></p>
-</article></section></div></body></html>
+<body>
+<header class="topo"><div class="wrap topo-in"><a class="marca" href="/">{e(d['perfil']['nome'])}</a></div></header>
+<main class="wrap erro">
+  <p class="proto">404</p>
+  <h1>Página não encontrada</h1>
+  <p>Este endereço não existe ou mudou de lugar. <span lang="en">This page does not exist or has moved.</span></p>
+  <p><a class="btn btn-pri" href="/">Voltar ao início</a></p>
+</main>
+</body></html>
 """
 
 
@@ -817,6 +961,8 @@ def gerar(d: dict, d_en: dict | None = None) -> dict[str, str]:
         "sitemap.xml": sitemap(d),
         "en/index.html": pagina(d_en, md_en, T["en"]),
         "en/index.md": md_en,
+        "licoes/index.html": pagina_licoes(d),
+        "en/licoes/index.html": pagina_licoes(d_en, T["en"]),
     }
     for pr in d["projetos"]:
         arquivos[f"projetos/{pr['slug']}.md"] = projeto_md(pr) + "\n"

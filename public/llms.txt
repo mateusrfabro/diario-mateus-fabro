@@ -1,12 +1,13 @@
 # Mateus Fabro
 
-> Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.
+> Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): pipelines, antifraude, atribuição de mídia e produtos próprios em Python, SQL e TypeScript.
 
 Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.
 
 ## Principal
 - [Página completa em Markdown](https://mateusfabro.vercel.app/index.md): perfil, projetos, retificações, lições e contato
 - [Full page in English](https://mateusfabro.vercel.app/en/index.md): the same content, translated
+- [Lições de casos reais](https://mateusfabro.vercel.app/licoes/): erros corrigidos (onde se lê / leia-se) e as regras que ficaram
 - [Currículo em JSON Resume](https://mateusfabro.vercel.app/resume.json): formato estruturado
 - [Currículo em PDF](https://mateusfabro.vercel.app/curriculo/mateus-fabro-pt.pdf): para imprimir (English: https://mateusfabro.vercel.app/curriculo/mateus-fabro-en.pdf)
 - [Servidor MCP](https://mateusfabro.vercel.app/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade

@@ -3,8 +3,8 @@
     "url": "https://mateusfabro.vercel.app",
     "idioma": "en",
     "medido_em": "2026-11-05",
-    "titulo": "The Gazette of Mateus Fabro",
-    "descricao": "Mateus Fabro, data & analytics engineer in Londrina, Brazil: data systems, his own products and the corrections for every mistake that became a checkable rule.",
+    "titulo": "Mateus Fabro — Data & Analytics Engineer",
+    "descricao": "Mateus Fabro, data & analytics engineer in Londrina, Brazil: pipelines, anti-fraud, media attribution and his own products in Python, SQL and TypeScript.",
     "modo": "discreto"
   },
   "perfil": {
@@ -18,6 +18,7 @@
     "github": "https://github.com/mateusrfabro",
     "linkedin": "https://www.linkedin.com/in/mateusrfabro",
     "tese": "I build systems that read public sources and production databases and turn them into alerts people can trust. When I get something wrong, I publish the correction — and the mistake becomes a written rule and, whenever possible, a test that enforces it.",
+    "frase_hero": "I build the pipeline and the product around it: from production databases to the alert, dashboard or SaaS the team uses — Python · SQL · TypeScript · AI agents.",
     "resumo": [
       "I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three operations, three countries and three currencies. I was the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
       "Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.",
@@ -50,6 +51,20 @@
       "I work paired with AI agents (Claude Code) and with a memory system of my own: every fixed mistake that applies to another project becomes a lesson with an origin, a reason and a way to apply it — and a script proves the index forgot none."
     ]
   },
+  "pilares": [
+    {
+      "titulo": "Data",
+      "texto": "Pipelines, data lake migration, anti-fraud and media attribution for operations across countries and currencies. Fail-closed by default: a source that is down becomes a known state, never a false zero."
+    },
+    {
+      "titulo": "Product",
+      "texto": "Data only counts when it becomes something people use: a bot, a SaaS, a dashboard, a printed receipt. I build and run my own products with real customers, tested, with an honest status, even the ones that stopped."
+    },
+    {
+      "titulo": "AI agents",
+      "texto": "Agents with a role, not autonomy: what a reviewer finds is reproduced before it becomes a change. Every fixed mistake becomes a lesson with an origin and a way to apply it, and a script proves the index forgot none."
+    }
+  ],
   "experiencia": [
     {
       "id": "super-nova",
@@ -513,7 +528,7 @@
     },
     {
       "titulo": "Agents with a role, not autonomy",
-      "texto": "15 specialized agents (quality, security, testing, UX, content review, growth) work in parallel. What the reviewers find is reproduced before it becomes a change."
+      "texto": "25 specialized agents (10 from the data squad and 15 general: quality, security, testing, UX, content review, growth) work in parallel. What the reviewers find is reproduced before it becomes a change."
     },
     {
       "titulo": "Where we left off",
@@ -536,8 +551,8 @@
       "resposta": "Python, SQL and TypeScript: pipelines, data lake migration, anti-fraud, media attribution, Telegram bots and SaaS in Flask and Next.js, with AI agents (Claude Code) as a multiplier."
     },
     {
-      "pergunta": "What are the corrections on this site?",
-      "resposta": "Mistakes he made, with dates and numbers, in the format of a gazette erratum: for … read …. Each became a checkable lesson."
+      "pergunta": "What are the lessons on this site?",
+      "resposta": "Mistakes he made in real cases, with dates, in the format “for … read …”, and the rule that stayed from each one."
     },
     {
       "pergunta": "Is he available?",

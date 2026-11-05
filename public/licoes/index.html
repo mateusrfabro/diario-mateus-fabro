@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lições — Mateus Fabro</title>
+<meta name="description" content="Erros que eu cometi em casos reais, com a data em que cada um foi achado e corrigido, e as regras que ficaram. Nomes de cliente ficam de fora.">
+<link rel="canonical" href="https://mateusfabro.vercel.app/licoes/">
+<link rel="alternate" hreflang="pt-BR" href="https://mateusfabro.vercel.app/licoes/">
+<link rel="alternate" hreflang="en" href="https://mateusfabro.vercel.app/en/licoes/">
+<link rel="alternate" hreflang="x-default" href="https://mateusfabro.vercel.app/licoes/">
+<link rel="alternate" type="text/markdown" href="/index.md" title="Markdown">
+<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lições — Mateus Fabro">
+<meta property="og:description" content="Erros que eu cometi em casos reais, com a data em que cada um foi achado e corrigido, e as regras que ficaram. Nomes de cliente ficam de fora.">
+<meta property="og:url" content="https://mateusfabro.vercel.app/licoes/">
+<meta property="og:locale" content="pt_BR">
+<meta property="profile:first_name" content="Mateus">
+<meta property="profile:last_name" content="Fabro">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lições — Mateus Fabro">
+<meta name="twitter:description" content="Erros que eu cometi em casos reais, com a data em que cada um foi achado e corrigido, e as regras que ficaram. Nomes de cliente ficam de fora.">
+<meta name="theme-color" content="#0E5A63">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:image" content="https://mateusfabro.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mateus Fabro — Engenheiro de Dados &amp; Analytics">
+<meta name="twitter:image" content="https://mateusfabro.vercel.app/og.png">
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="wrap topo-in">
+  <a class="marca" href="/">Mateus Fabro</a>
+  <nav aria-label="Seções"><a href="/#experiencia">Experiência</a><a href="/#projetos">Projetos</a><a href="/#stack">Stack</a><a href="/licoes/">Lições</a><a href="/#contato">Contato</a></nav>
+  <a class="idioma" href="/en/licoes/" hreflang="en" lang="en">English</a>
+</div></header>
+<main id="conteudo">
+<section class="pag-cab"><div class="wrap">
+  <a class="voltar" href="/">← Voltar ao início</a>
+  <h1>Lições</h1>
+  <p class="cargo">Erros que viraram regra</p>
+  <p class="frase">Erros que eu cometi em casos reais, com a data em que cada um foi achado e corrigido, e as regras que ficaram. Nomes de cliente ficam de fora.</p>
+</div></section>
+
+<section class="secao" id="erros"><div class="wrap">
+  <header class="secao-cab"><h2>Erros corrigidos</h2></header>
+  <div class="rets">
+<article class="ret" id="ret-2026-0716">
+  <p class="proto">RET-2026-0716 · <time datetime="2026-07-16">16/07/2026</time></p>
+  <h3>Pingado, extrato impresso do fiado</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>347 testes verdes.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>O papel dizia &quot;Seu tem R$ 29,00 de crédito&quot;: o código cortava o nome no primeiro espaço, e na cafeteria metade da clientela é &quot;Seu&quot; alguma coisa ou &quot;Dona&quot; alguma coisa. Só imprimir o artefato real pegou.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Gerar o artefato que o usuário recebe</p></div>
+</article>
+<article class="ret" id="ret-2026-0727">
+  <p class="proto">RET-2026-0727 · <time datetime="2026-07-27">27/07/2026</time></p>
+  <h3>Conciliação financeira</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>0 créditos duplicados.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>Uma constraint UNIQUE tornava o zero obrigatório: o controle só repetia o schema. O caso que de fato podia acontecer não estava sendo medido — e tinha candidatos.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Controle com resultado forçado não é controle</p></div>
+</article>
+<article class="ret" id="ret-2026-0728">
+  <p class="proto">RET-2026-0728 · <time datetime="2026-07-28">28/07/2026</time></p>
+  <h3>Verificador de um alerta automático</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>24 checagens verdes: correção validada.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>O verificador deixou passar 3 de 7 reversões do bug. Desde então, teste importante é provado por mutação: reverto o conserto numa cópia e exijo que a suíte fique vermelha.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Teste de mutação: prove que o teste sabe falhar</p></div>
+</article>
+<article class="ret" id="ret-2026-0819">
+  <p class="proto">RET-2026-0819 · <time datetime="2026-08-19">19/08/2026</time></p>
+  <h3>Uma troca com o time de infraestrutura</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>Seis afirmações, cada uma com a consulta que a sustentava.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>Seis afirmações erradas. Nenhuma query estava errada: em todas, a frase cobria mais do que o predicado media. Quem estava do outro lado tinha razão no detalhe todas as vezes.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> A conclusão não pode ser mais larga que o teste</p></div>
+</article>
+<article class="ret" id="ret-2026-0821">
+  <p class="proto">RET-2026-0821 · <time datetime="2026-08-21">21/08/2026</time></p>
+  <h3>Avisa Edital, bot do Telegram</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>Redirect de SEO: só canonicalização de domínio.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>O webhook do bot passou a receber 308 e o bot ficou mudo por 3h30. A rota da API saiu do redirect, um teste lê a configuração e uma sentinela vigia o silêncio.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Redirect de canonicalização engole webhook</p></div>
+</article>
+<article class="ret" id="ret-2026-0824">
+  <p class="proto">RET-2026-0824 · <time datetime="2026-08-24">24/08/2026</time></p>
+  <h3>Avisa Edital, resposta do bot</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>Ainda não vigiamos sua cidade.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>Vigiávamos 192; a produção enxergava 11. A lista canônica morava numa pasta ignorada pelo git, que só existia na minha máquina.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Dado de referência mora com o código, não na pasta ignorada</p></div>
+</article>
+<article class="ret" id="ret-2026-0824-b">
+  <p class="proto">RET-2026-0824-B · <time datetime="2026-08-24">24/08/2026</time></p>
+  <h3>Avisa Edital, busca retroativa de 90 dias</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>Retroativo em fatias de 7 dias, uma por noite na nuvem, até completar.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>As fatias eram calculadas a partir de hoje, então as bordas andavam um dia por dia: 0 de 13 fatias em comum entre dois dias seguidos. O passo estourava o tempo sem nunca gravar progresso — cerca de 30% da franquia mensal de CI em trabalho que não podia terminar.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Progresso só persiste se a chave dele for estável no tempo</p></div>
+</article>
+<article class="ret" id="ret-2026-0921">
+  <p class="proto">RET-2026-0921 · <time datetime="2026-09-21">21/09/2026</time></p>
+  <h3>Avisa Edital, alarme por plataforma</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>Se uma plataforma de diário cair inteira, o painel avisa pelo nome.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>O adaptador engolia a falha e devolvia lista vazia: as cinco cidades pareciam vivas, e o alarme nunca dispararia no único caso para o qual foi feito. O painel ainda filtrava o nome da plataforma. Achado numa revisão do que eu mesmo tinha entregado quatro dias antes.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Caminho de exceção só existe se for exercitado de propósito</p></div>
+</article>
+<article class="ret" id="ret-2026-0923">
+  <p class="proto">RET-2026-0923 · <time datetime="2026-09-23">23/09/2026</time></p>
+  <h3>Este site, na véspera de ir ao ar</h3>
+  <dl>
+    <div class="onde"><dt>Onde se lê</dt><dd>847 commits nos quatro produtos.</dd></div>
+    <div class="leia"><dt>Leia-se</dt><dd>820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Regra que ficou:</b> Número fora do código envelhece sozinho</p></div>
+</article></div>
+</div></section>
+
+<section class="secao" id="regras"><div class="wrap">
+  <header class="secao-cab"><h2>Regras que ficaram</h2><p class="lead">20 das 125 lições registradas. Cada uma nasceu de um caso real e tem origem, motivo e forma de aplicar.</p></header>
+  <ol class="atos"><li><strong>Verificar antes de concluir</strong><span>Nunca dizer &quot;pronto&quot; sem rodar a verificação e ler a saída. O verde vale só para a árvore exata testada: editar depois invalida a rodada.</span></li><li><strong>Teste de mutação: prove que o teste sabe falhar</strong><span>Teste verde só vale se pudesse estar vermelho. Reverter o conserto numa cópia e exigir que a suíte reprove.</span></li><li><strong>Controle com resultado forçado não é controle</strong><span>Antes de publicar &quot;0 ocorrências&quot;, perguntar se o número poderia ser diferente de zero.</span></li><li><strong>A conclusão não pode ser mais larga que o teste</strong><span>Query certa, número certo, frase falsa. Colar o predicado ao lado da frase antes de publicar.</span></li><li><strong>Ausência de dado não é afirmação</strong><span>Lista vazia por falta de cobertura vira &quot;não há nada&quot; e tranquiliza quem deveria agir. Separar &quot;não há&quot; de &quot;não sei&quot;.</span></li><li><strong>Fila não é entrega, e entrega não é visualização</strong><span>Contar a tabela de fila mede o que foi enfileirado, não o que aconteceu. Como denominador, produz um número baixo e plausível.</span></li><li><strong>Vigiar o efeito, não só a causa</strong><span>Monitor de causa só pega a falha já imaginada. Um monitor de efeito é um só e indiferente à causa.</span></li><li><strong>Backup só existe se restaurar</strong><span>Backup nunca restaurado não é backup; volume e réplica também não. Provar o ciclo destruindo dado de verdade e trazendo de volta.</span></li><li><strong>Fallback silencioso em valor crítico</strong><span>Câmbio, configuração, versão e limite nunca atrás de try/except com valor padrão. Falhar alto é melhor que publicar número errado.</span></li><li><strong>Número fora do código envelhece sozinho</strong><span>Todo número publicado sai do código na mesma rodada. Remendo de parágrafo produz duas grandezas com o mesmo nome.</span></li><li><strong>&quot;Novo para nós&quot; não é &quot;aconteceu agora&quot;</strong><span>Ampliar cobertura faz o histórico entrar como novidade. Notificar pela data do evento e marcar os antigos.</span></li><li><strong>Gerar o artefato do usuário</strong><span>Suíte verde não prova a tela nem o papel. Renderizar o cupom, o PDF ou o e-mail que a pessoa recebe.</span></li><li><strong>Dado de referência mora com o código</strong><span>Lista canônica numa pasta ignorada pelo git só existe na máquina de quem desenvolve; CI e produção degradam calados.</span></li><li><strong>Análise nunca no banco que atende o cliente</strong><span>Consulta de leitura também derruba produção. O padrão é réplica ou banco analítico, com sessão identificada e tempo limite.</span></li><li><strong>Não inocentar com sinal que não discrimina</strong><span>Para afirmar &quot;não é fraude&quot; ou &quot;não é regressão&quot;, rodar o detector que acharia a coisa. Sinal que o culpado também exibiria não absolve.</span></li><li><strong>O guard de PII é o vetor de vazamento</strong><span>A lista que prova &quot;sem dado pessoal na entrega&quot; é ela própria dado pessoal. Derivar o alvo em tempo de execução, não versionar.</span></li><li><strong>Identidade de ambiente por configuração, não por dado</strong><span>&quot;Isto é produção?&quot; se responde lendo a configuração do deploy, não pela presença de uma linha que pode ter sido apagada.</span></li><li><strong>Escape não atravessa o shell</strong><span>\b e \n escritos por heredoc chegam ao arquivo como caractere de controle. O terminal esconde, a regex nunca casa.</span></li><li><strong>Subagente julga contra uma fotografia</strong><span>Agente sem acesso ao vivo acerta o raciocínio e erra o fato. Em infraestrutura que muda toda semana, a fotografia envelhece em dias.</span></li><li><strong>Não depender só da IA</strong><span>Palpitar antes de pedir o número. A IA acelera; o julgamento continua sendo meu.</span></li></ol>
+</div></section>
+</main>
+
+<footer class="rodape"><div class="wrap rodape-in">
+  <p class="maq"><b>Para máquinas:</b><a href="/index.md">/index.md</a><a href="/resume.json">/resume.json</a><a href="/llms.txt">/llms.txt</a><a href="/mcp">/mcp</a></p>
+  <p>Medido em 05/11/2026</p>
+  <p>Gerado de um arquivo só (conteudo/dados.json): página, Markdown, llms.txt, JSON Resume e MCP.</p>
+</div></footer>
+</body>
+</html>

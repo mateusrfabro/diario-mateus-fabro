@@ -3,8 +3,8 @@
     "url": "https://mateusfabro.vercel.app",
     "idioma": "pt-BR",
     "medido_em": "2026-11-05",
-    "titulo": "Diário de Mateus Fabro",
-    "descricao": "Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.",
+    "titulo": "Mateus Fabro — Engenheiro de Dados & Analytics",
+    "descricao": "Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): pipelines, antifraude, atribuição de mídia e produtos próprios em Python, SQL e TypeScript.",
     "modo": "discreto"
   },
   "perfil": {
@@ -18,6 +18,7 @@
     "github": "https://github.com/mateusrfabro",
     "linkedin": "https://www.linkedin.com/in/mateusrfabro",
     "tese": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.",
+    "frase_hero": "Construo o pipeline e o produto em volta dele: do banco de produção ao aviso, painel ou SaaS que o time usa — Python · SQL · TypeScript · agentes de IA.",
     "resumo": [
       "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
       "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.",
@@ -50,6 +51,20 @@
       "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."
     ]
   },
+  "pilares": [
+    {
+      "titulo": "Dados",
+      "texto": "Pipelines, migração de data lake, antifraude e atribuição de mídia para operações em vários países e moedas. Fail-closed por padrão: fonte fora do ar vira estado conhecido, nunca zero falso."
+    },
+    {
+      "titulo": "Produto",
+      "texto": "O dado só vale quando vira algo que alguém usa: bot, SaaS, painel ou papel impresso. Construo e opero produtos próprios com cliente real, cobertos por testes e com status honesto, inclusive os que pararam."
+    },
+    {
+      "titulo": "Agentes de IA",
+      "texto": "Agentes com papel definido, não com autonomia: o que o revisor acha é reproduzido antes de virar mudança. Cada erro corrigido vira lição com origem e forma de aplicar, e um script prova que o índice não esqueceu nenhuma."
+    }
+  ],
   "experiencia": [
     {
       "id": "super-nova",
@@ -513,7 +528,7 @@
     },
     {
       "titulo": "Agentes com papel, não com autonomia",
-      "texto": "15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança."
+      "texto": "25 agentes especializados (10 do squad de dados e 15 gerais: qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança."
     },
     {
       "titulo": "Onde paramos",
@@ -536,8 +551,8 @@
       "resposta": "Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador."
     },
     {
-      "pergunta": "O que são as retificações deste site?",
-      "resposta": "Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável."
+      "pergunta": "O que são as lições deste site?",
+      "resposta": "Erros que ele cometeu em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um."
     },
     {
       "pergunta": "Ele está disponível?",

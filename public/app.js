@@ -1,15 +1,4 @@
 (function(){
-  var botao=document.getElementById('alternar');
-  var menu=document.querySelector('nav');
-  function aplicar(maquina){
-    document.body.classList.toggle('modo-maquina',maquina);
-    botao.setAttribute('aria-pressed',String(maquina));
-    menu.hidden=maquina;
-    if(maquina)document.getElementById('maquina').focus();
-  }
-  botao.addEventListener('click',function(){aplicar(!document.body.classList.contains('modo-maquina'))});
-  if(location.hash==='#maquina')aplicar(true);
-
   // WebMCP: expõe ao agente do navegador as mesmas ferramentas do servidor /mcp.
   // Sem suporte no navegador, nada acontece. Tudo só leitura.
   var mc=document.modelContext||navigator.modelContext;

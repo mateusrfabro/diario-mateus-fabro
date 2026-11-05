@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons — Mateus Fabro</title>
+<meta name="description" content="Mistakes I made in real cases, with the date each one was found and fixed, and the rules that stayed. Client names are left out.">
+<link rel="canonical" href="https://mateusfabro.vercel.app/en/licoes/">
+<link rel="alternate" hreflang="pt-BR" href="https://mateusfabro.vercel.app/licoes/">
+<link rel="alternate" hreflang="en" href="https://mateusfabro.vercel.app/en/licoes/">
+<link rel="alternate" hreflang="x-default" href="https://mateusfabro.vercel.app/licoes/">
+<link rel="alternate" type="text/markdown" href="/en/index.md" title="Markdown">
+<link rel="alternate" type="application/json" href="/resume.json" title="JSON Resume">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lessons — Mateus Fabro">
+<meta property="og:description" content="Mistakes I made in real cases, with the date each one was found and fixed, and the rules that stayed. Client names are left out.">
+<meta property="og:url" content="https://mateusfabro.vercel.app/en/licoes/">
+<meta property="og:locale" content="en_US">
+<meta property="profile:first_name" content="Mateus">
+<meta property="profile:last_name" content="Fabro">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lessons — Mateus Fabro">
+<meta name="twitter:description" content="Mistakes I made in real cases, with the date each one was found and fixed, and the rules that stayed. Client names are left out.">
+<meta name="theme-color" content="#0E5A63">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:image" content="https://mateusfabro.vercel.app/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Mateus Fabro — Data &amp; Analytics Engineer">
+<meta name="twitter:image" content="https://mateusfabro.vercel.app/og.png">
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Skip to content</a>
+<header class="topo"><div class="wrap topo-in">
+  <a class="marca" href="/en/">Mateus Fabro</a>
+  <nav aria-label="Sections"><a href="/en/#experiencia">Experience</a><a href="/en/#projetos">Projects</a><a href="/en/#stack">Stack</a><a href="/en/licoes/">Lessons</a><a href="/en/#contato">Contact</a></nav>
+  <a class="idioma" href="/licoes/" hreflang="pt" lang="pt">Português</a>
+</div></header>
+<main id="conteudo">
+<section class="pag-cab"><div class="wrap">
+  <a class="voltar" href="/en/">← Back to home</a>
+  <h1>Lessons</h1>
+  <p class="cargo">Mistakes that became rules</p>
+  <p class="frase">Mistakes I made in real cases, with the date each one was found and fixed, and the rules that stayed. Client names are left out.</p>
+</div></section>
+
+<section class="secao" id="erros"><div class="wrap">
+  <header class="secao-cab"><h2>Corrected mistakes</h2></header>
+  <div class="rets">
+<article class="ret" id="ret-2026-0716">
+  <p class="proto">RET-2026-0716 · <time datetime="2026-07-16">2026-07-16</time></p>
+  <h3>Pingado, printed store-credit statement</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>347 green tests.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>The paper said &quot;Seu tem R$ 29,00 de crédito&quot; (roughly &quot;Mr has … in credit&quot;): the code cut the name at the first space, and at a Brazilian café half the regulars are &quot;Seu&quot; or &quot;Dona&quot; somebody. Only printing the real artifact caught it.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> Render the artifact the user receives</p></div>
+</article>
+<article class="ret" id="ret-2026-0727">
+  <p class="proto">RET-2026-0727 · <time datetime="2026-07-27">2026-07-27</time></p>
+  <h3>Financial reconciliation</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>0 duplicate credits.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>A UNIQUE constraint made the zero mandatory: the control just repeated the schema. The case that could actually happen was not being measured — and it had candidates.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> A control with a forced result is not a control</p></div>
+</article>
+<article class="ret" id="ret-2026-0728">
+  <p class="proto">RET-2026-0728 · <time datetime="2026-07-28">2026-07-28</time></p>
+  <h3>Checker for an automated alert</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>24 green checks: fix validated.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>The checker let 3 of 7 reversions of the bug slip through. Since then, every important test is proven by mutation: I revert the fix in a copy and require the suite to go red.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> Mutation testing: prove the test can fail</p></div>
+</article>
+<article class="ret" id="ret-2026-0819">
+  <p class="proto">RET-2026-0819 · <time datetime="2026-08-19">2026-08-19</time></p>
+  <h3>One exchange with the infrastructure team</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>Six statements, each backed by a query.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>Six wrong statements. No query was wrong: in every one, the sentence claimed more than the predicate measured. The person on the other side was right on the detail every single time.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> The conclusion cannot be wider than the test</p></div>
+</article>
+<article class="ret" id="ret-2026-0821">
+  <p class="proto">RET-2026-0821 · <time datetime="2026-08-21">2026-08-21</time></p>
+  <h3>Avisa Edital, Telegram bot</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>SEO redirect: just domain canonicalization.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>The bot&#x27;s webhook started getting 308 and the bot went silent for 3h30. The API route left the redirect, a test reads the configuration and a sentinel watches for silence.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> A canonicalization redirect swallows webhooks</p></div>
+</article>
+<article class="ret" id="ret-2026-0824">
+  <p class="proto">RET-2026-0824 · <time datetime="2026-08-24">2026-08-24</time></p>
+  <h3>Avisa Edital, the bot&#x27;s reply</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>We don&#x27;t watch your city yet.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>We watched 192; production saw 11. The canonical list lived in a git-ignored folder that only existed on my machine.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> Reference data lives with the code, not in the ignored folder</p></div>
+</article>
+<article class="ret" id="ret-2026-0824-b">
+  <p class="proto">RET-2026-0824-B · <time datetime="2026-08-24">2026-08-24</time></p>
+  <h3>Avisa Edital, 90-day backfill</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>Backfill in 7-day slices, one per night in the cloud, until complete.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>Slices were computed from today, so their edges moved one day per day: 0 of 13 slices in common between two consecutive days. The step timed out without ever saving progress — about 30% of the monthly CI allowance spent on work that could never finish.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> Progress only persists if its key is stable over time</p></div>
+</article>
+<article class="ret" id="ret-2026-0921">
+  <p class="proto">RET-2026-0921 · <time datetime="2026-09-21">2026-09-21</time></p>
+  <h3>Avisa Edital, per-platform alarm</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>If a gazette platform goes down entirely, the dashboard names it.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>The adapter swallowed the failure and returned an empty list: the five cities looked alive, and the alarm would never fire in the one case it was built for. The dashboard also filtered out the platform name. Found in a review of what I myself had shipped four days earlier.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> An exception path only exists if it is exercised on purpose</p></div>
+</article>
+<article class="ret" id="ret-2026-0923">
+  <p class="proto">RET-2026-0923 · <time datetime="2026-09-23">2026-09-23</time></p>
+  <h3>This site, the day before going live</h3>
+  <dl>
+    <div class="onde"><dt>For</dt><dd>847 commits across the four products.</dd></div>
+    <div class="leia"><dt>Read</dt><dd>820 of my commits across five products. The four added up to 827 — the 847 included a fifth — and 27 came from the publishing bot. The test that sums the projects caught the first mistake; the fact-check caught the second.</dd></div>
+  </dl>
+  <div class="regra"><p><b>Rule that stayed:</b> A number outside the code ages on its own</p></div>
+</article></div>
+</div></section>
+
+<section class="secao" id="regras"><div class="wrap">
+  <header class="secao-cab"><h2>Rules that stayed</h2><p class="lead">20 of the 125 recorded lessons. Each came from a real case and has an origin, a reason and a way to apply it.</p></header>
+  <ol class="atos"><li><strong>Verify before concluding</strong><span>Never say &quot;done&quot; without running the check and reading its output. Green applies only to the exact tree tested: editing afterwards voids the run.</span></li><li><strong>Mutation testing: prove the test can fail</strong><span>A green test is worth something only if it could be red. Revert the fix in a copy and require the suite to fail.</span></li><li><strong>A control with a forced result is not a control</strong><span>Before publishing &quot;0 occurrences&quot;, ask whether the number could have been anything other than zero.</span></li><li><strong>The conclusion cannot be wider than the test</strong><span>Right query, right number, false sentence. Put the predicate next to the sentence before publishing.</span></li><li><strong>Missing data is not a statement</strong><span>An empty list caused by missing coverage becomes &quot;there is nothing&quot; and reassures the person who should act. Separate &quot;there is none&quot; from &quot;I don&#x27;t know&quot;.</span></li><li><strong>A queue is not a delivery, and a delivery is not a view</strong><span>Counting the queue table measures what was enqueued, not what happened. As a denominator, it yields a low, plausible number.</span></li><li><strong>Watch the effect, not only the cause</strong><span>A cause monitor only catches the failure someone already imagined. An effect monitor is a single one and indifferent to the cause.</span></li><li><strong>A backup only exists if it restores</strong><span>A backup never restored is not a backup; a volume or a replica isn&#x27;t either. Prove the cycle by destroying real data and bringing it back.</span></li><li><strong>Silent fallback on a critical value</strong><span>Exchange rate, configuration, version and limits never sit behind a try/except with a default. Failing loudly beats publishing a wrong number.</span></li><li><strong>A number outside the code ages on its own</strong><span>Every published number comes out of the code in the same run. Patching a paragraph creates two quantities with the same name.</span></li><li><strong>&quot;New to us&quot; is not &quot;just happened&quot;</strong><span>Widening coverage makes history arrive as news. Notify by the date of the event and mark the old ones.</span></li><li><strong>Render the artifact the user receives</strong><span>A green suite does not prove the screen or the paper. Render the receipt, PDF or email the person actually gets.</span></li><li><strong>Reference data lives with the code</strong><span>A canonical list in a git-ignored folder only exists on the developer&#x27;s machine; CI and production degrade silently.</span></li><li><strong>Never analyze on the database that serves the customer</strong><span>A read query can also take production down. The default is a replica or an analytical database, with an identified session and a timeout.</span></li><li><strong>Don&#x27;t clear a suspect with a non-discriminating signal</strong><span>To claim &quot;not fraud&quot; or &quot;not a regression&quot;, run the detector that would find it. A signal the culprit would also show clears no one.</span></li><li><strong>The PII guard is the leak vector</strong><span>The list that proves &quot;no personal data in the delivery&quot; is itself personal data. Derive the target at runtime; don&#x27;t version it.</span></li><li><strong>Environment identity from configuration, not from data</strong><span>&quot;Is this production?&quot; is answered by reading the deploy configuration, not by the presence of a row that may have been deleted.</span></li><li><strong>Escapes don&#x27;t survive the shell</strong><span>\b and \n written through a heredoc reach the file as control characters. The terminal hides it; the regex never matches.</span></li><li><strong>A subagent judges against a snapshot</strong><span>An agent without live access gets the reasoning right and the fact wrong. In infrastructure that changes weekly, the snapshot ages in days.</span></li><li><strong>Don&#x27;t rely on AI alone</strong><span>Guess before asking for the number. AI speeds things up; the judgment is still mine.</span></li></ol>
+</div></section>
+</main>
+
+<footer class="rodape"><div class="wrap rodape-in">
+  <p class="maq"><b>For machines:</b><a href="/en/index.md">/en/index.md</a><a href="/resume.json">/resume.json</a><a href="/llms.txt">/llms.txt</a><a href="/mcp">/mcp</a></p>
+  <p>Measured on 2026-11-05</p>
+  <p>Generated from a single file (conteudo/dados.en.json): page, Markdown, JSON Resume.</p>
+</div></footer>
+</body>
+</html>

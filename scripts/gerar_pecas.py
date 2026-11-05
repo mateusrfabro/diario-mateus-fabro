@@ -254,10 +254,10 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
         + "\n" + "\n".join(f"• {f}" for f in fatos_sobre),
         fora + (f" Um deles tem {proj['pingado']['fatos'][2]}; outro está {st} — e o site diz isso." if pt else
                 f" One of them has a {proj['pingado']['fatos'][2]}; another is {st} — and the site says so."),
-        ("Engenharia de agentes (trabalho em par com Claude Code; quando erro, publico a retificação):" if pt else
-         "Agent engineering (I work paired with Claude Code; when I get it wrong, I publish the correction):") + "\n" + "\n".join(f"• {t}" for t in _bullets_agentes(cv, lang)),
+        ("Engenharia de agentes (trabalho em par com Claude Code; cada erro corrigido vira lição):" if pt else
+         "Agent engineering (I work paired with Claude Code; every fixed mistake becomes a lesson):") + "\n" + "\n".join(f"• {t}" for t in _bullets_agentes(cv, lang)),
         d["disponibilidade"]["texto"],            # o fim da operação já está no resumo do bloco acima
-        ("Site, números medidos e retificações: " if pt else "Site, measured numbers and corrections: ") + site + "\n"
+        ("Site, números medidos e lições de casos reais: " if pt else "Site, measured numbers and lessons from real cases: ") + site + "\n"
         + ("Currículo: " if pt else "Résumé: ") + f"{site}/curriculo/mateus-fabro-{lang}.pdf\n"
         + ("Contato: " if pt else "Contact: ") + p["email"]])
 
@@ -379,7 +379,7 @@ def github_readme(d: dict, cv: dict) -> str:
     repos = json.loads(REPOS_GH.read_text(encoding="utf-8"))
     L = [f"# {p['nome']} — {p['cargo']}", "", f"**{p['subtitulo']}**", "",
          f"🟢 **{d['disponibilidade']['status'].capitalize()}** — {d['disponibilidade']['texto']}", "",
-         f"- Site (projetos, números medidos e retificações): {s['url']}",
+         f"- Site (projetos, números medidos e lições de casos reais): {s['url']}",
          f"- Currículo: [PT]({s['url']}/curriculo/mateus-fabro-pt.pdf) · [EN]({s['url']}/curriculo/mateus-fabro-en.pdf)",
          f"- LinkedIn: {p['linkedin']}", f"- E-mail: {p['email']}", "",
          "## O que eu faço", ""] + [f"- {par}" for par in (cv["resumo_discreto"] if discreto(d) else cv["resumo"])["pt"]] + ["",

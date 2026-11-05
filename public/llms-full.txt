@@ -4,7 +4,7 @@
 
 Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateusrfabro
 
-Medido em 05/11/2026. Edição nº 125.
+Medido em 05/11/2026.
 
 ## Resumo
 
@@ -172,9 +172,9 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
 
 A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.
 
-## Retificações
+## Lições de casos reais: erros corrigidos
 
-Erros que cometi, no formato de retificação de diário oficial. Cada um virou uma regra.
+Erros que cometi, no formato onde se lê / leia-se. Cada um virou uma regra.
 
 ### RET-2026-0716 — 16/07/2026 — Pingado, extrato impresso do fiado
 
@@ -230,7 +230,7 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 - **Leia-se:** 820 commits meus em cinco produtos. A soma dos quatro dava 827 — os 847 incluíam um quinto — e 27 eram do robô de publicação. O teste que soma os projetos pegou o primeiro erro; a checagem de fatos, o segundo.
 - **Regra que ficou:** Número fora do código envelhece sozinho
 
-## Atos (lições)
+## Regras que ficaram
 
 20 das 125 lições registradas, publicadas aqui.
 
@@ -260,7 +260,7 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 - **Memória em camadas.** Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.
 - **Um gate fecha a promoção.** Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.
 - **Mutação como hábito.** 66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
-- **Agentes com papel, não com autonomia.** 15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
+- **Agentes com papel, não com autonomia.** 25 agentes especializados (10 do squad de dados e 15 gerais: qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
 - **Onde paramos.** Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.
 
 ## Disponibilidade
@@ -279,9 +279,9 @@ Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três op
 
 Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.
 
-**O que são as retificações deste site?**
+**O que são as lições deste site?**
 
-Erros que ele cometeu, com data e número, no formato de retificação de diário oficial: onde se lê, leia-se. Cada um virou uma lição verificável.
+Erros que ele cometeu em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um.
 
 **Ele está disponível?**
 

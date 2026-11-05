@@ -1,8 +1,8 @@
 """Gera public/og.png (1200×630), a imagem que aparece quando o link é colado no LinkedIn.
 
-A imagem traz texto (edição e uma retificação), e texto numa imagem envelhece sem ninguém ver.
-Por isso este script também grava public/og.json com o que foi desenhado, e
-`tests/test_build.py` compara com o conteúdo atual: mudou a edição, o teste pede para rodar
+A imagem traz texto (nome, cargo, a frase da abertura e o endereço), e texto numa imagem envelhece
+sem ninguém ver. Por isso este script também grava public/og.json com o que foi desenhado, e
+`tests/test_build.py` compara com o conteúdo atual: mudou a frase, o teste pede para rodar
 este script de novo.
 
 Uso: python scripts/gerar_og.py   (precisa de Playwright + Edge ou Chromium)
@@ -20,18 +20,11 @@ RAIZ = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(RAIZ))
 import build  # noqa: E402
 
-PROTOCOLO_DA_CAPA = "RET-2026-0923"   # a retificação do próprio site
-
 
 def descritor(d: dict) -> dict:
     """O que a imagem mostra — comparado pelo teste com o conteúdo atual."""
-    r = next(x for x in d["retificacoes"] if x["protocolo"] == PROTOCOLO_DA_CAPA)
-    # O "leia-se" da capa vem da PRÓPRIA retificação, não do número atual de commits: a
-    # retificação de 23/09 falava de 820; o número vivo (que o recontar atualiza) é outro fato.
-    leia_curto = r["leia_se"].split(".")[0] + "."
-    return {"edicao": build.edicao(d), "nome": d["perfil"]["nome"], "cargo": d["perfil"]["cargo"],
-            "protocolo": r["protocolo"], "onde_se_le": r["onde_se_le"],
-            "leia_curto": leia_curto, "regra": r["regra"]}
+    return {"nome": d["perfil"]["nome"], "cargo": d["perfil"]["cargo"],
+            "frase": d["perfil"]["frase_hero"], "site": d["site"]["url"].split("//")[1]}
 
 
 def html_capa(desc: dict) -> str:
@@ -39,32 +32,22 @@ def html_capa(desc: dict) -> str:
     return f"""<!doctype html><html><head><meta charset="utf-8">
 <link rel="stylesheet" href="/estilo.css">
 <style>
-html,body{{margin:0;width:1200px;height:630px;overflow:hidden}}
-body::before{{opacity:.7}}
-.capa{{position:relative;z-index:1;box-sizing:border-box;width:1200px;height:630px;padding:56px 72px;
-  display:grid;grid-template-columns:1.25fr 1fr;gap:48px;align-items:center}}
-.capa .lin{{font-family:"JetBrains Mono";font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}}
-.capa h1{{font-family:"Newsreader";font-weight:600;font-size:104px;line-height:.92;letter-spacing:-.02em;margin:18px 0 22px}}
-.capa h1 em{{font-weight:400;color:var(--accent)}}
-.capa .cargo{{font-size:30px;border-top:2px solid var(--ink);padding-top:14px}}
-.capa .ret{{transform:rotate(1.2deg);padding:28px 26px 24px;font-size:24px}}
-.capa .ret .onde,.capa .ret .leia{{grid-template-columns:8.2rem 1fr}}
-.capa .carimbo{{font-size:15px;top:18px;right:20px}}
-.capa .leia span{{font-size:26px}}
+html,body{{margin:0;width:1200px;height:630px;overflow:hidden;background:#FFFFFF}}
+.capa{{box-sizing:border-box;width:1200px;height:630px;padding:72px 88px 64px;display:flex;flex-direction:column;
+  border-top:12px solid var(--accent)}}
+.capa .signo{{width:22px;height:22px;border-radius:5px;background:var(--accent);margin:0}}
+.capa h1{{font-size:96px;line-height:1;letter-spacing:-.04em;font-weight:750;margin:36px 0 0}}
+.capa .cargo{{font-size:38px;margin-top:18px;font-weight:600}}
+.capa .frase{{font-size:28px;line-height:1.45;max-width:880px;margin-top:28px}}
+.capa .site{{margin-top:auto;font-family:var(--mono);font-size:22px;color:var(--accent);display:flex;align-items:center;gap:16px}}
+.capa .site::before{{content:"";width:56px;height:4px;border-radius:2px;background:var(--accent)}}
 </style></head><body>
 <div class="capa">
-  <div>
-    <div class="lin">Edição nº {e(desc['edicao'])} · uma por lição registrada</div>
-    <h1>Diário de<br><em>{e(desc['nome'])}</em></h1>
-    <div class="cargo">{e(desc['cargo'])} · dados e produtos, com as minhas retificações</div>
-  </div>
-  <article class="ret">
-    <span class="carimbo">RETIFICAÇÃO</span>
-    <div class="topo"><span class="protocolo">{e(desc['protocolo'])}</span></div>
-    <p class="onde"><b>Onde se lê</b><span>{e(desc['onde_se_le'])}</span></p>
-    <p class="leia"><b>Leia-se</b><span>{e(desc['leia_curto'])}</span></p>
-    <p class="regra"><i>Regra que ficou:</i> {e(desc['regra'])}</p>
-  </article>
+  <p class="signo"></p>
+  <h1>{e(desc['nome'])}</h1>
+  <p class="cargo">{e(desc['cargo'])}</p>
+  <p class="frase">{e(desc['frase'])}</p>
+  <p class="site">{e(desc['site'])}</p>
 </div></body></html>"""
 
 
