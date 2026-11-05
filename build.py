@@ -215,7 +215,7 @@ def llms_txt(d: dict) -> str:
          f"- [Página completa em Markdown]({s['url']}/index.md): perfil, projetos, retificações, lições e contato",
          f"- [Full page in English]({s['url']}/en/index.md): the same content, translated",
          f"- [Currículo em JSON Resume]({s['url']}/resume.json): formato estruturado",
-         f"- [Currículo em PDF]({s['url']}/curriculo/mateus-fabro-pt.pdf): para imprimir (English: {s['url']}/curriculo/mateus-fabro-en.pdf)",
+         f"- [Currículo em PDF]({s['url']}/curriculo/{T['pt']['cv_arquivo']}): para imprimir (English: {s['url']}/curriculo/{T['en']['cv_arquivo']})",
          f"- [Servidor MCP]({s['url']}/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade",
          "", "## Projetos"]
     L += [f"- [{pr['nome']}]({s['url']}/projetos/{pr['slug']}.md): {pr['linha']}" for pr in d["projetos"]]
@@ -794,15 +794,13 @@ def main() -> int:
     if "--check" in sys.argv:
         velhos = [n for n, c in arquivos.items()
                   if not (SAIDA / n).exists() or (SAIDA / n).read_text(encoding="utf-8") != c]
-        dica = "python build.py"
-        try:  # gerar_pecas nasce na Task 5; remover o try la
-            sys.path.insert(0, str(RAIZ / "scripts"))
-            import gerar_pecas
-            velhos += gerar_pecas.curriculo_desatualizado()
-            if velhos and all(v.startswith("curriculo/") for v in velhos):
-                dica = "python scripts/gerar_pecas.py curriculo"
-        except ImportError:
-            pass
+        sys.path.insert(0, str(RAIZ / "scripts"))
+        import gerar_pecas
+        velhos += gerar_pecas.curriculo_desatualizado()
+        do_cv = any(v.startswith("curriculo/") for v in velhos)
+        do_site = any(not v.startswith("curriculo/") for v in velhos)
+        comandos = (["python build.py"] if do_site else []) + (["python scripts/gerar_pecas.py curriculo"] if do_cv else [])
+        dica = "` e `".join(comandos)
         if velhos:
             print(f"public/ desatualizado — rode `{dica}`:", ", ".join(velhos))
             return 1
