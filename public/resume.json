@@ -5,7 +5,7 @@
     "label": "Engenheiro de Dados & Analytics",
     "email": "mateusrfabro@hotmail.com",
     "url": "https://mateusfabro.vercel.app",
-    "summary": "Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis. Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA. Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.",
+    "summary": "Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas, num squad de quatro pessoas: pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis. Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA. Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.",
     "location": {
       "city": "Londrina",
       "region": "PR",
@@ -26,9 +26,9 @@
   "work": [
     {
       "name": "Super Nova Gaming / MultiBet (Grupo PGX)",
-      "position": "Analista de Dados — frente de dados de 2 operações",
+      "position": "Analista de Dados",
       "startDate": "2025-10",
-      "summary": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Lidero a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis.",
+      "summary": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Entregas principais na Play4Tune e na Play4 Colômbia: analytics multi-tenant, serviço de risco, custo de mídia no tracker de atribuição e painéis; na MultiBet, pipelines e a camada de consumo da migração do data lake.",
       "highlights": [
         "1.408 commits meus entre 12/03 e 04/11/2026",
         "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores",
@@ -83,7 +83,8 @@
       "highlights": [
         "486 commits meus entre 06/07 e 05/11/2026",
         "2.133 funções de teste",
-        "cliente real com duas lojas em produção"
+        "cliente real com duas lojas em produção",
+        "NFC-e implementada (Focus NFe); emissão aguarda o credenciamento fiscal da cliente"
       ],
       "keywords": [
         "Flask",

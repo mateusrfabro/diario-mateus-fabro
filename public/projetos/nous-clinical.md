@@ -3,7 +3,7 @@
 Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
 
 - **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
-- **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
+- **Meu papel:** Desenvolvi de ponta a ponta.
 - **Status:** Última versão do produto em 06/10/2026; depois só manutenção do repositório
 - **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2)
 - **Fatos:**

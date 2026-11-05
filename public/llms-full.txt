@@ -8,7 +8,7 @@ Medido em 05/11/2026.
 
 ## Resumo
 
-Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
+Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas, num squad de quatro pessoas: pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
 
 Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.
 
@@ -46,14 +46,15 @@ Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acerv
 
 Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
 
-- **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.
+- **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026, com duas lojas.
 - **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.
-- **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
+- **Status:** Em produção desde setembro de 2026; cliente com mensalidade contratada
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Fatos:**
   - 486 commits meus entre 06/07 e 05/11/2026
   - 2.133 funções de teste
   - cliente real com duas lojas em produção
+  - NFC-e implementada (Focus NFe); emissão aguarda o credenciamento fiscal da cliente
 
 Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o "Seu tem R$ 29,00" (ver retificações).
 
@@ -62,7 +63,7 @@ Balcão não é escritório: login por PIN em vez de senha, venda em poucos toqu
 Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
 
 - **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
-- **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
+- **Meu papel:** Desenvolvi de ponta a ponta.
 - **Status:** Última versão do produto em 06/10/2026; depois só manutenção do repositório
 - **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2)
 - **Fatos:**
@@ -96,7 +97,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 
 - **Para quem:** Quem posta carrossel e perde meia hora escolhendo foto.
 - **Meu papel:** No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.
-- **Status:** No ar; vendas perto de zero
+- **Status:** No ar; faturamento baixo
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Endereço:** https://dumpai-omega.vercel.app
 - **Fatos:**
@@ -104,7 +105,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
   - no ar desde 11/06/2026
   - compressão da imagem no navegador antes do envio
 
-O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição.
+O produto foi ao ar em dois dias e o faturamento ficou baixo. A lição foi de negócio, não de engenharia: o gargalo era distribuição.
 
 ### Secretária de WhatsApp
 
@@ -159,7 +160,7 @@ A primeira versão de um deles trazia foto e credenciais de um autor que não ex
 
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
-- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
+- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming.
 - **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
 - **Status:** Trabalho atual
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
@@ -318,14 +319,15 @@ Coletar não é publicar. Quando a cobertura cresce, o histórico entra no acerv
 
 Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
 
-- **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.
+- **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026, com duas lojas.
 - **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.
-- **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
+- **Status:** Em produção desde setembro de 2026; cliente com mensalidade contratada
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Fatos:**
   - 486 commits meus entre 06/07 e 05/11/2026
   - 2.133 funções de teste
   - cliente real com duas lojas em produção
+  - NFC-e implementada (Focus NFe); emissão aguarda o credenciamento fiscal da cliente
 
 Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o "Seu tem R$ 29,00" (ver retificações).
 
@@ -334,7 +336,7 @@ Balcão não é escritório: login por PIN em vez de senha, venda em poucos toqu
 Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
 
 - **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
-- **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
+- **Meu papel:** Desenvolvi de ponta a ponta.
 - **Status:** Última versão do produto em 06/10/2026; depois só manutenção do repositório
 - **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2)
 - **Fatos:**
@@ -368,7 +370,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 
 - **Para quem:** Quem posta carrossel e perde meia hora escolhendo foto.
 - **Meu papel:** No ar no dia seguinte ao primeiro commit; pagamento, limite de uso e auditoria de segurança em 12 dias.
-- **Status:** No ar; vendas perto de zero
+- **Status:** No ar; faturamento baixo
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Endereço:** https://dumpai-omega.vercel.app
 - **Fatos:**
@@ -376,7 +378,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
   - no ar desde 11/06/2026
   - compressão da imagem no navegador antes do envio
 
-O produto foi ao ar em dois dias e as vendas não vieram. A lição foi de negócio, não de engenharia: o gargalo era distribuição.
+O produto foi ao ar em dois dias e o faturamento ficou baixo. A lição foi de negócio, não de engenharia: o gargalo era distribuição.
 
 # Secretária de WhatsApp
 
@@ -431,7 +433,7 @@ A primeira versão de um deles trazia foto e credenciais de um autor que não ex
 
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
-- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
+- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming.
 - **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
 - **Status:** Trabalho atual
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp

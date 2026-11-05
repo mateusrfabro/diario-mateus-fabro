@@ -12,7 +12,7 @@
 ## O que eu faço
 
 - Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.
-- Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas; lidero a frente de dados de duas delas.
+- Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas.
 - Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.
 
 ## Projetos
@@ -20,10 +20,10 @@
 | Projeto | O que é | Status | Código |
 |---|---|---|---|
 | **Avisa Edital** | Alertas de convocação, nomeação e edital de concurso para médicos no Paraná e em São Paulo, no WhatsApp ou no Telegram, filtrados por especialidade e região. | No ar desde agosto de 2026; operação diária desde outubro | `avisa-edital` (privado) |
-| **Pingado** | Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês. | Em produção desde setembro de 2026, evoluindo com a cliente | `cafesaas` (privado) |
+| **Pingado** | Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês. | Em produção desde setembro de 2026; cliente com mensalidade contratada | `cafesaas` (privado) |
 | **Nous Clinical** | Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes. | Última versão do produto em 06/10/2026; depois só manutenção do repositório | [nous-clinical](https://github.com/mateusrfabro/nous-clinical) |
 | **Aggron** | Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote. | MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório) | [poolcompras](https://github.com/mateusrfabro/poolcompras) |
-| **DumpAI** | A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram. | No ar; vendas perto de zero | [dumpai](https://github.com/mateusrfabro/dumpai) |
+| **DumpAI** | A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram. | No ar; faturamento baixo | [dumpai](https://github.com/mateusrfabro/dumpai) |
 | **Secretária de WhatsApp** | Recepcionista de WhatsApp com agenda real para profissionais autônomos. | Piloto parado (autorização do Google) | `secretaria-ia` (privado) |
 | **SaaS de crédito (sob NDA)** | Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA. | Piloto no ar desde outubro de 2026 | `credito-saas` (privado) |
 | **Portais de conteúdo com dados oficiais** | Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais. | No ar desde outubro de 2026; monetização em avaliação | `guiadocredito`, `radardoinvestidor`, `central-do-trabalhador`, `usmoneybrasil`, `mydollarpilot` (privados) |

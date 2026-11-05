@@ -20,7 +20,7 @@
     "tese": "I build systems that read public sources and production databases and turn them into alerts people can trust. When I get something wrong, I publish the correction — and the mistake becomes a written rule and, whenever possible, a test that enforces it.",
     "frase_hero": "I build the pipeline and the product around it: from production databases to the alert, dashboard or SaaS the team uses — Python · SQL · TypeScript · AI agents.",
     "resumo": [
-      "I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three operations, three countries and three currencies. I was the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
+      "I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three operations, three countries and three currencies, in a four-person squad — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
       "Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.",
       "I work paired with AI agents (Claude Code) and with a memory system of my own: every fixed mistake that applies to another project becomes a lesson with an origin, a reason and a way to apply it — and a script proves the index forgot none."
     ],
@@ -46,7 +46,7 @@
       "Spanish (basic)"
     ],
     "resumo_discreto": [
-      "I have worked with data in iGaming since October 2025 — three operations, three countries and three currencies. I am the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
+      "I have worked with data in iGaming since October 2025 — three operations, three countries and three currencies, in a four-person squad: pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
       "Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.",
       "I work paired with AI agents (Claude Code) and with a memory system of my own: every fixed mistake that applies to another project becomes a lesson with an origin, a reason and a way to apply it — and a script proves the index forgot none."
     ]
@@ -69,12 +69,12 @@
     {
       "id": "super-nova",
       "empresa": "Super Nova Gaming / MultiBet (PGX Group)",
-      "cargo": "Data Analyst — data lead for 2 operations",
+      "cargo": "Data Analyst",
       "inicio": "2025-10",
       "fim": "2026-11",
       "local": "remote",
-      "resumo": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). I was the data lead for the two newest: pipelines, data lake migration, anti-fraud, attribution tracker and dashboards. Left when the operation shut down in November 2026.",
-      "resumo_discreto": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). I am the data lead for the two newest: pipelines, data lake migration, anti-fraud, attribution tracker and dashboards."
+      "resumo": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). Main deliveries at Play4Tune and Play4 Colômbia: multi-tenant analytics, risk service, media cost in the attribution tracker and dashboards; at MultiBet, pipelines and the consumer layer of the data lake migration. Left when the operation shut down in November 2026.",
+      "resumo_discreto": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). Main deliveries at Play4Tune and Play4 Colômbia: multi-tenant analytics, risk service, media cost in the attribution tracker and dashboards; at MultiBet, pipelines and the consumer layer of the data lake migration."
     },
     {
       "id": "costa-oeste",
@@ -159,7 +159,7 @@
       "nome": "Pingado",
       "tipo": "produto",
       "linha": "Café management: counter sales in three taps, tabs, store credit, stock and the month's results.",
-      "para_quem": "Small cafés. The first customer has been in production since September 2026.",
+      "para_quem": "Small cafés. The first customer has been in production since September 2026, with two stores.",
       "papel": "Developer and product owner: meetings with the customer and each version delivered within a day of the meeting, from v0.2 on.",
       "stack": [
         "Flask",
@@ -172,9 +172,10 @@
       "fatos": [
         "486 of my commits between 07/06 and 11/05/2026",
         "2,133 test functions",
-        "real customer with two stores in production"
+        "real customer with two stores in production",
+        "NFC-e invoicing implemented (Focus NFe); issuing awaits the customer's tax enrollment"
       ],
-      "status": "In production since September 2026, evolving with the customer",
+      "status": "In production since September 2026; paying customer under a monthly plan",
       "url": "",
       "historia": "A counter is not an office: PIN login instead of a password, a sale in a few taps and buttons sized for a finger. The printed store-credit statement is product too — printing the real paper is what surfaced \"Seu tem R$ 29,00\" (see corrections)."
     },
@@ -184,7 +185,7 @@
       "tipo": "produto",
       "linha": "Clinic management: scheduling, medical records, exams, finance and patient follow-ups.",
       "para_quem": "Health clinics, with full data separation between clinics.",
-      "papel": "I led development end to end.",
+      "papel": "Developed end to end.",
       "stack": [
         "Flask",
         "PostgreSQL (Neon)",
@@ -252,9 +253,9 @@
         "live since 06/11/2026",
         "images compressed in the browser before upload"
       ],
-      "status": "Live; sales close to zero",
+      "status": "Live; low revenue",
       "url": "https://dumpai-omega.vercel.app",
-      "historia": "The product went live in two days and sales did not come. The lesson was about business, not engineering: the bottleneck was distribution."
+      "historia": "The product went live in two days and revenue stayed low. The lesson was about business, not engineering: the bottleneck was distribution."
     },
     {
       "slug": "atendimento-whatsapp",
@@ -335,7 +336,7 @@
       "nome": "Super Nova Gaming / MultiBet (PGX Group)",
       "tipo": "trabalho",
       "linha": "Pipelines, data lake migration, anti-fraud, media attribution and dashboards for three operations in three countries.",
-      "para_quem": "Four-person data squad serving three iGaming operations; I was the data lead for two of them.",
+      "para_quem": "Four-person data squad serving three iGaming operations.",
       "papel": "Data analyst from Oct 2025 to Nov 2026, with end-to-end engineering work.",
       "stack": [
         "Python",

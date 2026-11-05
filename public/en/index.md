@@ -8,7 +8,7 @@ Measured on 2026-11-05.
 
 ## Summary
 
-I have worked with data in iGaming since October 2025 — three operations, three countries and three currencies. I am the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.
+I have worked with data in iGaming since October 2025 — three operations, three countries and three currencies, in a four-person squad: pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.
 
 Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.
 
@@ -46,14 +46,15 @@ Collecting is not publishing. When coverage grows, history enters the archive lo
 
 Café management: counter sales in three taps, tabs, store credit, stock and the month's results.
 
-- **For whom:** Small cafés. The first customer has been in production since September 2026.
+- **For whom:** Small cafés. The first customer has been in production since September 2026, with two stores.
 - **My role:** Developer and product owner: meetings with the customer and each version delivered within a day of the meeting, from v0.2 on.
-- **Status:** In production since September 2026, evolving with the customer
+- **Status:** In production since September 2026; paying customer under a monthly plan
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Facts:**
   - 486 of my commits between 07/06 and 11/05/2026
   - 2,133 test functions
   - real customer with two stores in production
+  - NFC-e invoicing implemented (Focus NFe); issuing awaits the customer's tax enrollment
 
 A counter is not an office: PIN login instead of a password, a sale in a few taps and buttons sized for a finger. The printed store-credit statement is product too — printing the real paper is what surfaced "Seu tem R$ 29,00" (see corrections).
 
@@ -62,7 +63,7 @@ A counter is not an office: PIN login instead of a password, a sale in a few tap
 Clinic management: scheduling, medical records, exams, finance and patient follow-ups.
 
 - **For whom:** Health clinics, with full data separation between clinics.
-- **My role:** I led development end to end.
+- **My role:** Developed end to end.
 - **Status:** Last product version on 10/06/2026; repository maintenance only since
 - **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e (service invoices), Anthropic API (chatbot), encrypted backup (age → R2)
 - **Facts:**
@@ -96,7 +97,7 @@ AI picks the best 10 of 30 photos for an Instagram photo dump.
 
 - **For whom:** People who post carousels and lose half an hour choosing photos.
 - **My role:** Live the day after the first commit; payments, rate limiting and a security audit within 12 days.
-- **Status:** Live; sales close to zero
+- **Status:** Live; low revenue
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Address:** https://dumpai-omega.vercel.app
 - **Facts:**
@@ -104,7 +105,7 @@ AI picks the best 10 of 30 photos for an Instagram photo dump.
   - live since 06/11/2026
   - images compressed in the browser before upload
 
-The product went live in two days and sales did not come. The lesson was about business, not engineering: the bottleneck was distribution.
+The product went live in two days and revenue stayed low. The lesson was about business, not engineering: the bottleneck was distribution.
 
 ### WhatsApp Receptionist
 
@@ -159,7 +160,7 @@ The first version of one of them carried the photo and credentials of an author 
 
 Pipelines, data lake migration, anti-fraud, media attribution and dashboards for three operations in three countries.
 
-- **For whom:** Four-person data squad serving three iGaming operations; I was the data lead for two of them.
+- **For whom:** Four-person data squad serving three iGaming operations.
 - **My role:** Data analyst since Oct 2025, with end-to-end engineering work.
 - **Status:** Current job
 - **Stack:** Python, SQL (PostgreSQL and distributed engines), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp

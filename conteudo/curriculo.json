@@ -18,7 +18,7 @@
           "bloco": "Engenharia de dados e plataforma",
           "itens": [
             {
-              "texto": "Liderei a camada de consumo da migração do data lake (Athena legado → S3 Tables/Iceberg, 234 tabelas, 3,07 bi de registros): camada de conexão bi-ambiente com fonte única e rollback por uma variável de ambiente, sem quebrar os pipelines consumidores.",
+              "texto": "Fiz a camada de consumo da migração do data lake (Athena legado → S3 Tables/Iceberg, 234 tabelas, 3,07 bi de registros): camada de conexão bi-ambiente com fonte única e rollback por uma variável de ambiente, sem quebrar os pipelines consumidores.",
               "fonte": "MultiBet/docs/_migration/inventario_799_2026-07-23.md (234 tabelas, 3.070.941.718 registros)"
             },
             {
@@ -96,7 +96,7 @@
           "bloco": "Data engineering and platform",
           "itens": [
             {
-              "texto": "Led the consumer layer of the data lake migration (legacy Athena → S3 Tables/Iceberg, 234 tables, 3.07 bn records): a dual-environment connection layer with a single source and one-variable rollback, without breaking the consumer pipelines.",
+              "texto": "Built the consumer layer of the data lake migration (legacy Athena → S3 Tables/Iceberg, 234 tables, 3.07 bn records): a dual-environment connection layer with a single source and one-variable rollback, without breaking the consumer pipelines.",
               "fonte": "MultiBet/docs/_migration/inventario_799_2026-07-23.md (234 tabelas, 3.070.941.718 registros)"
             },
             {
@@ -294,12 +294,12 @@
   "resumo_discreto": {
     "pt": [
       "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
-      "Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas; lidero a frente de dados de duas delas.",
+      "Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas.",
       "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
     ],
     "en": [
       "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
-      "Since Oct 2025 at Super Nova Gaming / MultiBet, in a four-person data squad serving three iGaming operations in three countries and three currencies; I am the data lead for two of them.",
+      "Since Oct 2025 at Super Nova Gaming / MultiBet, in a four-person data squad serving three iGaming operations in three countries and three currencies.",
       "Outside work, I built and run my own products, one of them with a real customer in production, covered by tests and with an honest status — including the ones that stopped."
     ]
   }

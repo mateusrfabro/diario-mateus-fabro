@@ -2,7 +2,7 @@
 
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
-- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
+- **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming.
 - **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
 - **Status:** Trabalho atual
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp

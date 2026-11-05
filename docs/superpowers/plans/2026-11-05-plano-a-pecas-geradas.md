@@ -425,7 +425,7 @@ Expected: 3 failed (`KeyError: 'experiencia'`, `KeyError: 'endDate'`, `Assertion
 "cargo": "Engenheiro de Dados & Analytics",
 "subtitulo": "Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript",
 "resumo": [
-  "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três casas, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
+  "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três casas, três países e três moedas. membro do squad de quatro pessoas.",
   "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações de saúde (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.",
   "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."
 ],
@@ -438,8 +438,8 @@ Expected: 3 failed (`KeyError: 'experiencia'`, `KeyError: 'endDate'`, `Assertion
 Inserir a chave `experiencia` logo depois de `perfil` (antes de `numeros`):
 ```json
 "experiencia": [
-  {"id": "super-nova", "empresa": "Super Nova Gaming / MultiBet (Grupo PGX)", "cargo": "Analista de Dados — frente de dados de 2 operações", "inicio": "2025-10", "fim": "2026-11", "local": "remoto",
-   "resumo": "Squad de dados de 4 pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026."},
+  {"id": "super-nova", "empresa": "Super Nova Gaming / MultiBet (Grupo PGX)", "cargo": "Analista de Dados", "inicio": "2025-10", "fim": "2026-11", "local": "remoto",
+   "resumo": "Squad de dados de 4 pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). membro do squad de quatro pessoas. Saída pelo encerramento da operação em novembro de 2026."},
   {"id": "costa-oeste", "empresa": "Costa Oeste / Terceirize", "cargo": "Analista Administrativo", "inicio": "2025-07", "fim": "2025-09", "local": "Londrina, PR",
    "resumo": "KPIs operacionais e dashboards em Power BI; rotinas de governança de dados administrativos."},
   {"id": "adama", "empresa": "ADAMA", "cargo": "Assistente de Crédito e Cobrança", "inicio": "2020-10", "fim": "2024-09", "local": "Londrina, PR", "nota": "estágio em 2019–2020",
@@ -481,7 +481,7 @@ Projeto `atendimento-whatsapp` — acrescentar como **primeiro** fato: `"8 commi
 Projeto `igaming-dados` — trocar `nome`, `para_quem`, `papel`, `fatos`, `status`, `historia`:
 ```json
 "nome": "Super Nova Gaming / MultiBet (Grupo PGX)",
-"para_quem": "Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.",
+"para_quem": "Squad de dados de 4 pessoas atendendo três operações de iGaming; membro do squad de quatro pessoas.",
 "papel": "Analista de dados de out/2025 a nov/2026, com trabalho de engenharia de ponta a ponta.",
 "fatos": [
   "855 commits meus entre 04/06 e 23/10/2026",
@@ -553,7 +553,7 @@ Inserir **antes** de `igaming-dados` (depois de `atendimento-whatsapp`) os dois 
 "cargo": "Data & Analytics Engineer",
 "subtitulo": "I build the pipeline and the product around it — Python · SQL · TypeScript",
 "resumo": [
-  "I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three brands, three countries and three currencies. I led the data front for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
+  "I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three brands, three countries and three currencies. member of the four-person squad.",
   "Outside work, I built my own products and run the ones that are live: an alert service for public-health job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.",
   "I work paired with AI agents (Claude Code) and with a memory system of my own: every fixed mistake that applies to another project becomes a lesson with an origin, a reason and a way to apply it — and a script proves the index forgot none."
 ],
@@ -566,8 +566,8 @@ Inserir **antes** de `igaming-dados` (depois de `atendimento-whatsapp`) os dois 
 `experiencia` (mesmos `id`, `inicio`, `fim`):
 ```json
 "experiencia": [
-  {"id": "super-nova", "empresa": "Super Nova Gaming / MultiBet (PGX Group)", "cargo": "Data Analyst — data lead for 2 operations", "inicio": "2025-10", "fim": "2026-11", "local": "remote",
-   "resumo": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). I led the data front for the two newest: pipelines, data lake migration, anti-fraud, attribution tracker and dashboards. Left when the operation shut down in November 2026."},
+  {"id": "super-nova", "empresa": "Super Nova Gaming / MultiBet (PGX Group)", "cargo": "Data Analyst", "inicio": "2025-10", "fim": "2026-11", "local": "remote",
+   "resumo": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). member of the four-person squad. Left when the operation shut down in November 2026."},
   {"id": "costa-oeste", "empresa": "Costa Oeste / Terceirize", "cargo": "Administrative Analyst", "inicio": "2025-07", "fim": "2025-09", "local": "Londrina, Brazil",
    "resumo": "Operational KPIs and Power BI dashboards; administrative data governance routines."},
   {"id": "adama", "empresa": "ADAMA", "cargo": "Credit & Collections Assistant", "inicio": "2020-10", "fim": "2024-09", "local": "Londrina, Brazil", "nota": "internship in 2019–2020",
@@ -605,7 +605,7 @@ Novos (antes de `igaming-dados`):
  "status": "Live since October 2026; monetization under evaluation", "url": "https://guiadocredito.com.br",
  "historia": "The first version of one of them carried the photo and credentials of an author who did not exist, generated by AI. They came out before publication: text signed by a person, or unsigned."},
 ```
-`igaming-dados` EN: `nome` `"Super Nova Gaming / MultiBet (PGX Group)"`, `para_quem` `"Four-person data squad serving three iGaming operations; I led the data front for two of them."`, `papel` `"Data analyst from Oct 2025 to Nov 2026, with end-to-end engineering work."`, `fatos` = `["855 of my commits between 06/04 and 10/23/2026"] + os 5 fatos EN atuais`, `status` `"Ended in Nov 2026 (operation shut down)"`, `historia` `"Most of this gazette's corrections were born here. The numbers are real; client names are left out."`
+`igaming-dados` EN: `nome` `"Super Nova Gaming / MultiBet (PGX Group)"`, `para_quem` `"Four-person data squad serving three iGaming operations; member of the four-person squad."`, `papel` `"Data analyst from Oct 2025 to Nov 2026, with end-to-end engineering work."`, `fatos` = `["855 of my commits between 06/04 and 10/23/2026"] + os 5 fatos EN atuais`, `status` `"Ended in Nov 2026 (operation shut down)"`, `historia` `"Most of this gazette's corrections were born here. The numbers are real; client names are left out."`
 `disponibilidade`: `{"status": "looking for a role", "texto": "Looking for a data engineering, analytics engineering or product development role — contractor or employee, remote. Also open to fixed-scope projects. Email is the fastest way.", "canal": "mateusrfabro@hotmail.com"}`
 `faq[0]`: `"A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI and five content portals."`; `faq[3]`: `"Yes: looking for a role, contractor or employee, remote. Contact by email: mateusrfabro@hotmail.com."`
 
@@ -775,7 +775,7 @@ def test_curriculo_json_bullet_com_numero_tem_fonte():
   "resumo": {
     "pt": [
       "Engenheiro de dados e analytics: projeto, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
-      "De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas e liderei a frente de dados de duas delas, até o encerramento da operação.",
+      "De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas e membro do squad de quatro pessoas.",
       "Fora do expediente, construí e opero produtos próprios com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.",
       "Uso agentes de IA (Claude Code) como multiplicador, com memória em camadas e gates de qualidade próprios; cada erro corrigido vira regra escrita e, quando dá, um teste."
     ],
@@ -790,7 +790,7 @@ def test_curriculo_json_bullet_com_numero_tem_fonte():
     "super-nova": {
       "pt": [
         {"bloco": "Engenharia de dados e plataforma", "itens": [
-          {"texto": "Liderei a ponta de dados da migração do data lake (Athena legado → S3 Tables/Iceberg, 234 tabelas, 3,07 bi de registros): camada de conexão bi-ambiente com fonte única e rollback por uma variável de ambiente, sem quebrar os ~71 pipelines consumidores.", "fonte": "inventário do catálogo Iceberg ($snapshots) e lista de pipelines do repositório MultiBet (clone local), ago/2026"},
+          {"texto": "Fiz a camada de consumo da migração do data lake (Athena legado → S3 Tables/Iceberg, 234 tabelas, 3,07 bi de registros): camada de conexão bi-ambiente com fonte única e rollback por uma variável de ambiente, sem quebrar os ~71 pipelines consumidores.", "fonte": "inventário do catálogo Iceberg ($snapshots) e lista de pipelines do repositório MultiBet (clone local), ago/2026"},
           {"texto": "Retrofit multi-tenant do analytics (duas operações nas mesmas tabelas): registry tipado de tenants, escopo obrigatório no runner de queries e linter fail-closed com allowlist-ratchet (43 → 3 exceções) e hook no editor — nascido de um incidente real de escopo de moeda.", "fonte": "repositório play4tune, scripts/lint_tenant_scope e histórico da allowlist"},
           {"texto": "Camada gold de torneios juntando três fontes (PostgreSQL, MongoDB Atlas, postgres_fdw) num contrato só, fail-closed: fonte fora do ar vira estado UNREACHABLE, nunca zero falso.", "fonte": ""},
           {"texto": "Padrão de deploy git-first em EC2 via AWS SSM com smoke test remoto e timers systemd; otimizei a consulta crítica de 240 s (timeout) para 21 s, com equivalência provada por conjunto.", "fonte": "medição antes/depois registrada no repositório play4tune, set/2026"}
@@ -812,7 +812,7 @@ def test_curriculo_json_bullet_com_numero_tem_fonte():
       ],
       "en": [
         {"bloco": "Data engineering and platform", "itens": [
-          {"texto": "Led the data side of the data lake migration (legacy Athena → S3 Tables/Iceberg, 234 tables, 3.07 bn records): a dual-environment connection layer with a single source and one-variable rollback, without breaking the ~71 consumer pipelines.", "fonte": "Iceberg catalog inventory ($snapshots) and pipeline list in the MultiBet repository (local clone), Aug 2026"},
+          {"texto": "Built the consumer layer of the data lake migration (legacy Athena → S3 Tables/Iceberg, 234 tables, 3.07 bn records): a dual-environment connection layer with a single source and one-variable rollback, without breaking the ~71 consumer pipelines.", "fonte": "Iceberg catalog inventory ($snapshots) and pipeline list in the MultiBet repository (local clone), Aug 2026"},
           {"texto": "Multi-tenant retrofit of the analytics (two operations on the same tables): typed tenant registry, mandatory scope in the query runner and a fail-closed linter with an allowlist ratchet (43 → 3 exceptions) plus an editor hook — born from a real currency-scope incident.", "fonte": "play4tune repository, scripts/lint_tenant_scope and the allowlist history"},
           {"texto": "Gold layer for tournaments joining three sources (PostgreSQL, MongoDB Atlas, postgres_fdw) under one contract, fail-closed: a source that is down becomes UNREACHABLE, never a false zero.", "fonte": ""},
           {"texto": "Git-first EC2 deployment pattern via AWS SSM with remote smoke tests and systemd timers; optimized the critical query from 240 s (timeout) to 21 s, with set-based equivalence proof.", "fonte": "before/after measurement recorded in the play4tune repository, Sep 2026"}
