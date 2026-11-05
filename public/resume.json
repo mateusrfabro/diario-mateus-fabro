@@ -32,7 +32,7 @@
       "summary": "Squad de dados de 4 pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026.",
       "highlights": [
         "1408 commits meus entre 12/03 e 04/11/2026",
-        "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores",
+        "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores",
         "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago",
         "serviço diário de risco e score de crédito de jogador",
         "linter multi-tenant que falha fechado: lista de exceções de 43 para 3",

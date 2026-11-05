@@ -20,7 +20,7 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 - **1,722** of my commits across 8 own products, in 2026 (source: git log of the product repositories, my commits only, excluding automated bot commits)
 - **6,357** test functions in the 4 Python products (source: count of def test_ under tests/ in the products with a pytest suite)
 - **3** iGaming operations, in 3 countries and 3 currencies (source: Super Nova Gaming, Oct 2025 – Nov 2026)
-- **3.07 bn** records in the new data lake, which I inventoried while leading the consumer-layer migration (source: 234 tables, ~71 consumer pipelines)
+- **3.07 bn** records in the new data lake, which I inventoried while leading the consumer-layer migration (source: Iceberg catalog inventory of 07/23/2026: 234 tables)
 
 ## Projects
 
@@ -161,7 +161,7 @@ Pipelines, data lake migration, anti-fraud, media attribution and dashboards for
 - **Stack:** Python, SQL (PostgreSQL and distributed engines), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Facts:**
   - 1408 of my commits between 03/12 and 11/04/2026
-  - data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of ~71 consumer pipelines
+  - data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of the consumer pipelines
   - media cost (Meta, Google Ads, TikTok) in a multi-tenant attribution tracker, replacing a paid vendor
   - daily risk service and a player credit score
   - fail-closed multi-tenant linter: exception list cut from 43 to 3

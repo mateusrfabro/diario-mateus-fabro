@@ -98,7 +98,7 @@
     {
       "valor": "3.07 bn",
       "rotulo": "records in the new data lake, which I inventoried while leading the consumer-layer migration",
-      "fonte": "234 tables, ~71 consumer pipelines"
+      "fonte": "Iceberg catalog inventory of 07/23/2026: 234 tables"
     }
   ],
   "projetos": [
@@ -318,7 +318,7 @@
       ],
       "fatos": [
         "1408 of my commits between 03/12 and 11/04/2026",
-        "data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of ~71 consumer pipelines",
+        "data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of the consumer pipelines",
         "media cost (Meta, Google Ads, TikTok) in a multi-tenant attribution tracker, replacing a paid vendor",
         "daily risk service and a player credit score",
         "fail-closed multi-tenant linter: exception list cut from 43 to 3",

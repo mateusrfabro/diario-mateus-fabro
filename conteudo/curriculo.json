@@ -62,7 +62,7 @@
               "fonte": "repositório play4tune: docs/superpowers/specs/2026-06-18-risk-daily-p4t-fase2-intel-design.md (5 detectores rule-based)"
             },
             {
-              "texto": "PCR — score de crédito de jogador em tiers com janela rolling de 90 dias, publicado de forma atômica no CRM; corrigi em pós-produção uma feature que distorcia o peso do score.",
+              "texto": "PCR — score de crédito de jogador em tiers com janela rolling de 90 dias, publicado de forma atômica no CRM preservando as tags de risco.",
               "fonte": "repositório pcr-p4t: README.md e pipelines/pcr_p4t.py (rolling 90 dias); '7 tiers' e '25%' não confirmados, removidos"
             },
             {
@@ -132,7 +132,7 @@
               "fonte": "repositório play4tune: docs/superpowers/specs/2026-06-18-risk-daily-p4t-fase2-intel-design.md (5 detectores rule-based)"
             },
             {
-              "texto": "PCR — player credit score in tiers over a rolling 90-day window, published atomically to the CRM; fixed in post-production a feature that skewed the score's weight.",
+              "texto": "PCR — player credit score in tiers over a rolling 90-day window, published atomically to the CRM while preserving the risk tags.",
               "fonte": "repositório pcr-p4t: README.md e pipelines/pcr_p4t.py (rolling 90 dias); '7 tiers' e '25%' não confirmados, removidos"
             },
             {

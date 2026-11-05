@@ -20,7 +20,7 @@ Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória pr�
 - **1.722** commits meus em 8 produtos próprios, em 2026 (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
 - **6.357** funções de teste nos 4 produtos em Python (fonte: contagem de def test_ em tests/ dos produtos com suíte pytest)
 - **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, out/2025 – nov/2026)
-- **3,07 bi** registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: 234 tabelas, ~71 pipelines consumidores)
+- **3,07 bi** registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
 
 ## Projetos
 
@@ -161,7 +161,7 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
   - 1408 commits meus entre 12/03 e 04/11/2026
-  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores
+  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores
   - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
   - serviço diário de risco e score de crédito de jogador
   - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
@@ -429,7 +429,7 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
   - 1408 commits meus entre 12/03 e 04/11/2026
-  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores
+  - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores
   - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
   - serviço diário de risco e score de crédito de jogador
   - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
