@@ -1,6 +1,6 @@
 # Mateus Fabro
 
-> Mateus Fabro, analytics engineer em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.
+> Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.
 
 Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.
 
@@ -11,13 +11,15 @@ Construo sistemas que leem fontes públicas e bancos de produção e transformam
 - [Servidor MCP](https://mateusfabro.vercel.app/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade
 
 ## Projetos
-- [Avisa Edital](https://mateusfabro.vercel.app/projetos/avisa-edital.md): Alerta no Telegram quando sai edital ou convocação de saúde no Paraná.
+- [Avisa Edital](https://mateusfabro.vercel.app/projetos/avisa-edital.md): Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.
 - [Pingado](https://mateusfabro.vercel.app/projetos/pingado.md): Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
 - [Nous Clinical](https://mateusfabro.vercel.app/projetos/nous-clinical.md): Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
 - [Aggron](https://mateusfabro.vercel.app/projetos/aggron.md): Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.
 - [DumpAI](https://mateusfabro.vercel.app/projetos/dumpai.md): A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 - [Secretária de WhatsApp](https://mateusfabro.vercel.app/projetos/atendimento-whatsapp.md): Recepcionista de WhatsApp com agenda real para profissionais autônomos.
-- [Dados em iGaming](https://mateusfabro.vercel.app/projetos/igaming-dados.md): Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
+- [SaaS de crédito (sob NDA)](https://mateusfabro.vercel.app/projetos/credito-nda.md): Gestão de crédito multi-tenant para operadores pequenos: painel da equipe e portal do tomador como PWA.
+- [Portais de conteúdo com dados oficiais](https://mateusfabro.vercel.app/projetos/portais-conteudo.md): Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.
+- [Super Nova Gaming / MultiBet (Grupo PGX)](https://mateusfabro.vercel.app/projetos/igaming-dados.md): Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
 ## Optional
 - [Texto completo](https://mateusfabro.vercel.app/llms-full.txt): tudo acima num arquivo só

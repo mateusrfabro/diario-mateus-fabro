@@ -3,12 +3,12 @@
 Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
 
 - **Para quem:** Cafeterias pequenas. A primeira cliente está em produção desde setembro de 2026.
-- **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião (v0.2 → v0.10).
-- **Status:** Em produção desde setembro de 2026
+- **Meu papel:** Desenvolvedor e dono do produto: reuniões com a cliente e cada versão entregue em até um dia após a reunião, da v0.2 em diante.
+- **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Fatos:**
-  - 234 commits entre 06/07 e 18/09/2026
-  - 772 funções de teste
-  - cliente real em produção
+  - 482 commits meus entre 06/07 e 05/11/2026
+  - 2.133 funções de teste
+  - cliente real com duas lojas em produção
 
 Balcão não é escritório: login por PIN em vez de senha, venda em poucos toques e botões do tamanho de um dedo. O extrato impresso do fiado também é produto — foi imprimindo o papel de verdade que apareceu o "Seu tem R$ 29,00" (ver retificações).

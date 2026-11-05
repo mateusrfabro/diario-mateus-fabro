@@ -126,25 +126,23 @@ def test_a_guarda_sabe_ficar_vermelha_para_cada_termo_e_variante():
 
 
 # ------------------------------------------------------------------ números derivados
-QUATRO_FLASK = ("avisa-edital", "pingado", "nous-clinical", "aggron")
-CINCO = QUATRO_FLASK + ("dumpai",)
+def _fato_num(f: str, sufixo: str) -> int | None:
+    m = re.match(r"(\d[\d.]*) " + sufixo, f)
+    return _num(m.group(1)) if m else None
 
 
 def test_numeros_agregados_batem_com_os_fatos_dos_projetos():
-    """820 commits e 2.675 funções de teste são SOMAS dos fatos de cada produto — se um
+    """Os agregados são SOMAS dos fatos de cada produto com repositório (recontar.REPOS) — se um
     produto for atualizado e o agregado não, o teste acusa (número fora do código envelhece)."""
-    # Medido em 23/09: a 1ª versão publicava "847 commits nos quatro produtos" — a soma dos
-    # quatro dá 827; os 847 incluíam o DumpAI. Este teste pegou na primeira rodada. Depois a
-    # checagem de fatos tirou os 27 commits automáticos do bot: 820.
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import recontar
     commits = testes = 0
     for pr in D["projetos"]:
-        if pr["tipo"] != "produto":
+        if pr["tipo"] != "produto" or pr["slug"] not in recontar.REPOS:
             continue
         for f in pr["fatos"]:
-            if pr["slug"] in CINCO and "commits" in f:
-                commits += _num(f.split(" commits")[0])
-            if pr["slug"] in QUATRO_FLASK and "funções de teste" in f:
-                testes += _num(f.split(" funções")[0])
+            commits += _fato_num(f, "commits") or 0
+            testes += _fato_num(f, "funções de teste") or 0
     por_rotulo = {n["rotulo"]: n["valor"] for n in D["numeros"]}
     assert _num(next(v for r, v in por_rotulo.items() if "commits" in r)) == commits
     assert _num(next(v for r, v in por_rotulo.items() if "funções de teste" in r)) == testes
@@ -303,3 +301,30 @@ def test_pagina_em_ingles_aponta_para_si_e_para_a_portuguesa():
     import html as _h
     pre = re.search(r'<pre id="maquina"[^>]*>(.*?)</pre>', h, re.S).group(1)
     assert _h.unescape(pre) == GERADO["en/index.md"]
+
+
+# ------------------------------------------------------------------ empregador, datas e formação
+def test_experiencia_e_formacao_sao_a_fonte_unica_e_batem_nas_duas_linguas():
+    assert [x["id"] for x in D["experiencia"]] == ["super-nova", "costa-oeste", "adama"]
+    for pt, en in zip(D["experiencia"], EN["experiencia"]):
+        assert (pt["id"], pt["inicio"], pt["fim"]) == (en["id"], en["inicio"], en["fim"])
+    assert D["experiencia"][0]["fim"] == "2026-11" and D["experiencia"][0]["inicio"] == "2025-10"
+    assert isinstance(D["perfil"]["formacao"], list) and len(D["perfil"]["formacao"]) == 2
+    for pt, en in zip(D["perfil"]["formacao"], EN["perfil"]["formacao"]):
+        assert (pt["inicio"], pt["fim"]) == (en["inicio"], en["fim"])
+    anos = {(f["inicio"], f["fim"]) for f in D["perfil"]["formacao"]}
+    assert anos == {("2022", "2025"), ("2018", "2021")}
+
+
+def test_resume_json_tem_trabalho_datado_e_formacao_com_anos():
+    r = json.loads(GERADO["resume.json"])
+    assert r["work"][0]["endDate"] == "2026-11" and r["work"][0]["startDate"] == "2025-10"
+    assert r["work"][0]["name"] == D["experiencia"][0]["empresa"]
+    assert len(r["education"]) == 2 and all(e["startDate"] and e["endDate"] for e in r["education"])
+
+
+def test_site_nomeia_o_empregador_e_nao_diz_mais_nome_omitido():
+    h = GERADO["index.html"]
+    assert "nome omitido" not in h and "name omitted" not in GERADO["en/index.html"]
+    assert build.e(D["perfil"]["cargo"]) in h and build.e(D["perfil"]["subtitulo"]) in h   # `&` sai como &amp;
+    assert "Super Nova" in h and "nov/2026" in h.lower()

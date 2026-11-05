@@ -7,7 +7,7 @@ Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores
 - **Status:** MVP completo; parado desde 28/05/2026
 - **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, PDF de contrato
 - **Fatos:**
-  - 194 commits entre 14/04 e 28/05/2026
+  - 194 commits meus entre 14/04 e 28/05/2026
   - 391 funções de teste
   - 109 rotas
   - origem da plataforma Flask que Nous e Pingado reaproveitam
