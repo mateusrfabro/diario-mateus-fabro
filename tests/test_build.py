@@ -328,3 +328,15 @@ def test_site_nomeia_o_empregador_e_nao_diz_mais_nome_omitido():
     assert "nome omitido" not in h and "name omitted" not in GERADO["en/index.html"]
     assert build.e(D["perfil"]["cargo"]) in h and build.e(D["perfil"]["subtitulo"]) in h   # `&` sai como &amp;
     assert "Super Nova" in h and "nov/2026" in h.lower()
+
+
+def test_curriculo_json_bullet_com_numero_tem_fonte():
+    cv = json.loads((RAIZ / "conteudo" / "curriculo.json").read_text(encoding="utf-8"))
+    for lang in ("pt", "en"):
+        for bloco in cv["experiencia"]["super-nova"][lang] + [{"itens": cv["experiencia"][k][lang]} for k in ("costa-oeste", "adama")]:
+            for item in bloco["itens"]:
+                assert item["texto"].strip()
+                if re.search(r"\d", item["texto"]):
+                    assert item.get("fonte", "").strip(), f"[{lang}] sem fonte: {item['texto'][:60]}"
+        assert len(cv["resumo"][lang]) <= 4
+        assert {c["categoria"] for c in cv["stack"][lang]}
