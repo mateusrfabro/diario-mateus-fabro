@@ -99,7 +99,7 @@
   "numeros": [
     {
       "valor": "125",
-      "rotulo": "recorded lessons, each with the origin of a real case",
+      "rotulo": "lessons on record from real cases",
       "fonte": "global memory, global_index.json (107 general + 18 data)"
     },
     {
@@ -120,7 +120,7 @@
     },
     {
       "valor": "3.07 bn",
-      "rotulo": "records in the new data lake, which I inventoried while leading the consumer-layer migration",
+      "rotulo": "records in the data lake I migrated",
       "fonte": "Iceberg catalog inventory of 07/23/2026: 234 tables"
     }
   ],
@@ -542,22 +542,22 @@
   },
   "faq": [
     {
-      "pergunta": "Who is Mateus Fabro?",
-      "resposta": "A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.",
-      "resposta_discreta": "A data and analytics engineer in Londrina, Brazil. He works with data for three iGaming operations and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA."
+      "pergunta": "Who are you?",
+      "resposta": "A data and analytics engineer in Londrina, Brazil. I worked with data for three iGaming operations until November 2026 and I build my own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.",
+      "resposta_discreta": "A data and analytics engineer in Londrina, Brazil. I work with data for three iGaming operations and I build my own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA."
     },
     {
-      "pergunta": "What does he work with?",
-      "resposta": "Python, SQL and TypeScript: pipelines, data lake migration, anti-fraud, media attribution, Telegram bots and SaaS in Flask and Next.js, with AI agents (Claude Code) as a multiplier."
+      "pergunta": "What do you work with?",
+      "resposta": "I work with Python, SQL and TypeScript: pipelines, data lake migration, anti-fraud, media attribution, Telegram bots and SaaS in Flask and Next.js, with AI agents (Claude Code) as a multiplier."
     },
     {
       "pergunta": "What are the lessons on this site?",
-      "resposta": "Mistakes he made in real cases, with dates, in the format “for … read …”, and the rule that stayed from each one."
+      "resposta": "Mistakes I made in real cases, with dates, in the format “for … read …”, and the rule that stayed from each one."
     },
     {
-      "pergunta": "Is he available?",
-      "resposta": "Yes: looking for a role, contract or full-time, remote. Contact by email: mateusrfabro@hotmail.com.",
-      "resposta_discreta": "Open to talking about projects and roles. Contact by email: mateusrfabro@hotmail.com."
+      "pergunta": "Are you available?",
+      "resposta": "Yes: I am looking for a role, contract or full-time, remote. Contact me by email: mateusrfabro@hotmail.com.",
+      "resposta_discreta": "Yes, for projects and roles. Contact me by email: mateusrfabro@hotmail.com."
     }
   ],
   "disponibilidade_discreta": {

@@ -105,7 +105,7 @@ T = {
         "h_contato": "Contato", "h_licoes": "Lições", "sub_licoes": "Erros que viraram regra",
         "medido": "Números medidos em {d}, contados nos repositórios — não de cabeça.",
         "como_medido": "Como cada número foi contado",
-        "l_exp": "Dados em produção para três operações de iGaming, e antes disso crédito, cobrança e indicadores.",
+        "l_exp": "Squad de dados atendendo 3 operações de iGaming; lidero a frente de dados de 2 delas. Antes, crédito, cobrança e indicadores.",
         "l_proj": "Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.",
         "l_stack": "O que uso no dia a dia, agrupado pelo tipo de trabalho.",
         "l_met": "Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.",
@@ -113,7 +113,7 @@ T = {
         "idiomas": "Idiomas", "atual": "atual", "tecnologias": "Tecnologias",
         "remoto": "remoto", "faq": "Perguntas frequentes",
         "maquinas": "Para máquinas",
-        "rodape": "Gerado de um arquivo só (conteudo/dados.json): página, Markdown, llms.txt, JSON Resume e MCP.",
+        "rodape": "gerado de um JSON só.", "destaque": "Projeto principal", "praticas": "Práticas", "e": " e ",
         "medido_em": "Medido em {d}",
         "l_licoes": ("Erros que eu cometi em casos reais, com a data em que cada um foi achado e corrigido, "
                      "e as regras que ficaram. Nomes de cliente ficam de fora."),
@@ -144,7 +144,7 @@ T = {
         "h_contato": "Contact", "h_licoes": "Lessons", "sub_licoes": "Mistakes that became rules",
         "medido": "Numbers measured on {d}, counted in the repositories — not from memory.",
         "como_medido": "How each number was counted",
-        "l_exp": "Production data for three iGaming operations, and before that credit, collections and KPIs.",
+        "l_exp": "A data squad serving 3 iGaming operations; I lead the data front for 2 of them. Before that, credit, collections and KPIs.",
         "l_proj": "My own products, from the scraper to the customer, with the real status of each — including the ones that stopped.",
         "l_stack": "What I use day to day, grouped by kind of work.",
         "l_met": "Paired with AI agents, and with a system that keeps the same mistake from happening twice.",
@@ -152,7 +152,7 @@ T = {
         "idiomas": "Languages", "atual": "present", "tecnologias": "Technologies",
         "remoto": "remote", "faq": "Frequently asked questions",
         "maquinas": "For machines",
-        "rodape": "Generated from a single file (conteudo/dados.en.json): page, Markdown, JSON Resume.",
+        "rodape": "generated from a single JSON.", "destaque": "Main project", "praticas": "Practices", "e": " and ",
         "medido_em": "Measured on {d}",
         "l_licoes": ("Mistakes I made in real cases, with the date each one was found and fixed, "
                      "and the rules that stayed. Client names are left out."),
@@ -384,7 +384,12 @@ a:hover{color:var(--accent-hover)}
 .hero{padding:44px 0 56px}
 @media (min-width:1024px){.hero{padding:88px 0 88px}}
 .hero-grid{display:grid;gap:40px}
-@media (min-width:1024px){.hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:64px;align-items:start}}
+@media (min-width:1024px){
+  .hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);grid-template-rows:auto 1fr;
+    grid-template-areas:"texto prova" "meta prova";gap:0 64px;align-items:start}
+  .hero-texto{grid-area:texto}.prova{grid-area:prova}.hero-meta{grid-area:meta}
+}
+@media (max-width:719px){.hero{padding:28px 0 44px}.meta{margin-top:12px}}
 .disp{display:inline-flex;align-items:center;gap:9px;padding:6px 14px 6px 12px;margin-bottom:22px;border-radius:999px;
   background:var(--accent-soft);color:var(--accent);font-size:.875rem;font-weight:600}
 .hero h1{font-size:clamp(2.5rem,8.4vw,4.25rem);line-height:1.02;letter-spacing:-.035em;font-weight:750;margin:0}
@@ -399,6 +404,8 @@ a:hover{color:var(--accent-hover)}
 .btn-sec{background:var(--card);border-color:var(--line-2);color:var(--ink)}
 .btn-sec:hover{border-color:var(--accent);color:var(--accent)}
 .btn-ter{display:inline-flex;align-items:center;min-height:48px;padding:0 8px;font-weight:600;text-decoration:none}
+.btn-topo{display:none;min-height:40px;padding:0 14px;font-size:.875rem}
+@media (max-width:879px){.topo .idioma{display:none}.topo .btn-topo{display:inline-flex}}
 @media (max-width:479px){.ctas .btn{flex:1 1 100%}}
 .meta{list-style:none;display:flex;flex-wrap:wrap;margin:24px 0 0;padding:0;color:var(--muted);font-size:.9375rem}
 .meta li{display:inline-flex;align-items:center;min-height:44px}
@@ -415,7 +422,7 @@ a:hover{color:var(--accent-hover)}
 .numero:last-child:nth-child(odd){grid-column:1/-1;padding-right:0}
 .numero b{display:block;font-size:clamp(1.75rem,4.4vw,2.25rem);line-height:1.05;font-weight:750;letter-spacing:-.03em;
   font-variant-numeric:tabular-nums;color:var(--ink)}
-.numero span{display:block;margin-top:6px;font-size:.8125rem;line-height:1.45;color:var(--muted)}
+.numero span{display:block;margin-top:6px;font-size:.875rem;line-height:1.45;color:var(--muted)}
 .medido{margin-top:6px;padding-top:12px;border-top:1px solid var(--line);font-size:.8125rem;color:var(--muted)}
 .fontes summary{display:flex;align-items:center;min-height:44px;cursor:pointer;font-size:.8125rem;font-weight:600;color:var(--accent)}
 .fontes ul{margin:0 0 6px;padding-left:18px;font-size:.8125rem;line-height:1.5;color:var(--muted);display:grid;gap:6px}
@@ -433,6 +440,8 @@ a:hover{color:var(--accent-hover)}
 .chips{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0;padding:0}
 .chips li{padding:5px 11px;border:1px solid var(--line-2);border-radius:999px;background:var(--card);
   font-size:.8125rem;line-height:1.3;color:var(--ink-2)}
+.chips li.mais{border-style:dashed;color:var(--muted)}
+.chips-nota{margin-top:10px;font-size:.8125rem;line-height:1.5;color:var(--muted)}
 
 /* pilares */
 .pilares{display:grid;gap:16px}
@@ -460,7 +469,8 @@ a:hover{color:var(--accent-hover)}
   transition:border-color .2s,box-shadow .2s,transform .2s}
 .card:hover{border-color:var(--line-2);box-shadow:var(--sombra);transform:translateY(-2px)}
 @media (min-width:1024px){.card.destaque{grid-column:span 2}}
-.card.destaque{border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.card.destaque{border:2px solid var(--accent)}
+.rotulo-card{font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin:0 0 8px}
 .status{display:flex;align-items:flex-start;gap:9px;margin-bottom:12px;font-size:.8125rem;line-height:1.4;color:var(--muted)}
 .dot{flex:none;width:8px;height:8px;border-radius:50%;border:1.5px solid var(--muted)}
 .status .dot{margin-top:.4em}
@@ -484,7 +494,7 @@ a:hover{color:var(--accent-hover)}
 
 /* como trabalho */
 .metodo{display:grid;gap:0 40px}
-@media (min-width:880px){.metodo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:880px){.metodo{grid-template-columns:repeat(2,minmax(0,1fr))}.metodo>div:last-child:nth-child(odd){grid-column:1/-1}}
 .metodo div{padding:20px 0;border-top:1px solid var(--line)}
 .metodo h3{margin:0 0 6px;font-size:1.0625rem;font-weight:700}
 .metodo p{color:var(--ink-2)}
@@ -509,12 +519,12 @@ a:hover{color:var(--accent-hover)}
 .faq details p{padding-bottom:16px;color:var(--ink-2)}
 
 /* rodapé */
-.rodape{padding:28px 0 44px;border-top:1px solid var(--line);font-size:.875rem;color:var(--muted)}
-.rodape-in{display:grid;gap:10px}
-@media (min-width:880px){.rodape-in{grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:24px}}
-.maq{display:flex;flex-wrap:wrap;align-items:center;gap:0 4px}
-.maq b{font-weight:600;color:var(--ink-2);margin-right:6px}
+.rodape{padding:24px 0 40px;border-top:1px solid var(--line);font-size:.875rem;color:var(--muted)}
+.rodape-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 24px}
+.maq{display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
+.maq b{font-weight:600;color:var(--ink-2);margin-right:4px}
 .maq a{display:inline-flex;align-items:center;min-height:44px;padding:0 6px;font-family:var(--mono);font-size:.8125rem}
+.maq .gerado{margin-left:6px}
 
 /* página de lições */
 .pag-cab{padding:36px 0 48px}
@@ -530,7 +540,7 @@ a:hover{color:var(--accent-hover)}
 .ret dl{display:grid;gap:12px;margin:0}
 .ret dt{font-size:.75rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .ret dd{margin:2px 0 0;color:var(--ink-2)}
-.ret .onde dd{color:var(--muted);text-decoration:line-through;text-decoration-color:color-mix(in srgb,var(--muted) 60%,transparent)}
+.ret .onde dd{color:var(--ink-2);text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:color-mix(in srgb,var(--muted) 50%,transparent)}
 .ret .leia dt{color:var(--accent)}
 .regra{margin-top:auto;padding-top:16px}
 .regra p{padding:12px 14px;border-radius:8px;background:var(--accent-soft);font-size:.9375rem}
@@ -634,12 +644,13 @@ def provas_pilares(d: dict, cv: dict, t: dict) -> list[list[str]]:
     pr = {p["slug"]: p for p in d["projetos"]}
     ig = pr["igaming-dados"]["fatos"]
     bloco_ia = next(b for b in cv["experiencia"]["super-nova"][lingua(t)] if b["bloco"].startswith(("IA", "Applied")))
-    ia = bloco_ia["itens"][2]["texto"]
-    ia = ia[: ia.index(")") + 1]
+
+    def ate_parentese(texto: str) -> str:            # a frase do currículo até o 1º ")" inclusive
+        return texto[: texto.index(")") + 1]
     return [[inicial(ig[4]), inicial(ig[5])],
             [f"{pr['pingado']['nome']}: {pr['pingado']['fatos'][2]}",
              f"{pr['avisa-edital']['nome']}: {pr['avisa-edital']['status'][:1].lower()}{pr['avisa-edital']['status'][1:]}"],
-            [d["metodo"][3]["texto"], ia]]
+            [ate_parentese(bloco_ia["itens"][0]["texto"]), ate_parentese(bloco_ia["itens"][2]["texto"])]]
 
 
 FATO_COMMITS = re.compile(r"^\d[\d.,]* (commits|of my commits)")
@@ -655,8 +666,43 @@ def marcas(itens: list[str]) -> str:
     return '<ul class="marcas">' + "".join(f"<li>{e(i)}</li>" for i in itens) + "</ul>"
 
 
-def chips(itens: list[str], rotulo: str) -> str:
-    return f'<ul class="chips" aria-label="{e(rotulo)}">' + "".join(f"<li>{e(i)}</li>" for i in itens) + "</ul>"
+def chips(itens: list[str], rotulo: str, limite: int | None = None) -> str:
+    """Chips; com `limite`, mostra os primeiros e um "+N" com o resto no title."""
+    vis, resto = (itens, []) if limite is None else (itens[:limite], itens[limite:])
+    mais = (f'<li class="mais" title="{e(", ".join(resto))}">+{len(resto)}</li>' if resto else "")
+    return (f'<ul class="chips" aria-label="{e(rotulo)}">' + "".join(f"<li>{e(i)}</li>" for i in vis)
+            + mais + "</ul>")
+
+
+# Itens de prática da categoria de segurança do curriculo.json: saem dos chips e viram uma frase.
+# Se o currículo mudar e um deles sumir, o build falha em vez de esconder o resto (ver html_stack).
+PRATICAS = {"pt": ("git-first + smoke test", "testes como gate de deploy", "fail-closed por padrão", "backup restaurado em CI"),
+            "en": ("git-first + smoke tests", "tests as deploy gate", "fail-closed by default", "backup restored in CI")}
+
+
+def html_stack(cv: dict, t: dict) -> str:
+    """Chip = só o nome (antes de " ("); o parêntese vira uma nota abaixo dos chips; as práticas viram frase."""
+    lang = lingua(t)
+    blocos = []
+    for c in cv["stack"][lang]:
+        itens = c["itens"].split(" · ")
+        praticas = [i for i in itens if i in PRATICAS[lang]]
+        if c["categoria"].startswith(("Segurança", "Security")) and len(praticas) != len(PRATICAS[lang]):
+            raise ValueError(f"curriculo.json: práticas esperadas em {c['categoria']!r} não batem: {praticas}")
+        nomes, notas = [], []
+        for i in itens:
+            if i in praticas:
+                continue
+            nome, _, resto = i.partition(" (")
+            nomes.append(nome)
+            if resto:
+                notas.append(f"{nome}: {resto.rstrip(')')}")
+        extra = f'<p class="chips-nota">{e("; ".join(notas))}</p>' if notas else ""
+        if praticas:
+            frase = ", ".join(praticas[:-1]) + t["e"] + praticas[-1] if len(praticas) > 1 else praticas[0]
+            extra += f'<p class="chips-nota">{t["praticas"]}: {e(frase)}.</p>'
+        blocos.append(f'<div><dt>{e(c["categoria"])}</dt><dd>{chips(nomes, c["categoria"])}{extra}</dd></div>')
+    return "".join(blocos)
 
 
 def ponto(vivo: bool) -> str:
@@ -669,11 +715,12 @@ def html_projeto(pr: dict, t: dict = T["pt"], destaque: bool = False) -> str:
             if pr.get("url") else "")
     return f"""
 <article class="card{' destaque' if destaque else ''}" id="{e(pr['slug'])}">
+  {f'<p class="rotulo-card">{t["destaque"]}</p>' if destaque else ''}
   <p class="status">{ponto(status_vivo(pr))}{e(pr['status'])}</p>
   <h3>{e(pr['nome'])}</h3>
   <p class="linha">{e(pr['linha'])}</p>
   {marcas(fatos)}
-  {chips(pr['stack'], t['tecnologias'])}
+  {chips(pr['stack'], t['tecnologias'], limite=None if destaque else 4)}
   {link}
 </article>"""
 
@@ -737,23 +784,46 @@ def barra(d: dict, t: dict, caminho: str) -> str:
     pre = "" if caminho == "/" else home
     alvos = [f"{pre}#experiencia", f"{pre}#projetos", f"{pre}#stack", f"{t['prefixo']}/licoes/", f"{pre}#contato"]
     menu = "".join(f'<a href="{a}">{e(r)}</a>' for a, r in zip(alvos, t["nav"]))
-    outro = t["outro_href"] + ("" if caminho == "/" else caminho.lstrip("/"))
+    outro = outro_idioma(t, caminho)
     return f"""
 <header class="topo"><div class="wrap topo-in">
   <a class="marca" href="{home}">{e(d['perfil']['nome'])}</a>
   <nav aria-label="{t['menu']}">{menu}</nav>
+  <a class="btn btn-pri btn-topo" href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a>
   <a class="idioma" href="{outro}" hreflang="{t['outro']}" lang="{t['outro']}">{t['outro_rotulo']}</a>
 </div></header>"""
 
 
-def rodape(d: dict, t: dict) -> str:
-    s = d["site"]
+def outro_idioma(t: dict, caminho: str) -> str:
+    return t["outro_href"] + ("" if caminho == "/" else caminho.lstrip("/"))
+
+
+def rodape(d: dict, t: dict, caminho: str = "/") -> str:
+    """Uma linha: os formatos para máquinas e o link de idioma (que no celular some da barra)."""
+    alvos = [f"{t['prefixo']}/index.md", "/resume.json", "/llms.txt", "/mcp"]
+    links = '<span aria-hidden="true">·</span>'.join(f'<a href="{a}">{a}</a>' for a in alvos)
     return f"""
 <footer class="rodape"><div class="wrap rodape-in">
-  <p class="maq"><b>{t['maquinas']}:</b><a href="{t['prefixo']}/index.md">{t['prefixo']}/index.md</a><a href="/resume.json">/resume.json</a><a href="/llms.txt">/llms.txt</a><a href="/mcp">/mcp</a></p>
-  <p>{e(t['medido_em'].format(d=data_curta_t(s['medido_em'], t)))}</p>
-  <p>{t['rodape']}</p>
+  <p class="maq"><b>{t['maquinas']}:</b>{links}<span class="gerado">— {t['rodape']}</span></p>
+  <a class="idioma" href="{outro_idioma(t, caminho)}" hreflang="{t['outro']}" lang="{t['outro']}">{t['outro_rotulo']}</a>
 </div></footer>"""
+
+
+def ctas(d: dict, t: dict) -> str:
+    """Os dois CTAs: currículo em PDF e e-mail com assunto."""
+    mailto = f"mailto:{e(d['perfil']['email'])}?subject={t['assunto']}"
+    return (f'<a class="btn btn-pri" href="/curriculo/{t["cv_arquivo"]}">{t["cv"]}</a>'
+            f'<a class="btn btn-sec" href="{mailto}">{t["email_btn"]}</a>')
+
+
+# Ordem de EXIBIÇÃO dos números: escala primeiro. O JSON não muda de ordem (o recontar e o MCP leem
+# por índice: [0] = lições, [1] = commits, [2] = testes).
+ORDEM_NUMEROS = [4, 3, 1, 2, 0]
+
+
+def numeros_em_ordem(d: dict) -> list[dict]:
+    n = len(d["numeros"])
+    return [d["numeros"][i] for i in sorted(range(n), key=lambda i: ORDEM_NUMEROS.index(i) if i in ORDEM_NUMEROS else 99 + i)]
 
 
 def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
@@ -766,21 +836,23 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
     dados_js = json_em_script(json.dumps({k: d[k] for k in ("perfil", "numeros", "projetos", "retificacoes",
                                                             "disponibilidade")}, ensure_ascii=False))
     mailto = f"mailto:{e(p['email'])}?subject={t['assunto']}"
-    cv_href = f"/curriculo/{t['cv_arquivo']}"
     disp = d["disponibilidade"]
 
     numeros = "".join(f'<div class="numero"><b>{e(n["valor"])}</b><span>{e(n["rotulo"])}</span></div>'
-                      for n in d["numeros"])
-    fontes = "".join(f"<li><b>{e(n['valor'])}</b>: {e(n['fonte'])}</li>" for n in d["numeros"])
+                      for n in numeros_em_ordem(d))
+    fontes = "".join(f"<li><b>{e(n['valor'])}</b>: {e(n['fonte'])}</li>" for n in numeros_em_ordem(d))
 
+    provas = provas_pilares(d, cv, t)
     pilares = "".join(f'<article class="pilar"><h3>{e(pl["titulo"])}</h3><p>{e(pl["texto"])}</p>{marcas(pv)}</article>'
-                      for pl, pv in zip(d["pilares"], provas_pilares(d, cv, t)))
+                      for pl, pv in zip(d["pilares"], provas))
 
     trabalho = next(pr for pr in d["projetos"] if pr["tipo"] == "trabalho")
     exps = []
     for x in d["experiencia"]:
         nota = f" · {e(x['nota'])}" if x.get("nota") else ""
-        extra = (marcas([inicial(f) for f in sem_commits(trabalho["fatos"])]) + chips(trabalho["stack"], t["tecnologias"])
+        # sem o fato de commits (está nos números) e sem os já usados como prova do pilar Dados
+        fatos_exp = [inicial(f) for f in sem_commits(trabalho["fatos"]) if inicial(f) not in provas[0]]
+        extra = (marcas(fatos_exp) + chips(trabalho["stack"], t["tecnologias"])
                  if x["id"] == "super-nova" else "")
         exps.append(f"""<li class="linha-item">
   <p class="quando">{e(periodo(x, t))}<br>{e(x['local'])}{nota}</p>
@@ -796,13 +868,11 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
                       key=lambda pr: pr["slug"] != "avisa-edital")          # o carro-chefe primeiro
     cards = "".join(html_projeto(pr, t, destaque=(pr["slug"] == "avisa-edital")) for pr in produtos)
 
-    stack = "".join(f'<div><dt>{e(c["categoria"])}</dt><dd>{chips(c["itens"].split(" · "), c["categoria"])}</dd></div>'
-                    for c in cv["stack"][lang])
+    stack = html_stack(cv, t)
     metodo = "".join(f"<div><h3>{e(m['titulo'])}</h3><p>{e(m['texto'])}</p></div>" for m in d["metodo"])
     faq = "".join(f"<details><summary>{e(f['pergunta'])}</summary><p>{e(f['resposta'])}</p></details>"
                   for f in d["faq"])
-    ctas = (f'<a class="btn btn-pri" href="{cv_href}">{t["cv"]}</a>'
-            f'<a class="btn btn-sec" href="{mailto}">{t["email_btn"]}</a>')
+    botoes = ctas(d, t)
 
     return cabeca(d, t, "/", s["titulo"], s["descricao"],
                   extra=f'\n<script type="application/ld+json">{ld}</script>') + barra(d, t, "/") + f"""
@@ -813,8 +883,7 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
     <h1>{e(p['nome'])}</h1>
     <p class="cargo">{e(p['cargo'])}</p>
     <p class="frase">{e(p['frase_hero'])}</p>
-    <div class="ctas">{ctas}<a class="btn-ter" href="#projetos">{t['ver_proj']} ↓</a></div>
-    <ul class="meta"><li>{e(p['cidade'])}, {e(p['estado'])}</li><li>{t['remoto']}</li><li><a href="{e(p['github'])}" rel="me noopener">GitHub</a></li><li><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a></li></ul>
+    <div class="ctas">{botoes}<a class="btn-ter" href="#projetos">{t['ver_proj']} ↓</a></div>
   </div>
   <aside class="prova" id="numeros" aria-labelledby="h-numeros">
     <h2 id="h-numeros">{t['h_numeros']}</h2>
@@ -822,6 +891,7 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
     <p class="medido">{e(t['medido'].format(d=data_curta_t(s['medido_em'], t)))}</p>
     <details class="fontes"><summary>{t['como_medido']}</summary><ul>{fontes}</ul></details>
   </aside>
+  <ul class="meta hero-meta"><li>{e(p['cidade'])}, {e(p['estado'])}</li><li>{t['remoto']}</li><li><a href="{e(p['github'])}" rel="me noopener">GitHub</a></li><li><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a></li></ul>
 </div></section>
 
 <section class="secao" id="entrega"><div class="wrap">
@@ -861,13 +931,13 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
     <p class="disp">{ponto(True)}{e(inicial(disp['status']))}</p>
     <p class="texto">{e(disp['texto'])}</p>
     <p><a class="email-grande" href="{mailto}">{e(p['email'])}</a></p>
-    <div class="ctas">{ctas}</div>
+    <div class="ctas">{botoes}</div>
     <ul class="meta"><li>{e(p['cidade'])}, {e(p['estado'])}</li><li><a href="{e(p['github'])}" rel="me noopener">GitHub</a></li><li><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a></li></ul>
   </div>
   <div class="faq"><h3>{t['faq']}</h3>{faq}</div>
 </div></section>
 </main>
-""" + rodape(d, t) + f"""
+""" + rodape(d, t, "/") + f"""
 <script type="application/json" id="dados">{dados_js}</script>
 <script src="/app.js" defer></script>
 </body>
@@ -899,8 +969,14 @@ def pagina_licoes(d: dict, t: dict = T["pt"]) -> str:
   <header class="secao-cab"><h2>{t['h_atos']}</h2><p class="lead">{e(t['l_atos'].format(a=len(d['atos']), n=edicao(d)))}</p></header>
   <ol class="atos">{atos}</ol>
 </div></section>
+
+<section class="secao contato" id="contato"><div class="wrap">
+  <header class="secao-cab"><h2>{t['h_contato']}</h2></header>
+  <p class="texto">{e(d['disponibilidade']['texto'])}</p>
+  <div class="ctas">{ctas(d, t)}</div>
+</div></section>
 </main>
-""" + rodape(d, t) + """
+""" + rodape(d, t, "/licoes/") + """
 </body>
 </html>
 """

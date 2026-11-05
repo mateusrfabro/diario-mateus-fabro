@@ -16,11 +16,11 @@ Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória pr�
 
 ## Números
 
-- **125** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (107 universais + 18 de dados))
+- **125** lições registradas de casos reais (fonte: memória global, global_index.json (107 universais + 18 de dados))
 - **1.734** commits meus em 2026, em 8 produtos próprios (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
 - **6.357** funções de teste nos 4 produtos em Python (fonte: contagem de def test_ em tests/ dos produtos com suíte pytest)
 - **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, desde out/2025)
-- **3,07 bi** de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
+- **3,07 bi** registros no data lake que migrei (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
 
 ## Projetos
 
@@ -271,21 +271,21 @@ Contato: mateusrfabro@hotmail.com
 
 ## Perguntas frequentes
 
-**Quem é Mateus Fabro?**
+**Quem é você?**
 
-Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
+Engenheiro de dados e analytics em Londrina (PR). Trabalho com dados de três operações de iGaming e construo produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
 
-**Com o que ele trabalha?**
+**Com o que você trabalha?**
 
-Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.
+Trabalho com Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador.
 
 **O que são as lições deste site?**
 
-Erros que ele cometeu em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um.
+Erros que cometi em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um.
 
-**Ele está disponível?**
+**Você está disponível?**
 
-Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.
+Sim, para projetos e vagas. O contato é pelo e-mail mateusrfabro@hotmail.com.
 
 ## Para agentes
 

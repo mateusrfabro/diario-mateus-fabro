@@ -16,11 +16,11 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 
 ## Numbers
 
-- **125** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (107 general + 18 data))
+- **125** lessons on record from real cases (source: global memory, global_index.json (107 general + 18 data))
 - **1,734** of my commits in 2026, across 8 own products (source: git log of the product repositories, my commits only, excluding automated bot commits)
 - **6,357** test functions in the 4 Python products (source: count of def test_ under tests/ in the products with a pytest suite)
 - **3** iGaming operations, in 3 countries and 3 currencies (source: Super Nova Gaming, since Oct 2025)
-- **3.07 bn** records in the new data lake, which I inventoried while leading the consumer-layer migration (source: Iceberg catalog inventory of 07/23/2026: 234 tables)
+- **3.07 bn** records in the data lake I migrated (source: Iceberg catalog inventory of 07/23/2026: 234 tables)
 
 ## Projects
 
@@ -271,21 +271,21 @@ Contact: mateusrfabro@hotmail.com
 
 ## Frequently asked questions
 
-**Who is Mateus Fabro?**
+**Who are you?**
 
-A data and analytics engineer in Londrina, Brazil. He works with data for three iGaming operations and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.
+A data and analytics engineer in Londrina, Brazil. I work with data for three iGaming operations and I build my own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.
 
-**What does he work with?**
+**What do you work with?**
 
-Python, SQL and TypeScript: pipelines, data lake migration, anti-fraud, media attribution, Telegram bots and SaaS in Flask and Next.js, with AI agents (Claude Code) as a multiplier.
+I work with Python, SQL and TypeScript: pipelines, data lake migration, anti-fraud, media attribution, Telegram bots and SaaS in Flask and Next.js, with AI agents (Claude Code) as a multiplier.
 
 **What are the lessons on this site?**
 
-Mistakes he made in real cases, with dates, in the format “for … read …”, and the rule that stayed from each one.
+Mistakes I made in real cases, with dates, in the format “for … read …”, and the rule that stayed from each one.
 
-**Is he available?**
+**Are you available?**
 
-Open to talking about projects and roles. Contact by email: mateusrfabro@hotmail.com.
+Yes, for projects and roles. Contact me by email: mateusrfabro@hotmail.com.
 
 ## For agents
 

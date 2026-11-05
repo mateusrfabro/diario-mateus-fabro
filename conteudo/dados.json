@@ -99,7 +99,7 @@
   "numeros": [
     {
       "valor": "125",
-      "rotulo": "lições registradas, cada uma com a origem de um caso real",
+      "rotulo": "lições registradas de casos reais",
       "fonte": "memória global, global_index.json (107 universais + 18 de dados)"
     },
     {
@@ -120,7 +120,7 @@
     },
     {
       "valor": "3,07 bi",
-      "rotulo": "de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo",
+      "rotulo": "registros no data lake que migrei",
       "fonte": "inventário do catálogo Iceberg de 23/07/2026: 234 tabelas"
     }
   ],
@@ -542,22 +542,22 @@
   },
   "faq": [
     {
-      "pergunta": "Quem é Mateus Fabro?",
-      "resposta": "Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.",
-      "resposta_discreta": "Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."
+      "pergunta": "Quem é você?",
+      "resposta": "Engenheiro de dados e analytics em Londrina (PR). Trabalhei com dados de três operações de iGaming até novembro de 2026 e construo produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.",
+      "resposta_discreta": "Engenheiro de dados e analytics em Londrina (PR). Trabalho com dados de três operações de iGaming e construo produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."
     },
     {
-      "pergunta": "Com o que ele trabalha?",
-      "resposta": "Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador."
+      "pergunta": "Com o que você trabalha?",
+      "resposta": "Trabalho com Python, SQL e TypeScript: pipelines, migração de data lake, antifraude, atribuição de mídia, bots do Telegram e SaaS em Flask e Next.js, com agentes de IA (Claude Code) como multiplicador."
     },
     {
       "pergunta": "O que são as lições deste site?",
-      "resposta": "Erros que ele cometeu em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um."
+      "resposta": "Erros que cometi em casos reais, com data, no formato onde se lê / leia-se, e a regra que ficou de cada um."
     },
     {
-      "pergunta": "Ele está disponível?",
-      "resposta": "Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotmail.com.",
-      "resposta_discreta": "Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com."
+      "pergunta": "Você está disponível?",
+      "resposta": "Sim: estou em busca de vaga, PJ ou CLT, remoto. O contato é pelo e-mail mateusrfabro@hotmail.com.",
+      "resposta_discreta": "Sim, para projetos e vagas. O contato é pelo e-mail mateusrfabro@hotmail.com."
     }
   ],
   "disponibilidade_discreta": {

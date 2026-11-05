@@ -441,8 +441,11 @@ def test_experiencia_tem_o_empregador_e_os_fatos_do_trabalho_atual():
     trabalho = next(pr for pr in v["projetos"] if pr["tipo"] == "trabalho")
     commits = [f for f in trabalho["fatos"] if build.FATO_COMMITS.match(f)]
     assert len(commits) == 1                                  # o fato existe nos dados...
-    for f in trabalho["fatos"]:
-        assert (build.e(build.inicial(f)) in exp) == (f not in commits)   # ...mas não na página
+    prova_dados = build.provas_pilares(v, build.carregar_cv(), build.T["pt"])[0]
+    assert len(prova_dados) == 2 and all(p in GERADO["index.html"] for p in prova_dados)
+    for f in trabalho["fatos"]:                              # ...mas não na página; nem o que já é prova
+        fora = f in commits or build.inicial(f) in prova_dados
+        assert (build.e(build.inicial(f)) in exp) == (not fora), f
     form = _secao(GERADO["index.html"], "formacao")
     for f in v["perfil"]["formacao"]:
         assert build.e(f["instituicao"]) in form and f["inicio"] in form
@@ -457,8 +460,14 @@ def test_cards_com_todos_os_produtos_avisa_edital_primeiro_e_bolinha_de_status(n
     assert "igaming-dados" not in cards                       # o trabalho mora na experiência
     assert proj.count('class="dot vivo"') == sum(build.status_vivo(pr) for pr in produtos)
     for pr in produtos:
-        for s_ in pr["stack"]:
-            assert f"<li>{build.e(s_)}</li>" in proj
+        card = proj.split(f'id="{pr["slug"]}"', 1)[1].split("</article>", 1)[0]
+        limite = len(pr["stack"]) if pr["slug"] == "avisa-edital" else 4   # o destaque mostra todos
+        for s_ in pr["stack"][:limite]:
+            assert f"<li>{build.e(s_)}</li>" in card
+        resto = pr["stack"][limite:]
+        for s_ in resto:
+            assert f"<li>{build.e(s_)}</li>" not in card
+        assert (f'>+{len(resto)}</li>' in card) == bool(resto), pr["slug"]
         if pr.get("url"):
             assert f'href="{pr["url"]}"' in proj
         card = proj.split(f'id="{pr["slug"]}"', 1)[1].split("</article>", 1)[0]
@@ -474,13 +483,33 @@ def test_cards_com_todos_os_produtos_avisa_edital_primeiro_e_bolinha_de_status(n
     assert all(f in md for f in avisa["fatos"])               # o Markdown segue com todos os fatos
 
 
-def test_stack_vem_do_curriculo_json():
+@pytest.mark.parametrize("nome,lang", [("index.html", "pt"), ("en/index.html", "en")])
+def test_stack_vem_do_curriculo_json(nome, lang):
+    """Chip = nome antes do parêntese; o parêntese vira nota; as práticas viram frase. Nada some."""
     cv = build.carregar_cv()
-    st = _secao(GERADO["index.html"], "stack")
-    for c in cv["stack"]["pt"]:
+    st = _secao(GERADO[nome], "stack")
+    praticas = 0
+    for c in cv["stack"][lang]:
         assert f"<dt>{build.e(c['categoria'])}</dt>" in st
         for item in c["itens"].split(" · "):
-            assert f"<li>{build.e(item)}</li>" in st
+            nome_, _, resto = item.partition(" (")
+            if item in build.PRATICAS[lang]:
+                praticas += 1
+                assert f"<li>{build.e(item)}</li>" not in st and build.e(item) in st
+                continue
+            assert f"<li>{build.e(nome_)}</li>" in st
+            if resto:
+                assert build.e(f"{nome_}: {resto.rstrip(')')}") in st
+    assert praticas == 4 and st.count('class="chips-nota"') >= 2
+
+
+def test_pratica_que_some_do_curriculo_derruba_o_build():
+    import copy
+    cv = copy.deepcopy(build.carregar_cv())
+    cat = next(c for c in cv["stack"]["pt"] if c["categoria"].startswith("Segurança"))
+    cat["itens"] = cat["itens"].replace(" · fail-closed por padrão", "")
+    with pytest.raises(ValueError, match="práticas"):
+        build.html_stack(cv, build.T["pt"])
 
 
 @pytest.mark.parametrize("nome,t,pref", [("index.html", build.T["pt"], ""), ("en/index.html", build.T["en"], "/en")])
@@ -521,3 +550,55 @@ def test_app_js_nao_depende_de_elemento_que_saiu_da_pagina():
     for id_ in re.findall(r"getElementById\('([a-z]+)'\)", js):
         assert f'id="{id_}"' in GERADO["index.html"], id_
     assert "registerTool" in js
+
+
+
+# ------------------------------------------------------------------ revisão de UX (05/11/2026)
+def test_numeros_aparecem_na_ordem_de_escala_sem_reordenar_o_json():
+    h = GERADO["index.html"]
+    exibidos = re.findall(r'<div class="numero"><b>([^<]+)</b>', h)
+    assert exibidos == [build.e(D["numeros"][i]["valor"]) for i in (4, 3, 1, 2, 0)]
+    assert "lições" in D["numeros"][0]["rotulo"] and "commits" in D["numeros"][1]["rotulo"]   # índices intactos
+
+
+@pytest.mark.parametrize("nome,t", [("index.html", build.T["pt"]), ("en/index.html", build.T["en"]),
+                                    ("licoes/index.html", build.T["pt"])])
+def test_barra_tem_cta_do_pdf_e_rodape_tem_o_idioma(nome, t):
+    h = GERADO[nome]
+    barra = h.split('<header class="topo">', 1)[1].split("</header>", 1)[0]
+    assert f'class="btn btn-pri btn-topo" href="/curriculo/{t["cv_arquivo"]}"' in barra
+    rodape = h.split('<footer class="rodape">', 1)[1]
+    assert f'class="idioma" href="{t["outro_href"]}' in rodape and t["outro_rotulo"] in rodape
+    assert t["rodape"] in rodape and "Medido em" not in rodape and "Measured on" not in rodape
+
+
+@pytest.mark.parametrize("nome,t", [("index.html", build.T["pt"]), ("en/index.html", build.T["en"])])
+def test_card_destaque_tem_rotulo(nome, t):
+    proj = _secao(GERADO[nome], "projetos")
+    assert proj.count('class="rotulo-card"') == 1
+    destaque = proj.split('class="card destaque" id="avisa-edital"', 1)[1].split("</article>", 1)[0]
+    assert f'<p class="rotulo-card">{t["destaque"]}</p>' in destaque
+
+
+@pytest.mark.parametrize("nome,t", [("licoes/index.html", build.T["pt"]), ("en/licoes/index.html", build.T["en"])])
+def test_licoes_terminam_com_os_ctas(nome, t):
+    contato = _secao(GERADO[nome], "contato")
+    assert f'href="/curriculo/{t["cv_arquivo"]}"' in contato
+    assert f'href="mailto:{D["perfil"]["email"]}?subject={t["assunto"]}"' in contato
+
+
+def test_faq_na_voz_de_quem_visita():
+    assert [f["pergunta"] for f in D["faq"]] == ["Quem é você?", "Com o que você trabalha?",
+                                                 "O que são as lições deste site?", "Você está disponível?"]
+    assert [f["pergunta"] for f in EN["faq"]] == ["Who are you?", "What do you work with?",
+                                                  "What are the lessons on this site?", "Are you available?"]
+    for dd in (D, EN):
+        for f in dd["faq"]:
+            for campo in ("resposta", "resposta_discreta"):
+                if campo in f:
+                    assert not re.search(r"\b(Trabalhou|Trabalha|constrói|ele cometeu|He worked|He works|he made)\b", f[campo]), f[campo]
+    for pt, en in zip(D["faq"], EN["faq"]):
+        for campo in ("resposta", "resposta_discreta"):
+            assert (campo in pt) == (campo in en)
+            if campo in pt:
+                assert _digitos(pt[campo]) == _digitos(en[campo]), pt["pergunta"]
