@@ -18,7 +18,7 @@ Construo sistemas que leem fontes públicas e bancos de produção e transformam
 - [Aggron](https://mateusfabro.vercel.app/projetos/aggron.md): Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.
 - [DumpAI](https://mateusfabro.vercel.app/projetos/dumpai.md): A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 - [Secretária de WhatsApp](https://mateusfabro.vercel.app/projetos/atendimento-whatsapp.md): Recepcionista de WhatsApp com agenda real para profissionais autônomos.
-- [SaaS de crédito (sob NDA)](https://mateusfabro.vercel.app/projetos/credito-nda.md): Gestão de crédito multi-tenant para operadores pequenos: painel da equipe e portal do tomador como PWA.
+- [SaaS de crédito (sob NDA)](https://mateusfabro.vercel.app/projetos/credito-nda.md): Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.
 - [Portais de conteúdo com dados oficiais](https://mateusfabro.vercel.app/projetos/portais-conteudo.md): Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais.
 - [Super Nova Gaming / MultiBet (Grupo PGX)](https://mateusfabro.vercel.app/projetos/igaming-dados.md): Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 

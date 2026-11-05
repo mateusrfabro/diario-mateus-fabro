@@ -8,7 +8,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Endereço:** https://dumpai-omega.vercel.app
 - **Fatos:**
-  - 21 commits meus entre 10/06 e 28/09/2026
+  - 23 commits meus entre 10/06 e 05/11/2026
   - no ar desde 11/06/2026
   - compressão da imagem no navegador antes do envio
 

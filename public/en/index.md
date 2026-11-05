@@ -8,16 +8,16 @@ Measured on 2026-11-05. Edition no. 125.
 
 ## Summary
 
-I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three brands, three countries and three currencies. I led the data front for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.
+I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three operations, three countries and three currencies. I was the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.
 
-Outside work, I built my own products and run the ones that are live: an alert service for public-health job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.
+Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.
 
 I work paired with AI agents (Claude Code) and with a memory system of my own: every fixed mistake that applies to another project becomes a lesson with an origin, a reason and a way to apply it — and a script proves the index forgot none.
 
 ## Numbers
 
-- **125** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (84 general + 17 data))
-- **1,722** of my commits across 8 own products, in 2026 (source: git log of the product repositories, my commits only, excluding automated bot commits)
+- **125** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (107 general + 18 data))
+- **1,734** of my commits in 2026, across 8 own products (source: git log of the product repositories, my commits only, excluding automated bot commits)
 - **6,357** test functions in the 4 Python products (source: count of def test_ under tests/ in the products with a pytest suite)
 - **3** iGaming operations, in 3 countries and 3 currencies (source: Super Nova Gaming, Oct 2025 – Nov 2026)
 - **3.07 bn** records in the new data lake, which I inventoried while leading the consumer-layer migration (source: Iceberg catalog inventory of 07/23/2026: 234 tables)
@@ -29,12 +29,12 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 Telegram alert when a public exam, job call or appointment for physicians is published in Paraná or São Paulo.
 
 - **For whom:** Physicians who sat a public exam or selection process and cannot miss a job-call deadline — usually 3 to 5 business days.
-- **My role:** I built it alone: scrapers, bot, site, payments and monitoring. My partner, from the medical field, handles sales.
+- **My role:** Partner and developer: I built the collectors, bot, site, payments and monitoring alone. The other partner, a physician, handles sales.
 - **Status:** Live since August 2026; daily operation since October
 - **Stack:** Python, GitHub Actions, Vercel (Python functions), Upstash Redis, Telegram Bot API, Kiwify (HMAC webhook), pypdf + Tesseract (OCR)
 - **Address:** https://avisaedital.com.br
 - **Facts:**
-  - 716 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits
+  - 717 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits
   - 3,372 test functions
   - PR and SP: municipal and state official gazettes, exam boards and job-call sources, collected on a VM with systemd and complemented by GitHub Actions
   - Kiwify subscription with a 7-day free trial, no card, from the bot itself
@@ -43,14 +43,14 @@ Collecting is not publishing. When coverage grows, history enters the archive lo
 
 ### Pingado
 
-Café management: a counter screen in a few taps, tabs, store credit, stock and the month's results.
+Café management: counter sales in three taps, tabs, store credit, stock and the month's results.
 
 - **For whom:** Small cafés. The first customer has been in production since September 2026.
 - **My role:** Developer and product owner: meetings with the customer and each version delivered within a day of the meeting, from v0.2 on.
 - **Status:** In production since September 2026, evolving with the customer
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Facts:**
-  - 484 of my commits between 07/06 and 11/05/2026
+  - 486 of my commits between 07/06 and 11/05/2026
   - 2,133 test functions
   - real customer with two stores in production
 
@@ -62,13 +62,14 @@ Clinic management: scheduling, medical records, exams, finance and patient follo
 
 - **For whom:** Health clinics, with full data separation between clinics.
 - **My role:** I led development end to end.
-- **Status:** Last version on 10/06/2026
-- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e (service invoices), Anthropic API (chatbot), encrypted backup (age → R2; restore not yet tested)
+- **Status:** Last product version on 10/06/2026; repository maintenance only since
+- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e (service invoices), Anthropic API (chatbot), encrypted backup (age → R2)
 - **Facts:**
-  - 194 of my commits between 06/05 and 10/06/2026, plus 7 automated bot commits
+  - 197 of my commits between 06/05 and 11/05/2026, plus 7 automated bot commits
   - 461 test functions
   - 111 routes
   - internal security audit (agents, bandit and pip-audit) with no critical or high finding (07/02/2026)
+  - backup restore not yet tested
 
 Anonymization under article 18 of Brazil's data protection law (LGPD) that keeps the financial history, and invoices with a generic description — never the diagnosis.
 
@@ -78,10 +79,10 @@ Group buying for burger restaurants: orders pooled into rounds and suppliers bid
 
 - **For whom:** Burger restaurants in Londrina that buy little alone and well together.
 - **My role:** Tech lead and developer, with a partner as product owner.
-- **Status:** Complete MVP; paused since 05/28/2026
+- **Status:** Complete MVP; paused since 05/28/2026 (repository maintenance only since)
 - **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, contract PDF
 - **Facts:**
-  - 194 of my commits between 04/14 and 05/28/2026, plus 7 automated bot commits
+  - 196 of my commits between 04/14 and 11/05/2026, plus 7 automated bot commits
   - 391 test functions
   - 109 routes
   - origin of the Flask platform that Nous and Pingado reuse
@@ -98,7 +99,7 @@ AI picks the best 10 of 30 photos for an Instagram photo dump.
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Address:** https://dumpai-omega.vercel.app
 - **Facts:**
-  - 21 of my commits between 06/10 and 09/28/2026
+  - 23 of my commits between 06/10 and 11/05/2026
   - live since 06/11/2026
   - images compressed in the browser before upload
 
@@ -110,28 +111,29 @@ A WhatsApp receptionist with a real calendar for self-employed professionals.
 
 - **For whom:** Psychologists, lawyers and other professionals who work alone.
 - **My role:** Architecture and implementation, with a squad of 5 AI agents.
-- **Status:** Pilot paused at Google authorization; never completed an end-to-end conversation with a customer
+- **Status:** Pilot paused (Google authorization)
 - **Stack:** n8n, Evolution API, PostgreSQL 16, Redis 7, LangChain, Google Calendar
 - **Facts:**
-  - 8 of my commits between 09/16 and 10/30/2026
+  - 9 of my commits between 09/16 and 11/05/2026
   - project started on 04/15/2026; first version running locally on 04/27
   - hand-off to a human with a lock on the conversation
   - per-customer configuration in YAML (multi-customer version)
+  - never completed an end-to-end conversation with a customer
 
 A customer's configuration field enters the prompt with system privilege — so it is an injection surface: enums, sanitization and explicit negation.
 
 ### Credit SaaS (under NDA)
 
-Multi-tenant credit management for small lenders: a staff panel and a borrower portal as a PWA.
+Multi-tenant credit management: a staff panel and a customer portal as a PWA.
 
-- **For whom:** Small credit operators. Business details under a non-disclosure agreement.
+- **For whom:** Small credit operations. Business details under a non-disclosure agreement.
 - **My role:** End-to-end architecture and implementation, with a partner as product owner.
 - **Status:** Pilot live since October 2026
 - **Stack:** Next.js 16 + TypeScript, PWA with per-tenant branding, PostgreSQL (Supabase) with per-tenant RLS, GitHub Actions, Docker (e2e in a container), Vercel
 - **Facts:**
-  - 65 of my commits between 10/13 and 10/28/2026
+  - 66 of my commits between 10/13 and 11/05/2026
   - daily backup restored into a throwaway database and checked in CI: row counts, migrations and isolation policies
-  - public self-signup with anti-fraud checks and one-click approval
+  - public signup flow with validations and one-click approval
 
 When the OS application control blocked the native password-hashing binary, development moved into a container — and the e2e suite with it.
 
@@ -142,12 +144,13 @@ Five static portals on finance and labor rights, with indicators that refresh th
 - **For whom:** Brazilian readers (credit, fixed income, labor rights, dollar finance) and a U.S. audience (personal finance).
 - **My role:** Built all five: indicator collection, build, AI-assisted editorial review with human approval, and publication on their own domains.
 - **Status:** Live since October 2026; monetization under evaluation
-- **Stack:** Astro 7, TypeScript, GitHub Actions, Official APIs (Central Bank/SGS, FRED, IBGE, Treasury, ANP), Vercel
+- **Stack:** Astro 7, TypeScript, GitHub Actions, Official APIs, Vercel
 - **Address:** https://guiadocredito.com.br
 - **Facts:**
   - 40 of my commits between 10/20 and 11/03/2026
   - 33 to 45 guides per portal, each with a primary source
   - indicators recomputed by workflow, never typed in
+  - sources: Central Bank/SGS, FRED, IBGE, Treasury, ANP
 
 The first version of one of them carried the photo and credentials of an author who did not exist, generated by AI. They came out before publication: text signed by a person, or unsigned.
 
@@ -155,12 +158,12 @@ The first version of one of them carried the photo and credentials of an author 
 
 Pipelines, data lake migration, anti-fraud, media attribution and dashboards for three operations in three countries.
 
-- **For whom:** Four-person data squad serving three iGaming operations; I led the data front for two of them.
+- **For whom:** Four-person data squad serving three iGaming operations; I was the data lead for two of them.
 - **My role:** Data analyst from Oct 2025 to Nov 2026, with end-to-end engineering work.
 - **Status:** Ended in Nov 2026 (operation shut down)
 - **Stack:** Python, SQL (PostgreSQL and distributed engines), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Facts:**
-  - 1408 of my commits between 03/12 and 11/04/2026
+  - 1,408 of my commits between 03/12 and 11/04/2026
   - data lake migration (3.07 bn records, 234 tables): a single-source connection layer with one-variable rollback, keeping the interface of the consumer pipelines
   - media cost (Meta, Google Ads, TikTok) in a multi-tenant attribution tracker, replacing a paid vendor
   - daily risk service and a player credit score
@@ -256,13 +259,13 @@ Mistakes I made, in the format of a gazette erratum. Each one became a rule.
 
 - **Layered memory.** Every project has a memory index of its live pitfalls. What applies to another project moves up to a global memory: a lesson with an origin, a reason and a way to apply it.
 - **A gate closes the promotion.** Promoting a lesson means writing it to disk, to the human index and to the machine index. That step failed twice without a symptom; today a script checks all three and has a mode that proves it can go red.
-- **Mutation as a habit.** 66 of my 716 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts.
+- **Mutation as a habit.** 66 of my 717 commits on Avisa Edital record mutation testing: the defect is reintroduced and the test must fail before the fix counts.
 - **Agents with a role, not autonomy.** 15 specialized agents (quality, security, testing, UX, content review, growth) work in parallel. What the reviewers find is reproduced before it becomes a change.
 - **Where we left off.** Every project has a resume file the next session reads first: state, the business owner's decisions and open items, with dates.
 
 ## Availability
 
-Looking for a data engineering, analytics engineering or product development role — contractor or employee, remote. Also open to fixed-scope projects. Email is the fastest way.
+Looking for a data engineering, analytics engineering or product development role — contract or full-time, remote. Also open to fixed-scope projects. Email is the fastest way.
 
 Contact: mateusrfabro@hotmail.com
 
@@ -270,7 +273,7 @@ Contact: mateusrfabro@hotmail.com
 
 **Who is Mateus Fabro?**
 
-A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI and five content portals.
+A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.
 
 **What does he work with?**
 
@@ -282,7 +285,7 @@ Mistakes he made, with dates and numbers, in the format of a gazette erratum: fo
 
 **Is he available?**
 
-Yes: looking for a role, contractor or employee, remote. Contact by email: mateusrfabro@hotmail.com.
+Yes: looking for a role, contract or full-time, remote. Contact by email: mateusrfabro@hotmail.com.
 
 ## For agents
 

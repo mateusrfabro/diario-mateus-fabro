@@ -7,7 +7,7 @@ Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resulta
 - **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Fatos:**
-  - 484 commits meus entre 06/07 e 05/11/2026
+  - 486 commits meus entre 06/07 e 05/11/2026
   - 2.133 funções de teste
   - cliente real com duas lojas em produção
 

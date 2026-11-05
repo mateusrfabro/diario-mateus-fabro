@@ -55,7 +55,8 @@ def _bullets(itens: list[dict]) -> str:
 
 def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) -> str:
     p, s, r = d["perfil"], d["site"], cv["rotulos"][lang]
-    contato = [f"{e(p['cidade'])}, {e(p['estado'])} · {r['remoto']}", f'<a href="mailto:{e(p["email"])}">{e(p["email"])}</a>']
+    local = f"{e(p['cidade'])}, {e(p['estado'])}" if lang == "pt" else f"{e(p['cidade'])}, {e(p['pais'])}"
+    contato = [f"{local} · {r['remoto']}", f'<a href="mailto:{e(p["email"])}">{e(p["email"])}</a>']
     if telefone:
         contato.append(e(telefone))
     contato += [f'<a href="{e(p["github"])}">github.com/mateusrfabro</a>', f'<a href="{e(p["linkedin"])}">LinkedIn</a>',
@@ -183,6 +184,15 @@ COMPETENCIAS = ["Python", "SQL", "PostgreSQL", "TypeScript", "Engenharia de Dado
     "pandas", "Machine Learning", "LLM", "Claude Code", "Anthropic API", "LangChain", "n8n", "Automação", "LGPD", "Engenharia de Agentes", "Prompt Engineering", "MCP"]
 
 
+COMPETENCIAS_EN = {"Engenharia de Dados": "Data Engineering", "Antifraude": "Anti-fraud", "Detecção de Fraude": "Fraud Detection",
+                   "Atribuição de Marketing": "Marketing Attribution", "Automação": "Automation",
+                   "Engenharia de Agentes": "Agent Engineering"}
+
+
+def competencias(lang: str) -> list[str]:
+    return COMPETENCIAS if lang == "pt" else [COMPETENCIAS_EN.get(c, c) for c in COMPETENCIAS]
+
+
 def _check(nome: str, texto: str) -> str:
     chave = nome.split(":")[0]
     if len(texto) > LIMITES[chave]:
@@ -217,10 +227,13 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
     no_ar = sum(1 for pr in produtos if build.status_vivo(pr))      # derivado do status, não digitado
     fatos = [f[0].upper() + f[1:] for f in proj["igaming-dados"]["fatos"]
              if not re.match(r"\d[\d.,]* (commits|of my commits)", f)]
-    fora = (f"Fora do expediente, {len(produtos)} produtos próprios construídos de ponta a ponta, {no_ar} no ar: "
-            f"{n[1]['valor']} {n[1]['rotulo']} e {n[2]['valor']} {n[2]['rotulo']}." if pt else
-            f"Outside work, {len(produtos)} products of my own built end to end, {no_ar} live: "
-            f"{n[1]['valor']} {n[1]['rotulo']} and {n[2]['valor']} {n[2]['rotulo']}.")
+    k_py = re.search(r"\d+", n[2]["rotulo"]).group()                   # nº de produtos em Python, do rótulo medido
+    fora = (f"Fora do expediente, {len(produtos)} produtos próprios construídos de ponta a ponta, {no_ar} no ar. "
+            f"Em 2026: {n[1]['valor']} commits meus nesses produtos e {n[2]['valor']} funções de teste nos {k_py} escritos em Python." if pt else
+            f"Outside work, {len(produtos)} products of my own built end to end, {no_ar} of them live. "
+            f"In 2026: {n[1]['valor']} commits of mine across them and {n[2]['valor']} test functions in the {k_py} written in Python.")
+    # O Sobre (limite 2.600) deixa de fora o serviço de risco, o único fato sem número; ele segue no currículo e no post.
+    fatos_sobre = [f for f in fatos if not f.lower().startswith(("serviço diário", "daily risk"))]
     fim, ini = mes_extenso(x0["fim"], lang), mes_extenso(x0["inicio"], lang)
     st = proj["dumpai"]["status"]
     st = st[0].lower() + st[1:]
@@ -230,11 +243,11 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
         "In practice: ingestion, modeling, anti-fraud, media attribution, the API and the dashboard come from the same hands.",
         (f"O que provei em produção — {x0['empresa']}, {periodo(x0, lang)}:" if pt else
          f"What I proved in production — {x0['empresa']}, {periodo(x0, lang)}:") + "\n" + x0["resumo"]
-        + "\n" + "\n".join(f"• {f}" for f in fatos),
-        fora + (f" Um tem {proj['pingado']['fatos'][2]}; outro: {st} — e o site diz isso." if pt else
-                f" One has a {proj['pingado']['fatos'][2]}; another: {st} — and the site says so."),
+        + "\n" + "\n".join(f"• {f}" for f in fatos_sobre),
+        fora + (f" Um deles tem {proj['pingado']['fatos'][2]}; outro está {st} — e o site diz isso." if pt else
+                f" One of them has {proj['pingado']['fatos'][2]}; another is {st} — and the site says so."),
         ("Engenharia de agentes (trabalho em par com Claude Code; quando erro, publico a retificação):" if pt else
-         "Agent engineering (I work in pair with Claude Code; when I get it wrong, I publish the correction):") + "\n" + "\n".join(f"• {t}" for t in _bullets_agentes(cv, lang)),
+         "Agent engineering (I work paired with Claude Code; when I get it wrong, I publish the correction):") + "\n" + "\n".join(f"• {t}" for t in _bullets_agentes(cv, lang)),
         d["disponibilidade"]["texto"],            # o fim da operação já está no resumo do bloco acima
         ("Site, números medidos e retificações: " if pt else "Site, measured numbers and corrections: ") + site + "\n"
         + ("Currículo: " if pt else "Résumé: ") + f"{site}/curriculo/mateus-fabro-{lang}.pdf\n"
@@ -242,13 +255,13 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
 
     def post_com(k: int) -> str:
         return "\n\n".join([
-            (f"A operação em que trabalhei desde {ini} encerrou em {fim}. Saio com o que construí lá e começo a busca: "
+            (f"A empresa em que trabalhei de {ini} a {fim} foi encerrada. Saio com o que construí lá e começo a busca: "
              f"vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto." if pt else
-             f"The operation I had worked at since {ini} shut down in {fim}. I leave with what I built there and start "
-             f"the search: a data engineering, analytics engineering or product development role — contractor or full-time, remote."),
+             f"The company I worked at from {ini} to {fim} shut down. I leave with what I built there and start "
+             f"the search: a data engineering, analytics engineering or product development role — contract or full-time, remote."),
             ("O que levo:\n" if pt else "What I bring:\n") + "\n".join(f"• {f}" for f in fatos[:k]) + f"\n• {fora}",
             ("Se você souber de uma vaga, ou de um time que precise de alguém que constrói o pipeline e o produto em volta "
-             "dele, uma indicação ajuda muito. Converso também sobre projeto fechado." if pt else
+             "dele, uma indicação ajuda muito. Converso também sobre projeto de escopo fechado." if pt else
              "If you know of an opening, or a team that needs someone who builds the pipeline and the product around it, "
              "a referral helps a lot. Also open to fixed-scope projects."),
             (f"Site e currículo: {site}\nE-mail: {p['email']}" if pt else f"Site and résumé: {site}\nE-mail: {p['email']}"),
@@ -266,14 +279,17 @@ def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
     titulo = (f"{p['cargo']} | Python · SQL · TypeScript · agentes de IA (Claude Code) | pipelines, antifraude e atribuição em iGaming · "
               f"produtos próprios com cliente real | em busca de vaga (PJ/CLT, remoto)" if pt else
               f"{p['cargo']} | Python · SQL · TypeScript · AI agents (Claude Code) | pipelines, anti-fraud and attribution in iGaming · "
-              f"own products with real customers | open to work (contractor/employee, remote)")
+              f"own products with real customers | open to work (contract or full-time, remote)")
     sobre, post = _sobre_e_post(d, cv, lang)
     secoes = {"titulo": titulo, "sobre": sobre}
     for x in d["experiencia"]:
         blocos = cv["experiencia"][x["id"]][lang]
         if blocos and "bloco" in blocos[0]:
             # experiência principal: só o 1º bullet de cada bloco (limite de 2.000 caracteres do LinkedIn)
-            itens = [b["itens"][0] for b in blocos] if x["id"] == "super-nova" else [i for b in blocos for i in b["itens"]]
+            # super-nova: 1º bullet de cada bloco, menos o de IA (já está no Sobre)
+            pref_ia = "IA" if pt else "Applied"
+            itens = ([b["itens"][0] for b in blocos if not b["bloco"].startswith(pref_ia)] if x["id"] == "super-nova"
+                     else [i for b in blocos for i in b["itens"]])
         else:
             itens = blocos
         lista = "\n".join(f"• {i['texto']}" for i in itens)
@@ -315,7 +331,7 @@ def linkedin_md(d: dict, cv: dict, lang: str) -> str:
             pr = next(x for x in d["projetos"] if x["slug"] == k.split(":")[1])
             L += [f"### {pr['nome']}", f"- Link: {pr.get('url') or d['site']['url'] + '/projetos/' + pr['slug'] + '.md'}",
                   "", "```", v, "```", ""]
-    L += ["## 6. Competências (Skills) — marcar estas 50", "", ", ".join(COMPETENCIAS), "",
+    L += ["## 6. Competências (Skills) — marcar estas 50", "", ", ".join(competencias(lang)), "",
           "## 7. Post de disponibilidade (publicar depois de atualizar o perfil)", "", "```", s["post"], "```", ""]
     return "\n".join(L)
 
@@ -339,7 +355,7 @@ def github_readme(d: dict, cv: dict) -> str:
     p, s = d["perfil"], d["site"]
     repos = json.loads(REPOS_GH.read_text(encoding="utf-8"))
     L = [f"# {p['nome']} — {p['cargo']}", "", f"**{p['subtitulo']}**", "",
-         f"🟢 **{d['disponibilidade']['status'].capitalize()}** — {d['disponibilidade']['texto']}", "",
+         f"🟢 **Disponível** — {d['disponibilidade']['texto']}", "",
          f"- Site (projetos, números medidos e retificações): {s['url']}",
          f"- Currículo: [PT]({s['url']}/curriculo/mateus-fabro-pt.pdf) · [EN]({s['url']}/curriculo/mateus-fabro-en.pdf)",
          f"- LinkedIn: {p['linkedin']}", f"- E-mail: {p['email']}", "",
@@ -349,11 +365,17 @@ def github_readme(d: dict, cv: dict) -> str:
     pares = {"avisa-edital": "avisa-edital", "pingado": "cafesaas", "nous-clinical": "nous-clinical",
              "aggron": "poolcompras", "dumpai": "dumpai", "atendimento-whatsapp": "secretaria-ia",
              "credito-nda": "credito-saas", "portais-conteudo": "guiadocredito"}
+    portais = ["guiadocredito", "radardoinvestidor", "central-do-trabalhador", "usmoneybrasil", "mydollarpilot"]
+    ausentes = [n for n in portais if n not in por_nome]
+    if ausentes:
+        raise SystemExit(f"github_repos.json sem os repositórios dos portais: {ausentes}")
     for pr in d["projetos"]:
         if pr["tipo"] != "produto":
             continue
         r = por_nome[pares[pr["slug"]]]
         codigo = f"[{r['nome']}](https://github.com/mateusrfabro/{r['nome']})" if r["abre"] else f"`{r['nome']}` (privado)"
+        if pr["slug"] == "portais-conteudo":
+            codigo = ", ".join(f"`{n}`" for n in portais) + " (privados)"
         L.append(f"| **{pr['nome']}** | {pr['linha']} | {pr['status']} | {codigo} |")
     extra = [r for r in repos if r["mostrar"] and r["nome"] not in pares.values()]
     for r in extra:
@@ -362,7 +384,7 @@ def github_readme(d: dict, cv: dict) -> str:
     L += ["", f"Trabalho anterior: {d['experiencia'][0]['empresa']}, {periodo(d['experiencia'][0], 'pt')} — "
           "repositórios privados (dados da empresa).", "",
           "## Engenharia de agentes", ""] + [f"- {t}" for t in _bullets_agentes(cv, "pt")] + ["",
-          "## Como eu trabalho", ""] + [f"- **{m['titulo']}.** {m['texto']}" for m in d["metodo"]] + ["",
+          "## Como trabalho", ""] + [f"- **{m['titulo']}.** {m['texto']}" for m in d["metodo"]] + ["",
           f"_README gerado de `conteudo/dados.json` em {s['medido_em']} pelo repositório "
           f"[diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro)._", ""]
     return "\n".join(L)

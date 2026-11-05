@@ -5,7 +5,7 @@
     "label": "Engenheiro de Dados & Analytics",
     "email": "mateusrfabro@hotmail.com",
     "url": "https://mateusfabro.vercel.app",
-    "summary": "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três casas, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis. Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações de saúde (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA. Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.",
+    "summary": "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis. Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA. Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.",
     "location": {
       "city": "Londrina",
       "region": "PR",
@@ -29,9 +29,9 @@
       "position": "Analista de Dados — frente de dados de 2 operações",
       "startDate": "2025-10",
       "endDate": "2026-11",
-      "summary": "Squad de dados de 4 pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026.",
+      "summary": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026.",
       "highlights": [
-        "1408 commits meus entre 12/03 e 04/11/2026",
+        "1.408 commits meus entre 12/03 e 04/11/2026",
         "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores",
         "custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago",
         "serviço diário de risco e score de crédito de jogador",
@@ -59,7 +59,7 @@
       "name": "Avisa Edital",
       "description": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.",
       "highlights": [
-        "716 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
+        "717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
         "3.372 funções de teste",
         "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions",
         "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"
@@ -79,7 +79,7 @@
       "name": "Pingado",
       "description": "Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.",
       "highlights": [
-        "484 commits meus entre 06/07 e 05/11/2026",
+        "486 commits meus entre 06/07 e 05/11/2026",
         "2.133 funções de teste",
         "cliente real com duas lojas em produção"
       ],
@@ -96,10 +96,11 @@
       "name": "Nous Clinical",
       "description": "Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.",
       "highlights": [
-        "194 commits meus entre 05/06 e 06/10/2026, fora 7 automáticos do bot",
+        "197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot",
         "461 funções de teste",
         "111 rotas",
-        "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)"
+        "auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)",
+        "restauração do backup ainda não testada"
       ],
       "keywords": [
         "Flask",
@@ -110,14 +111,14 @@
         "2FA/TOTP",
         "NFS-e",
         "Anthropic API (chatbot)",
-        "backup cifrado (age → R2; restauração ainda não testada)"
+        "backup cifrado (age → R2)"
       ]
     },
     {
       "name": "Aggron",
       "description": "Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.",
       "highlights": [
-        "194 commits meus entre 14/04 e 28/05/2026, fora 7 automáticos do bot",
+        "196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot",
         "391 funções de teste",
         "109 rotas",
         "origem da plataforma Flask que Nous e Pingado reaproveitam"
@@ -134,7 +135,7 @@
       "name": "DumpAI",
       "description": "A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.",
       "highlights": [
-        "21 commits meus entre 10/06 e 28/09/2026",
+        "23 commits meus entre 10/06 e 05/11/2026",
         "no ar desde 11/06/2026",
         "compressão da imagem no navegador antes do envio"
       ],
@@ -153,10 +154,11 @@
       "name": "Secretária de WhatsApp",
       "description": "Recepcionista de WhatsApp com agenda real para profissionais autônomos.",
       "highlights": [
-        "8 commits meus entre 16/09 e 30/10/2026",
+        "9 commits meus entre 16/09 e 05/11/2026",
         "projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04",
         "passagem para humano com trava na conversa",
-        "configuração por cliente em YAML (versão multi-cliente)"
+        "configuração por cliente em YAML (versão multi-cliente)",
+        "não completou uma conversa de ponta a ponta com cliente"
       ],
       "keywords": [
         "n8n",
@@ -169,11 +171,11 @@
     },
     {
       "name": "SaaS de crédito (sob NDA)",
-      "description": "Gestão de crédito multi-tenant para operadores pequenos: painel da equipe e portal do tomador como PWA.",
+      "description": "Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.",
       "highlights": [
-        "65 commits meus entre 13/10 e 28/10/2026",
+        "66 commits meus entre 13/10 e 05/11/2026",
         "backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento",
-        "auto-cadastro público com checagem antifraude e aprovação em um clique"
+        "fluxo de cadastro público com validações e aprovação em um clique"
       ],
       "keywords": [
         "Next.js 16 + TypeScript",
@@ -190,13 +192,14 @@
       "highlights": [
         "40 commits meus entre 20/10 e 03/11/2026",
         "33 a 45 guias por portal, cada um com fonte primária",
-        "indicadores recalculados por workflow, não digitados"
+        "indicadores recalculados por workflow, não digitados",
+        "fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP"
       ],
       "keywords": [
         "Astro 7",
         "TypeScript",
         "GitHub Actions",
-        "APIs oficiais (Banco Central/SGS, FRED, IBGE, Tesouro, ANP)",
+        "APIs oficiais",
         "Vercel"
       ],
       "url": "https://guiadocredito.com.br"

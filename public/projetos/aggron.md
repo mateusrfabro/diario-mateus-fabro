@@ -4,10 +4,10 @@ Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores
 
 - **Para quem:** Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.
 - **Meu papel:** Tech lead e desenvolvedor, com um sócio como dono do produto.
-- **Status:** MVP completo; parado desde 28/05/2026
+- **Status:** MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)
 - **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, PDF de contrato
 - **Fatos:**
-  - 194 commits meus entre 14/04 e 28/05/2026, fora 7 automáticos do bot
+  - 196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot
   - 391 funções de teste
   - 109 rotas
   - origem da plataforma Flask que Nous e Pingado reaproveitam

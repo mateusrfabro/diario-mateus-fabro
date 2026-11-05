@@ -8,19 +8,19 @@ Medido em 05/11/2026. Edição nº 125.
 
 ## Resumo
 
-Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três casas, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
+Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
 
-Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações de saúde (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.
+Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.
 
 Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.
 
 ## Números
 
-- **125** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (84 universais + 17 de dados))
-- **1.722** commits meus em 8 produtos próprios, em 2026 (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
+- **125** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (107 universais + 18 de dados))
+- **1.734** commits meus em 2026, em 8 produtos próprios (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
 - **6.357** funções de teste nos 4 produtos em Python (fonte: contagem de def test_ em tests/ dos produtos com suíte pytest)
 - **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, out/2025 – nov/2026)
-- **3,07 bi** registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
+- **3,07 bi** de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
 
 ## Projetos
 
@@ -29,12 +29,12 @@ Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória pr�
 Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.
 
 - **Para quem:** Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.
-- **Meu papel:** Construí sozinho: coletores, bot, site, pagamento e monitoramento. Meu sócio, da área médica, cuida da venda.
+- **Meu papel:** Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.
 - **Status:** No ar desde agosto de 2026; operação diária desde outubro
 - **Stack:** Python, GitHub Actions, Vercel (funções Python), Upstash Redis, Telegram Bot API, Kiwify (webhook HMAC), pypdf + Tesseract (OCR)
 - **Endereço:** https://avisaedital.com.br
 - **Fatos:**
-  - 716 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot
+  - 717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot
   - 3.372 funções de teste
   - PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions
   - assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot
@@ -50,7 +50,7 @@ Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resulta
 - **Status:** Em produção desde setembro de 2026, evoluindo com a cliente
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Fatos:**
-  - 484 commits meus entre 06/07 e 05/11/2026
+  - 486 commits meus entre 06/07 e 05/11/2026
   - 2.133 funções de teste
   - cliente real com duas lojas em produção
 
@@ -62,13 +62,14 @@ Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacie
 
 - **Para quem:** Clínicas de saúde, com separação total de dados entre clínicas.
 - **Meu papel:** Liderei o desenvolvimento de ponta a ponta.
-- **Status:** Última versão em 06/10/2026
-- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2; restauração ainda não testada)
+- **Status:** Última versão do produto em 06/10/2026; depois só manutenção do repositório
+- **Stack:** Flask, PostgreSQL (Neon), Redis, gunicorn + nginx, Docker, 2FA/TOTP, NFS-e, Anthropic API (chatbot), backup cifrado (age → R2)
 - **Fatos:**
-  - 194 commits meus entre 05/06 e 06/10/2026, fora 7 automáticos do bot
+  - 197 commits meus entre 05/06 e 05/11/2026, fora 7 automáticos do bot
   - 461 funções de teste
   - 111 rotas
   - auditoria interna de segurança (agentes, bandit e pip-audit) sem achado crítico ou alto (02/07/2026)
+  - restauração do backup ainda não testada
 
 Anonimização pelo art. 18 da LGPD que preserva o histórico financeiro, e nota fiscal com descrição genérica — nunca o diagnóstico.
 
@@ -78,10 +79,10 @@ Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores
 
 - **Para quem:** Hamburguerias de Londrina que compram pouco sozinhas e bem juntas.
 - **Meu papel:** Tech lead e desenvolvedor, com um sócio como dono do produto.
-- **Status:** MVP completo; parado desde 28/05/2026
+- **Status:** MVP completo; parado desde 28/05/2026 (depois só manutenção do repositório)
 - **Stack:** Flask, PostgreSQL, Telegram Bot API, Docker, PDF de contrato
 - **Fatos:**
-  - 194 commits meus entre 14/04 e 28/05/2026, fora 7 automáticos do bot
+  - 196 commits meus entre 14/04 e 05/11/2026, fora 7 automáticos do bot
   - 391 funções de teste
   - 109 rotas
   - origem da plataforma Flask que Nous e Pingado reaproveitam
@@ -98,7 +99,7 @@ A IA escolhe as 10 melhores de 30 fotos para um photo dump de Instagram.
 - **Stack:** Next.js 16, React 19, Tailwind v4, Claude (multimodal), Kiwify, Upstash (rate limit), Vercel
 - **Endereço:** https://dumpai-omega.vercel.app
 - **Fatos:**
-  - 21 commits meus entre 10/06 e 28/09/2026
+  - 23 commits meus entre 10/06 e 05/11/2026
   - no ar desde 11/06/2026
   - compressão da imagem no navegador antes do envio
 
@@ -110,28 +111,29 @@ Recepcionista de WhatsApp com agenda real para profissionais autônomos.
 
 - **Para quem:** Psicólogos, advogados e outros profissionais que atendem sozinhos.
 - **Meu papel:** Arquitetura e implementação, com um squad de 5 agentes de IA.
-- **Status:** Piloto parado na autorização do Google; não completou uma conversa de ponta a ponta com cliente
+- **Status:** Piloto parado (autorização do Google)
 - **Stack:** n8n, Evolution API, PostgreSQL 16, Redis 7, LangChain, Google Calendar
 - **Fatos:**
-  - 8 commits meus entre 16/09 e 30/10/2026
+  - 9 commits meus entre 16/09 e 05/11/2026
   - projeto iniciado em 15/04/2026; primeira versão rodando local em 27/04
   - passagem para humano com trava na conversa
   - configuração por cliente em YAML (versão multi-cliente)
+  - não completou uma conversa de ponta a ponta com cliente
 
 Campo de configuração do cliente entra no prompt com privilégio de sistema — então é superfície de injeção: enum, sanitização e negação explícita.
 
 ### SaaS de crédito (sob NDA)
 
-Gestão de crédito multi-tenant para operadores pequenos: painel da equipe e portal do tomador como PWA.
+Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA.
 
-- **Para quem:** Operadores de crédito de pequeno porte. Detalhes de negócio sob acordo de confidencialidade.
+- **Para quem:** Pequenas operações de crédito. Detalhes de negócio sob acordo de confidencialidade.
 - **Meu papel:** Arquitetura e implementação de ponta a ponta, com um sócio como dono do produto.
 - **Status:** Piloto no ar desde outubro de 2026
 - **Stack:** Next.js 16 + TypeScript, PWA com branding por tenant, PostgreSQL (Supabase) com RLS por tenant, GitHub Actions, Docker (e2e em contêiner), Vercel
 - **Fatos:**
-  - 65 commits meus entre 13/10 e 28/10/2026
+  - 66 commits meus entre 13/10 e 05/11/2026
   - backup diário restaurado num banco descartável e conferido em CI: contagens, migrações e políticas de isolamento
-  - auto-cadastro público com checagem antifraude e aprovação em um clique
+  - fluxo de cadastro público com validações e aprovação em um clique
 
 Quando o controle de aplicativos do sistema bloqueou o binário nativo de hash de senha, o ambiente de desenvolvimento foi para um contêiner — e o e2e junto.
 
@@ -142,12 +144,13 @@ Cinco portais estáticos de finanças e direitos, com indicadores que se atualiz
 - **Para quem:** Leitores brasileiros (crédito, renda fixa, direitos trabalhistas, finanças em dólar) e um público dos EUA (finanças pessoais).
 - **Meu papel:** Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.
 - **Status:** No ar desde outubro de 2026; monetização em avaliação
-- **Stack:** Astro 7, TypeScript, GitHub Actions, APIs oficiais (Banco Central/SGS, FRED, IBGE, Tesouro, ANP), Vercel
+- **Stack:** Astro 7, TypeScript, GitHub Actions, APIs oficiais, Vercel
 - **Endereço:** https://guiadocredito.com.br
 - **Fatos:**
   - 40 commits meus entre 20/10 e 03/11/2026
   - 33 a 45 guias por portal, cada um com fonte primária
   - indicadores recalculados por workflow, não digitados
+  - fontes: Banco Central/SGS, FRED, IBGE, Tesouro, ANP
 
 A primeira versão de um deles trazia foto e credenciais de um autor que não existia, geradas por IA. Saíram antes da publicação: texto assinado por pessoa, ou não assinado.
 
@@ -160,7 +163,7 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
 - **Status:** Encerrado em nov/2026 (fim da operação)
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
-  - 1408 commits meus entre 12/03 e 04/11/2026
+  - 1.408 commits meus entre 12/03 e 04/11/2026
   - migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores
   - custo de mídia (Meta, Google Ads, TikTok) num tracker de atribuição multi-tenant, substituindo um fornecedor pago
   - serviço diário de risco e score de crédito de jogador
@@ -256,13 +259,13 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 
 - **Memória em camadas.** Cada projeto tem um índice de memória com o que é armadilha viva. O que vale para outro projeto sobe para uma memória global: lição com origem, motivo e forma de aplicar.
 - **Um gate fecha a promoção.** Promover uma lição é escrevê-la no disco, no índice legível e no índice de máquina. Esse passo falhou duas vezes sem sintoma; hoje um script confere os três e tem um modo que prova que ele sabe ficar vermelho.
-- **Mutação como hábito.** 66 dos 716 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
+- **Mutação como hábito.** 66 dos 717 commits meus no Avisa Edital registram teste de mutação: o defeito é reintroduzido e o teste tem de reprovar antes de o conserto valer.
 - **Agentes com papel, não com autonomia.** 15 agentes especializados (qualidade, segurança, testes, UX, revisão de conteúdo, growth) trabalham em paralelo. O que os revisores acham é reproduzido antes de virar mudança.
 - **Onde paramos.** Todo projeto tem um arquivo de retomada que a próxima sessão lê primeiro: estado, decisões de quem é dono do negócio e pendências, com data.
 
 ## Disponibilidade
 
-Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto fechado. O jeito mais rápido é o e-mail.
+Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto de escopo fechado. O jeito mais rápido é o e-mail.
 
 Contato: mateusrfabro@hotmail.com
 
@@ -270,7 +273,7 @@ Contato: mateusrfabro@hotmail.com
 
 **Quem é Mateus Fabro?**
 
-Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI e cinco portais de conteúdo.
+Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
 
 **Com o que ele trabalha?**
 

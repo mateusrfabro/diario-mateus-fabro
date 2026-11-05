@@ -127,13 +127,13 @@ def _faixa(c: dict, fmt_curto: str, fmt_longo: str) -> str:
 
 
 def fato_commits(c: dict) -> str:
-    base = f"{c['humanos']} commits meus entre {_faixa(c, '%d/%m', '%d/%m/%Y')}"
+    base = f"{br(c['humanos'])} commits meus entre {_faixa(c, '%d/%m', '%d/%m/%Y')}"
     return base + (f", fora {c['bot']} automáticos do bot" if c["bot"] else "")
 
 
 def fato_commits_en(c: dict) -> str:
     faixa = _faixa(c, "%m/%d", "%m/%d/%Y").replace(" e ", " and ")
-    base = f"{c['humanos']} of my commits between {faixa}"
+    base = f"{en(c['humanos'])} of my commits between {faixa}"
     return base + (f", plus {c['bot']} automated bot commits" if c["bot"] else "")
 
 
@@ -145,7 +145,7 @@ def _e_fato_testes(f: str) -> bool:
     return re.match(r"\d[\d.,]* (funções de teste|test functions)$", f) is not None
 
 
-def aplicar(d: dict, d_en: dict, contagens: dict, licoes: int, mut: int) -> dict:
+def aplicar(d: dict, d_en: dict, contagens: dict, licoes: int, mut: int, escopos: tuple[int, int] = (0, 0)) -> dict:
     """Grava as contagens nos dois JSONs (em memória) e devolve o resumo impresso."""
     por_slug = {p["slug"]: p for p in d["projetos"]}
     por_slug_en = {p["slug"]: p for p in d_en["projetos"]}
@@ -168,8 +168,11 @@ def aplicar(d: dict, d_en: dict, contagens: dict, licoes: int, mut: int) -> dict
     avisa = contagens["avisa-edital"]
 
     d["numeros"][0]["valor"] = d_en["numeros"][0]["valor"] = str(licoes)
-    d["numeros"][1].update(valor=br(total_c), rotulo=f"commits meus em {len(produtos)} produtos próprios, em 2026")
-    d_en["numeros"][1].update(valor=en(total_c), rotulo=f"of my commits across {len(produtos)} own products, in 2026")
+    u, dd = escopos
+    d["numeros"][0]["fonte"] = f"memória global, global_index.json ({u} universais + {dd} de dados)"
+    d_en["numeros"][0]["fonte"] = f"global memory, global_index.json ({u} general + {dd} data)"
+    d["numeros"][1].update(valor=br(total_c), rotulo=f"commits meus em 2026, em {len(produtos)} produtos próprios")
+    d_en["numeros"][1].update(valor=en(total_c), rotulo=f"of my commits in 2026, across {len(produtos)} own products")
     d["numeros"][2].update(valor=br(total_t), rotulo=f"funções de teste nos {len(com_py)} produtos em Python")
     d_en["numeros"][2].update(valor=en(total_t), rotulo=f"test functions in the {len(com_py)} Python products")
     for lista, rx, novo_txt in (
@@ -188,8 +191,13 @@ def main() -> int:
     d, d_en = carregar(), json.loads(DADOS_EN.read_text(encoding="utf-8"))
     antes, antes_en = json.dumps(d, ensure_ascii=False), json.dumps(d_en, ensure_ascii=False)
     contagens = {s: contar(s) for s in REPOS}
-    licoes = len(json.loads(INDICE_LICOES.read_text(encoding="utf-8"))["lessons"])
-    r = aplicar(d, d_en, contagens, licoes, contar_mutacao("avisa-edital"))
+    indice = json.loads(INDICE_LICOES.read_text(encoding="utf-8"))["lessons"]
+    licoes = len(indice)
+    escopos = (sum(1 for x in indice if x.get("scope") == "universal"),
+               sum(1 for x in indice if x.get("scope") == "igaming-dados"))
+    if sum(escopos) != licoes:
+        raise SystemExit(f"global_index.json: {licoes - sum(escopos)} lição(ões) com scope fora de universal/igaming-dados")
+    r = aplicar(d, d_en, contagens, licoes, contar_mutacao("avisa-edital"), escopos)
     print(f"lições {r['licoes']} · commits {r['commits']} · testes {r['testes']} · mutação no Avisa {r['mutacao']}/{r['avisa']}")
     if json.dumps(d, ensure_ascii=False) == antes and json.dumps(d_en, ensure_ascii=False) == antes_en:
         print("nada mudou")

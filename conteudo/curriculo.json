@@ -1,14 +1,14 @@
 {
   "resumo": {
     "pt": [
-      "Engenheiro de dados e analytics: projeto, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
-      "De out/2025 a nov/2026, num squad de dados de 4 pessoas, atendi três operações de iGaming em três países e três moedas e liderei a frente de dados de duas delas, até o encerramento da operação.",
-      "Fora do expediente, construí e opero produtos próprios com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
+      "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
+      "De out/2025 a nov/2026 trabalhei na Super Nova Gaming / MultiBet, até o encerramento da empresa.",
+      "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
     ],
     "en": [
       "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
-      "From Oct 2025 to Nov 2026, in a four-person data squad, I served three iGaming operations in three countries and three currencies and led the data front for two of them, until the operation shut down.",
-      "Outside work, I built and run my own products with real customers in production, covered by tests and with an honest status — including the ones that stopped."
+      "From Oct 2025 to Nov 2026 I worked at Super Nova Gaming / MultiBet, until the company shut down.",
+      "Outside work, I built and run my own products, one of them with a real customer in production, covered by tests and with an honest status — including the ones that stopped."
     ]
   },
   "experiencia": {
@@ -18,19 +18,23 @@
           "bloco": "Engenharia de dados e plataforma",
           "itens": [
             {
-              "texto": "Liderei a ponta de dados da migração do data lake (Athena legado → S3 Tables/Iceberg, 234 tabelas, 3,07 bi de registros): camada de conexão bi-ambiente com fonte única e rollback por uma variável de ambiente, sem quebrar os pipelines consumidores.",
+              "texto": "Liderei a camada de consumo da migração do data lake (Athena legado → S3 Tables/Iceberg, 234 tabelas, 3,07 bi de registros): camada de conexão bi-ambiente com fonte única e rollback por uma variável de ambiente, sem quebrar os pipelines consumidores.",
               "fonte": "MultiBet/docs/_migration/inventario_799_2026-07-23.md (234 tabelas, 3.070.941.718 registros)"
             },
             {
-              "texto": "Retrofit multi-tenant do analytics (duas operações nas mesmas tabelas): registry tipado de tenants, escopo obrigatório no runner de queries e linter fail-closed com allowlist-ratchet (43 → 3 exceções) e hook no editor — nascido de um incidente real de escopo de moeda.",
+              "texto": "Fiz o retrofit multi-tenant do analytics (duas operações nas mesmas tabelas): registry tipado de tenants, escopo obrigatório no runner de queries e linter fail-closed com allowlist-ratchet (43 → 3 exceções) e hook no editor — nascido de um incidente real de escopo de moeda.",
               "fonte": "repositório play4tune: db/queries/_tenant_scope_allowlist.txt (git log: 43 entradas em 12c6ee5 → 3 em 32df82d, 05/08/2026) e scripts/lint_tenant_scope.py"
             },
             {
-              "texto": "Camada gold de torneios juntando três fontes (PostgreSQL, MongoDB Atlas, postgres_fdw) num contrato só, fail-closed: fonte fora do ar vira estado UNREACHABLE, nunca zero falso.",
-              "fonte": ""
+              "texto": "Construí a camada gold de torneios, juntando três fontes (PostgreSQL, MongoDB Atlas, postgres_fdw) num contrato só, fail-closed: fonte fora do ar vira estado UNREACHABLE, nunca zero falso.",
+              "fonte": "repositório play4tune: docs/gold_torneios_resposta_dev_20260807_MENSAGEM.md"
             },
             {
-              "texto": "Padrão de deploy git-first em EC2 via AWS SSM com smoke test remoto e timers systemd; otimizei a consulta crítica de 240 s (timeout) para 21 s, com equivalência provada por conjunto.",
+              "texto": "Padronizei o deploy git-first em EC2 (AWS SSM, smoke test remoto, timers systemd).",
+              "fonte": "repositório play4tune: .claude/rules/deploy.md (deploy git-first via SSM, smoke test remoto, timers systemd)"
+            },
+            {
+              "texto": "Otimizei a consulta crítica de 240 s (timeout) para 21 s, com equivalência provada por conjunto.",
               "fonte": "repositório play4tune: commit 75f9714 (ggr-por-jogador-clean: timeout 240s → 21s, equivalência provada por conjunto)"
             }
           ]
@@ -47,7 +51,7 @@
               "fonte": "tracker (C:/Users/mateu/tk-tracker): 6 @Cron em application/src/modules/analytics-module/infrastructure/scheduler (ads-spend-scheduler.ts, meta-token-refresh.scheduler.ts); currículo anterior Curriculo_Mateus_Fabro_v4_conteudo_PT.md"
             },
             {
-              "texto": "Dashboards e serviços web em produção: Flask (Central de Bônus, CRM), Dash/Plotly com Docker, FastAPI e uma malha de alertas operacionais em WhatsApp (Evolution API self-hosted), Slack e Telegram com dead-man's switches de frescor.",
+              "texto": "Dashboards e serviços web em produção: Flask (Central de Bônus, CRM), Dash/Plotly com Docker, FastAPI e uma malha de alertas operacionais em WhatsApp (Evolution API self-hosted), Slack e Telegram com alarme de silêncio por frescor de dado (dead-man's switch).",
               "fonte": ""
             }
           ]
@@ -60,7 +64,7 @@
               "fonte": "repositório play4tune: docs/superpowers/specs/2026-06-18-risk-daily-p4t-fase2-intel-design.md (5 detectores rule-based)"
             },
             {
-              "texto": "PCR — score de crédito de jogador em tiers com janela rolling de 90 dias, publicado de forma atômica no CRM preservando as tags de risco.",
+              "texto": "Construí o PCR — score de crédito de jogador em tiers com janela rolling de 90 dias, publicado de forma atômica no CRM preservando as tags de risco.",
               "fonte": "repositório pcr-p4t: README.md e pipelines/pcr_p4t.py (rolling 90 dias); '7 tiers' e '25%' não confirmados, removidos"
             },
             {
@@ -73,11 +77,11 @@
           "bloco": "IA aplicada",
           "itens": [
             {
-              "texto": "Squad de 25 agentes Claude Code com papel definido (10 do squad de dados + 15 gerais) e 28 skills próprias, com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.",
-              "fonte": "contagem em .claude/agents e .claude/skills (projeto play4tune e ~/.claude), 05/11/2026"
+              "texto": "Montei um squad de 25 agentes Claude Code com papel definido (10 do squad de dados + 15 gerais) e 5 skills próprias (escopo de tenant, multimoeda, promoção de memória, PRD e fábrica de páginas), com gate obrigatório (extração → boas práticas → auditoria → entrega) e hooks que bloqueiam git destrutivo e commit sem teste.",
+              "fonte": "contagem em .claude/agents (10 do play4tune + 15 em ~/.claude) e skills de autoria própria em ~/.claude/skills e play4tune/.claude/skills, 05/11/2026"
             },
             {
-              "texto": "Memória em três camadas (projeto → global → export): 125 lições registradas, cada uma com origem, motivo e forma de aplicar, e um script que prova que o índice não esqueceu nenhuma.",
+              "texto": "Mantenho memória em três camadas (projeto → global → export): 125 lições registradas, cada uma com origem, motivo e forma de aplicar, e um script que prova que o índice não esqueceu nenhuma.",
               "fonte": "~/.claude/memory-global/global_index.json e verificar_sincronia.py, 05/11/2026"
             },
             {
@@ -92,19 +96,23 @@
           "bloco": "Data engineering and platform",
           "itens": [
             {
-              "texto": "Led the data side of the data lake migration (legacy Athena → S3 Tables/Iceberg, 234 tables, 3.07 bn records): a dual-environment connection layer with a single source and one-variable rollback, without breaking the consumer pipelines.",
+              "texto": "Led the consumer layer of the data lake migration (legacy Athena → S3 Tables/Iceberg, 234 tables, 3.07 bn records): a dual-environment connection layer with a single source and one-variable rollback, without breaking the consumer pipelines.",
               "fonte": "MultiBet/docs/_migration/inventario_799_2026-07-23.md (234 tabelas, 3.070.941.718 registros)"
             },
             {
-              "texto": "Multi-tenant retrofit of the analytics (two operations on the same tables): typed tenant registry, mandatory scope in the query runner and a fail-closed linter with an allowlist ratchet (43 → 3 exceptions) plus an editor hook — born from a real currency-scope incident.",
+              "texto": "Did the multi-tenant retrofit of the analytics (two operations on the same tables): typed tenant registry, mandatory scope in the query runner and a fail-closed linter with an allowlist ratchet (43 → 3 exceptions) plus an editor hook — born from a real currency-scope incident.",
               "fonte": "repositório play4tune: db/queries/_tenant_scope_allowlist.txt (git log: 43 entradas em 12c6ee5 → 3 em 32df82d, 05/08/2026) e scripts/lint_tenant_scope.py"
             },
             {
-              "texto": "Gold layer for tournaments joining three sources (PostgreSQL, MongoDB Atlas, postgres_fdw) under one contract, fail-closed: a source that is down becomes UNREACHABLE, never a false zero.",
-              "fonte": ""
+              "texto": "Built the gold layer for tournaments, joining three sources (PostgreSQL, MongoDB Atlas, postgres_fdw) under one contract, fail-closed: a source that is down becomes UNREACHABLE, never a false zero.",
+              "fonte": "repositório play4tune: docs/gold_torneios_resposta_dev_20260807_MENSAGEM.md"
             },
             {
-              "texto": "Git-first EC2 deployment pattern via AWS SSM with remote smoke tests and systemd timers; optimized the critical query from 240 s (timeout) to 21 s, with set-based equivalence proof.",
+              "texto": "Standardized git-first deployment on EC2 (AWS SSM, remote smoke tests, systemd timers).",
+              "fonte": "repositório play4tune: .claude/rules/deploy.md (deploy git-first via SSM, smoke test remoto, timers systemd)"
+            },
+            {
+              "texto": "Optimized the critical query from 240 s (timeout) to 21 s, with set-based equivalence proof.",
               "fonte": "repositório play4tune: commit 75f9714 (ggr-por-jogador-clean: timeout 240s → 21s, equivalência provada por conjunto)"
             }
           ]
@@ -113,15 +121,15 @@
           "bloco": "Systems and applications",
           "itens": [
             {
-              "texto": "Evolved and operated the multi-tenant attribution tracker (NestJS 11 + Next.js 15): conversion postbacks, dispatch to the channels' conversion APIs and cost joined with revenue → CAC, ROAS and LTV per campaign and creative.",
+              "texto": "Extended and operated the multi-tenant attribution tracker (NestJS 11 + Next.js 15): conversion postbacks, dispatch to the channels' conversion APIs and cost joined with revenue → CAC, ROAS and LTV per campaign and creative.",
               "fonte": "tracker (C:/Users/mateu/tk-tracker): application/package.json (@nestjs/core ^11), web/package.json (next 15.5.15); 6 cron jobs em application/src/modules/analytics-module/infrastructure/scheduler; e currículo anterior Curriculo_Mateus_Fabro_v4_conteudo_PT.md"
             },
             {
-              "texto": "Delivered from scratch the admin/auth module (opaque sessions with hashed tokens, guards, audit log) and the whole media-cost layer — Meta Graph API multi-BM, Google Ads and TikTok, 6 cron jobs — replacing a paid vendor.",
+              "texto": "Built the admin/auth module from scratch (opaque sessions with hashed tokens, guards, audit log) and the whole media-cost layer — Meta Graph API multi-BM, Google Ads and TikTok, 6 cron jobs — replacing a paid vendor.",
               "fonte": "tracker (C:/Users/mateu/tk-tracker): 6 @Cron em application/src/modules/analytics-module/infrastructure/scheduler (ads-spend-scheduler.ts, meta-token-refresh.scheduler.ts); currículo anterior Curriculo_Mateus_Fabro_v4_conteudo_PT.md"
             },
             {
-              "texto": "Dashboards and web services in production: Flask (bonus center, CRM), Dash/Plotly with Docker, FastAPI, and an operational alert mesh on WhatsApp (self-hosted Evolution API), Slack and Telegram with freshness dead-man's switches.",
+              "texto": "Dashboards and web services in production: Flask (bonus center, CRM), Dash/Plotly with Docker, FastAPI, and an operational alert mesh on WhatsApp (self-hosted Evolution API), Slack and Telegram with data-freshness silence alarms (dead-man's switch).",
               "fonte": ""
             }
           ]
@@ -134,7 +142,7 @@
               "fonte": "repositório play4tune: docs/superpowers/specs/2026-06-18-risk-daily-p4t-fase2-intel-design.md (5 detectores rule-based)"
             },
             {
-              "texto": "PCR — player credit score in tiers over a rolling 90-day window, published atomically to the CRM while preserving the risk tags.",
+              "texto": "Built the PCR — a player credit score in tiers over a rolling 90-day window, published atomically to the CRM while preserving the risk tags.",
               "fonte": "repositório pcr-p4t: README.md e pipelines/pcr_p4t.py (rolling 90 dias); '7 tiers' e '25%' não confirmados, removidos"
             },
             {
@@ -147,11 +155,11 @@
           "bloco": "Applied AI",
           "itens": [
             {
-              "texto": "Squad of 25 Claude Code agents with defined roles (10 from the data squad + 15 general) and 28 custom skills, with a mandatory gate extraction → best practices → audit → delivery and hooks that block destructive git and commits without tests.",
-              "fonte": "contagem em .claude/agents e .claude/skills (projeto play4tune e ~/.claude), 05/11/2026"
+              "texto": "Assembled a squad of 25 Claude Code agents with defined roles (10 from the data squad + 15 general) and 5 skills of my own (tenant scope, multi-currency, memory promotion, PRD and page factory), with a mandatory gate (extraction → best practices → audit → delivery) and hooks that block destructive git and commits without tests.",
+              "fonte": "contagem em .claude/agents (10 do play4tune + 15 em ~/.claude) e skills de autoria própria em ~/.claude/skills e play4tune/.claude/skills, 05/11/2026"
             },
             {
-              "texto": "Three-layer memory (project → global → export): 125 recorded lessons, each with origin, reason and how to apply it, and a script that proves the index forgot none.",
+              "texto": "I keep a three-layer memory (project → global → export): 125 recorded lessons, each with origin, reason and how to apply it, and a script that proves the index forgot none.",
               "fonte": "~/.claude/memory-global/global_index.json e verificar_sincronia.py, 05/11/2026"
             },
             {
@@ -193,7 +201,7 @@
           "fonte": ""
         },
         {
-          "texto": "Power BI dashboards for the Brazil and Global teams; Credit Portal.",
+          "texto": "Power BI dashboards for the Brazil and Global teams; worked on the Credit Portal.",
           "fonte": ""
         }
       ]
