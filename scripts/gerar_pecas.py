@@ -326,7 +326,49 @@ def cmd_linkedin(args: list[str]) -> int:
     return 0
 
 
-def cmd_github(a): return 2  # Task 7
+# ============================================================================ GitHub
+REPOS_GH = RAIZ / "scripts" / "github_repos.json"
+DOCS_GH = RAIZ / "docs" / "github"
+
+
+def github_readme(d: dict, cv: dict) -> str:
+    p, s = d["perfil"], d["site"]
+    repos = json.loads(REPOS_GH.read_text(encoding="utf-8"))
+    L = [f"# {p['nome']} — {p['cargo']}", "", f"**{p['subtitulo']}**", "",
+         f"🟢 **{d['disponibilidade']['status'].capitalize()}** — {d['disponibilidade']['texto']}", "",
+         f"- Site (projetos, números medidos e retificações): {s['url']}",
+         f"- Currículo: [PT]({s['url']}/curriculo/mateus-fabro-pt.pdf) · [EN]({s['url']}/curriculo/mateus-fabro-en.pdf)",
+         f"- LinkedIn: {p['linkedin']}", f"- E-mail: {p['email']}", "",
+         "## O que eu faço", ""] + [f"- {par}" for par in cv["resumo"]["pt"]] + ["",
+         "## Projetos", "", "| Projeto | O que é | Status | Código |", "|---|---|---|---|"]
+    por_nome = {r["nome"]: r for r in repos}
+    pares = {"avisa-edital": "avisa-edital", "pingado": "cafesaas", "nous-clinical": "nous-clinical",
+             "aggron": "poolcompras", "dumpai": "dumpai", "atendimento-whatsapp": "secretaria-ia",
+             "credito-nda": "credito-saas", "portais-conteudo": "guiadocredito"}
+    for pr in d["projetos"]:
+        if pr["tipo"] != "produto":
+            continue
+        r = por_nome[pares[pr["slug"]]]
+        codigo = f"[{r['nome']}](https://github.com/mateusrfabro/{r['nome']})" if r["abre"] else f"`{r['nome']}` (privado)"
+        L.append(f"| **{pr['nome']}** | {pr['linha']} | {pr['status']} | {codigo} |")
+    extra = [r for r in repos if r["mostrar"] and r["nome"] not in pares.values()]
+    for r in extra:
+        codigo = f"[{r['nome']}](https://github.com/mateusrfabro/{r['nome']})" if r["abre"] else f"`{r['nome']}` (privado)"
+        L.append(f"| **{r['nome']}** | {r['descricao']} | — | {codigo} |")
+    L += ["", f"Trabalho anterior: {d['experiencia'][0]['empresa']}, {periodo(d['experiencia'][0], 'pt')} — "
+          "repositórios privados (dados da empresa).", "",
+          "## Como eu trabalho", ""] + [f"- **{m['titulo']}.** {m['texto']}" for m in d["metodo"]] + ["",
+          f"_README gerado de `conteudo/dados.json` em {s['medido_em']} pelo repositório "
+          f"[diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro)._", ""]
+    return "\n".join(L)
+
+
+def cmd_github(args: list[str]) -> int:
+    DOCS_GH.mkdir(parents=True, exist_ok=True)
+    alvo = DOCS_GH / "README.md"
+    alvo.write_text(github_readme(build.carregar(), carregar_cv()), encoding="utf-8", newline="\n")
+    print(alvo.relative_to(RAIZ))
+    return 0
 
 
 def main() -> int:
