@@ -3,7 +3,7 @@
     "nome": "diario-mateus-fabro",
     "abre": true,
     "mostrar": true,
-    "descricao": "Portfólio em formato de diário oficial, para pessoas e agentes de IA: site, JSON Resume, llms.txt e servidor MCP de um JSON só",
+    "descricao": "Site profissional e currículo gerados de um JSON só, para pessoas e agentes de IA: HTML, PDF, JSON Resume, llms.txt e servidor MCP",
     "topics": [
       "portfolio",
       "python",

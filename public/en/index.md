@@ -172,7 +172,7 @@ Pipelines, data lake migration, anti-fraud, media attribution and dashboards for
   - fail-closed multi-tenant linter: exception list cut from 43 to 3
   - critical query from 240 s to 21 s, with equivalence proven by set comparison
 
-Most of this gazette's corrections were born here. The numbers are real; client names are left out.
+Most of the lessons published on this site were born here. The numbers are real; client names are left out.
 
 ## Lessons from real cases: corrected mistakes
 

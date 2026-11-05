@@ -27,7 +27,7 @@
 | **Secretária de WhatsApp** | Recepcionista de WhatsApp com agenda real para profissionais autônomos. | Piloto parado (autorização do Google) | `secretaria-ia` (privado) |
 | **SaaS de crédito (sob NDA)** | Gestão de crédito multi-tenant: painel da equipe e portal do cliente como PWA. | Piloto no ar desde outubro de 2026 | `credito-saas` (privado) |
 | **Portais de conteúdo com dados oficiais** | Cinco portais estáticos de finanças e direitos, com indicadores que se atualizam sozinhos a partir de fontes oficiais. | No ar desde outubro de 2026; monetização em avaliação | `guiadocredito`, `radardoinvestidor`, `central-do-trabalhador`, `usmoneybrasil`, `mydollarpilot` (privados) |
-| **diario-mateus-fabro** | Portfólio em formato de diário oficial, para pessoas e agentes de IA: site, JSON Resume, llms.txt e servidor MCP de um JSON só | — | [diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro) |
+| **diario-mateus-fabro** | Site profissional e currículo gerados de um JSON só, para pessoas e agentes de IA: HTML, PDF, JSON Resume, llms.txt e servidor MCP | — | [diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro) |
 | **lab-ia** | Laboratório local de IA: Ollama + PyTorch numa RTX 4060 — agente com ferramentas, QLoRA, ML tabular | — | [lab-ia](https://github.com/mateusrfabro/lab-ia) |
 
 Trabalho atual: Super Nova Gaming / MultiBet (Grupo PGX), desde out/2025 — repositórios privados (dados da empresa).

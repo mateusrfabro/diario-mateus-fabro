@@ -172,7 +172,7 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
   - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
   - consulta crítica de 240 s para 21 s, com equivalência provada por conjunto
 
-A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.
+A maior parte das lições publicadas neste site nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.
 
 ## Lições de casos reais: erros corrigidos
 
@@ -445,4 +445,4 @@ Pipelines, migração de data lake, antifraude, atribuição de mídia e painéi
   - linter multi-tenant que falha fechado: lista de exceções de 43 para 3
   - consulta crítica de 240 s para 21 s, com equivalência provada por conjunto
 
-A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.
+A maior parte das lições publicadas neste site nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.

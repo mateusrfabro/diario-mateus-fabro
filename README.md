@@ -1,4 +1,4 @@
-# Diário de Mateus Fabro
+# Mateus Fabro — site profissional
 
 Site profissional, escrito para dois leitores: pessoas (gestor e recrutador de vaga de dados) e agentes de IA.
 
