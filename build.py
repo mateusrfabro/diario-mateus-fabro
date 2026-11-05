@@ -106,6 +106,7 @@ T = {
         "medido": "Números medidos em {d}, contados nos repositórios — não de cabeça.",
         "como_medido": "Como cada número foi contado",
         "l_exp": "Squad de dados atendendo 3 operações de iGaming; lidero a frente de dados de 2 delas. Antes, crédito, cobrança e indicadores.",
+        "l_exp_completo": "Squad de dados atendendo 3 operações de iGaming; liderei a frente de dados de 2 delas. Antes, crédito, cobrança e indicadores.",
         "l_proj": "Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.",
         "l_stack": "O que uso no dia a dia, agrupado pelo tipo de trabalho.",
         "l_met": "Em par com agentes de IA, e com um sistema que impede o mesmo erro de acontecer duas vezes.",
@@ -145,6 +146,7 @@ T = {
         "medido": "Numbers measured on {d}, counted in the repositories — not from memory.",
         "como_medido": "How each number was counted",
         "l_exp": "A data squad serving 3 iGaming operations; I lead the data front for 2 of them. Before that, credit, collections and KPIs.",
+        "l_exp_completo": "A data squad serving 3 iGaming operations; I led the data front for 2 of them. Before that, credit, collections and KPIs.",
         "l_proj": "My own products, from the scraper to the customer, with the real status of each — including the ones that stopped.",
         "l_stack": "What I use day to day, grouped by kind of work.",
         "l_met": "Paired with AI agents, and with a system that keeps the same mistake from happening twice.",
@@ -404,7 +406,7 @@ a:hover{color:var(--accent-hover)}
 .btn-sec{background:var(--card);border-color:var(--line-2);color:var(--ink)}
 .btn-sec:hover{border-color:var(--accent);color:var(--accent)}
 .btn-ter{display:inline-flex;align-items:center;min-height:48px;padding:0 8px;font-weight:600;text-decoration:none}
-.btn-topo{display:none;min-height:40px;padding:0 14px;font-size:.875rem}
+.btn-topo{display:none;min-height:44px;padding:0 14px;font-size:.875rem}
 @media (max-width:879px){.topo .idioma{display:none}.topo .btn-topo{display:inline-flex}}
 @media (max-width:479px){.ctas .btn{flex:1 1 100%}}
 .meta{list-style:none;display:flex;flex-wrap:wrap;margin:24px 0 0;padding:0;color:var(--muted);font-size:.9375rem}
@@ -900,7 +902,7 @@ def pagina(d: dict, md: str = "", t: dict = T["pt"]) -> str:
 </div></section>
 
 <section class="secao" id="experiencia"><div class="wrap">
-  <header class="secao-cab"><h2>{t['h_exp']}</h2><p class="lead">{t['l_exp']}</p></header>
+  <header class="secao-cab"><h2>{t['h_exp']}</h2><p class="lead">{t['l_exp'] if d['site'].get('modo') == 'discreto' else t['l_exp_completo']}</p></header>
   <ol class="linhas">{''.join(exps)}</ol>
 </div></section>
 

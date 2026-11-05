@@ -75,7 +75,7 @@ a:hover{color:var(--accent-hover)}
 .btn-sec{background:var(--card);border-color:var(--line-2);color:var(--ink)}
 .btn-sec:hover{border-color:var(--accent);color:var(--accent)}
 .btn-ter{display:inline-flex;align-items:center;min-height:48px;padding:0 8px;font-weight:600;text-decoration:none}
-.btn-topo{display:none;min-height:40px;padding:0 14px;font-size:.875rem}
+.btn-topo{display:none;min-height:44px;padding:0 14px;font-size:.875rem}
 @media (max-width:879px){.topo .idioma{display:none}.topo .btn-topo{display:inline-flex}}
 @media (max-width:479px){.ctas .btn{flex:1 1 100%}}
 .meta{list-style:none;display:flex;flex-wrap:wrap;margin:24px 0 0;padding:0;color:var(--muted);font-size:.9375rem}
