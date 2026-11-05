@@ -1,4 +1,4 @@
-"""Gera public/og.png (1200×630), a imagem que aparece quando o link é colado no LinkedIn.
+"""Gera public/og.png e public/og-en.png (1200×630), a imagem que aparece quando o link é colado no LinkedIn.
 
 A imagem traz texto (nome, cargo, a frase da abertura e o endereço), e texto numa imagem envelhece
 sem ninguém ver. Por isso este script também grava public/og.json com o que foi desenhado, e
@@ -51,12 +51,13 @@ html,body{{margin:0;width:1200px;height:630px;overflow:hidden;background:#FFFFFF
 </div></body></html>"""
 
 
+# (língua, carregador, imagem, descritor gravado): a página /en/ aponta para a capa em inglês.
+CAPAS = (("pt", "carregar", "og.png", "og.json"), ("en", "carregar_en", "og-en.png", "og-en.json"))
+
+
 def main() -> int:
     from playwright.sync_api import sync_playwright
-    d = build.carregar()
-    desc = descritor(d)
     saida = RAIZ / "public"
-    (saida / "_capa.html").write_text(html_capa(desc), encoding="utf-8")
     manip = functools.partial(http.server.SimpleHTTPRequestHandler, directory=str(saida))
     manip.log_message = lambda *a, **k: None
     srv = http.server.ThreadingHTTPServer(("127.0.0.1", 0), manip)
@@ -67,17 +68,21 @@ def main() -> int:
                 nav = p.chromium.launch(channel="msedge")
             except Exception:  # noqa: BLE001 — sem Edge, o Chromium do Playwright
                 nav = p.chromium.launch()
-            pg = nav.new_page(viewport={"width": 1200, "height": 630}, color_scheme="light")
-            pg.goto(f"http://127.0.0.1:{srv.server_address[1]}/_capa.html")
-            pg.evaluate("document.fonts.ready")
-            pg.wait_for_timeout(400)
-            pg.screenshot(path=str(saida / "og.png"))
+            for _lang, carregador, png, js in CAPAS:
+                desc = descritor(getattr(build, carregador)())
+                (saida / "_capa.html").write_text(html_capa(desc), encoding="utf-8")
+                pg = nav.new_page(viewport={"width": 1200, "height": 630}, color_scheme="light")
+                pg.goto(f"http://127.0.0.1:{srv.server_address[1]}/_capa.html")
+                pg.evaluate("document.fonts.ready")
+                pg.wait_for_timeout(400)
+                pg.screenshot(path=str(saida / png))
+                pg.close()
+                (saida / js).write_text(json.dumps(desc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                print(f"public/{png} gerado")
             nav.close()
     finally:
         srv.shutdown()
         (saida / "_capa.html").unlink(missing_ok=True)
-    (saida / "og.json").write_text(json.dumps(desc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("public/og.png gerado")
     return 0
 
 

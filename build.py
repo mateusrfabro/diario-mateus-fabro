@@ -769,11 +769,11 @@ def cabeca(d: dict, t: dict, caminho: str, titulo: str, descricao: str, extra: s
 <meta name="twitter:description" content="{e(descricao)}">
 <meta name="theme-color" content="#0E5A63">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<meta property="og:image" content="{e(s['url'])}/og.png">
+<meta property="og:image" content="{e(s['url'])}/{'og-en.png' if t is T['en'] else 'og.png'}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="{e(d['perfil']['nome'])} — {e(d['perfil']['cargo'])}">
-<meta name="twitter:image" content="{e(s['url'])}/og.png">
+<meta name="twitter:image" content="{e(s['url'])}/{'og-en.png' if t is T['en'] else 'og.png'}">
 <link rel="stylesheet" href="/estilo.css">{extra}
 </head>
 <body>

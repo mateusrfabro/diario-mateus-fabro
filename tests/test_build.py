@@ -275,6 +275,19 @@ def test_imagem_de_compartilhamento_existe_e_nao_envelheceu():
     assert 'name="twitter:card" content="summary_large_image"' in h
 
 
+def test_capa_em_ingles_para_a_pagina_en():
+    """Link de /en/ colado no LinkedIn mostra a capa em inglês, não a em português."""
+    import struct
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import gerar_og
+    png = (RAIZ / "public" / "og-en.png").read_bytes()
+    assert png[:8] == b"\x89PNG\r\n\x1a\n" and struct.unpack(">II", png[16:24]) == (1200, 630)
+    desenhado = json.loads((RAIZ / "public" / "og-en.json").read_text(encoding="utf-8"))
+    assert desenhado == gerar_og.descritor(build.carregar_en()), "og-en.png desatualizada: rode python scripts/gerar_og.py"
+    h = (RAIZ / "public" / "en" / "index.html").read_text(encoding="utf-8")
+    assert f'<meta property="og:image" content="{D["site"]["url"]}/og-en.png">' in h
+
+
 # ------------------------------------------------------------------ as duas línguas dizem o mesmo
 EN = build.carregar_en()
 
