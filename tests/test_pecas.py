@@ -38,6 +38,15 @@ def test_curriculo_publico_tem_empregador_datas_formacao_e_cargo_e_nao_tem_telef
         assert tel not in h and re.sub(r"\D", "", tel)[-8:] not in re.sub(r"\D", "", h)
 
 
+def test_pdfs_publicos_nao_tem_o_telefone():
+    from pypdf import PdfReader
+    tel = _telefone()
+    for lang in ("pt", "en"):
+        r = PdfReader(str(RAIZ / "public" / "curriculo" / f"mateus-fabro-{lang}.pdf"))
+        texto = "".join(p.extract_text() for p in r.pages)
+        assert re.sub(r"\D", "", tel)[-8:] not in re.sub(r"\D", "", texto)
+
+
 def test_curriculo_privado_tem_telefone_e_nunca_vai_para_public():
     tel = _telefone()
     h = gp.curriculo_html(D, CV, "pt", telefone=tel)

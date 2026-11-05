@@ -4,8 +4,8 @@
   python scripts/gerar_pecas.py linkedin
   python scripts/gerar_pecas.py github
 
-O currículo público (public/curriculo/) nunca tem telefone. `--privado` lê
-C:\\Users\\mateu\\Projects\\portfolio-privado.json (fora do repo) e grava a cópia com telefone SÓ no OneDrive.
+O currículo público (public/curriculo/) nunca tem telefone. `--privado` gera SÓ a cópia com telefone: lê o
+arquivo privado e grava no OneDrive, ambos fora do repositório (caminhos em PORTFOLIO_PRIVADO / PORTFOLIO_ONEDRIVE).
 """
 from __future__ import annotations
 
@@ -25,7 +25,8 @@ CV = RAIZ / "conteudo" / "curriculo.json"
 TEMPLATE = RAIZ / "scripts" / "templates" / "curriculo.html"
 PUBLIC_CV = RAIZ / "public" / "curriculo"
 PRIVADO = Path(os.environ.get("PORTFOLIO_PRIVADO", RAIZ.parent / "portfolio-privado.json"))
-ONEDRIVE = Path.home() / "OneDrive - PGX" / "7. Projetos Pessoais"
+ONEDRIVE = Path(os.environ.get("PORTFOLIO_ONEDRIVE", Path.home() / "OneDrive - PGX" / "7. Projetos Pessoais"))
+LANGS = ("pt", "en")
 MESES_PT = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
 MESES_EN = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 e = build.e
@@ -41,8 +42,7 @@ def dados(lang: str) -> dict:
 
 def mes_ano(iso: str, lang: str) -> str:
     y, m = iso.split("-")
-    return f"{(MESES_PT if lang == 'pt' else MESES_EN)[int(m) - 1]}/{y}" if lang == "pt" \
-        else f"{MESES_EN[int(m) - 1]} {y}"
+    return f"{MESES_PT[int(m) - 1]}/{y}" if lang == "pt" else f"{MESES_EN[int(m) - 1]} {y}"
 
 
 def periodo(x: dict, lang: str) -> str:
@@ -76,7 +76,6 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
         if pr["tipo"] != "produto":
             continue
         link = f' · <a href="{e(pr["url"])}">{e(pr["url"].split("//")[1])}</a>' if pr.get("url") else ""
-        fatos = "; ".join(pr["fatos"][:1])
         produtos.append(f'<p class="produto"><b>{e(pr["nome"])}</b> — {e(pr["linha"])} '
                         f'<span class="status">({e(pr["status"])})</span>{link}</p>')
     stack = "".join(f"<tr><td>{e(c['categoria'])}</td><td>{e(c['itens'])}</td></tr>" for c in cv["stack"][lang])
@@ -92,42 +91,51 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
         **{f"r_{k}": e(v) for k, v in r.items()},
     }
     texto = TEMPLATE.read_text(encoding="utf-8")
-    for k, v in campos.items():
-        texto = texto.replace("{{" + k + "}}", v)
-    sobrou = re.findall(r"{{\w+}}", texto)
-    if sobrou:
-        raise ValueError(f"placeholder sem valor no template: {sobrou}")
-    return texto
+
+    def _valor(m: re.Match) -> str:
+        try:
+            return campos[m[1]]
+        except KeyError:
+            raise ValueError(f"placeholder sem valor no template: {m[1]}") from None
+    return re.sub(r"\{\{(\w+)\}\}", _valor, texto)  # uma passagem: valor com {{x}} dentro não é reexpandido
 
 
 def curriculo_arquivos() -> dict[str, str]:
     cv = carregar_cv()
-    return {f"mateus-fabro-{lang}.html": curriculo_html(dados(lang), cv, lang) for lang in ("pt", "en")}
+    return {f"mateus-fabro-{lang}.html": curriculo_html(dados(lang), cv, lang) for lang in LANGS}
 
 
 def curriculo_desatualizado() -> list[str]:
     """Nomes dos arquivos de public/curriculo/ ausentes ou diferentes do gerado, sempre com prefixo `curriculo/`
-    (ex.: `curriculo/mateus-fabro-pt.html`), para o `build.py --check` distinguir do site."""
+    (ex.: `curriculo/mateus-fabro-pt.html`), para o `build.py --check` distinguir do site.
+    Só o HTML entra na checagem; o PDF é regerado junto com ele, sem checagem de frescor."""
     return [f"curriculo/{n}" for n, c in curriculo_arquivos().items()
             if not (PUBLIC_CV / n).exists() or (PUBLIC_CV / n).read_text(encoding="utf-8") != c]
 
 
 def saidas_privadas() -> list[Path]:
-    return [ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.{ext}" for lang in ("pt", "en") for ext in ("html", "pdf")]
+    return [ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.{ext}" for lang in LANGS for ext in ("html", "pdf")]
 
 
 def pdf(html_path: Path, pdf_path: Path) -> None:
     from playwright.sync_api import sync_playwright
     with sync_playwright() as pw:
+        nav = None
+        for tentativa in ({"channel": "msedge"}, {}):  # Edge primeiro; sem ele, o Chromium do Playwright
+            try:
+                nav = pw.chromium.launch(**tentativa)
+                break
+            except Exception:  # noqa: BLE001
+                continue
+        if nav is None:
+            raise SystemExit("navegador ausente: rode `py -3.12 -m playwright install chromium`")
         try:
-            nav = pw.chromium.launch(channel="msedge")
-        except Exception:  # noqa: BLE001 — sem Edge, o Chromium do Playwright
-            nav = pw.chromium.launch()
-        pg = nav.new_page()
-        pg.goto(html_path.resolve().as_uri())
-        pg.emulate_media(media="print")
-        pg.pdf(path=str(pdf_path), format="A4", print_background=True, prefer_css_page_size=True)
-        nav.close()
+            pg = nav.new_page()
+            pg.goto(html_path.resolve().as_uri())
+            pg.emulate_media(media="print")
+            pg.pdf(path=str(pdf_path), format="A4", print_background=True, prefer_css_page_size=True)
+        finally:
+            nav.close()
 
 
 def cmd_curriculo(args: list[str]) -> int:
@@ -135,26 +143,31 @@ def cmd_curriculo(args: list[str]) -> int:
         velhos = curriculo_desatualizado()
         print("curriculo em dia" if not velhos else f"desatualizado: {velhos}")
         return 1 if velhos else 0
+    sem_pdf = "--sem-pdf" in args
+    if "--privado" in args:  # só a cópia privada; falha antes de gerar qualquer coisa
+        if not PRIVADO.exists():
+            print(f"arquivo privado ausente: {PRIVADO}")
+            return 1
+        if not ONEDRIVE.parent.exists():
+            print(f"pasta do OneDrive ausente ({ONEDRIVE.parent}): ajuste PORTFOLIO_ONEDRIVE")
+            return 1
+        tel = json.loads(PRIVADO.read_text(encoding="utf-8"))["telefone"]
+        cv = carregar_cv()
+        ONEDRIVE.mkdir(exist_ok=True)
+        for lang in LANGS:
+            alvo = ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.html"
+            alvo.write_text(curriculo_html(dados(lang), cv, lang, telefone=tel), encoding="utf-8", newline="\n")
+            if not sem_pdf:
+                pdf(alvo, alvo.with_suffix(".pdf"))
+            print(f"privado: {alvo}")
+        return 0
     PUBLIC_CV.mkdir(parents=True, exist_ok=True)
     for nome, conteudo in curriculo_arquivos().items():
         alvo = PUBLIC_CV / nome
         alvo.write_text(conteudo, encoding="utf-8", newline="\n")
-        if "--sem-pdf" not in args:
+        if not sem_pdf:
             pdf(alvo, alvo.with_suffix(".pdf"))
-        print(f"public/curriculo/{nome}{'' if '--sem-pdf' in args else ' + .pdf'}")
-    if "--privado" in args:
-        if not PRIVADO.exists():
-            print(f"arquivo privado ausente: {PRIVADO}")
-            return 1
-        tel = json.loads(PRIVADO.read_text(encoding="utf-8"))["telefone"]
-        cv = carregar_cv()
-        ONEDRIVE.mkdir(parents=True, exist_ok=True)
-        for lang in ("pt", "en"):
-            alvo = ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.html"
-            alvo.write_text(curriculo_html(dados(lang), cv, lang, telefone=tel), encoding="utf-8", newline="\n")
-            if "--sem-pdf" not in args:
-                pdf(alvo, alvo.with_suffix(".pdf"))
-            print(f"privado: {alvo}")
+        print(f"public/curriculo/{nome}{'' if sem_pdf else ' + .pdf'}")
     return 0
 
 
@@ -258,7 +271,7 @@ def linkedin_md(d: dict, cv: dict, lang: str) -> str:
 def cmd_linkedin(args: list[str]) -> int:
     cv = carregar_cv()
     DOCS_LI.mkdir(parents=True, exist_ok=True)
-    for lang in ("pt", "en"):
+    for lang in LANGS:
         alvo = DOCS_LI / f"kit-2026-11-{lang}.md"          # nome fixo: o git add do plano aponta para ele
         alvo.write_text(linkedin_md(dados(lang), cv, lang), encoding="utf-8", newline="\n")
         print(alvo.relative_to(RAIZ))
