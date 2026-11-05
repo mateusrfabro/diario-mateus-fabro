@@ -2,17 +2,17 @@
 
 **Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript · agentes de IA**
 
-🟢 **Disponível** — Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto de escopo fechado. O jeito mais rápido é o e-mail.
+🟢 **Aberto a projetos e vagas** — Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.
 
 - Site (projetos, números medidos e retificações): https://mateusfabro.vercel.app
 - Currículo: [PT](https://mateusfabro.vercel.app/curriculo/mateus-fabro-pt.pdf) · [EN](https://mateusfabro.vercel.app/curriculo/mateus-fabro-en.pdf)
-- LinkedIn: https://www.linkedin.com/in/mateus-fabro-7ba369173
+- LinkedIn: https://www.linkedin.com/in/mateusrfabro
 - E-mail: mateusrfabro@hotmail.com
 
 ## O que eu faço
 
 - Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.
-- De out/2025 a nov/2026 trabalhei na Super Nova Gaming / MultiBet, até o encerramento da empresa.
+- Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas; lidero a frente de dados de duas delas.
 - Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.
 
 ## Projetos
@@ -30,7 +30,7 @@
 | **diario-mateus-fabro** | Portfólio em formato de diário oficial, para pessoas e agentes de IA: site, JSON Resume, llms.txt e servidor MCP de um JSON só | — | [diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro) |
 | **lab-ia** | Laboratório local de IA: Ollama + PyTorch numa RTX 4060 — agente com ferramentas, QLoRA, ML tabular | — | [lab-ia](https://github.com/mateusrfabro/lab-ia) |
 
-Trabalho anterior: Super Nova Gaming / MultiBet (Grupo PGX), out/2025 – nov/2026 — repositórios privados (dados da empresa).
+Trabalho atual: Super Nova Gaming / MultiBet (Grupo PGX), desde out/2025 — repositórios privados (dados da empresa).
 
 ## Engenharia de agentes
 

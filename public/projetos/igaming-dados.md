@@ -3,8 +3,8 @@
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
 - **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
-- **Meu papel:** Analista de dados de out/2025 a nov/2026, com trabalho de engenharia de ponta a ponta.
-- **Status:** Encerrado em nov/2026 (fim da operação)
+- **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
+- **Status:** Trabalho atual
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
   - 1.408 commits meus entre 12/03 e 04/11/2026

@@ -4,7 +4,8 @@
     "idioma": "en",
     "medido_em": "2026-11-05",
     "titulo": "The Gazette of Mateus Fabro",
-    "descricao": "Mateus Fabro, data & analytics engineer in Londrina, Brazil: data systems, his own products and the corrections for every mistake that became a checkable rule."
+    "descricao": "Mateus Fabro, data & analytics engineer in Londrina, Brazil: data systems, his own products and the corrections for every mistake that became a checkable rule.",
+    "modo": "discreto"
   },
   "perfil": {
     "nome": "Mateus Fabro",
@@ -15,7 +16,7 @@
     "pais": "Brazil",
     "email": "mateusrfabro@hotmail.com",
     "github": "https://github.com/mateusrfabro",
-    "linkedin": "https://www.linkedin.com/in/mateus-fabro-7ba369173",
+    "linkedin": "https://www.linkedin.com/in/mateusrfabro",
     "tese": "I build systems that read public sources and production databases and turn them into alerts people can trust. When I get something wrong, I publish the correction — and the mistake becomes a written rule and, whenever possible, a test that enforces it.",
     "resumo": [
       "I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three operations, three countries and three currencies. I was the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
@@ -42,6 +43,11 @@
       "Portuguese (native)",
       "English (intermediate, fluent technical reading)",
       "Spanish (basic)"
+    ],
+    "resumo_discreto": [
+      "I have worked with data in iGaming since October 2025 — three operations, three countries and three currencies. I am the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.",
+      "Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.",
+      "I work paired with AI agents (Claude Code) and with a memory system of my own: every fixed mistake that applies to another project becomes a lesson with an origin, a reason and a way to apply it — and a script proves the index forgot none."
     ]
   },
   "experiencia": [
@@ -52,7 +58,8 @@
       "inicio": "2025-10",
       "fim": "2026-11",
       "local": "remote",
-      "resumo": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). I was the data lead for the two newest: pipelines, data lake migration, anti-fraud, attribution tracker and dashboards. Left when the operation shut down in November 2026."
+      "resumo": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). I was the data lead for the two newest: pipelines, data lake migration, anti-fraud, attribution tracker and dashboards. Left when the operation shut down in November 2026.",
+      "resumo_discreto": "Four-person data squad serving three iGaming operations (Brazil/BRL, Pakistan/PKR, Colombia/COP). I am the data lead for the two newest: pipelines, data lake migration, anti-fraud, attribution tracker and dashboards."
     },
     {
       "id": "costa-oeste",
@@ -93,7 +100,8 @@
     {
       "valor": "3",
       "rotulo": "iGaming operations, in 3 countries and 3 currencies",
-      "fonte": "Super Nova Gaming, Oct 2025 – Nov 2026"
+      "fonte": "Super Nova Gaming, Oct 2025 – Nov 2026",
+      "fonte_discreta": "Super Nova Gaming, since Oct 2025"
     },
     {
       "valor": "3.07 bn",
@@ -329,7 +337,9 @@
       ],
       "status": "Ended in Nov 2026 (operation shut down)",
       "url": "",
-      "historia": "Most of this gazette's corrections were born here. The numbers are real; client names are left out."
+      "historia": "Most of this gazette's corrections were born here. The numbers are real; client names are left out.",
+      "status_discreto": "Current job",
+      "papel_discreto": "Data analyst since Oct 2025, with end-to-end engineering work."
     }
   ],
   "retificacoes": [
@@ -518,7 +528,8 @@
   "faq": [
     {
       "pergunta": "Who is Mateus Fabro?",
-      "resposta": "A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA."
+      "resposta": "A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.",
+      "resposta_discreta": "A data and analytics engineer in Londrina, Brazil. He works with data for three iGaming operations and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA."
     },
     {
       "pergunta": "What does he work with?",
@@ -530,7 +541,13 @@
     },
     {
       "pergunta": "Is he available?",
-      "resposta": "Yes: looking for a role, contract or full-time, remote. Contact by email: mateusrfabro@hotmail.com."
+      "resposta": "Yes: looking for a role, contract or full-time, remote. Contact by email: mateusrfabro@hotmail.com.",
+      "resposta_discreta": "Open to talking about projects and roles. Contact by email: mateusrfabro@hotmail.com."
     }
-  ]
+  ],
+  "disponibilidade_discreta": {
+    "status": "open to projects and roles",
+    "texto": "I talk about data and product projects, and about roles in data engineering, analytics engineering and product development — contract or full-time, remote. Email is the fastest way.",
+    "canal": "mateusrfabro@hotmail.com"
+  }
 }

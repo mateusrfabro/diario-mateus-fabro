@@ -14,6 +14,7 @@ mensagem, marcar conversa) é convite a spam — o contato é o e-mail, devolvid
 from __future__ import annotations
 
 import json
+import sys
 import unicodedata
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
@@ -58,7 +59,10 @@ FERRAMENTAS = [
 
 
 def carregar() -> dict:
-    return json.loads(DADOS.read_text(encoding="utf-8"))
+    """Mesma vista que o site publica (build.vista): o modo discreto vale aqui também."""
+    sys.path.insert(0, str(DADOS.parent.parent))
+    import build
+    return build.vista(json.loads(DADOS.read_text(encoding="utf-8")))
 
 
 def _norm(s: str) -> str:

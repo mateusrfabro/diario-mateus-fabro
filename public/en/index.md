@@ -2,13 +2,13 @@
 
 > I build systems that read public sources and production databases and turn them into alerts people can trust. When I get something wrong, I publish the correction — and the mistake becomes a written rule and, whenever possible, a test that enforces it.
 
-Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateus-fabro-7ba369173
+Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateusrfabro
 
 Measured on 2026-11-05. Edition no. 125.
 
 ## Summary
 
-I worked with data in iGaming from October 2025 to November 2026, when the operation shut down: three operations, three countries and three currencies. I was the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.
+I have worked with data in iGaming since October 2025 — three operations, three countries and three currencies. I am the data lead for two of them — pipelines, the consumer layer of a data lake migration, anti-fraud, media attribution and dashboards.
 
 Outside work, I built my own products and run the ones that are live: an alert service for physicians' public-sector job calls (PR and SP), a café management system with a real customer in production, a clinic SaaS, a group-buying platform, an AI photo app, five content portals fed by official data and a credit SaaS under NDA.
 
@@ -19,7 +19,7 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 - **125** recorded lessons, each with the origin of a real case (source: global memory, global_index.json (107 general + 18 data))
 - **1,734** of my commits in 2026, across 8 own products (source: git log of the product repositories, my commits only, excluding automated bot commits)
 - **6,357** test functions in the 4 Python products (source: count of def test_ under tests/ in the products with a pytest suite)
-- **3** iGaming operations, in 3 countries and 3 currencies (source: Super Nova Gaming, Oct 2025 – Nov 2026)
+- **3** iGaming operations, in 3 countries and 3 currencies (source: Super Nova Gaming, since Oct 2025)
 - **3.07 bn** records in the new data lake, which I inventoried while leading the consumer-layer migration (source: Iceberg catalog inventory of 07/23/2026: 234 tables)
 
 ## Projects
@@ -159,8 +159,8 @@ The first version of one of them carried the photo and credentials of an author 
 Pipelines, data lake migration, anti-fraud, media attribution and dashboards for three operations in three countries.
 
 - **For whom:** Four-person data squad serving three iGaming operations; I was the data lead for two of them.
-- **My role:** Data analyst from Oct 2025 to Nov 2026, with end-to-end engineering work.
-- **Status:** Ended in Nov 2026 (operation shut down)
+- **My role:** Data analyst since Oct 2025, with end-to-end engineering work.
+- **Status:** Current job
 - **Stack:** Python, SQL (PostgreSQL and distributed engines), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Facts:**
   - 1,408 of my commits between 03/12 and 11/04/2026
@@ -265,7 +265,7 @@ Mistakes I made, in the format of a gazette erratum. Each one became a rule.
 
 ## Availability
 
-Looking for a data engineering, analytics engineering or product development role — contract or full-time, remote. Also open to fixed-scope projects. Email is the fastest way.
+I talk about data and product projects, and about roles in data engineering, analytics engineering and product development — contract or full-time, remote. Email is the fastest way.
 
 Contact: mateusrfabro@hotmail.com
 
@@ -273,7 +273,7 @@ Contact: mateusrfabro@hotmail.com
 
 **Who is Mateus Fabro?**
 
-A data and analytics engineer in Londrina, Brazil. He worked with data for three iGaming operations until November 2026 and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.
+A data and analytics engineer in Londrina, Brazil. He works with data for three iGaming operations and builds his own products: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, WhatsApp Receptionist, five content portals and a credit SaaS under NDA.
 
 **What does he work with?**
 
@@ -285,7 +285,7 @@ Mistakes he made, with dates and numbers, in the format of a gazette erratum: fo
 
 **Is he available?**
 
-Yes: looking for a role, contract or full-time, remote. Contact by email: mateusrfabro@hotmail.com.
+Open to talking about projects and roles. Contact by email: mateusrfabro@hotmail.com.
 
 ## For agents
 

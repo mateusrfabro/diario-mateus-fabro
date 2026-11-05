@@ -318,7 +318,13 @@ def test_experiencia_e_formacao_sao_a_fonte_unica_e_batem_nas_duas_linguas():
 
 def test_resume_json_tem_trabalho_datado_e_formacao_com_anos():
     r = json.loads(GERADO["resume.json"])
-    assert r["work"][0]["endDate"] == "2026-11" and r["work"][0]["startDate"] == "2025-10"
+    assert r["work"][0]["startDate"] == "2025-10"
+    if D["site"]["modo"] == "discreto":
+        assert "endDate" not in r["work"][0]            # sem endDate = emprego atual
+    else:
+        assert r["work"][0]["endDate"] == "2026-11"
+    assert D["experiencia"][0]["fim"] == "2026-11"      # a verdade segue nos dados
+    assert build.vista(D, "completo")["experiencia"][0]["fim"] == "2026-11"
     assert r["work"][0]["name"] == D["experiencia"][0]["empresa"]
     assert len(r["education"]) == 2 and all(e["startDate"] and e["endDate"] for e in r["education"])
 
@@ -327,7 +333,26 @@ def test_site_nomeia_o_empregador_e_nao_diz_mais_nome_omitido():
     h = GERADO["index.html"]
     assert "nome omitido" not in h and "name omitted" not in GERADO["en/index.html"]
     assert build.e(D["perfil"]["cargo"]) in h and build.e(D["perfil"]["subtitulo"]) in h   # `&` sai como &amp;
-    assert "Super Nova" in h and "nov/2026" in h.lower()
+    assert "Super Nova" in h
+    if D["site"]["modo"] == "discreto":
+        assert "nov/2026" not in h.lower() and "encerr" not in h.lower()
+    else:
+        assert "nov/2026" in h.lower()
+
+
+def test_modo_discreto_igual_nos_dois_jsons_e_vista_troca_os_campos():
+    en = build.carregar_en()
+    assert D["site"]["modo"] == en["site"]["modo"] in ("discreto", "completo")
+    for d in (D, en):
+        v = build.vista(d, "discreto")
+        assert v["experiencia"][0]["fim"] is None and v["site"]["modo"] == "discreto"
+        assert v["perfil"]["resumo"] == d["perfil"]["resumo_discreto"]
+        assert v["disponibilidade"] == d["disponibilidade_discreta"]
+        assert v["faq"][3]["resposta"] == d["faq"][3]["resposta_discreta"]
+        c = build.vista(d, "completo")
+        assert c["experiencia"][0]["fim"] == "2026-11" and c["perfil"]["resumo"] == d["perfil"]["resumo"]
+        for x in (v, c):
+            assert "_discret" not in json.dumps(x)       # as variantes nunca vazam na vista
 
 
 def test_curriculo_json_bullet_com_numero_tem_fonte():

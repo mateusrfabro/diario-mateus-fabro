@@ -4,7 +4,8 @@
     "idioma": "pt-BR",
     "medido_em": "2026-11-05",
     "titulo": "Diário de Mateus Fabro",
-    "descricao": "Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável."
+    "descricao": "Mateus Fabro, engenheiro de dados e analytics em Londrina (PR): sistemas de dados, produtos próprios e as retificações de cada erro que virou regra verificável.",
+    "modo": "discreto"
   },
   "perfil": {
     "nome": "Mateus Fabro",
@@ -15,7 +16,7 @@
     "pais": "Brasil",
     "email": "mateusrfabro@hotmail.com",
     "github": "https://github.com/mateusrfabro",
-    "linkedin": "https://www.linkedin.com/in/mateus-fabro-7ba369173",
+    "linkedin": "https://www.linkedin.com/in/mateusrfabro",
     "tese": "Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.",
     "resumo": [
       "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
@@ -42,6 +43,11 @@
       "Português (nativo)",
       "Inglês (intermediário, leitura técnica fluente)",
       "Espanhol (básico)"
+    ],
+    "resumo_discreto": [
+      "Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.",
+      "Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.",
+      "Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma."
     ]
   },
   "experiencia": [
@@ -52,7 +58,8 @@
       "inicio": "2025-10",
       "fim": "2026-11",
       "local": "remoto",
-      "resumo": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026."
+      "resumo": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026.",
+      "resumo_discreto": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Lidero a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis."
     },
     {
       "id": "costa-oeste",
@@ -93,7 +100,8 @@
     {
       "valor": "3",
       "rotulo": "operações de iGaming, em 3 países e 3 moedas",
-      "fonte": "Super Nova Gaming, out/2025 – nov/2026"
+      "fonte": "Super Nova Gaming, out/2025 – nov/2026",
+      "fonte_discreta": "Super Nova Gaming, desde out/2025"
     },
     {
       "valor": "3,07 bi",
@@ -329,7 +337,9 @@
       ],
       "status": "Encerrado em nov/2026 (fim da operação)",
       "url": "",
-      "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora."
+      "historia": "A maior parte das retificações deste diário nasceu aqui. Os números são reais; os nomes de cliente ficam de fora.",
+      "status_discreto": "Trabalho atual",
+      "papel_discreto": "Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta."
     }
   ],
   "retificacoes": [
@@ -518,7 +528,8 @@
   "faq": [
     {
       "pergunta": "Quem é Mateus Fabro?",
-      "resposta": "Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."
+      "resposta": "Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.",
+      "resposta_discreta": "Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA."
     },
     {
       "pergunta": "Com o que ele trabalha?",
@@ -530,7 +541,13 @@
     },
     {
       "pergunta": "Ele está disponível?",
-      "resposta": "Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotmail.com."
+      "resposta": "Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotmail.com.",
+      "resposta_discreta": "Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com."
     }
-  ]
+  ],
+  "disponibilidade_discreta": {
+    "status": "aberto a projetos e vagas",
+    "texto": "Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.",
+    "canal": "mateusrfabro@hotmail.com"
+  }
 }

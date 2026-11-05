@@ -36,8 +36,13 @@ def carregar_cv() -> dict:
     return json.loads(CV.read_text(encoding="utf-8"))
 
 
-def dados(lang: str) -> dict:
-    return build.carregar() if lang == "pt" else build.carregar_en()
+def dados(lang: str, modo: str | None = None) -> dict:
+    """Vista publicável (site.modo); `modo="completo"` força a verdade inteira (só a cópia privada usa)."""
+    return build.vista(build.carregar() if lang == "pt" else build.carregar_en(), modo)
+
+
+def discreto(d: dict) -> bool:
+    return d["site"].get("modo") == "discreto"
 
 
 def mes_ano(iso: str, lang: str) -> str:
@@ -46,7 +51,8 @@ def mes_ano(iso: str, lang: str) -> str:
 
 
 def periodo(x: dict, lang: str) -> str:
-    return f"{mes_ano(x['inicio'], lang)} – {mes_ano(x['fim'], lang)}"
+    fim = mes_ano(x["fim"], lang) if x.get("fim") else ("atual" if lang == "pt" else "present")
+    return f"{mes_ano(x['inicio'], lang)} – {fim}"
 
 
 def _bullets(itens: list[dict]) -> str:
@@ -85,7 +91,8 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
     campos = {
         "lang_html": "pt-BR" if lang == "pt" else "en", "nome": e(p["nome"]), "cargo": e(p["cargo"]),
         "subtitulo": e(p["subtitulo"]), "contato": " · ".join(contato),
-        "resumo": "".join(f"<p>{e(par)}</p>" for par in cv["resumo"][lang]), "numeros": numeros,
+        "resumo": "".join(f"<p>{e(par)}</p>" for par in
+                          (cv["resumo_discreto"] if discreto(d) else cv["resumo"])[lang]), "numeros": numeros,
         "experiencia": "".join(exp), "produtos": "".join(produtos), "stack": stack, "formacao": formacao,
         "idiomas": e(" · ".join(p["idiomas"])),
         "rodape": f"{e(r['gerado'])} {e(s['medido_em'])} · {e(s['url'])}",
@@ -157,7 +164,7 @@ def cmd_curriculo(args: list[str]) -> int:
         ONEDRIVE.mkdir(exist_ok=True)
         for lang in LANGS:
             alvo = ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.html"
-            alvo.write_text(curriculo_html(dados(lang), cv, lang, telefone=tel), encoding="utf-8", newline="\n")
+            alvo.write_text(curriculo_html(dados(lang, "completo"), cv, lang, telefone=tel), encoding="utf-8", newline="\n")
             if not sem_pdf:
                 pdf(alvo, alvo.with_suffix(".pdf"))
             print(f"privado: {alvo}")
@@ -234,7 +241,8 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
             f"In 2026: {n[1]['valor']} commits of mine across them and {n[2]['valor']} test functions in the {k_py} written in Python.")
     # O Sobre (limite 2.600) deixa de fora o serviço de risco, o único fato sem número; ele segue no currículo e no post.
     fatos_sobre = [f for f in fatos if not f.lower().startswith(("serviço diário", "daily risk"))]
-    fim, ini = mes_extenso(x0["fim"], lang), mes_extenso(x0["inicio"], lang)
+    ini = mes_extenso(x0["inicio"], lang)
+    fim = mes_extenso(x0["fim"], lang) if x0.get("fim") else None
     st = proj["dumpai"]["status"]
     st = st[0].lower() + st[1:]
     sobre = "\n\n".join([
@@ -267,6 +275,9 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
             (f"Site e currículo: {site}\nE-mail: {p['email']}" if pt else f"Site and résumé: {site}\nE-mail: {p['email']}"),
             "#EngenhariaDeDados #AnalyticsEngineering #OpenToWork" if pt else "#DataEngineering #AnalyticsEngineering #OpenToWork"])
 
+    if discreto(d):                                        # o post anuncia a saída: não existe em modo discreto
+        return sobre, ("Post de disponibilidade: não publicar em modo discreto." if pt else
+                       "Availability post: do not publish in discreet mode.")
     post = post_com(3)
     if len(post) > LIMITES["post"]:
         post = post_com(2)                                 # estourou: vão só 2 fatos
@@ -276,10 +287,13 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
 def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
     p, x0 = d["perfil"], d["experiencia"][0]
     pt = lang == "pt"
+    fecho = {("pt", True): "aberto a projetos e vagas", ("en", True): "open to projects and roles",
+             ("pt", False): "em busca de vaga (PJ/CLT, remoto)",
+             ("en", False): "open to work (contract or full-time, remote)"}[(lang, discreto(d))]
     titulo = (f"{p['cargo']} | Python · SQL · TypeScript · agentes de IA (Claude Code) | pipelines, antifraude e atribuição em iGaming · "
-              f"produtos próprios com cliente real | em busca de vaga (PJ/CLT, remoto)" if pt else
+              f"produtos próprios com cliente real | {fecho}" if pt else
               f"{p['cargo']} | Python · SQL · TypeScript · AI agents (Claude Code) | pipelines, anti-fraud and attribution in iGaming · "
-              f"own products with real customers | open to work (contract or full-time, remote)")
+              f"own products with real customers | {fecho}")
     sobre, post = _sobre_e_post(d, cv, lang)
     secoes = {"titulo": titulo, "sobre": sobre}
     for x in d["experiencia"]:
@@ -308,17 +322,26 @@ def linkedin_md(d: dict, cv: dict, lang: str) -> str:
     p = d["perfil"]
     pt = lang == "pt"
     L = [f"# Kit LinkedIn — {p['nome']} — {date.today().isoformat()} ({lang})", "",
-         ("Cada seção abaixo cabe no limite do LinkedIn. Colar na ordem. Depois de colar, ligar o "
-          "\"Open to work\" (Cargos: Engenheiro de Dados, Analytics Engineer, Desenvolvedor Python; remoto; PJ e CLT)."
-          if pt else "Each section fits LinkedIn's limit. Paste in order."), "",
+         (("Cada seção abaixo cabe no limite do LinkedIn. Colar na ordem. "
+           "Open to work: ativar SÓ com visibilidade 'Somente recrutadores' (nunca o selo público); "
+           "desligar 'Compartilhar atualizações do perfil com a rede' antes de editar."
+           if discreto(d) else
+           "Cada seção abaixo cabe no limite do LinkedIn. Colar na ordem. Depois de colar, ligar o "
+           "\"Open to work\" (Cargos: Engenheiro de Dados, Analytics Engineer, Desenvolvedor Python; remoto; PJ e CLT).")
+          if pt else
+          ("Each section fits LinkedIn's limit. Paste in order. Open to work: turn on ONLY with 'Recruiters only' "
+           "visibility (never the public badge); turn off 'Share profile updates with your network' before editing."
+           if discreto(d) else "Each section fits LinkedIn's limit. Paste in order.")), "",
          "## 1. Título (Intro → Headline)", "", "```", s["titulo"], "```", "",
          "## 2. Sobre (About)", "", "```", s["sobre"], "```", ""]
     L += ["## 3. Experiência (uma entrada por bloco; cargo, empresa, datas, local, descrição)", ""]
     for x in d["experiencia"]:
         nota = f" · {x['nota']}" if x.get("nota") else ""
-        L += [f"### {x['cargo']} — {x['empresa']}", f"- Datas: {periodo(x, lang)} · {x['local']}{nota}",
-              ("- Motivo de saída (se perguntarem): encerramento da operação." if x["id"] == "super-nova" and pt else ""),
-              "", "```", s[f"experiencia:{x['id']}"], "```", ""]
+        motivo = ("- Motivo de saída (se perguntarem): encerramento da operação."
+                  if x["id"] == "super-nova" and pt and not discreto(d) else None)   # discreto: omitido
+        L += [f"### {x['cargo']} — {x['empresa']}", f"- Datas: {periodo(x, lang)} · {x['local']}{nota}"]
+        L += [motivo] if motivo else []
+        L += ["", "```", s[f"experiencia:{x['id']}"], "```", ""]
         if x["id"] == "super-nova":
             L += [(f"Bullets completos no currículo em PDF: {d['site']['url']}/curriculo/mateus-fabro-pt.pdf" if pt else
                    f"Full bullets in the PDF résumé: {d['site']['url']}/curriculo/mateus-fabro-en.pdf"), ""]
@@ -355,11 +378,11 @@ def github_readme(d: dict, cv: dict) -> str:
     p, s = d["perfil"], d["site"]
     repos = json.loads(REPOS_GH.read_text(encoding="utf-8"))
     L = [f"# {p['nome']} — {p['cargo']}", "", f"**{p['subtitulo']}**", "",
-         f"🟢 **Disponível** — {d['disponibilidade']['texto']}", "",
+         f"🟢 **{d['disponibilidade']['status'].capitalize()}** — {d['disponibilidade']['texto']}", "",
          f"- Site (projetos, números medidos e retificações): {s['url']}",
          f"- Currículo: [PT]({s['url']}/curriculo/mateus-fabro-pt.pdf) · [EN]({s['url']}/curriculo/mateus-fabro-en.pdf)",
          f"- LinkedIn: {p['linkedin']}", f"- E-mail: {p['email']}", "",
-         "## O que eu faço", ""] + [f"- {par}" for par in cv["resumo"]["pt"]] + ["",
+         "## O que eu faço", ""] + [f"- {par}" for par in (cv["resumo_discreto"] if discreto(d) else cv["resumo"])["pt"]] + ["",
          "## Projetos", "", "| Projeto | O que é | Status | Código |", "|---|---|---|---|"]
     por_nome = {r["nome"]: r for r in repos}
     pares = {"avisa-edital": "avisa-edital", "pingado": "cafesaas", "nous-clinical": "nous-clinical",
@@ -381,8 +404,10 @@ def github_readme(d: dict, cv: dict) -> str:
     for r in extra:
         codigo = f"[{r['nome']}](https://github.com/mateusrfabro/{r['nome']})" if r["abre"] else f"`{r['nome']}` (privado)"
         L.append(f"| **{r['nome']}** | {r['descricao']} | — | {codigo} |")
-    L += ["", f"Trabalho anterior: {d['experiencia'][0]['empresa']}, {periodo(d['experiencia'][0], 'pt')} — "
-          "repositórios privados (dados da empresa).", "",
+    x0 = d["experiencia"][0]
+    trabalho = (f"Trabalho atual: {x0['empresa']}, desde {mes_ano(x0['inicio'], 'pt')}" if discreto(d)
+                else f"Trabalho anterior: {x0['empresa']}, {periodo(x0, 'pt')}")
+    L += ["", f"{trabalho} — repositórios privados (dados da empresa).", "",
           "## Engenharia de agentes", ""] + [f"- {t}" for t in _bullets_agentes(cv, "pt")] + ["",
           "## Como trabalho", ""] + [f"- **{m['titulo']}.** {m['texto']}" for m in d["metodo"]] + ["",
           f"_README gerado de `conteudo/dados.json` em {s['medido_em']} pelo repositório "
@@ -393,7 +418,7 @@ def github_readme(d: dict, cv: dict) -> str:
 def cmd_github(args: list[str]) -> int:
     DOCS_GH.mkdir(parents=True, exist_ok=True)
     alvo = DOCS_GH / "README.md"
-    alvo.write_text(github_readme(build.carregar(), carregar_cv()), encoding="utf-8", newline="\n")
+    alvo.write_text(github_readme(dados('pt'), carregar_cv()), encoding="utf-8", newline="\n")
     print(alvo.relative_to(RAIZ))
     return 0
 

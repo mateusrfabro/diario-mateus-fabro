@@ -41,6 +41,32 @@ def carregar_en() -> dict:
     return json.loads(DADOS_EN.read_text(encoding="utf-8"))
 
 
+def vista(d: dict, modo: str | None = None) -> dict:
+    """Cópia profunda de `d` na versão que se publica. `site.modo` (ou o argumento `modo`) escolhe:
+    "completo" = verdade inteira; "discreto" = cada campo `*_discreto`/`*_discreta` substitui o campo-base
+    e o fim do emprego atual some (sem fim = emprego corrente). Os campos `*_discreto` nunca saem na vista."""
+    import copy
+    v = copy.deepcopy(d)
+    modo = modo or v["site"].get("modo", "completo")
+    v["site"]["modo"] = modo
+
+    def aplicar(o):
+        if isinstance(o, dict):
+            for k in [k for k in o if k.endswith(("_discreto", "_discreta"))]:
+                alt = o.pop(k)
+                if modo == "discreto":
+                    o[k[:-9]] = alt
+            for x in o.values():
+                aplicar(x)
+        elif isinstance(o, list):
+            for x in o:
+                aplicar(x)
+    aplicar(v)
+    if modo == "discreto":
+        v["experiencia"][0]["fim"] = None
+    return v
+
+
 def e(s: str) -> str:
     return html.escape(str(s), quote=True)
 
@@ -229,8 +255,10 @@ def resume_json(d: dict) -> dict:
     trabalho = next(pr for pr in d["projetos"] if pr["tipo"] == "trabalho")
     work = []
     for x in d["experiencia"]:
-        item = {"name": x["empresa"], "position": x["cargo"], "startDate": x["inicio"], "endDate": x["fim"],
+        item = {"name": x["empresa"], "position": x["cargo"], "startDate": x["inicio"],
                 "summary": x["resumo"] + (f" ({x['nota']})" if x.get("nota") else "")}
+        if x.get("fim"):                       # sem endDate = emprego atual (JSON Resume)
+            item["endDate"] = x["fim"]
         if x["id"] == "super-nova":
             item["highlights"] = trabalho["fatos"]
         work.append(item)
@@ -770,6 +798,7 @@ def pagina_404(d: dict) -> str:
 
 def gerar(d: dict, d_en: dict | None = None) -> dict[str, str]:
     d_en = d_en if d_en is not None else carregar_en()
+    d, d_en = vista(d), vista(d_en)           # o que se publica: site.modo decide discreto/completo
     urls_seguras(d)
     urls_seguras(d_en)
     md = markdown(d)

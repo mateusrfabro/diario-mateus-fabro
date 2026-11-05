@@ -15,7 +15,7 @@ sys.path.insert(0, str(RAIZ / "scripts"))
 import build  # noqa: E402
 import gerar_pecas as gp  # noqa: E402
 
-D, EN, CV = build.carregar(), build.carregar_en(), gp.carregar_cv()
+D, EN, CV = gp.dados("pt"), gp.dados("en"), gp.carregar_cv()   # vista publicável (site.modo)
 PRIVADO = Path(os.environ.get("PORTFOLIO_PRIVADO", RAIZ.parent / "portfolio-privado.json"))
 
 
@@ -32,7 +32,10 @@ def test_curriculo_publico_tem_empregador_datas_formacao_e_cargo_e_nao_tem_telef
     for lang, d in (("pt", D), ("en", EN)):
         h = gp.curriculo_html(d, CV, lang)
         assert d["experiencia"][0]["empresa"] in h and build.e(d["perfil"]["cargo"]) in h   # `&` sai como &amp;
-        assert ("out/2025 – nov/2026" if lang == "pt" else "Oct 2025 – Nov 2026") in h
+        if d["site"]["modo"] == "discreto":
+            assert ("out/2025 – atual" if lang == "pt" else "Oct 2025 – present") in h
+        else:
+            assert ("out/2025 – nov/2026" if lang == "pt" else "Oct 2025 – Nov 2026") in h
         for f in d["perfil"]["formacao"]:
             assert f["instituicao"] in h and f["inicio"] in h and f["fim"] in h
         assert tel not in h and re.sub(r"\D", "", tel)[-8:] not in re.sub(r"\D", "", h)
@@ -99,3 +102,24 @@ def test_curriculo_desatualizado_devolve_nomes_com_prefixo_curriculo(tmp_path, m
     monkeypatch.setattr(gp, "PUBLIC_CV", tmp_path)  # pasta vazia: tudo está desatualizado
     velhos = gp.curriculo_desatualizado()
     assert velhos and all(v.startswith("curriculo/") for v in velhos)
+
+
+def test_modo_discreto_curriculo_publico_sem_encerramento_e_privado_com_a_verdade_completa():
+    for lang in ("pt", "en"):
+        bruto = build.carregar() if lang == "pt" else build.carregar_en()
+        pub = gp.curriculo_html(build.vista(bruto, "discreto"), CV, lang).lower()
+        for proibido in ("nov/2026", "nov 2026", "encerr", "shut down", "busca de vaga", "looking for"):
+            assert proibido not in pub, f"[{lang}] {proibido}"
+        completo = gp.curriculo_html(gp.dados(lang, "completo"), CV, lang, telefone="x").lower()
+        assert ("nov/2026" in completo and "encerramento" in completo) if lang == "pt" else                ("nov 2026" in completo and "shut down" in completo)
+
+
+def test_kit_e_readme_discretos_sem_anuncio_de_busca():
+    for lang in ("pt", "en"):
+        d = gp.dados(lang, "discreto")
+        kit = gp.linkedin_md(d, CV, lang).lower()
+        for proibido in ("encerr", "shut down", "busca de vaga", "open to work (contract", "motivo de saída"):
+            assert proibido not in kit
+        assert "não publicar em modo discreto" in kit or "do not publish in discreet mode" in kit
+    md = gp.github_readme(gp.dados("pt", "discreto"), CV)
+    assert "Trabalho atual:" in md and "Trabalho anterior" not in md and "encerr" not in md.lower()

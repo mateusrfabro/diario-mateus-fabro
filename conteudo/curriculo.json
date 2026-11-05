@@ -290,5 +290,17 @@
       "incompleto": "incomplete",
       "concluido": "completed"
     }
+  },
+  "resumo_discreto": {
+    "pt": [
+      "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
+      "Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas; lidero a frente de dados de duas delas.",
+      "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
+    ],
+    "en": [
+      "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
+      "Since Oct 2025 at Super Nova Gaming / MultiBet, in a four-person data squad serving three iGaming operations in three countries and three currencies; I am the data lead for two of them.",
+      "Outside work, I built and run my own products, one of them with a real customer in production, covered by tests and with an honest status — including the ones that stopped."
+    ]
   }
 }

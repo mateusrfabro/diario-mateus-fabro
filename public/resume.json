@@ -5,7 +5,7 @@
     "label": "Engenheiro de Dados & Analytics",
     "email": "mateusrfabro@hotmail.com",
     "url": "https://mateusfabro.vercel.app",
-    "summary": "Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis. Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA. Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.",
+    "summary": "Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis. Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA. Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória próprio: cada erro corrigido que vale para outro projeto vira uma lição com origem, motivo e forma de aplicar — e um script prova que o índice não esqueceu nenhuma.",
     "location": {
       "city": "Londrina",
       "region": "PR",
@@ -19,7 +19,7 @@
       },
       {
         "network": "LinkedIn",
-        "url": "https://www.linkedin.com/in/mateus-fabro-7ba369173"
+        "url": "https://www.linkedin.com/in/mateusrfabro"
       }
     ]
   },
@@ -28,8 +28,7 @@
       "name": "Super Nova Gaming / MultiBet (Grupo PGX)",
       "position": "Analista de Dados — frente de dados de 2 operações",
       "startDate": "2025-10",
-      "endDate": "2026-11",
-      "summary": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026.",
+      "summary": "Squad de dados de quatro pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Lidero a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis.",
       "highlights": [
         "1.408 commits meus entre 12/03 e 04/11/2026",
         "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos pipelines consumidores",
@@ -43,15 +42,15 @@
       "name": "Costa Oeste / Terceirize",
       "position": "Analista Administrativo",
       "startDate": "2025-07",
-      "endDate": "2025-09",
-      "summary": "KPIs operacionais e dashboards em Power BI; rotinas de governança de dados administrativos."
+      "summary": "KPIs operacionais e dashboards em Power BI; rotinas de governança de dados administrativos.",
+      "endDate": "2025-09"
     },
     {
       "name": "ADAMA",
       "position": "Assistente de Crédito e Cobrança",
       "startDate": "2020-10",
-      "endDate": "2024-09",
-      "summary": "Contas a receber e operações de FIDC; análise de crédito PJ/PF com garantias (CPR, alienação fiduciária, caução); dashboards Power BI para os times Brasil e Global; atuação no Portal de Crédito. (estágio em 2019–2020)"
+      "summary": "Contas a receber e operações de FIDC; análise de crédito PJ/PF com garantias (CPR, alienação fiduciária, caução); dashboards Power BI para os times Brasil e Global; atuação no Portal de Crédito. (estágio em 2019–2020)",
+      "endDate": "2024-09"
     }
   ],
   "projects": [

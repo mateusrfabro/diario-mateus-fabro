@@ -2,13 +2,13 @@
 
 > Construo sistemas que leem fontes públicas e bancos de produção e transformam isso em aviso confiável. Quando erro, publico a retificação — e o erro vira uma regra escrita e, sempre que dá, um teste que a cobra.
 
-Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateus-fabro-7ba369173
+Londrina, PR · mateusrfabro@hotmail.com · https://github.com/mateusrfabro · https://www.linkedin.com/in/mateusrfabro
 
 Medido em 05/11/2026. Edição nº 125.
 
 ## Resumo
 
-Trabalhei com dados em iGaming de outubro de 2025 a novembro de 2026, quando a operação encerrou: três operações, três países e três moedas. Liderei a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
+Trabalho com dados em iGaming desde outubro de 2025 — três operações, três países e três moedas. Lidero a frente de dados de duas delas — pipelines, a camada de consumo de uma migração de data lake, antifraude, atribuição de mídia e painéis.
 
 Fora do expediente, construí produtos próprios e opero os que estão no ar: um radar de concursos e convocações para médicos (PR e SP), um sistema de cafeteria com cliente real em produção, um SaaS de clínicas, uma plataforma de compra cooperativa, um app de fotos com IA, cinco portais de conteúdo com dados oficiais e um SaaS de crédito sob NDA.
 
@@ -19,7 +19,7 @@ Trabalho em par com agentes de IA (Claude Code) e com um sistema de memória pr�
 - **125** lições registradas, cada uma com a origem de um caso real (fonte: memória global, global_index.json (107 universais + 18 de dados))
 - **1.734** commits meus em 2026, em 8 produtos próprios (fonte: git log dos repositórios dos produtos, só commits de minha autoria, sem os automáticos de bot)
 - **6.357** funções de teste nos 4 produtos em Python (fonte: contagem de def test_ em tests/ dos produtos com suíte pytest)
-- **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, out/2025 – nov/2026)
+- **3** operações de iGaming, em 3 países e 3 moedas (fonte: Super Nova Gaming, desde out/2025)
 - **3,07 bi** de registros no data lake novo, que inventariei ao conduzir a migração da camada de consumo (fonte: inventário do catálogo Iceberg de 23/07/2026: 234 tabelas)
 
 ## Projetos
@@ -159,8 +159,8 @@ A primeira versão de um deles trazia foto e credenciais de um autor que não ex
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
 - **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
-- **Meu papel:** Analista de dados de out/2025 a nov/2026, com trabalho de engenharia de ponta a ponta.
-- **Status:** Encerrado em nov/2026 (fim da operação)
+- **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
+- **Status:** Trabalho atual
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
   - 1.408 commits meus entre 12/03 e 04/11/2026
@@ -265,7 +265,7 @@ Erros que cometi, no formato de retificação de diário oficial. Cada um virou 
 
 ## Disponibilidade
 
-Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto de escopo fechado. O jeito mais rápido é o e-mail.
+Converso sobre projetos de dados e de produto, e sobre vagas de engenharia de dados, analytics engineering e desenvolvimento de produto — PJ ou CLT, remoto. O jeito mais rápido é o e-mail.
 
 Contato: mateusrfabro@hotmail.com
 
@@ -273,7 +273,7 @@ Contato: mateusrfabro@hotmail.com
 
 **Quem é Mateus Fabro?**
 
-Engenheiro de dados e analytics em Londrina (PR). Trabalhou com dados de três operações de iGaming até novembro de 2026 e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
+Engenheiro de dados e analytics em Londrina (PR). Trabalha com dados de três operações de iGaming e constrói produtos próprios: Avisa Edital, Pingado, Nous Clinical, Aggron, DumpAI, Secretária de WhatsApp, cinco portais de conteúdo e um SaaS de crédito sob NDA.
 
 **Com o que ele trabalha?**
 
@@ -285,7 +285,7 @@ Erros que ele cometeu, com data e número, no formato de retificação de diári
 
 **Ele está disponível?**
 
-Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotmail.com.
+Aberto a conversar sobre projetos e vagas. Contato por e-mail: mateusrfabro@hotmail.com.
 
 ## Para agentes
 
@@ -430,8 +430,8 @@ A primeira versão de um deles trazia foto e credenciais de um autor que não ex
 Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.
 
 - **Para quem:** Squad de dados de 4 pessoas atendendo três operações de iGaming; liderei a frente de dados de duas delas.
-- **Meu papel:** Analista de dados de out/2025 a nov/2026, com trabalho de engenharia de ponta a ponta.
-- **Status:** Encerrado em nov/2026 (fim da operação)
+- **Meu papel:** Analista de dados desde out/2025, com trabalho de engenharia de ponta a ponta.
+- **Status:** Trabalho atual
 - **Stack:** Python, SQL (PostgreSQL e motores distribuídos), AWS, NestJS + Next.js, systemd, Slack / Telegram / WhatsApp
 - **Fatos:**
   - 1.408 commits meus entre 12/03 e 04/11/2026
