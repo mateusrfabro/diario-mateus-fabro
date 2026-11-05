@@ -48,12 +48,12 @@ Café management: counter sales in three taps, tabs, store credit, stock and the
 
 - **For whom:** Small cafés. The first customer has been in production since September 2026, with two stores.
 - **My role:** Developer and product owner: meetings with the customer and each version delivered within a day of the meeting, from v0.2 on.
-- **Status:** In production since September 2026; monthly plan agreed with the customer
+- **Status:** In production since September 2026; active monthly plan, two stores
 - **Stack:** Flask, SQLAlchemy + Alembic, PostgreSQL (Neon), Redis, Docker, Render
 - **Facts:**
   - 486 of my commits between 07/06 and 11/05/2026
   - 2,133 test functions
-  - real customer with two stores in production
+  - real customer with two stores in production and an active monthly plan
   - NFC-e invoicing implemented with direct issuance to SEFAZ-PR and validated in the sandbox; production issuance awaits the system's enrollment at SEFA-PR
 
 A counter is not an office: PIN login instead of a password, a sale in a few taps and buttons sized for a finger. The printed store-credit statement is product too — printing the real paper is what surfaced "Seu tem R$ 29,00" (see corrections).

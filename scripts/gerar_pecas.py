@@ -247,8 +247,8 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
     st = st[0].lower() + st[1:]
     sobre = "\n\n".join([
         f"{p['cargo']}. {p['subtitulo']}",
-        "Na prática: ingestão, modelagem, antifraude, atribuição de mídia, API e painel saem da mesma mão." if pt else
-        "In practice: ingestion, modeling, anti-fraud, media attribution, the API and the dashboard come from the same hands.",
+        "Na prática: ingestão, modelagem, antifraude, atribuição, API e painel saem da mesma mão." if pt else
+        "In practice: ingestion, modeling, anti-fraud, attribution, API and dashboard come from the same hands.",
         (f"O que provei em produção — {x0['empresa']}, {periodo(x0, lang)}:" if pt else
          f"What I proved in production — {x0['empresa']}, {periodo(x0, lang)}:") + "\n" + x0["resumo"]
         + "\n" + "\n".join(f"• {f}" for f in fatos_sobre),
