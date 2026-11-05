@@ -1,14 +1,16 @@
-"""Reconta os números do diário direto na fonte e (com --aplicar) atualiza conteudo/dados.json.
+"""Reconta os números do diário direto na fonte e (com --aplicar) atualiza conteudo/dados*.json.
 
 Sem isto os números começam a envelhecer no dia seguinte à publicação. Roda na máquina do
-Mateus, porque é lá que moram os repositórios dos produtos e a memória global. Na nuvem não
-há o que recontar.
+Mateus, porque é lá que moram os repositórios e a memória global.
 
-O que reconta:
-  • commits humanos (sem os automáticos, cujo autor contém "bot"), primeira e última data;
-  • funções de teste (`def test_`) em tests/;
+O que reconta, por projeto (REPOS: slug → lista de repositórios, caminhos absolutos):
+  • commits MEUS (autor "Mateus" ou "mateusrfabro", nunca "bot"), primeira e última data;
+  • funções de teste (`def test_`) em tests/**/*.py;
   • lições registradas (global_index.json);
-  • no Avisa Edital, quantos commits humanos registram teste de mutação.
+  • no Avisa Edital, quantos commits meus registram teste de mutação.
+
+Os rótulos de numeros[1] e numeros[2] são derivados: "N produtos" é o número de projetos do tipo
+produto com repositório; "N produtos em Python" é o subconjunto com suíte pytest.
 
 Uso:
   python scripts/recontar.py            # mostra o que mudou
@@ -25,11 +27,28 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
 DADOS = RAIZ / "conteudo" / "dados.json"
-PROJETOS = Path.home() / "Projects"
-REPOS = {"avisa-edital": "ajudamed", "pingado": "cafesaas", "nous-clinical": "medsaas",
-         "aggron": "poolcompras", "dumpai": "appfotos"}
-INDICE_LICOES = Path.home() / ".claude" / "memory-global" / "global_index.json"
-FLASK = ("avisa-edital", "pingado", "nous-clinical", "aggron")   # os que têm suíte pytest
+DADOS_EN = RAIZ / "conteudo" / "dados.en.json"
+CASA = Path.home()
+PROJETOS = CASA / "Projects"
+SUPER_NOVA = CASA / "OneDrive - PGX" / "Projetos - Super Nova"
+PORTAIS = ["portal-br-beneficios", "portal-br-credito", "portal-br-invest", "portal-eua", "portal-us-money"]
+REPOS: dict[str, list[Path]] = {
+    "avisa-edital": [PROJETOS / "ajudamed"],
+    "pingado": [PROJETOS / "cafesaas"],
+    "nous-clinical": [PROJETOS / "medsaas"],
+    "aggron": [PROJETOS / "poolcompras"],
+    "dumpai": [PROJETOS / "appfotos"],
+    "atendimento-whatsapp": [PROJETOS / "secretaria-ia"],
+    "credito-nda": [PROJETOS / "credito-saas"],
+    "portais-conteudo": [PROJETOS / p for p in PORTAIS],
+    "igaming-dados": [SUPER_NOVA / "play4tune", SUPER_NOVA / "MultiBet", CASA / "Repos" / "play4tune-analytics"],
+}
+INDICE_LICOES = CASA / ".claude" / "memory-global" / "global_index.json"
+AUTOR = re.compile(r"mateus", re.I)
+
+
+def carregar() -> dict:
+    return json.loads(DADOS.read_text(encoding="utf-8"))
 
 
 def git(repo: Path, *args: str) -> str:
@@ -37,110 +56,119 @@ def git(repo: Path, *args: str) -> str:
                           encoding="utf-8", check=True).stdout
 
 
+def meu(autor: str) -> bool:
+    return "bot" not in autor.lower() and AUTOR.search(autor) is not None
+
+
+def funcoes_de_teste(repo: Path) -> int:
+    pasta = repo / "tests"
+    if not pasta.exists():
+        return 0
+    return sum(len(re.findall(r"^\s*(?:async\s+)?def test_", f.read_text(encoding="utf-8", errors="replace"), re.M))
+               for f in pasta.rglob("*.py"))
+
+
 def contar(slug: str) -> dict:
-    repo = PROJETOS / REPOS[slug]
-    linhas = [l.split("\t") for l in git(repo, "log", "--format=%an\t%ad\t%s", "--date=short").splitlines()]
-    humanos = [l for l in linhas if "bot" not in l[0].lower()]
-    datas = sorted(l[1] for l in humanos)
-    testes = 0
-    for f in (repo / "tests").rglob("*.py") if (repo / "tests").exists() else []:
-        testes += len(re.findall(r"^\s*(?:async\s+)?def test_", f.read_text(encoding="utf-8", errors="replace"), re.M))
-    return {"humanos": len(humanos), "bot": len(linhas) - len(humanos), "inicio": datas[0],
-            "fim": datas[-1], "testes": testes}
+    datas, bots = [], 0
+    for repo in REPOS[slug]:
+        for linha in git(repo, "log", "--format=%an\t%ad", "--date=short").splitlines():
+            autor, data = linha.split("\t")
+            if "bot" in autor.lower():
+                bots += 1
+            elif meu(autor):
+                datas.append(data)
+    datas.sort()
+    if not datas:
+        raise SystemExit(f"{slug}: nenhum commit meu — conferir `git -C <repo> log --format=%an | sort -u`")
+    return {"humanos": len(datas), "bot": bots, "inicio": datas[0], "fim": datas[-1],
+            "testes": sum(funcoes_de_teste(r) for r in REPOS[slug])}
 
 
 def contar_mutacao(slug: str) -> int:
-    repo = PROJETOS / REPOS[slug]
-    blocos = git(repo, "log", "--format=%an%x00%B%x01").split("\x01")
-    return sum(1 for b in blocos if "\x00" in b and "bot" not in b.split("\x00")[0].lower()
-               and re.search(r"muta[cç]", b.split("\x00")[1], re.I))
+    total = 0
+    for repo in REPOS[slug]:
+        blocos = git(repo, "log", "--format=%an%x00%B%x01").split("\x01")
+        total += sum(1 for b in blocos if "\x00" in b and meu(b.split("\x00")[0])
+                     and re.search(r"muta[cç]", b.split("\x00")[1], re.I))
+    return total
+
+
+def produtos_com_repo(d: dict) -> list[str]:
+    return [p["slug"] for p in d["projetos"] if p["tipo"] == "produto" and p["slug"] in REPOS]
 
 
 def br(n: int) -> str:
     return f"{n:,}".replace(",", ".")
 
 
-def fato_commits(c: dict) -> str:
-    ini, fim = date.fromisoformat(c["inicio"]), date.fromisoformat(c["fim"])
-    faixa = f"{ini:%d/%m} e {fim:%d/%m/%Y}"
-    if c["bot"]:
-        return f"{c['humanos']} commits meus entre {faixa}, fora {c['bot']} automáticos do bot"
-    return f"{c['humanos']} commits entre {faixa}"
-
-
-DADOS_EN = RAIZ / "conteudo" / "dados.en.json"
-
-
 def en(n: int) -> str:
     return f"{n:,}"
 
 
-def fato_commits_en(c: dict) -> str:
+def _faixa(c: dict, fmt_curto: str, fmt_longo: str) -> str:
     ini, fim = date.fromisoformat(c["inicio"]), date.fromisoformat(c["fim"])
-    faixa = f"{ini:%m/%d} and {fim:%m/%d/%Y}"
-    if c["bot"]:
-        return f"{c['humanos']} of my commits between {faixa}, plus {c['bot']} automated bot commits"
-    return f"{c['humanos']} commits between {faixa}"
+    primeiro = ini.strftime(fmt_longo if ini.year != fim.year else fmt_curto)
+    return f"{primeiro} e {fim.strftime(fmt_longo)}"
 
 
-def atualizar_en(contagens: dict, licoes: int, total_c: int, total_t: int, mut: int, humanos_avisa: int) -> dict:
-    """A versão em inglês recebe os MESMOS números — o teste de paridade exige."""
-    d = json.loads(DADOS_EN.read_text(encoding="utf-8"))
+def fato_commits(c: dict) -> str:
+    base = f"{c['humanos']} commits meus entre {_faixa(c, '%d/%m', '%d/%m/%Y')}"
+    return base + (f", fora {c['bot']} automáticos do bot" if c["bot"] else "")
+
+
+def fato_commits_en(c: dict) -> str:
+    faixa = _faixa(c, "%m/%d", "%m/%d/%Y").replace(" e ", " and ")
+    base = f"{c['humanos']} of my commits between {faixa}"
+    return base + (f", plus {c['bot']} automated bot commits" if c["bot"] else "")
+
+
+def _e_fato_commits(f: str) -> bool:
+    return re.match(r"\d[\d.,]* (commits|of my commits)", f) is not None
+
+
+def _e_fato_testes(f: str) -> bool:
+    return re.match(r"\d[\d.,]* (funções de teste|test functions)$", f) is not None
+
+
+def aplicar(d: dict, d_en: dict) -> dict:
+    """Grava as contagens nos dois JSONs (em memória) e devolve o resumo impresso."""
     por_slug = {p["slug"]: p for p in d["projetos"]}
+    por_slug_en = {p["slug"]: p for p in d_en["projetos"]}
+    contagens = {slug: contar(slug) for slug in REPOS}
     for slug, c in contagens.items():
-        fatos = por_slug[slug]["fatos"]
-        fatos[:] = [fato_commits_en(c) if " commits" in f else f for f in fatos]
-        if slug in FLASK:
-            fatos[:] = [f"{en(c['testes'])} test functions" if f.endswith("test functions") else f for f in fatos]
-    for n in d["numeros"]:
-        if "lessons" in n["rotulo"]:
-            n["valor"] = str(licoes)
-        elif "commits" in n["rotulo"]:
-            n["valor"] = en(total_c)
-        elif "test functions" in n["rotulo"]:
-            n["valor"] = en(total_t)
+        for proj, fato_c, fato_t in ((por_slug[slug], fato_commits, f"{br(c['testes'])} funções de teste"),
+                                     (por_slug_en[slug], fato_commits_en, f"{en(c['testes'])} test functions")):
+            fatos = proj["fatos"]
+            fatos[:] = [fato_c(c) if _e_fato_commits(f) else f for f in fatos]
+            if c["testes"]:
+                fatos[:] = [fato_t if _e_fato_testes(f) else f for f in fatos]
+        print(f"{slug:20} commits {c['humanos']:4} (+{c['bot']} bot)  testes {c['testes']:5}  {c['inicio']}..{c['fim']}")
+
+    produtos = produtos_com_repo(d)
+    com_py = [s for s in produtos if contagens[s]["testes"]]
+    total_c = sum(contagens[s]["humanos"] for s in produtos)
+    total_t = sum(contagens[s]["testes"] for s in com_py)
+    licoes = len(json.loads(INDICE_LICOES.read_text(encoding="utf-8"))["lessons"])
+    avisa, mut = contagens["avisa-edital"], contar_mutacao("avisa-edital")
+
+    d["numeros"][0]["valor"] = d_en["numeros"][0]["valor"] = str(licoes)
+    d["numeros"][1].update(valor=br(total_c), rotulo=f"commits meus em {len(produtos)} produtos próprios, em 2026")
+    d_en["numeros"][1].update(valor=en(total_c), rotulo=f"of my commits across {len(produtos)} own products, in 2026")
+    d["numeros"][2].update(valor=br(total_t), rotulo=f"funções de teste nos {len(com_py)} produtos em Python")
+    d_en["numeros"][2].update(valor=en(total_t), rotulo=f"test functions in the {len(com_py)} Python products")
     for m in d["metodo"]:
-        m["texto"] = re.sub(r"\d+ of my \d+ commits", f"{mut} of my {humanos_avisa} commits", m["texto"])
-    return d
+        m["texto"] = re.sub(r"\d+ dos \d+ commits meus", f"{mut} dos {avisa['humanos']} commits meus", m["texto"])
+    for m in d_en["metodo"]:
+        m["texto"] = re.sub(r"\d+ of my \d+ commits", f"{mut} of my {avisa['humanos']} commits", m["texto"])
+    return {"licoes": licoes, "commits": total_c, "testes": total_t, "mutacao": mut, "avisa": avisa["humanos"]}
 
 
 def main() -> int:
-    d = json.loads(DADOS.read_text(encoding="utf-8"))
-    antes = json.dumps(d, ensure_ascii=False)
-    antes_en = DADOS_EN.read_text(encoding="utf-8")
-    contagens = {}
-    por_slug = {p["slug"]: p for p in d["projetos"]}
-    total_c = total_t = 0
-    for slug in REPOS:
-        c = contar(slug)
-        contagens[slug] = c
-        total_c += c["humanos"]
-        fatos = por_slug[slug]["fatos"]
-        fatos[:] = [fato_commits(c) if " commits" in f else f for f in fatos]
-        if slug in FLASK:
-            total_t += c["testes"]
-            fatos[:] = [f"{br(c['testes'])} funções de teste" if f.endswith("funções de teste") else f
-                        for f in fatos]
-        print(f"{slug:14} commits {c['humanos']:4} (+{c['bot']} bot)  testes {c['testes']:5}  {c['inicio']}..{c['fim']}")
-
-    licoes = len(json.loads(INDICE_LICOES.read_text(encoding="utf-8"))["lessons"])
-    for n in d["numeros"]:
-        if "lições" in n["rotulo"]:
-            n["valor"] = str(licoes)
-        elif "commits" in n["rotulo"]:
-            n["valor"] = br(total_c)
-        elif "funções de teste" in n["rotulo"]:
-            n["valor"] = br(total_t)
-
-    avisa = contar("avisa-edital")
-    mut = contar_mutacao("avisa-edital")
-    for m in d["metodo"]:
-        m["texto"] = re.sub(r"\d+ dos \d+ commits meus", f"{mut} dos {avisa['humanos']} commits meus", m["texto"])
-    print(f"lições {licoes} · commits {total_c} · testes {total_t} · mutação no Avisa {mut}/{avisa['humanos']}")
-
-    d_en = atualizar_en(contagens, licoes, total_c, total_t, mut, avisa["humanos"])
-    novo_en = json.dumps(d_en, ensure_ascii=False, indent=2) + "\n"
-    if json.dumps(d, ensure_ascii=False) == antes and json.loads(novo_en) == json.loads(antes_en):
+    d, d_en = carregar(), json.loads(DADOS_EN.read_text(encoding="utf-8"))
+    antes, antes_en = json.dumps(d, ensure_ascii=False), json.dumps(d_en, ensure_ascii=False)
+    r = aplicar(d, d_en)
+    print(f"lições {r['licoes']} · commits {r['commits']} · testes {r['testes']} · mutação no Avisa {r['mutacao']}/{r['avisa']}")
+    if json.dumps(d, ensure_ascii=False) == antes and json.dumps(d_en, ensure_ascii=False) == antes_en:
         print("nada mudou")
         return 0
     if "--aplicar" not in sys.argv:
@@ -148,8 +176,8 @@ def main() -> int:
         return 1
     hoje = date.today().isoformat()
     d["site"]["medido_em"] = d_en["site"]["medido_em"] = hoje
-    DADOS.write_text(json.dumps(d, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
-    DADOS_EN.write_text(json.dumps(d_en, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    for caminho, dados in ((DADOS, d), (DADOS_EN, d_en)):
+        caminho.write_text(json.dumps(dados, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     subprocess.run([sys.executable, str(RAIZ / "build.py")], check=True)
     print("gravado. Se a edição mudou, rode também: python scripts/gerar_og.py")
     return 0
