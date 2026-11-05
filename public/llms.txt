@@ -13,7 +13,7 @@ Construo sistemas que leem fontes públicas e bancos de produção e transformam
 - [Servidor MCP](https://mateusfabro.vercel.app/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade
 
 ## Projetos
-- [Avisa Edital](https://mateusfabro.vercel.app/projetos/avisa-edital.md): Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.
+- [Avisa Edital](https://mateusfabro.vercel.app/projetos/avisa-edital.md): Alertas de convocação, nomeação e edital de concurso para médicos no Paraná e em São Paulo, no WhatsApp ou no Telegram, filtrados por especialidade e região.
 - [Pingado](https://mateusfabro.vercel.app/projetos/pingado.md): Sistema de cafeteria: balcão em três toques, comanda, fiado, estoque e resultado do mês.
 - [Nous Clinical](https://mateusfabro.vercel.app/projetos/nous-clinical.md): Gestão de clínicas: agenda, prontuário, exames, financeiro e retorno de pacientes.
 - [Aggron](https://mateusfabro.vercel.app/projetos/aggron.md): Compra cooperativa para hamburguerias: pedidos somados em rodadas e fornecedores disputando o lote.

@@ -129,23 +129,26 @@
       "slug": "avisa-edital",
       "nome": "Avisa Edital",
       "tipo": "produto",
-      "linha": "Alerta no Telegram quando sai concurso, convocação ou nomeação para médicos no Paraná e em São Paulo.",
+      "linha": "Alertas de convocação, nomeação e edital de concurso para médicos no Paraná e em São Paulo, no WhatsApp ou no Telegram, filtrados por especialidade e região.",
       "para_quem": "Médicos que prestaram concurso ou PSS e não podem perder o prazo de uma convocação — em geral de 3 a 5 dias úteis.",
       "papel": "Sócio e desenvolvedor: construí sozinho coletores, bot, site, pagamento e monitoramento. O outro sócio, médico, cuida da venda.",
       "stack": [
         "Python",
+        "WhatsApp (Evolution API)",
+        "Telegram Bot API",
+        "VM com systemd",
         "GitHub Actions",
         "Vercel (funções Python)",
         "Upstash Redis",
-        "Telegram Bot API",
         "Kiwify (webhook HMAC)",
         "pypdf + Tesseract (OCR)"
       ],
       "fatos": [
         "717 commits meus entre 12/08 e 05/11/2026, fora 85 automáticos do bot",
         "3.372 funções de teste",
-        "PR e SP: diários oficiais municipais e estaduais, bancas e fontes de convocação, coletados numa VM com systemd e complementados por GitHub Actions",
-        "assinatura pela Kiwify com teste grátis de 7 dias sem cartão, pelo próprio bot"
+        "Diários Oficiais de 213 municípios do PR e 110 de SP, secretarias de saúde, consórcios do SAMU e sites das bancas, lidos todo dia; OCR de atos escaneados",
+        "Ciclo de venda dentro do bot: teste grátis de 7 dias sem cartão, oferta ao fim do teste, lembrete a cadastro parado, indicação com código e planos pela Kiwify",
+        "Entrega todo dia por WhatsApp e Telegram, com fila humanizada, trava anti-banimento e sentinela que avisa o operador"
       ],
       "status": "No ar desde agosto de 2026; operação diária desde outubro",
       "url": "https://avisaedital.com.br",

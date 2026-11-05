@@ -77,10 +77,11 @@
     "nome": "avisa-edital",
     "abre": false,
     "mostrar": true,
-    "descricao": "Avisa Edital — alertas de concurso, convocação e nomeação para médicos (PR/SP) no Telegram. Python, Vercel, Upstash. Privado (negócio com sócio)",
+    "descricao": "Avisa Edital — alertas de convocação, nomeação e edital para médicos (PR/SP) no WhatsApp e no Telegram; lê 213 + 110 diários oficiais por dia. Python, Evolution API, Vercel, Upstash. Privado (negócio com sócio)",
     "topics": [
       "python",
       "telegram-bot",
+      "whatsapp",
       "vercel",
       "scraping"
     ]

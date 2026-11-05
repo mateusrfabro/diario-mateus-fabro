@@ -26,18 +26,19 @@ I work paired with AI agents (Claude Code) and with a memory system of my own: e
 
 ### Avisa Edital
 
-Telegram alert when a public exam, job call or appointment for physicians is published in Paraná or São Paulo.
+Alerts for job calls, appointments and public exam notices for physicians in Paraná and São Paulo, on WhatsApp or Telegram, filtered by specialty and region.
 
 - **For whom:** Physicians who sat a public exam or selection process and cannot miss a job-call deadline — usually 3 to 5 business days.
 - **My role:** Partner and developer: I built the collectors, bot, site, payments and monitoring alone. The other partner, a physician, handles sales.
 - **Status:** Live since August 2026; daily operation since October
-- **Stack:** Python, GitHub Actions, Vercel (Python functions), Upstash Redis, Telegram Bot API, Kiwify (HMAC webhook), pypdf + Tesseract (OCR)
+- **Stack:** Python, WhatsApp (Evolution API), Telegram Bot API, VM with systemd, GitHub Actions, Vercel (Python functions), Upstash Redis, Kiwify (HMAC webhook), pypdf + Tesseract (OCR)
 - **Address:** https://avisaedital.com.br
 - **Facts:**
   - 717 of my commits between 08/12 and 11/05/2026, plus 85 automated bot commits
   - 3,372 test functions
-  - PR and SP: municipal and state official gazettes, exam boards and job-call sources, collected on a VM with systemd and complemented by GitHub Actions
-  - Kiwify subscription with a 7-day free trial, no card, from the bot itself
+  - Official gazettes of 213 municipalities in PR and 110 in SP, health departments, SAMU consortia and exam-board sites, read every day; OCR of scanned acts
+  - Sales cycle inside the bot: 7-day free trial with no card, offer at the end of the trial, reminder for stalled signups, referral codes and plans via Kiwify
+  - Delivered every day on WhatsApp and Telegram, with a humanized queue, anti-ban guard and a sentinel that alerts the operator
 
 Collecting is not publishing. When coverage grows, history enters the archive looking like news; the alert now notifies by the date of the event, silently marks the old ones and only announces what came out afterwards — otherwise a subscriber would get "13 new call-ups", 10 of them weeks old.
 
