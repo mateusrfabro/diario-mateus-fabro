@@ -75,12 +75,16 @@
           "bloco": "IA aplicada",
           "itens": [
             {
-              "texto": "Squad de agentes Claude Code especializados com gate obrigatório (extração → boas práticas → auditoria → entrega), skills próprias e hooks de lint; memória em três camadas (projeto → global → export) com script que prova que o índice não esqueceu nenhuma lição.",
-              "fonte": ""
+              "texto": "Squad de 25 agentes Claude Code com papel definido (10 do squad de dados iGaming + 15 gerais: segurança, testes, UX, revisão de conteúdo, growth) e 28 skills próprias (22 globais + 6 do projeto), com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.",
+              "fonte": "contagem em .claude/agents e .claude/skills (projeto play4tune e ~/.claude), 05/11/2026"
             },
             {
-              "texto": "Laboratório local de modelos (Ollama + PyTorch numa RTX 4060): agente com ferramentas, fine-tuning QLoRA e baseline tabular — para saber o que roda sem API.",
-              "fonte": "repositório lab-ia: experiments/log.md (2026-10-04, RTX 4060 8 GB) e CLAUDE.md"
+              "texto": "Memória em três camadas (projeto → global → export): 125 lições registradas, cada uma com origem, motivo e forma de aplicar, e um script que prova que o índice não esqueceu nenhuma.",
+              "fonte": "~/.claude/memory-global/global_index.json e verificar_sincronia.py, 05/11/2026"
+            },
+            {
+              "texto": "API da Anthropic em produção em dois produtos (IA multimodal no DumpAI; chatbot clínico no Nous Clinical), agente LangChain/n8n na secretária de WhatsApp e laboratório local (Ollama + PyTorch numa RTX 4060) para saber o que roda sem API.",
+              "fonte": "repositórios dumpai, nous-clinical, secretaria-ia e lab-ia (log de 04–06/10/2026)"
             }
           ]
         }
@@ -145,12 +149,16 @@
           "bloco": "Applied AI",
           "itens": [
             {
-              "texto": "Squad of specialized Claude Code agents with a mandatory gate (extraction → best practices → audit → delivery), custom skills and lint hooks; three-layer memory (project → global → export) with a script that proves the index forgot no lesson.",
-              "fonte": ""
+              "texto": "Squad of 25 Claude Code agents with defined roles (10 from the iGaming data squad + 15 general: security, testing, UX, content review, growth) and 28 custom skills (22 global + 6 project-level), with a mandatory gate extraction → best practices → audit → delivery and hooks that block destructive git and commits without tests.",
+              "fonte": "contagem em .claude/agents e .claude/skills (projeto play4tune e ~/.claude), 05/11/2026"
             },
             {
-              "texto": "Local model lab (Ollama + PyTorch on an RTX 4060): tool-using agent, QLoRA fine-tuning and a tabular baseline — to know what runs without an API.",
-              "fonte": "repositório lab-ia: experiments/log.md (2026-10-04, RTX 4060 8 GB) e CLAUDE.md"
+              "texto": "Three-layer memory (project → global → export): 125 recorded lessons, each with origin, reason and how to apply it, and a script that proves the index forgot none.",
+              "fonte": "~/.claude/memory-global/global_index.json e verificar_sincronia.py, 05/11/2026"
+            },
+            {
+              "texto": "Anthropic API in production in two products (multimodal AI in DumpAI; clinical chatbot in Nous Clinical), a LangChain/n8n agent in the WhatsApp secretary and a local lab (Ollama + PyTorch on an RTX 4060) to learn what runs without an API.",
+              "fonte": "repositórios dumpai, nous-clinical, secretaria-ia e lab-ia (log de 04–06/10/2026)"
             }
           ]
         }

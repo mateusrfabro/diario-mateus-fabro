@@ -1,6 +1,6 @@
 # Mateus Fabro — Engenheiro de Dados & Analytics
 
-**Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript**
+**Construo o pipeline e o produto em volta dele — Python · SQL · TypeScript · agentes de IA**
 
 🟢 **Em busca de vaga** — Em busca de vaga de engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto. Converso também sobre projeto fechado. O jeito mais rápido é o e-mail.
 
@@ -32,6 +32,12 @@
 | **lab-ia** | Laboratório local de IA: Ollama + PyTorch numa RTX 4060 — agente com ferramentas, QLoRA, ML tabular | — | [lab-ia](https://github.com/mateusrfabro/lab-ia) |
 
 Trabalho anterior: Super Nova Gaming / MultiBet (Grupo PGX), out/2025 – nov/2026 — repositórios privados (dados da empresa).
+
+## Engenharia de agentes
+
+- Squad de 25 agentes Claude Code com papel definido (10 do squad de dados iGaming + 15 gerais: segurança, testes, UX, revisão de conteúdo, growth) e 28 skills próprias (22 globais + 6 do projeto), com gate obrigatório extração → boas práticas → auditoria → entrega e hooks que bloqueiam git destrutivo e commit sem teste.
+- Memória em três camadas (projeto → global → export): 125 lições registradas, cada uma com origem, motivo e forma de aplicar, e um script que prova que o índice não esqueceu nenhuma.
+- API da Anthropic em produção em dois produtos (IA multimodal no DumpAI; chatbot clínico no Nous Clinical), agente LangChain/n8n na secretária de WhatsApp e laboratório local (Ollama + PyTorch numa RTX 4060) para saber o que roda sem API.
 
 ## Como eu trabalho
 

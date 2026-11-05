@@ -176,11 +176,11 @@ LIMITES = {"titulo": 220, "sobre": 2600, "experiencia": 2000, "projeto": 2000, "
 DOCS_LI = RAIZ / "docs" / "linkedin"
 
 COMPETENCIAS = ["Python", "SQL", "PostgreSQL", "TypeScript", "Engenharia de Dados", "Analytics Engineering",
-    "Data Pipelines", "ETL", "AWS", "Amazon Athena", "Apache Iceberg", "Amazon EC2", "Prefect", "MongoDB", "Redis",
-    "Supabase", "NestJS", "Next.js", "React", "Flask", "FastAPI", "Astro", "Docker", "Linux", "systemd", "Git",
+    "Data Pipelines", "ETL", "AWS", "Amazon Athena", "Apache Iceberg", "Prefect", "MongoDB", "Redis",
+    "Supabase", "NestJS", "Next.js", "React", "Flask", "FastAPI", "Astro", "Docker", "Linux", "Git",
     "GitHub Actions", "CI/CD", "pytest", "Jest", "Prisma", "Playwright", "Antifraude", "Detecção de Fraude",
-    "Credit Scoring", "Atribuição de Marketing", "Meta Ads API", "Google Ads API", "CRM", "Power BI", "Dash (Plotly)",
-    "pandas", "Machine Learning", "LLM", "Claude Code", "Anthropic API", "LangChain", "n8n", "Automação", "LGPD"]
+    "Credit Scoring", "Atribuição de Marketing", "Meta Ads API", "Google Ads API", "CRM", "Power BI",
+    "pandas", "Machine Learning", "LLM", "Claude Code", "Anthropic API", "LangChain", "n8n", "Automação", "LGPD", "Engenharia de Agentes", "Prompt Engineering", "MCP"]
 
 
 def _check(nome: str, texto: str) -> str:
@@ -201,7 +201,14 @@ def mes_extenso(iso: str, lang: str) -> str:
     return f"{MESES_EXT[lang][int(m) - 1]} de {y}" if lang == "pt" else f"{MESES_EXT[lang][int(m) - 1]} {y}"
 
 
-def _sobre_e_post(d: dict, lang: str) -> tuple[str, str]:
+def _bullets_agentes(cv: dict, lang: str) -> list[str]:
+    """Bullets do bloco de IA do currículo (fonte única: curriculo.json)."""
+    pref = "IA" if lang == "pt" else "Applied"
+    bloco = next(b for b in cv["experiencia"]["super-nova"][lang] if b["bloco"].startswith(pref))
+    return [i["texto"] for i in bloco["itens"]]
+
+
+def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
     """Sobre e post: estrutura fixa (prosa) + todo número/fato vem dos dados, nada digitado."""
     pt = lang == "pt"
     p, x0, n, site = d["perfil"], d["experiencia"][0], d["numeros"], d["site"]["url"]
@@ -226,12 +233,9 @@ def _sobre_e_post(d: dict, lang: str) -> tuple[str, str]:
         + "\n" + "\n".join(f"• {f}" for f in fatos),
         fora + (f" Um tem {proj['pingado']['fatos'][2]}; outro: {st} — e o site diz isso." if pt else
                 f" One has a {proj['pingado']['fatos'][2]}; another: {st} — and the site says so."),
-        (f"Trabalho em par com agentes de IA (Claude Code), com memória em camadas e gates próprios: "
-         f"{n[0]['valor']} {n[0]['rotulo']}. Quando erro, publico a retificação." if pt else
-         f"I work in pair with AI agents (Claude Code), with layered memory and my own quality gates: "
-         f"{n[0]['valor']} {n[0]['rotulo']}. When I get it wrong, I publish the correction."),
-        d["disponibilidade"]["texto"] + (f" A operação em que eu estava encerrou em {fim}." if pt else
-                                          f" The operation I was part of shut down in {fim}."),
+        ("Engenharia de agentes (trabalho em par com Claude Code; quando erro, publico a retificação):" if pt else
+         "Agent engineering (I work in pair with Claude Code; when I get it wrong, I publish the correction):") + "\n" + "\n".join(f"• {t}" for t in _bullets_agentes(cv, lang)),
+        d["disponibilidade"]["texto"],            # o fim da operação já está no resumo do bloco acima
         ("Site, números medidos e retificações: " if pt else "Site, measured numbers and corrections: ") + site + "\n"
         + ("Currículo: " if pt else "Résumé: ") + f"{site}/curriculo/mateus-fabro-{lang}.pdf\n"
         + ("Contato: " if pt else "Contact: ") + p["email"]])
@@ -259,11 +263,11 @@ def _sobre_e_post(d: dict, lang: str) -> tuple[str, str]:
 def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
     p, x0 = d["perfil"], d["experiencia"][0]
     pt = lang == "pt"
-    titulo = (f"{p['cargo']} | Python · SQL · TypeScript | pipelines, antifraude e atribuição em iGaming · "
+    titulo = (f"{p['cargo']} | Python · SQL · TypeScript · agentes de IA (Claude Code) | pipelines, antifraude e atribuição em iGaming · "
               f"produtos próprios com cliente real | em busca de vaga (PJ/CLT, remoto)" if pt else
-              f"{p['cargo']} | Python · SQL · TypeScript | pipelines, anti-fraud and attribution in iGaming · "
+              f"{p['cargo']} | Python · SQL · TypeScript · AI agents (Claude Code) | pipelines, anti-fraud and attribution in iGaming · "
               f"own products with real customers | open to work (contractor/employee, remote)")
-    sobre, post = _sobre_e_post(d, lang)
+    sobre, post = _sobre_e_post(d, cv, lang)
     secoes = {"titulo": titulo, "sobre": sobre}
     for x in d["experiencia"]:
         blocos = cv["experiencia"][x["id"]][lang]
@@ -357,6 +361,7 @@ def github_readme(d: dict, cv: dict) -> str:
         L.append(f"| **{r['nome']}** | {r['descricao']} | — | {codigo} |")
     L += ["", f"Trabalho anterior: {d['experiencia'][0]['empresa']}, {periodo(d['experiencia'][0], 'pt')} — "
           "repositórios privados (dados da empresa).", "",
+          "## Engenharia de agentes", ""] + [f"- {t}" for t in _bullets_agentes(cv, "pt")] + ["",
           "## Como eu trabalho", ""] + [f"- **{m['titulo']}.** {m['texto']}" for m in d["metodo"]] + ["",
           f"_README gerado de `conteudo/dados.json` em {s['medido_em']} pelo repositório "
           f"[diario-mateus-fabro](https://github.com/mateusrfabro/diario-mateus-fabro)._", ""]
