@@ -140,7 +140,8 @@ if __name__ == "__main__":
 ```powershell
 cd C:\Users\mateu\Projects\_fora-do-git
 git init -q controle; cd controle; git config user.email t@t; git config user.name t
-Set-Content a.txt "AKIAABCDEFGHIJKLMNOP"; Set-Content .env "X=1"; git add a.txt .env; git commit -q -m x
+Set-Content a.txt ("AKIA" + "ABCDEFGHIJKLMNOP"); Set-Content .env "X=1"; git add a.txt .env; git commit -q -m x
+# (a chave fictícia é montada em duas partes para que este plano, que vai a público, não contenha o padrão literal)
 py -3.12 ..\ferramentas\varrer_segredos.py .
 cd ..; Remove-Item -Recurse -Force controle
 ```
