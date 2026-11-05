@@ -245,7 +245,7 @@ def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
          f"What I proved in production — {x0['empresa']}, {periodo(x0, lang)}:") + "\n" + x0["resumo"]
         + "\n" + "\n".join(f"• {f}" for f in fatos_sobre),
         fora + (f" Um deles tem {proj['pingado']['fatos'][2]}; outro está {st} — e o site diz isso." if pt else
-                f" One of them has {proj['pingado']['fatos'][2]}; another is {st} — and the site says so."),
+                f" One of them has a {proj['pingado']['fatos'][2]}; another is {st} — and the site says so."),
         ("Engenharia de agentes (trabalho em par com Claude Code; quando erro, publico a retificação):" if pt else
          "Agent engineering (I work paired with Claude Code; when I get it wrong, I publish the correction):") + "\n" + "\n".join(f"• {t}" for t in _bullets_agentes(cv, lang)),
         d["disponibilidade"]["texto"],            # o fim da operação já está no resumo do bloco acima
