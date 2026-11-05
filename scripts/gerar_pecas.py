@@ -158,7 +158,111 @@ def cmd_curriculo(args: list[str]) -> int:
     return 0
 
 
-def cmd_linkedin(a): return 2  # Task 6
+# ============================================================================ LinkedIn
+LIMITES = {"titulo": 220, "sobre": 2600, "experiencia": 2000, "projeto": 2000, "post": 1300, "competencias": 50}
+DOCS_LI = RAIZ / "docs" / "linkedin"
+
+COMPETENCIAS = ["Python", "SQL", "PostgreSQL", "TypeScript", "Engenharia de Dados", "Analytics Engineering",
+    "Data Pipelines", "ETL", "AWS", "Amazon Athena", "Apache Iceberg", "Amazon EC2", "Prefect", "MongoDB", "Redis",
+    "Supabase", "NestJS", "Next.js", "React", "Flask", "FastAPI", "Astro", "Docker", "Linux", "systemd", "Git",
+    "GitHub Actions", "CI/CD", "pytest", "Jest", "Prisma", "Playwright", "Antifraude", "Detecção de Fraude",
+    "Credit Scoring", "Atribuição de Marketing", "Meta Ads API", "Google Ads API", "CRM", "Power BI", "Dash (Plotly)",
+    "pandas", "Machine Learning", "LLM", "Claude Code", "Anthropic API", "LangChain", "n8n", "Automação", "LGPD"]
+
+
+def _check(nome: str, texto: str) -> str:
+    chave = nome.split(":")[0]
+    if len(texto) > LIMITES[chave]:
+        raise ValueError(f"{nome}: {len(texto)} caracteres, limite {LIMITES[chave]}")
+    return texto
+
+
+def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
+    p, x0 = d["perfil"], d["experiencia"][0]
+    pt = lang == "pt"
+    titulo = (f"{p['cargo']} | Python · SQL · TypeScript | pipelines, antifraude e atribuição em iGaming · "
+              f"produtos próprios com cliente real | em busca de vaga (PJ/CLT, remoto)" if pt else
+              f"{p['cargo']} | Python · SQL · TypeScript | pipelines, anti-fraud and attribution in iGaming · "
+              f"own products with real customers | open to work (contractor/employee, remote)")
+    sobre = "\n\n".join(cv["resumo"][lang] + [
+        ("Produtos próprios no ar: " if pt else "Own products live: ") + ", ".join(
+            pr["nome"] for pr in d["projetos"] if pr["tipo"] == "produto" and build.status_vivo(pr)) + ".",
+        (f"Site com projetos, números medidos e as retificações dos meus erros: {d['site']['url']}\n"
+         f"Currículo: {d['site']['url']}/curriculo/mateus-fabro-{lang}.pdf\n"
+         f"Contato: {p['email']}")])
+    secoes = {"titulo": titulo, "sobre": sobre}
+    for x in d["experiencia"]:
+        blocos = cv["experiencia"][x["id"]][lang]
+        if blocos and "bloco" in blocos[0]:
+            # experiência principal: só o 1º bullet de cada bloco (limite de 2.000 caracteres do LinkedIn)
+            itens = [b["itens"][0] for b in blocos] if x["id"] == "super-nova" else [i for b in blocos for i in b["itens"]]
+        else:
+            itens = blocos
+        corpo = x["resumo"] + "\n\n" + "\n".join(f"• {i['texto']}" for i in itens)
+        secoes[f"experiencia:{x['id']}"] = corpo
+    fora_do_kit = {"atendimento-whatsapp", "credito-nda"}          # piloto parado; sob NDA — ficam 6 (limite do LinkedIn)
+    for pr in d["projetos"]:
+        if pr["tipo"] == "produto" and pr["slug"] not in fora_do_kit:
+            secoes[f"projeto:{pr['slug']}"] = f"{pr['linha']}\n{pr['status']}.\n" + "\n".join(f"• {f}" for f in pr["fatos"][:3])
+    produtos = [pr for pr in d["projetos"] if pr["tipo"] == "produto"]
+    no_ar = sum(1 for pr in produtos if build.status_vivo(pr))      # derivado do status, não digitado
+    secoes["post"] = (
+        f"A operação em que trabalhei desde outubro de 2025 encerrou em novembro. Estou em busca de vaga de "
+        f"engenharia de dados, analytics engineering ou desenvolvimento de produto — PJ ou CLT, remoto.\n\n"
+        f"O que eu levo: {len(produtos)} produtos próprios construídos de ponta a ponta ({no_ar} no ar hoje), "
+        f"migração de data lake, antifraude e atribuição de mídia em três operações de iGaming, e um site onde "
+        f"publico os meus erros com a regra que ficou de cada um.\n\n"
+        f"Site e currículo: {d['site']['url']}\nSe souber de uma vaga ou quiser conversar: {p['email']}" if pt else
+        f"The operation I worked at since October 2025 shut down in November. I'm looking for a data engineering, "
+        f"analytics engineering or product development role — contractor or employee, remote.\n\n"
+        f"What I bring: {len(produtos)} own products built end to end ({no_ar} live today), a data lake migration, "
+        f"anti-fraud and media attribution across three iGaming operations, and a site where I publish my mistakes "
+        f"with the rule each one left.\n\n"
+        f"Site and résumé: {d['site']['url']}\nIf you know of a role or want to talk: {p['email']}")
+    return {k: _check(k, v) for k, v in secoes.items()}
+
+
+def linkedin_md(d: dict, cv: dict, lang: str) -> str:
+    s = linkedin_secoes(d, cv, lang)
+    p = d["perfil"]
+    pt = lang == "pt"
+    L = [f"# Kit LinkedIn — {p['nome']} — {date.today().isoformat()} ({lang})", "",
+         ("Cada seção abaixo cabe no limite do LinkedIn. Colar na ordem. Depois de colar, ligar o "
+          "\"Open to work\" (Cargos: Engenheiro de Dados, Analytics Engineer, Desenvolvedor Python; remoto; PJ e CLT)."
+          if pt else "Each section fits LinkedIn's limit. Paste in order."), "",
+         "## 1. Título (Intro → Headline)", "", "```", s["titulo"], "```", "",
+         "## 2. Sobre (About)", "", "```", s["sobre"], "```", ""]
+    L += ["## 3. Experiência (uma entrada por bloco; cargo, empresa, datas, local, descrição)", ""]
+    for x in d["experiencia"]:
+        nota = f" · {x['nota']}" if x.get("nota") else ""
+        L += [f"### {x['cargo']} — {x['empresa']}", f"- Datas: {periodo(x, lang)} · {x['local']}{nota}",
+              ("- Motivo de saída (se perguntarem): encerramento da operação." if x["id"] == "super-nova" and pt else ""),
+              "", "```", s[f"experiencia:{x['id']}"], "```", ""]
+        if x["id"] == "super-nova":
+            L += [(f"Bullets completos no currículo em PDF: {d['site']['url']}/curriculo/mateus-fabro-pt.pdf" if pt else
+                   f"Full bullets in the PDF résumé: {d['site']['url']}/curriculo/mateus-fabro-en.pdf"), ""]
+    L += ["## 4. Formação (Education)", ""]
+    for f in p["formacao"]:
+        L += [f"- {f['instituicao']} — {f['curso']} — {f['inicio']}–{f['fim']} ({f['status']})"]
+    L += ["", "## 5. Projetos (Projects, até 6; link = site ou URL do projeto)", ""]
+    for k, v in s.items():
+        if k.startswith("projeto:"):
+            pr = next(x for x in d["projetos"] if x["slug"] == k.split(":")[1])
+            L += [f"### {pr['nome']}", f"- Link: {pr.get('url') or d['site']['url'] + '/projetos/' + pr['slug'] + '.md'}",
+                  "", "```", v, "```", ""]
+    L += ["## 6. Competências (Skills) — marcar estas 50", "", ", ".join(COMPETENCIAS), "",
+          "## 7. Post de disponibilidade (publicar depois de atualizar o perfil)", "", "```", s["post"], "```", ""]
+    return "\n".join(L)
+
+
+def cmd_linkedin(args: list[str]) -> int:
+    cv = carregar_cv()
+    DOCS_LI.mkdir(parents=True, exist_ok=True)
+    for lang in ("pt", "en"):
+        alvo = DOCS_LI / f"kit-2026-11-{lang}.md"          # nome fixo: o git add do plano aponta para ele
+        alvo.write_text(linkedin_md(dados(lang), cv, lang), encoding="utf-8", newline="\n")
+        print(alvo.relative_to(RAIZ))
+    return 0
 
 
 def cmd_github(a): return 2  # Task 7
