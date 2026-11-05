@@ -147,7 +147,7 @@ Cinco portais estáticos de finanças e direitos, com indicadores que se atualiz
 - **Meu papel:** Construí os cinco: coleta dos indicadores, build, revisão editorial assistida por IA com aprovação humana e publicação em domínio próprio.
 - **Status:** No ar desde outubro de 2026; monetização em avaliação
 - **Stack:** Astro 7, TypeScript, GitHub Actions, APIs oficiais, Vercel
-- **Endereço:** https://guiadocredito.com.br
+- **Endereço:** https://radardoinvestidor.com.br
 - **Fatos:**
   - 40 commits meus entre 20/10 e 03/11/2026
   - 33 a 45 guias por portal, cada um com fonte primária

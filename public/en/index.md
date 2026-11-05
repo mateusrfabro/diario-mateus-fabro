@@ -147,7 +147,7 @@ Five static portals on finance and labor rights, with indicators that refresh th
 - **My role:** Built all five: indicator collection, build, AI-assisted editorial review with human approval, and publication on their own domains.
 - **Status:** Live since October 2026; monetization under evaluation
 - **Stack:** Astro 7, TypeScript, GitHub Actions, Official APIs, Vercel
-- **Address:** https://guiadocredito.com.br
+- **Address:** https://radardoinvestidor.com.br
 - **Facts:**
   - 40 of my commits between 10/20 and 11/03/2026
   - 33 to 45 guides per portal, each with a primary source

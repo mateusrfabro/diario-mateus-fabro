@@ -352,7 +352,7 @@ def linkedin_md(d: dict, cv: dict, lang: str) -> str:
     for k, v in s.items():
         if k.startswith("projeto:"):
             pr = next(x for x in d["projetos"] if x["slug"] == k.split(":")[1])
-            L += [f"### {pr['nome']}", f"- Link: {pr.get('url') or d['site']['url'] + '/projetos/' + pr['slug'] + '.md'}",
+            L += [f"### {pr['nome']}", f"- Link: {pr.get('url') or d['site']['url'] + ('/#' if pt else '/en/#') + pr['slug']}",
                   "", "```", v, "```", ""]
     L += ["## 6. Competências (Skills) — marcar estas 50", "", ", ".join(competencias(lang)), "",
           "## 7. Post de disponibilidade (publicar depois de atualizar o perfil)", "", "```", s["post"], "```", ""]
