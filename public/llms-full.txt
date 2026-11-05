@@ -288,6 +288,7 @@ Sim: em busca de vaga, PJ ou CLT, remoto. Contato por e-mail: mateusrfabro@hotma
 
 - Servidor MCP (Streamable HTTP, sem autenticação, só leitura): https://mateusfabro.vercel.app/mcp
 - Currículo em JSON Resume: https://mateusfabro.vercel.app/resume.json
+- Currículo em PDF: https://mateusfabro.vercel.app/curriculo/mateus-fabro-pt.pdf
 - Este texto: https://mateusfabro.vercel.app/index.md
 
 

@@ -25,10 +25,11 @@
   },
   "work": [
     {
-      "name": "Grupo de iGaming (nome omitido)",
-      "position": "Analista de Dados",
+      "name": "Super Nova Gaming / MultiBet (Grupo PGX)",
+      "position": "Analista de Dados — frente de dados de 2 operações",
       "startDate": "2025-10",
-      "summary": "Pipelines, migração de data lake, antifraude, atribuição de mídia e painéis para três operações em três países.",
+      "endDate": "2026-11",
+      "summary": "Squad de dados de 4 pessoas para três operações de iGaming (Brasil/BRL, Paquistão/PKR, Colômbia/COP). Liderei a frente de dados das duas mais novas: pipelines, migração de data lake, antifraude, tracker de atribuição e painéis. Saída pelo encerramento da operação em novembro de 2026.",
       "highlights": [
         "1408 commits meus entre 12/03 e 04/11/2026",
         "migração de data lake (3,07 bi de registros, 234 tabelas): camada de conexão com fonte única e rollback por uma variável, preservando a interface dos ~71 pipelines consumidores",
@@ -37,6 +38,20 @@
         "linter multi-tenant que falha fechado: lista de exceções de 43 para 3",
         "consulta crítica de 240 s para 21 s, com equivalência provada por conjunto"
       ]
+    },
+    {
+      "name": "Costa Oeste / Terceirize",
+      "position": "Analista Administrativo",
+      "startDate": "2025-07",
+      "endDate": "2025-09",
+      "summary": "KPIs operacionais e dashboards em Power BI; rotinas de governança de dados administrativos."
+    },
+    {
+      "name": "ADAMA",
+      "position": "Assistente de Crédito e Cobrança",
+      "startDate": "2020-10",
+      "endDate": "2024-09",
+      "summary": "Contas a receber e operações de FIDC; análise de crédito PJ/PF com garantias (CPR, alienação fiduciária, caução); dashboards Power BI para os times Brasil e Global; atuação no Portal de Crédito. (estágio em 2019–2020)"
     }
   ],
   "projects": [
@@ -190,8 +205,17 @@
   "education": [
     {
       "institution": "Universidade Anhembi Morumbi",
-      "area": "Administração de Empresas",
-      "studyType": "Graduação (em curso)"
+      "area": "Administração",
+      "studyType": "Graduação (concluído)",
+      "startDate": "2022",
+      "endDate": "2025"
+    },
+    {
+      "institution": "Universidade Estadual de Londrina (UEL)",
+      "area": "Ciências Contábeis",
+      "studyType": "Graduação (incompleto)",
+      "startDate": "2018",
+      "endDate": "2021"
     }
   ],
   "languages": [

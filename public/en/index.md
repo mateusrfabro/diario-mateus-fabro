@@ -288,4 +288,5 @@ Yes: looking for a role, contractor or employee, remote. Contact by email: mateu
 
 - MCP server (Streamable HTTP, no auth, read-only; tools and content in Portuguese): https://mateusfabro.vercel.app/mcp
 - JSON Resume: https://mateusfabro.vercel.app/resume.json
+- Résumé as PDF: https://mateusfabro.vercel.app/curriculo/mateus-fabro-en.pdf
 - This text: https://mateusfabro.vercel.app/en/index.md

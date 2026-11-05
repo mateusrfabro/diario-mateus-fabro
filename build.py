@@ -79,7 +79,7 @@ T = {
         "l_proj": "Produtos próprios, do coletor ao cliente, com o status real de cada um — inclusive os que pararam.",
         "s2": "Seção II", "h_ret": "Retificações",
         "l_ret": ("Erros que eu cometi, no formato do diário oficial: onde se lê, leia-se. A data é a da "
-                  "retificação — quando o erro foi achado e corrigido. Nomes de empresa e de cliente ficam de fora."),
+                  "retificação — quando o erro foi achado e corrigido. Nomes de cliente ficam de fora."),
         "s3": "Seção III", "h_atos": "Atos — as regras que ficaram",
         "l_atos": "{a} das {n} lições registradas. Cada uma nasceu de um caso real e tem origem, motivo e forma de aplicar.",
         "s4": "Seção IV", "h_met": "Expediente — como eu trabalho",
@@ -102,6 +102,7 @@ T = {
         "md_resume": "Currículo em JSON Resume", "md_este": "Este texto",
         "p_para_quem": "Para quem", "p_papel": "Meu papel", "p_status": "Status", "p_stack": "Stack",
         "p_endereco": "Endereço", "p_fatos": "Fatos",
+        "cv": "Currículo (PDF)", "md_cv": "Currículo em PDF", "cv_arquivo": "mateus-fabro-pt.pdf",
     },
     "en": {
         "prefixo": "/en", "locale": "en_US", "outro": "pt", "outro_rotulo": "Português",
@@ -114,7 +115,7 @@ T = {
         "l_proj": "My own products, from the scraper to the customer, with the real status of each — including the ones that stopped.",
         "s2": "Section II", "h_ret": "Corrections",
         "l_ret": ("Mistakes I made, in the format of a gazette erratum: for … read …. The date is the date of the "
-                  "correction — when the mistake was found and fixed. Company and client names are left out."),
+                  "correction — when the mistake was found and fixed. Client names are left out."),
         "s3": "Section III", "h_atos": "Standing orders — the rules that stayed",
         "l_atos": "{a} of the {n} recorded lessons. Each came from a real case and has an origin, a reason and a way to apply it.",
         "s4": "Section IV", "h_met": "Masthead — how I work",
@@ -136,6 +137,7 @@ T = {
         "md_resume": "JSON Resume", "md_este": "This text",
         "p_para_quem": "For whom", "p_papel": "My role", "p_status": "Status", "p_stack": "Stack",
         "p_endereco": "Address", "p_fatos": "Facts",
+        "cv": "Résumé (PDF)", "md_cv": "Résumé as PDF", "cv_arquivo": "mateus-fabro-en.pdf",
     },
 }
 
@@ -186,6 +188,7 @@ def markdown(d: dict, t: dict = T["pt"]) -> str:
     L += [f"## {t['md_agentes']}", "",
           f"- {t['md_mcp']}: {s['url']}/mcp",
           f"- {t['md_resume']}: {s['url']}/resume.json",
+          f"- {t['md_cv']}: {s['url']}/curriculo/{t['cv_arquivo']}",
           f"- {t['md_este']}: {base}/index.md", ""]
     return "\n".join(L)
 
@@ -212,6 +215,7 @@ def llms_txt(d: dict) -> str:
          f"- [Página completa em Markdown]({s['url']}/index.md): perfil, projetos, retificações, lições e contato",
          f"- [Full page in English]({s['url']}/en/index.md): the same content, translated",
          f"- [Currículo em JSON Resume]({s['url']}/resume.json): formato estruturado",
+         f"- [Currículo em PDF]({s['url']}/curriculo/mateus-fabro-pt.pdf): para imprimir (English: {s['url']}/curriculo/mateus-fabro-en.pdf)",
          f"- [Servidor MCP]({s['url']}/mcp): ferramentas ler_perfil, listar_projetos, ver_projeto, listar_retificacoes, buscar_licoes, verificar_disponibilidade",
          "", "## Projetos"]
     L += [f"- [{pr['nome']}]({s['url']}/projetos/{pr['slug']}.md): {pr['linha']}" for pr in d["projetos"]]
@@ -223,6 +227,13 @@ def llms_txt(d: dict) -> str:
 def resume_json(d: dict) -> dict:
     p, s = d["perfil"], d["site"]
     trabalho = next(pr for pr in d["projetos"] if pr["tipo"] == "trabalho")
+    work = []
+    for x in d["experiencia"]:
+        item = {"name": x["empresa"], "position": x["cargo"], "startDate": x["inicio"], "endDate": x["fim"],
+                "summary": x["resumo"] + (f" ({x['nota']})" if x.get("nota") else "")}
+        if x["id"] == "super-nova":
+            item["highlights"] = trabalho["fatos"]
+        work.append(item)
     return {
         "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
         "basics": {
@@ -232,14 +243,13 @@ def resume_json(d: dict) -> dict:
             "profiles": [{"network": "GitHub", "username": "mateusrfabro", "url": p["github"]},
                          {"network": "LinkedIn", "url": p["linkedin"]}],
         },
-        "work": [{"name": "Grupo de iGaming (nome omitido)", "position": "Analista de Dados",
-                  "startDate": "2025-10", "summary": trabalho["linha"],
-                  "highlights": trabalho["fatos"]}],
+        "work": work,
         "projects": [{"name": pr["nome"], "description": pr["linha"], "highlights": pr["fatos"],
                       "keywords": pr["stack"], **({"url": pr["url"]} if pr.get("url") else {})}
                      for pr in d["projetos"] if pr["tipo"] == "produto"],
-        "education": [{"institution": "Universidade Anhembi Morumbi",
-                       "area": "Administração de Empresas", "studyType": "Graduação (em curso)"}],
+        "education": [{"institution": f["instituicao"], "area": f["curso"],
+                       "studyType": f"Graduação ({f['status']})", "startDate": f["inicio"], "endDate": f["fim"]}
+                      for f in p["formacao"]],
         "languages": [{"language": i.split(" (")[0], "fluency": i.split("(")[1].rstrip(")")}
                       for i in p["idiomas"]],
         "meta": {"lastModified": s["medido_em"], "version": f"edicao-{edicao(d)}"},
@@ -255,7 +265,7 @@ def json_ld(d: dict) -> dict:
               "address": {"@type": "PostalAddress", "addressLocality": p["cidade"],
                           "addressRegion": p["estado"], "addressCountry": "BR"},
               "knowsAbout": ["Engenharia de dados", "Analytics engineering", "Python", "SQL",
-                             "PostgreSQL", "AWS", "TypeScript", "Antifraude", "Agentes de IA"],
+                             "PostgreSQL", "AWS", "TypeScript", "Antifraude", "Agentes de IA", "Next.js", "Flask"],
               "description": p["tese"]}
     return {"@context": "https://schema.org", "@graph": [
         pessoa,
@@ -631,7 +641,7 @@ def pagina(d: dict, md: str, t: dict = T["pt"]) -> str:
     <span><strong>{e(p['cargo'])}</strong> · {e(p['subtitulo'])}</span>
     <span>{e(t['edicao'].format(n=edicao(d)))}</span>
   </div>
-  <p class="contato-topo"><a href="mailto:{e(p['email'])}">{e(p['email'])}</a><a href="{e(p['github'])}" rel="me noopener">GitHub</a><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a><a href="#convocacao">{e(d['disponibilidade']['status'].capitalize())}</a></p>
+  <p class="contato-topo"><a href="mailto:{e(p['email'])}">{e(p['email'])}</a><a href="{e(p['github'])}" rel="me noopener">GitHub</a><a href="{e(p['linkedin'])}" rel="me noopener">LinkedIn</a><a href="/curriculo/{t['cv_arquivo']}">{t['cv']}</a><a href="#convocacao">{e(d['disponibilidade']['status'].capitalize())}</a></p>
 </header>
 <nav aria-label="{t['menu']}">
   {menu}
@@ -689,7 +699,8 @@ def pagina(d: dict, md: str, t: dict = T["pt"]) -> str:
     <ul>
       <li><code>{e(s['url'])}/mcp</code><br>{t['mcp_nota']}</li>
       <li><a href="/llms.txt"><code>/llms.txt</code></a> · <a href="/llms-full.txt"><code>/llms-full.txt</code></a></li>
-      <li><a href="{t['prefixo']}/index.md"><code>{t['prefixo']}/index.md</code></a> · <a href="/resume.json"><code>/resume.json</code></a></li>
+      <li><a href="{t['prefixo']}/index.md"><code>{t['prefixo']}/index.md</code></a></li>
+      <li><a href="/curriculo/{t['cv_arquivo']}"><code>/curriculo/{t['cv_arquivo']}</code></a> · <a href="/resume.json"><code>/resume.json</code></a></li>
     </ul>
     <p class="dica">{t['dica']} <code>/mcp</code>.</p>
   </div>
@@ -783,8 +794,17 @@ def main() -> int:
     if "--check" in sys.argv:
         velhos = [n for n, c in arquivos.items()
                   if not (SAIDA / n).exists() or (SAIDA / n).read_text(encoding="utf-8") != c]
+        dica = "python build.py"
+        try:  # gerar_pecas nasce na Task 5; remover o try la
+            sys.path.insert(0, str(RAIZ / "scripts"))
+            import gerar_pecas
+            velhos += gerar_pecas.curriculo_desatualizado()
+            if velhos and all(v.startswith("curriculo/") for v in velhos):
+                dica = "python scripts/gerar_pecas.py curriculo"
+        except ImportError:
+            pass
         if velhos:
-            print("public/ desatualizado — rode `python build.py`:", ", ".join(velhos))
+            print(f"public/ desatualizado — rode `{dica}`:", ", ".join(velhos))
             return 1
         print("public/ confere com conteudo/dados.json")
         return 0

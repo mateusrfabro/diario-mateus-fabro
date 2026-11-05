@@ -32,7 +32,7 @@ FERRAMENTAS = [
      "description": "Quem é Mateus Fabro: cargo, cidade, resumo, números medidos e contato.",
      "inputSchema": _SEM_ARGS, "annotations": _SO_LEITURA},
     {"name": "listar_projetos",
-     "description": "Projetos (produtos próprios e trabalho em iGaming com nomes omitidos), com status real. "
+     "description": "Projetos (produtos próprios e o trabalho em iGaming, 2025–2026), com status real. "
                     "Filtro opcional tipo = 'produto' ou 'trabalho'.",
      "inputSchema": {"type": "object", "additionalProperties": False,
                      "properties": {"tipo": {"type": "string", "enum": ["produto", "trabalho"]}}},
