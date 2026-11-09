@@ -81,10 +81,10 @@ def test_kit_linkedin_respeita_os_limites_e_tem_os_mesmos_fatos():
 
 def test_kit_linkedin_estoura_limite_falha_em_vez_de_cortar():
     import copy
-    d = copy.deepcopy(D)
-    d["perfil"]["cargo"] = "x" * 300
+    cv = copy.deepcopy(CV)
+    cv["titulo_ats"]["pt"] = "x" * 300   # a headline abre com os cargos da vaga (titulo_ats)
     with pytest.raises(ValueError, match="titulo"):
-        gp.linkedin_md(d, CV, "pt")
+        gp.linkedin_md(D, cv, "pt")
 
 
 def test_readme_github_tem_projetos_abertos_com_link_e_privados_sem():
