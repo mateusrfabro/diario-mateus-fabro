@@ -55,8 +55,17 @@ def periodo(x: dict, lang: str) -> str:
     return f"{mes_ano(x['inicio'], lang)} – {fim}"
 
 
+def periodo_ats(x: dict, lang: str) -> str:
+    """Datas MM/AAAA no currículo: é o formato que os ATS (Gupy, Workday, Greenhouse) leem sem ambiguidade."""
+    def mm(iso: str) -> str:
+        y, m = iso.split("-")
+        return f"{m}/{y}"
+    fim = mm(x["fim"]) if x.get("fim") else ("atual" if lang == "pt" else "present")
+    return f"{mm(x['inicio'])} – {fim}"
+
+
 def _bullets(itens: list[dict]) -> str:
-    return "<ul>" + "".join(f"<li>{e(i['texto'])}</li>" for i in itens) + "</ul>"
+    return "<ul>" + "".join(f"<li>{e(i['texto'])}</li>" for i in itens if not i.get("so_site")) + "</ul>"
 
 
 def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) -> str:
@@ -65,9 +74,10 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
     contato = [f"{local} · {r['remoto']}", f'<a href="mailto:{e(p["email"])}">{e(p["email"])}</a>']
     if telefone:
         contato.append(e(telefone))
-    contato += [f'<a href="{e(p["github"])}">github.com/mateusrfabro</a>', f'<a href="{e(p["linkedin"])}">LinkedIn</a>',
+    contato += [f'<a href="{e(p["github"])}">github.com/mateusrfabro</a>', f'<a href="{e(p["linkedin"])}">{e(p["linkedin"].split("//")[1].removeprefix("www."))}</a>',
                 f'<a href="{e(s["url"])}">{e(s["url"].split("//")[1])}</a>']
-    numeros = "".join(f'<div class="numero"><b>{e(n["valor"])}</b><span>{e(n["rotulo"])}</span></div>' for n in d["numeros"])
+    destaques = cv.get("destaques", {}).get(lang) or d["numeros"]   # currículo: impacto; site: números recontados
+    numeros = "".join(f'<div class="numero"><b>{e(n["valor"])}</b><span>{e(n["rotulo"])}</span></div>' for n in destaques)
     exp = []
     for x in d["experiencia"]:
         blocos = cv["experiencia"][x["id"]][lang]
@@ -75,21 +85,24 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
                  if blocos and "bloco" in blocos[0] else _bullets(blocos))
         resumo_exp = f"<p>{e(x['resumo'])}</p>" if blocos and "bloco" in blocos[0] else ""  # flat: o bullet ja diz o mesmo
         nota = f" · {e(x['nota'])}" if x.get("nota") else ""
-        exp.append(f'<div class="exp"><div class="topo"><h3>{e(x["empresa"])}</h3>'
-                   f'<span class="quando">{e(periodo(x, lang))} · {e(x["local"])}{nota}</span></div>'
-                   f'<p class="cargo-exp">{e(x["cargo"])}</p>{resumo_exp}{corpo}</div>')
+        # ATS: cargo primeiro, depois empresa · local · datas numa linha só
+        exp.append(f'<div class="exp"><div class="topo"><h3>{e(x["cargo"])}</h3>'
+                   f'<span class="quando">{e(periodo_ats(x, lang))}</span></div>'
+                   f'<p class="cargo-exp">{e(x["empresa"])} · {e(x["local"])}{nota}</p>{resumo_exp}{corpo}</div>')
     produtos = []
     for pr in d["projetos"]:
         if pr["tipo"] != "produto":
             continue
         link = f' · <a href="{e(pr["url"])}">{e(pr["url"].split("//")[1])}</a>' if pr.get("url") else ""
         produtos.append(f'<p class="produto"><b>{e(pr["nome"])}</b> — {e(pr["linha"])} '
-                        f'<span class="status">({e(pr["status"])})</span>{link}</p>')
-    stack = "".join(f"<tr><td>{e(c['categoria'])}</td><td>{e(c['itens'])}</td></tr>" for c in cv["stack"][lang])
+                        f'<span class="status">· {e(pr["status"])}</span>{link}</p>')
+    # sem tabela: ATS junta células ("Segurança e práticasArgon2"); "Categoria: itens" sai limpo
+    stack = "".join(f'<p class="comp"><b>{e(c["categoria"])}:</b> {e(c["itens"])}</p>' for c in cv["stack"][lang])
     formacao = "".join(f"<p><b>{e(f['curso'])}</b> — {e(f['instituicao'])} · {e(f['inicio'])}–{e(f['fim'])} ({e(f['status'])})</p>"
                        for f in p["formacao"])
     campos = {
-        "lang_html": "pt-BR" if lang == "pt" else "en", "nome": e(p["nome"]), "cargo": e(p["cargo"]),
+        "lang_html": "pt-BR" if lang == "pt" else "en", "nome": e(p["nome"]),
+        "cargo": e(cv.get("titulo_ats", {}).get(lang, p["cargo"])),
         "subtitulo": e(p["subtitulo"]), "contato": " · ".join(contato),
         "resumo": "".join(f"<p>{e(par)}</p>" for par in
                           (cv["resumo_discreto"] if discreto(d) else cv["resumo"])[lang]), "numeros": numeros,
@@ -108,6 +121,88 @@ def curriculo_html(d: dict, cv: dict, lang: str, telefone: str | None = None) ->
     return re.sub(r"\{\{(\w+)\}\}", _valor, texto)  # uma passagem: valor com {{x}} dentro não é reexpandido
 
 
+def curriculo_docx(d: dict, cv: dict, lang: str, destino: Path, telefone: str | None = None) -> None:
+    """Mesmo conteúdo do currículo em .docx de uma coluna, só com estilos nativos do Word (Título, Lista).
+    A Gupy recomenda .doc/.docx para o preenchimento automático dos campos; sem tabela, caixa de texto,
+    cabeçalho/rodapé ou imagem, que são o que os parsers leem mal."""
+    from docx import Document
+    from docx.shared import Pt, RGBColor
+    p, s, r = d["perfil"], d["site"], cv["rotulos"][lang]
+    doc = Document()
+    st = doc.styles["Normal"]
+    st.font.name, st.font.size = "Calibri", Pt(10)
+    for sec in doc.sections:
+        sec.top_margin = sec.bottom_margin = sec.left_margin = sec.right_margin = Pt(42)
+
+    def h(texto: str, nivel: int) -> None:
+        par = doc.add_heading(texto, level=nivel)
+        for run in par.runs:
+            run.font.color.rgb = RGBColor(0x0E, 0x5A, 0x63)
+
+    def par(texto: str, negrito: str = "") -> None:
+        x = doc.add_paragraph()
+        if negrito:
+            x.add_run(negrito).bold = True
+        x.add_run(texto)
+        x.paragraph_format.space_after = Pt(3)
+
+    def item(texto: str) -> None:
+        x = doc.add_paragraph(texto, style="List Bullet")
+        x.paragraph_format.space_after = Pt(1)
+
+    titulo = doc.add_paragraph()
+    rn = titulo.add_run(p["nome"])
+    rn.bold, rn.font.size = True, Pt(20)
+    sub = doc.add_paragraph()
+    rc = sub.add_run(cv.get("titulo_ats", {}).get(lang, p["cargo"]))
+    rc.bold, rc.font.size = True, Pt(12)
+    par(p["subtitulo"])
+    local = f"{p['cidade']}, {p['estado']}" if lang == "pt" else f"{p['cidade']}, {p['pais']}"
+    contato = [f"{local} · {r['remoto']}", p["email"]] + ([telefone] if telefone else [])
+    contato += ["github.com/mateusrfabro", p["linkedin"].split("//")[1].removeprefix("www."), s["url"].split("//")[1]]
+    par(" · ".join(contato))
+
+    h(r["resumo"], 1)
+    for t in (cv["resumo_discreto"] if discreto(d) else cv["resumo"])[lang]:
+        par(t)
+    h(r["numeros"], 1)
+    for n in cv.get("destaques", {}).get(lang) or d["numeros"]:
+        item(f"{n['valor']} {n['rotulo']}")
+    h(r["experiencia"], 1)
+    for x in d["experiencia"]:
+        blocos = cv["experiencia"][x["id"]][lang]
+        h(x["cargo"], 2)
+        nota = f" · {x['nota']}" if x.get("nota") else ""
+        par(f"{x['empresa']} · {x['local']} · {periodo_ats(x, lang)}{nota}")
+        if blocos and "bloco" in blocos[0]:
+            par(x["resumo"])
+            for b in blocos:
+                par("", negrito=b["bloco"])
+                for i in b["itens"]:
+                    if not i.get("so_site"):
+                        item(i["texto"])
+        else:
+            for i in blocos:
+                item(i["texto"])
+    h(r["produtos"], 1)
+    for pr in d["projetos"]:
+        if pr["tipo"] != "produto":
+            continue
+        link = f" · {pr['url'].split('//')[1]}" if pr.get("url") else ""
+        par(f" — {pr['linha']} · {pr['status']}{link}", negrito=pr["nome"])
+    h(r["stack"], 1)
+    for c in cv["stack"][lang]:
+        par(f" {c['itens']}", negrito=f"{c['categoria']}:")
+    h(r["formacao"], 1)
+    for f in p["formacao"]:
+        par(f" — {f['instituicao']} · {f['inicio']}–{f['fim']} ({f['status']})", negrito=f["curso"])
+    h(r["idiomas"], 1)
+    par(" · ".join(p["idiomas"]))
+    doc.core_properties.author = p["nome"]
+    doc.core_properties.title = f"{p['nome']} — {cv.get('titulo_ats', {}).get(lang, p['cargo'])}"
+    doc.save(str(destino))
+
+
 def curriculo_arquivos() -> dict[str, str]:
     cv = carregar_cv()
     return {f"mateus-fabro-{lang}.html": curriculo_html(dados(lang), cv, lang) for lang in LANGS}
@@ -122,7 +217,7 @@ def curriculo_desatualizado() -> list[str]:
 
 
 def saidas_privadas() -> list[Path]:
-    return [ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.{ext}" for lang in LANGS for ext in ("html", "pdf")]
+    return [ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.{ext}" for lang in LANGS for ext in ("html", "pdf", "docx")]
 
 
 def pdf(html_path: Path, pdf_path: Path) -> None:
@@ -165,6 +260,7 @@ def cmd_curriculo(args: list[str]) -> int:
         for lang in LANGS:
             alvo = ONEDRIVE / f"Curriculo_Mateus_Fabro_v5_{lang.upper()}.html"
             alvo.write_text(curriculo_html(dados(lang, "completo"), cv, lang, telefone=tel), encoding="utf-8", newline="\n")
+            curriculo_docx(dados(lang, "completo"), cv, lang, alvo.with_suffix(".docx"), telefone=tel)
             if not sem_pdf:
                 pdf(alvo, alvo.with_suffix(".pdf"))
             print(f"privado: {alvo}")
@@ -222,7 +318,7 @@ def _bullets_agentes(cv: dict, lang: str) -> list[str]:
     """Bullets do bloco de IA do currículo (fonte única: curriculo.json)."""
     pref = "IA" if lang == "pt" else "Applied"
     bloco = next(b for b in cv["experiencia"]["super-nova"][lang] if b["bloco"].startswith(pref))
-    return [i["texto"] for i in bloco["itens"]]
+    return [i.get("texto_sobre", i["texto"]) for i in bloco["itens"]]   # About do LinkedIn: versão longa, já publicada
 
 
 def _sobre_e_post(d: dict, cv: dict, lang: str) -> tuple[str, str]:
@@ -290,10 +386,12 @@ def linkedin_secoes(d: dict, cv: dict, lang: str) -> dict[str, str]:
     fecho = {("pt", True): "aberto a projetos e vagas", ("en", True): "open to projects and roles",
              ("pt", False): "em busca de vaga (PJ/CLT, remoto)",
              ("en", False): "open to work (contract or full-time, remote)"}[(lang, discreto(d))]
-    titulo = (f"{p['cargo']} | Python · SQL · TypeScript · agentes de IA (Claude Code) | pipelines, antifraude e atribuição em iGaming · "
-              f"produtos próprios com cliente real | {fecho}" if pt else
-              f"{p['cargo']} | Python · SQL · TypeScript · AI agents (Claude Code) | pipelines, anti-fraud and attribution in iGaming · "
-              f"own products with real customers | {fecho}")
+    # Busca de recrutador (LinkedIn) prioriza o cargo exato: os títulos da vaga abrem a headline.
+    cargos = cv.get("titulo_ats", {}).get(lang, p["cargo"])
+    titulo = (f"{cargos} | Python · SQL · TypeScript · AWS · agentes de IA | pipelines, antifraude e atribuição · "
+              f"produtos próprios | {fecho}" if pt else
+              f"{cargos} | Python · SQL · TypeScript · AWS · AI agents | pipelines, anti-fraud and attribution · "
+              f"own products in production | {fecho}")
     sobre, post = _sobre_e_post(d, cv, lang)
     secoes = {"titulo": titulo, "sobre": sobre}
     for x in d["experiencia"]:

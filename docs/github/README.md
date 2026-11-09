@@ -11,9 +11,9 @@
 
 ## O que eu faço
 
-- Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.
+- Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines ETL em Python e SQL orquestrados com Prefect, migração de data lake para lakehouse (S3 Tables/Iceberg), modelagem da camada gold, qualidade de dados, antifraude, atribuição de mídia, APIs e painéis (Power BI, Dash/Plotly) — e também o produto em volta do dado, em Python e TypeScript.
 - Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas.
-- Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam.
+- Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção e mensalidade ativa.
 
 ## Projetos
 

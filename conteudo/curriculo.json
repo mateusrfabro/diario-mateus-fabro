@@ -1,14 +1,14 @@
 {
   "resumo": {
     "pt": [
-      "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
+      "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines ETL em Python e SQL orquestrados com Prefect, migração de data lake para lakehouse (S3 Tables/Iceberg), modelagem da camada gold, qualidade de dados, antifraude, atribuição de mídia, APIs e painéis (Power BI, Dash/Plotly) — e também o produto em volta do dado, em Python e TypeScript.",
       "De out/2025 a nov/2026 trabalhei na Super Nova Gaming / MultiBet, até o encerramento da empresa.",
-      "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
+      "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção e mensalidade ativa."
     ],
     "en": [
-      "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
+      "Data and analytics engineer: I design, build and run end-to-end data systems — ETL pipelines in Python and SQL orchestrated with Prefect, a data lake migration to a lakehouse (S3 Tables/Iceberg), gold-layer data modeling, data quality, anti-fraud, media attribution, APIs and dashboards (Power BI, Dash/Plotly) — and the product around the data, in Python and TypeScript.",
       "From Oct 2025 to Nov 2026 I worked at Super Nova Gaming / MultiBet, until the company shut down.",
-      "Outside work, I built and run my own products, one of them with a real customer in production, covered by tests and with an honest status — including the ones that stopped."
+      "Outside work, I built and run my own products, one of them with a real customer in production on an active monthly plan."
     ]
   },
   "experiencia": {
@@ -77,8 +77,9 @@
           "bloco": "IA aplicada",
           "itens": [
             {
-              "texto": "Montei um squad de 25 agentes Claude Code com papel definido (10 do squad de dados + 15 gerais) e 5 skills próprias (escopo de tenant, multimoeda, promoção de memória, PRD e fábrica de páginas), com gate obrigatório (extração → boas práticas → auditoria → entrega) e hooks que bloqueiam git destrutivo e commit sem teste.",
-              "fonte": "contagem em .claude/agents (10 do play4tune + 15 em ~/.claude) e skills de autoria própria em ~/.claude/skills e play4tune/.claude/skills, 05/11/2026"
+              "texto": "Montei agentes e skills de Claude Code para o fluxo do time de dados (escopo de tenant, multimoeda), com gate obrigatório (extração → boas práticas → auditoria → entrega) e hooks que bloqueiam git destrutivo e commit sem teste.",
+              "fonte": "play4tune/.claude/agents (squad de dados) e play4tune/.claude/skills (tenant-scope, multimoeda), 05/11/2026",
+              "texto_sobre": "Montei um squad de 25 agentes Claude Code com papel definido (10 do squad de dados + 15 gerais) e 5 skills próprias (escopo de tenant, multimoeda, promoção de memória, PRD e fábrica de páginas), com gate obrigatório (extração → boas práticas → auditoria → entrega) e hooks que bloqueiam git destrutivo e commit sem teste."
             },
             {
               "texto": "Mantenho memória em três camadas (projeto → global → export): 125 lições registradas, cada uma com origem, motivo e forma de aplicar, e um script que prova que o índice não esqueceu nenhuma.",
@@ -86,7 +87,8 @@
             },
             {
               "texto": "API da Anthropic em produção em dois produtos (IA multimodal no DumpAI; chatbot clínico no Nous Clinical), agente LangChain/n8n na secretária de WhatsApp e laboratório local (Ollama + PyTorch numa RTX 4060) para saber o que roda sem API.",
-              "fonte": "repositórios dumpai, nous-clinical, secretaria-ia e lab-ia (log de 04–06/10/2026)"
+              "fonte": "repositórios dumpai, nous-clinical, secretaria-ia e lab-ia (log de 04–06/10/2026)",
+              "so_site": true
             }
           ]
         }
@@ -155,8 +157,9 @@
           "bloco": "Applied AI",
           "itens": [
             {
-              "texto": "Assembled a squad of 25 Claude Code agents with defined roles (10 from the data squad + 15 general) and 5 skills of my own (tenant scope, multi-currency, memory promotion, PRD and page factory), with a mandatory gate (extraction → best practices → audit → delivery) and hooks that block destructive git and commits without tests.",
-              "fonte": "contagem em .claude/agents (10 do play4tune + 15 em ~/.claude) e skills de autoria própria em ~/.claude/skills e play4tune/.claude/skills, 05/11/2026"
+              "texto": "Built Claude Code agents and skills for the data team's workflow (tenant scope, multi-currency), with a mandatory gate (extraction → best practices → audit → delivery) and hooks that block destructive git and commits without tests.",
+              "fonte": "play4tune/.claude/agents (squad de dados) e play4tune/.claude/skills (tenant-scope, multimoeda), 05/11/2026",
+              "texto_sobre": "Assembled a squad of 25 Claude Code agents with defined roles (10 from the data squad + 15 general) and 5 skills of my own (tenant scope, multi-currency, memory promotion, PRD and page factory), with a mandatory gate (extraction → best practices → audit → delivery) and hooks that block destructive git and commits without tests."
             },
             {
               "texto": "I keep a three-layer memory (project → global → export): 125 recorded lessons, each with origin, reason and how to apply it, and a script that proves the index forgot none.",
@@ -164,7 +167,8 @@
             },
             {
               "texto": "Anthropic API in production in two products (multimodal AI in DumpAI; clinical chatbot in Nous Clinical), a LangChain/n8n agent in the WhatsApp secretary and a local lab (Ollama + PyTorch on an RTX 4060) to learn what runs without an API.",
-              "fonte": "repositórios dumpai, nous-clinical, secretaria-ia e lab-ia (log de 04–06/10/2026)"
+              "fonte": "repositórios dumpai, nous-clinical, secretaria-ia e lab-ia (log de 04–06/10/2026)",
+              "so_site": true
             }
           ]
         }
@@ -215,11 +219,11 @@
       },
       {
         "categoria": "Dados e cloud",
-        "itens": "AWS (Athena, S3 Tables/Iceberg, EC2, RDS, SSM, IAM) · PostgreSQL (particionamento, FDW, matviews) · MongoDB Atlas · Redis · Supabase · Prefect 3 · systemd"
+        "itens": "AWS (Athena, S3 Tables/Iceberg, EC2, RDS, SSM, IAM) · PostgreSQL como data warehouse analítico (camada gold, particionamento, FDW, matviews) · MongoDB Atlas · Redis · Supabase · Prefect 3 (orquestração ETL) · systemd · Power BI · Dash/Plotly"
       },
       {
         "categoria": "Backend e web",
-        "itens": "Flask · FastAPI · NestJS 11 · Next.js 15/16 + React 19 · Astro 7 · Tailwind · Docker/Compose · nginx/Caddy · Vercel · Render"
+        "itens": "Flask · FastAPI · NestJS 11 · Next.js 15/16 + React 19 · Astro 7 · Tailwind · Docker/Compose · GitHub Actions (CI/CD) · nginx/Caddy · Vercel · Render"
       },
       {
         "categoria": "Integrações",
@@ -241,11 +245,11 @@
       },
       {
         "categoria": "Data and cloud",
-        "itens": "AWS (Athena, S3 Tables/Iceberg, EC2, RDS, SSM, IAM) · PostgreSQL (partitioning, FDW, matviews) · MongoDB Atlas · Redis · Supabase · Prefect 3 · systemd"
+        "itens": "AWS (Athena, S3 Tables/Iceberg, EC2, RDS, SSM, IAM) · PostgreSQL as an analytical data warehouse (gold layer, partitioning, FDW, matviews) · MongoDB Atlas · Redis · Supabase · Prefect 3 (ETL orchestration) · systemd · Power BI · Dash/Plotly"
       },
       {
         "categoria": "Backend and web",
-        "itens": "Flask · FastAPI · NestJS 11 · Next.js 15/16 + React 19 · Astro 7 · Tailwind · Docker/Compose · nginx/Caddy · Vercel · Render"
+        "itens": "Flask · FastAPI · NestJS 11 · Next.js 15/16 + React 19 · Astro 7 · Tailwind · Docker/Compose · GitHub Actions (CI/CD) · nginx/Caddy · Vercel · Render"
       },
       {
         "categoria": "Integrations",
@@ -263,12 +267,12 @@
   },
   "rotulos": {
     "pt": {
-      "resumo": "Resumo",
-      "numeros": "Em números",
-      "experiencia": "Experiência",
-      "produtos": "Produtos próprios",
-      "stack": "Stack",
-      "formacao": "Formação",
+      "resumo": "Resumo profissional",
+      "numeros": "Destaques",
+      "experiencia": "Experiência profissional",
+      "produtos": "Projetos",
+      "stack": "Competências técnicas",
+      "formacao": "Formação acadêmica",
       "idiomas": "Idiomas",
       "remoto": "remoto",
       "gerado": "Gerado de conteudo/dados.json em",
@@ -277,11 +281,11 @@
       "concluido": "concluído"
     },
     "en": {
-      "resumo": "Summary",
-      "numeros": "In numbers",
-      "experiencia": "Experience",
-      "produtos": "Own products",
-      "stack": "Stack",
+      "resumo": "Professional Summary",
+      "numeros": "Highlights",
+      "experiencia": "Work Experience",
+      "produtos": "Projects",
+      "stack": "Technical Skills",
       "formacao": "Education",
       "idiomas": "Languages",
       "remoto": "remote",
@@ -293,14 +297,64 @@
   },
   "resumo_discreto": {
     "pt": [
-      "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines, antifraude, atribuição de mídia, APIs e painéis — e também o produto em volta do dado, em Python e TypeScript.",
+      "Engenheiro de dados e analytics: desenho, construo e opero sistemas de dados de ponta a ponta — pipelines ETL em Python e SQL orquestrados com Prefect, migração de data lake para lakehouse (S3 Tables/Iceberg), modelagem da camada gold, qualidade de dados, antifraude, atribuição de mídia, APIs e painéis (Power BI, Dash/Plotly) — e também o produto em volta do dado, em Python e TypeScript.",
       "Desde out/2025 na Super Nova Gaming / MultiBet, num squad de dados de quatro pessoas para três operações de iGaming em três países e três moedas.",
-      "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção, cobertos por testes e com status honesto — inclusive os que pararam."
+      "Fora do expediente, construí e opero produtos próprios, um deles com cliente real em produção e mensalidade ativa."
     ],
     "en": [
-      "Data and analytics engineer: I design, build and run end-to-end data systems — pipelines, anti-fraud, media attribution, APIs and dashboards — and the product around the data, in Python and TypeScript.",
+      "Data and analytics engineer: I design, build and run end-to-end data systems — ETL pipelines in Python and SQL orchestrated with Prefect, a data lake migration to a lakehouse (S3 Tables/Iceberg), gold-layer data modeling, data quality, anti-fraud, media attribution, APIs and dashboards (Power BI, Dash/Plotly) — and the product around the data, in Python and TypeScript.",
       "Since Oct 2025 at Super Nova Gaming / MultiBet, in a four-person data squad serving three iGaming operations in three countries and three currencies.",
-      "Outside work, I built and run my own products, one of them with a real customer in production, covered by tests and with an honest status — including the ones that stopped."
+      "Outside work, I built and run my own products, one of them with a real customer in production on an active monthly plan."
+    ]
+  },
+  "titulo_ats": {
+    "pt": "Engenheiro de Dados | Analytics Engineer | Analista de Dados",
+    "en": "Data Engineer | Analytics Engineer | Data Analyst"
+  },
+  "destaques": {
+    "pt": [
+      {
+        "valor": "240 s → 21 s",
+        "rotulo": "consulta crítica otimizada, com resultado idêntico provado"
+      },
+      {
+        "valor": "3,07 bi",
+        "rotulo": "registros na migração do data lake (234 tabelas)"
+      },
+      {
+        "valor": "99,45%",
+        "rotulo": "acurácia em holdout 70/30, base de 1,38 M jogadores"
+      },
+      {
+        "valor": "3 países",
+        "rotulo": "3 operações de iGaming e 3 moedas"
+      },
+      {
+        "valor": "6.357",
+        "rotulo": "funções de teste nos produtos próprios em Python"
+      }
+    ],
+    "en": [
+      {
+        "valor": "240 s → 21 s",
+        "rotulo": "critical query optimized, identical result proven"
+      },
+      {
+        "valor": "3.07 bn",
+        "rotulo": "records in the data lake migration (234 tables)"
+      },
+      {
+        "valor": "99.45%",
+        "rotulo": "70/30 holdout accuracy on 1.38 M players"
+      },
+      {
+        "valor": "3 countries",
+        "rotulo": "3 iGaming operations and 3 currencies"
+      },
+      {
+        "valor": "6,357",
+        "rotulo": "test functions in my own Python products"
+      }
     ]
   }
 }

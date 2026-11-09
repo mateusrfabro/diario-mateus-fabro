@@ -31,9 +31,9 @@ def test_curriculo_publico_tem_empregador_datas_formacao_e_cargo_e_nao_tem_telef
     tel = _telefone()
     for lang, d in (("pt", D), ("en", EN)):
         h = gp.curriculo_html(d, CV, lang)
-        assert d["experiencia"][0]["empresa"] in h and build.e(d["perfil"]["cargo"]) in h   # `&` sai como &amp;
+        assert d["experiencia"][0]["empresa"] in h and build.e(CV["titulo_ats"][lang]) in h   # cargo da vaga no topo
         if d["site"]["modo"] == "discreto":
-            assert ("out/2025 – atual" if lang == "pt" else "Oct 2025 – present") in h
+            assert ("10/2025 – atual" if lang == "pt" else "10/2025 – present") in h   # datas MM/AAAA (ATS)
         else:
             assert ("out/2025 – nov/2026" if lang == "pt" else "Oct 2025 – Nov 2026") in h
         for f in d["perfil"]["formacao"]:
@@ -123,3 +123,34 @@ def test_kit_e_readme_discretos_sem_anuncio_de_busca():
         assert "não publicar em modo discreto" in kit or "do not publish in discreet mode" in kit
     md = gp.github_readme(gp.dados("pt", "discreto"), CV)
     assert "Trabalho atual:" in md and "Trabalho anterior" not in md and "encerr" not in md.lower()
+
+
+# ------------------------------------------------------------------ ATS: o que a máquina lê
+def test_curriculo_publico_passa_no_verificador_de_ats():
+    """O PDF publicado é lido como texto, com seções padrão, datas MM/AAAA e URL do LinkedIn visível."""
+    sys.path.insert(0, str(RAIZ / "scripts"))
+    import ats_check
+    for lang in ("pt", "en"):
+        erros, avisos, _ = ats_check.checar(RAIZ / "public" / "curriculo" / f"mateus-fabro-{lang}.pdf")
+        assert not erros, (lang, erros)
+        assert not [a for a in avisos if not a.startswith("telefone")], (lang, avisos)  # público não tem telefone
+
+
+def test_curriculo_sem_tabela_e_com_cargo_da_vaga_no_topo():
+    cv = gp.carregar_cv()
+    for lang in ("pt", "en"):
+        h = gp.curriculo_html(gp.dados(lang), cv, lang)
+        assert "<table" not in h, "tabela: ATS junta as células"
+        assert cv["titulo_ats"][lang] in h
+        assert "linkedin.com/in/" in h.split("</header>")[0]
+
+
+def test_docx_tem_uma_coluna_sem_tabela(tmp_path):
+    from docx import Document
+    cv = gp.carregar_cv()
+    alvo = tmp_path / "cv.docx"
+    gp.curriculo_docx(gp.dados("pt"), cv, "pt", alvo)
+    doc = Document(str(alvo))
+    assert not doc.tables
+    texto = "\n".join(p.text for p in doc.paragraphs)
+    assert cv["titulo_ats"]["pt"] in texto and "Experiência profissional" in texto
